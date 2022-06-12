@@ -3,7 +3,7 @@
     class="index bg-white dark:bg-black h-screen pl-7.5"
     :class="{ 'text-[50px]': true }"
   >
-    <text :class="['font-bold']">{{ title }}</text>
+    <text class="text-red-400 dark:text-green-400">{{ title }}</text>
   </view>
 </template>
 
@@ -13,17 +13,8 @@ import { ref } from "vue";
 const title = ref("Hello world!");
 
 onShow(async () => {
-  // const data = await uni.request({
-  //   url: "https://api.github.com/repos/dcloudio/uni-app/commits/master",
-  //   dataType: "json"
-  // });
-
   console.log("App Show");
 });
-
-// if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-//   document.documentElement.classList.add("dark");
-// else document.documentElement.classList.add("light");
 </script>
 
 <style lang="pcss">

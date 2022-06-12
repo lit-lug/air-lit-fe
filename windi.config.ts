@@ -1,6 +1,7 @@
 import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
+    darkMode: 'media',
     prefixer: false,
     preflight: false,
     extract: {
@@ -9,14 +10,14 @@ export default defineConfig({
     theme: {
         extend: {
             fontSize: {
-                'xxxs': [ '0.5rem', '0.5rem' ], // 8px
-                'xxs': [ '0.625rem', '1rem' ], // 10px 
-                'xs': [ '0.75rem', '1rem' ], // 12px
-                'sm': [ '0.875rem', '1.25rem' ], // 14px
-                'base': [ '1rem', '1.5rem' ], // 16px
-                'lg': [ '1.125rem', '1.75rem' ], // 18px
-                'xl': [ '50px', '1.75rem' ], // 20px
-                '2xl': [ '1.75rem', '2.25rem' ] // 28px
+                'xxxs': ['0.5rem', '0.5rem'], // 8px
+                'xxs': ['0.625rem', '1rem'], // 10px 
+                'xs': ['0.75rem', '1rem'], // 12px
+                'sm': ['0.875rem', '1.25rem'], // 14px
+                'base': ['1rem', '1.5rem'], // 16px
+                'lg': ['1.125rem', '1.75rem'], // 18px
+                'xl': ['50px', '1.75rem'], // 20px
+                '2xl': ['1.75rem', '2.25rem'] // 28px
             },
             colors: {
                 red: {
