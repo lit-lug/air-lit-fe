@@ -1,6 +1,6 @@
 import { createSSRApp } from "vue";
 import App from "./App.vue";
-import 'virtual:windi.css'
+// import 'virtual:windi.css'
 
 export function createApp() {
   const app = createSSRApp(App);

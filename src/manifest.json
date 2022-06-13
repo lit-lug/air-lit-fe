@@ -47,7 +47,14 @@
       "urlCheck": false
     },
     "usingComponents": true,
-    "darkmode": true
+    "darkmode": true,
+    "setting": {
+      "darkmode": true,
+      "urlCheck": true,
+      "es6": true,
+      "postcss": true,
+      "minified": true
+    }
   },
   "mp-alipay": {
     "usingComponents": true

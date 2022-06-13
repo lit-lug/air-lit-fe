@@ -10,4 +10,4 @@
 
 - Vite
 
-- windicss
+- pinia
