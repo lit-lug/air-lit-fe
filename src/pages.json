@@ -4,7 +4,17 @@
       "path": "pages/index/home",
       "style": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "自定义主页",
+        "navigationBarTitleText": "时刻",
+        "navigationStyle": "custom",
+        "backgroundColorTop": "#fff",
+        "backgroundColorBottom": "#F8F8F8"
+      }
+    },
+    {
+      "path": "pages/index/schedule",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "课表",
         "navigationStyle": "custom",
         "backgroundColorTop": "#fff",
         "backgroundColorBottom": "#F8F8F8"
@@ -28,21 +38,26 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#fff",
-    "borderStyle": "white",
+    "color": "#3b3b3b",
+    "selectedColor": "#3e8cd7",
     "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/home",
-        "iconPath": "static/palette-line__unselected.png",
-        "selectedIconPath": "static/palette-line__selected.png",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home_selected.png",
         "text": "时刻"
       },
       {
+        "pagePath": "pages/index/schedule",
+        "iconPath": "static/schedule.png",
+        "selectedIconPath": "static/schedule_selected.png",
+        "text": "课表"
+      },
+      {
         "pagePath": "pages/index/user",
-        "iconPath": "static/user-smile-line__unselected.png",
-        "selectedIconPath": "static/user-smile-line__selected.png",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user_selected.png",
         "text": "我的"
       }
     ]

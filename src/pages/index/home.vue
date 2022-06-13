@@ -61,7 +61,7 @@ onShow(async () => {
 <template>
   <page-meta :page-style="pageStyle" />
 
-  <the-nav-bar title="自定义主页" :back="false" :filter="false" :bg="true"> </the-nav-bar>
+  <the-nav-bar title="时刻" :back="false" :filter="false" :bg="true"> </the-nav-bar>
 
   <view class="home fixed-top fixed-bottom">
     <view class="home-banner">
@@ -71,7 +71,7 @@ onShow(async () => {
     <view class="title">夜间模式</view>
     <switch
       class="setting-switch-btn"
-      color="#00c1ff"
+      color="#3e8cd7"
       @change="themeChange"
       :checked="themeDark"
     />

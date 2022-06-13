@@ -38,7 +38,7 @@ page,
 html,
 body {
   // 自定义导航栏高度
-  --nav-tab-height-custom: 70rpx;
+  --nav-tab-height-custom: 84.6rpx;
 
   // tabbar高度
   --tabbar-height-custom: 50px;

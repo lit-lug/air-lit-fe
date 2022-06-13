@@ -25,7 +25,7 @@ type Theme = {
 
 const dark: Theme = {
     navigationBarColor: "#ffffff",
-    themeColor: "#00c1ff",
+    themeColor: "#3e8cd7",
     backgroundColor: "#0E0E0E",
     backgroundColorCard: "#151515",
     backgroundColorClear: "#212121",
@@ -38,7 +38,7 @@ const dark: Theme = {
 
 const light: Theme = {
     navigationBarColor: "#000000",
-    themeColor: "#00c1ff",
+    themeColor: "#3e8cd7",
     backgroundColor: "#F8F8F8",
     backgroundColorCard: "#FFFFFF",
     backgroundColorClear: "#f8f8f8",
@@ -70,7 +70,7 @@ export const useStore = defineStore("main", {
                 theme: "light" as "dark" | "light",
                 dark: {
                     navigationBarColor: "#ffffff",
-                    themeColor: "#00c1ff",
+                    themeColor: "#3e8cd7",
                     backgroundColor: "#0E0E0E",
                     backgroundColorCard: "#151515",
                     backgroundColorClear: "#212121",
@@ -82,7 +82,7 @@ export const useStore = defineStore("main", {
                 },
                 light: {
                     navigationBarColor: "#000000",
-                    themeColor: "#00c1ff",
+                    themeColor: "#3e8cd7",
                     backgroundColor: "#F8F8F8",
                     backgroundColorCard: "#FFFFFF",
                     backgroundColorClear: "#f8f8f8",
