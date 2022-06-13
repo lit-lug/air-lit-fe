@@ -1,17 +1,50 @@
 {
   "pages": [
     {
-      "path": "pages/index/index",
+      "path": "pages/index/home",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "自定义主页",
+        "navigationStyle": "custom",
+        "backgroundColorTop": "#fff",
+        "backgroundColorBottom": "#F8F8F8"
+      }
+    },
+    {
+      "path": "pages/index/user",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom",
+        "backgroundColorTop": "#fff",
+        "backgroundColorBottom": "#F8F8F8"
       }
     }
   ],
   "globalStyle": {
-    "navigationStyle": "custom",
-    "navigationBarTextStyle": "@navTxtStyle",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "@bgColor",
-    "backgroundColor": "@bgColor"
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#fff",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/home",
+        "iconPath": "static/palette-line__unselected.png",
+        "selectedIconPath": "static/palette-line__selected.png",
+        "text": "时刻"
+      },
+      {
+        "pagePath": "pages/index/user",
+        "iconPath": "static/user-smile-line__unselected.png",
+        "selectedIconPath": "static/user-smile-line__selected.png",
+        "text": "我的"
+      }
+    ]
   }
 }

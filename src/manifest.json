@@ -43,9 +43,6 @@
   "quickapp": {},
   "mp-weixin": {
     "appid": "wx6c827e69a8ed5304",
-    "setting": {
-      "urlCheck": false
-    },
     "usingComponents": true,
     "darkmode": true,
     "setting": {

@@ -1,135 +1,133 @@
-<template>
-  <div class="content-top">
-    <swiper
-      @change="swiperChange"
-      :style="{ height: height + 'rpx' }"
-      circular="true"
-      autoplay="true"
-      interval="8000"
-      :previous-margin="previousMargin"
-      :next-margin="nextMargin"
-    >
-      <swiper-item v-for="(item, index) in swiperItems" :key="index">
-        <div
-          class="content"
-          :style="{
-            height: height + 'rpx',
-            marginLeft: margin + 'rpx',
-            marginRight: margin + 'rpx',
-            borderRadius: borderRadius + 'rpx',
-          }"
-        >
-          <image :src="item.img" mode="aspectFill" class="swiper-img"></image>
-          <div class="mask"></div>
-          <div class="written">
-            <text
-              v-if="item.title"
-              class="Text-initialization overflow"
-              :style="{ fontSize: titleFontSize + 'rpx', color: titleColor }"
-              :class="[index === enjoySwiper ? 'title' : '']"
-            >
-              {{ item.title }}
-            </text>
-            <text
-              v-if="item.subTitle"
-              class="Text-initialization overflow"
-              :style="{
-                fontSize: subTitleFontSize + 'rpx',
-                color: subTitleColor,
-              }"
-              :class="[index === enjoySwiper ? 'subTitle' : '']"
-            >
-              {{ item.subTitle }}
-            </text>
-            <div
-              class="Text-initialization"
-              v-if="button"
-              @click="onButClick"
-              :class="[index === enjoySwiper ? 'bt' : '']"
-            >
-              <text class="bt-ico">查看详情 ➜</text>
-            </div>
+<template class="content-top">
+  <swiper
+    @change="swiperChange"
+    :style="{ height: height + 'rpx' }"
+    :circular="true"
+    :autoplay="true"
+    :interval="8000"
+    :previous-margin="previousMargin"
+    :next-margin="nextMargin"
+  >
+    <swiper-item v-for="(item, index) in swiperItems" :key="index">
+      <div
+        class="content"
+        :style="{
+          height: height + 'rpx',
+          marginLeft: margin + 'rpx',
+          marginRight: margin + 'rpx',
+          borderRadius: borderRadius + 'rpx',
+        }"
+      >
+        <image :src="item.img" mode="aspectFill" class="swiper-img"></image>
+        <div class="mask"></div>
+        <div class="written">
+          <text
+            v-if="item.title"
+            class="Text-initialization overflow"
+            :style="{ fontSize: titleFontSize + 'rpx', color: titleColor }"
+            :class="[index === enjoySwiper ? 'title' : '']"
+          >
+            {{ item.title }}
+          </text>
+          <text
+            v-if="item.subTitle"
+            class="Text-initialization overflow"
+            :style="{
+              fontSize: subTitleFontSize + 'rpx',
+              color: subTitleColor,
+            }"
+            :class="[index === enjoySwiper ? 'subTitle' : '']"
+          >
+            {{ item.subTitle }}
+          </text>
+          <div
+            class="Text-initialization"
+            v-if="button"
+            @click="onButClick"
+            :class="[index === enjoySwiper ? 'bt' : '']"
+          >
+            <text class="bt-ico">查看详情 ➜</text>
           </div>
         </div>
-      </swiper-item>
-    </swiper>
-    <div v-if="DotPosition === 1">
-      <div
-        class="dot"
-        :style="{
-          top: height - 30 - dotHeight + 'rpx',
-          left: margin + 30 + dotMargin + 'rpx',
-        }"
-      >
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: SelectBG }"
-          :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
-        ></div>
       </div>
+    </swiper-item>
+  </swiper>
+  <div v-if="DotPosition === 1">
+    <div
+      class="dot"
+      :style="{
+        top: height - 30 - dotHeight + 'rpx',
+        left: margin + 30 + dotMargin + 'rpx',
+      }"
+    >
       <div
-        class="dot"
-        :style="{
-          top: height - 30 - dotHeight + 'rpx',
-          left: margin + 30 + dotMargin + 'rpx',
-        }"
-      >
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: UncheckedBG }"
-          :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
-        ></div>
-      </div>
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: SelectBG }"
+        :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
+      ></div>
     </div>
-    <div v-if="DotPosition === 2">
+    <div
+      class="dot"
+      :style="{
+        top: height - 30 - dotHeight + 'rpx',
+        left: margin + 30 + dotMargin + 'rpx',
+      }"
+    >
       <div
-        class="dot"
-        :style="{
-          top: height - 30 - dotHeight + 'rpx',
-          right: margin + 30 + dotMargin + 'rpx',
-        }"
-      >
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: SelectBG }"
-          :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
-        ></div>
-      </div>
-      <div
-        class="dot"
-        :style="{
-          top: height - 30 - dotHeight + 'rpx',
-          right: margin + 30 + dotMargin + 'rpx',
-        }"
-      >
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: UncheckedBG }"
-          :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
-        ></div>
-      </div>
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: UncheckedBG }"
+        :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
+      ></div>
     </div>
-    <div v-if="DotPosition === 3">
-      <div class="dot-c" :style="{ top: height - 30 - dotHeight + 'rpx' }">
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: SelectBG }"
-          :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
-        ></div>
-      </div>
-      <div class="dot-c" :style="{ top: height - 30 - dotHeight + 'rpx' }">
-        <div
-          v-for="(_, index) in swiperItems"
-          :key="index"
-          :style="{ backgroundColor: UncheckedBG }"
-          :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
-        ></div>
-      </div>
+  </div>
+  <div v-if="DotPosition === 2">
+    <div
+      class="dot"
+      :style="{
+        top: height - 30 - dotHeight + 'rpx',
+        right: margin + 30 + dotMargin + 'rpx',
+      }"
+    >
+      <div
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: SelectBG }"
+        :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
+      ></div>
+    </div>
+    <div
+      class="dot"
+      :style="{
+        top: height - 30 - dotHeight + 'rpx',
+        right: margin + 30 + dotMargin + 'rpx',
+      }"
+    >
+      <div
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: UncheckedBG }"
+        :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
+      ></div>
+    </div>
+  </div>
+  <div v-if="DotPosition === 3">
+    <div class="dot-c" :style="{ top: height - 30 - dotHeight + 'rpx' }">
+      <div
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: SelectBG }"
+        :class="[index === enjoySwiper ? 'Select ' : 'Unchecked']"
+      ></div>
+    </div>
+    <div class="dot-c" :style="{ top: height - 30 - dotHeight + 'rpx' }">
+      <div
+        v-for="(_, index) in swiperItems"
+        :key="index"
+        :style="{ backgroundColor: UncheckedBG }"
+        :class="[index === enjoySwiper ? 'Select1 ' : 'Unchecked1']"
+      ></div>
     </div>
   </div>
 </template>
@@ -180,7 +178,8 @@ const swiperChange = (e: CustomEvent): void => {
 
 <style scoped>
 .content-top {
-  /* margin-top: 30rpx; */
+  /* margin-top: var(--nav-tab-height-custom); */
+  padding-top: var(--nav-tab-height-custom);
   position: relative;
   margin-bottom: 30rpx;
 }
