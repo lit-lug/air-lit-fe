@@ -68,30 +68,8 @@ export const useStore = defineStore("main", {
              */
             themeConfig: {
                 theme: "light" as "dark" | "light",
-                dark: {
-                    navigationBarColor: "#ffffff",
-                    themeColor: "#3e8cd7",
-                    backgroundColor: "#0E0E0E",
-                    backgroundColorCard: "#151515",
-                    backgroundColorClear: "#212121",
-                    textTitleColor: "#ffffff",
-                    textSubColor: "#626262",
-                    borderColor: "#2A2A2A",
-                    filterColor: "rgba(19, 19, 20, 0.7)",
-                    shadowColor: "#131313",
-                },
-                light: {
-                    navigationBarColor: "#000000",
-                    themeColor: "#3e8cd7",
-                    backgroundColor: "#F8F8F8",
-                    backgroundColorCard: "#FFFFFF",
-                    backgroundColorClear: "#f8f8f8",
-                    textTitleColor: "#333333",
-                    textSubColor: "#969696",
-                    borderColor: "#E7E7E7",
-                    filterColor: "rgba(252, 252, 253, 0.7)",
-                    shadowColor: "#F8F9FA",
-                } as any,
+                dark: dark,
+                light: light,
             },
         };
     },
@@ -107,7 +85,17 @@ export const useStore = defineStore("main", {
                 : "overflow: visible; ";
 
             const curTheme: any = this.themeConfig[this.themeConfig.theme];
-            const themeColor: string = `--theme-background-color-clear: ${curTheme.backgroundColorClear}; background-color: ${curTheme.backgroundColor}; --theme-shadow-color: ${curTheme.shadowColor}; --theme-filter-color: ${curTheme.filterColor}; --theme-color: ${curTheme.themeColor}; --theme-background-color: ${curTheme.backgroundColor}; --theme-background-color-card: ${curTheme.backgroundColorCard}; --theme-text-title-color: ${curTheme.textTitleColor}; --theme-text-sub-color: ${curTheme.textSubColor}; --theme-border-color: ${curTheme.borderColor};`;
+            const themeColor: string = `\ 
+            --theme-background-color-clear: ${curTheme.backgroundColorClear}; \ 
+            background-color: ${curTheme.backgroundColor}; \
+            --theme-shadow-color: ${curTheme.shadowColor}; \
+            --theme-filter-color: ${curTheme.filterColor}; \
+            --theme-color: ${curTheme.themeColor}; \
+            --theme-background-color: ${curTheme.backgroundColor}; \
+            --theme-background-color-card: ${curTheme.backgroundColorCard}; \
+            --theme-text-title-color: ${curTheme.textTitleColor}; \
+            --theme-text-sub-color: ${curTheme.textSubColor}; \
+            --theme-border-color: ${curTheme.borderColor};`;
 
             return `--update-time: ${this.time}; ` + overflow + volume + themeColor;
         },
