@@ -4,6 +4,7 @@ import { computed } from "vue";
 import TheNavBar from "@/components/TheNavBar.vue";
 import TheSwiper, { SwiperItems } from "@/components/TheSwiper.vue";
 import { useStore } from "@/store";
+import { getUserInfo } from "@/common/api";
 
 const store = useStore();
 const pageStyle = computed(() => store.getPageMetaStyle);
@@ -48,6 +49,10 @@ const swiperItems: SwiperItems = [
 
 onShow(async () => {
   console.log("App Show");
+
+  const info = await getUserInfo();
+
+  console.log(info);
 
   uni.showToast({
     title: "测试弹窗",
