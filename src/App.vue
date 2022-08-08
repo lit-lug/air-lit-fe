@@ -10,6 +10,7 @@ const tmStore = useTmpiniaStore();
 const systemInfo: any = uni.getSystemInfoSync();
 
 onLaunch(() => {
+  uni.hideTabBar({});
   /**
    * 设置主题，用户配置优先
    */

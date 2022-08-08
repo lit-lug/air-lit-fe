@@ -4,7 +4,9 @@ import { onShow } from "@dcloudio/uni-app";
 import { getUserInfo } from "@/common/api";
 
 import tmApp from "../../tmui/components/tm-app/tm-app.vue";
-import tmButton from "../../tmui/components/tm-button/tm-button.vue";
+
+import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
+import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
@@ -17,6 +19,13 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 const Store = useTmpiniaStore();
+
+const listimg = [
+  "https://picsum.photos/200/300?id=43335",
+  "https://picsum.photos/200/300?id=433",
+  "https://picsum.photos/200/300?id=439",
+  "https://picsum.photos/200/300?id=459",
+];
 
 onShow(async () => {
   console.log("App Show");
@@ -44,28 +53,52 @@ onShow(async () => {
   </tm-app> -->
 
   <tm-app>
-    <tm-navbar title="标题导航栏" color="primary" linear="right" linearDeep="accent">
+    <tm-navbar title="标题导航栏">
       <template v-slot:right>
         <tm-icon name="tmicon-plus"></tm-icon>
       </template>
     </tm-navbar>
 
+    <tm-carousel
+      autoplay
+      :margin="[0, 16]"
+      :round="3"
+      :width="686"
+      :height="300"
+      :list="listimg"
+      >测试</tm-carousel
+    >
+
+    <tm-sheet>
+      <tm-text
+        :font-size="24"
+        _class="font-weight-b"
+        label="卡片可以完全通过插槽自定义"
+      ></tm-text>
+    </tm-sheet>
+
     <tm-sheet>
       <tm-text label="点击中间+按钮可以体验异步加载动态效果."></tm-text>
     </tm-sheet>
-    <tm-tabbar>
+    <tm-tabbar transprent blur :bottom="0" :auto-select="false" :active="0">
       <tm-tabbar-item
-        activeColor="orange"
+        activeColor="primary"
         count="HOT"
-        open-type="reLaunch"
-        url="/pages/index/index"
-        text="首页"
+        blur
+        transprent
+        open-type="switchTab"
+        url="/pages/index/home"
+        text="时刻"
         icon="tmicon-collection-fill"
+        active
       ></tm-tabbar-item>
       <tm-tabbar-item
         activeColor="orange"
-        url="/pages/form/index"
-        text="表单"
+        url="/pages/index/schedule"
+        text="课表"
+        blur
+        open-type="switchTab"
+        transprent
         icon="tmicon-cog-fill"
       ></tm-tabbar-item>
       <!-- <tm-tabbar-item
@@ -89,8 +122,10 @@ onShow(async () => {
       <tm-tabbar-item
         activeColor="orange"
         :count="8"
-        url="/pages/chart/index"
-        active
+        url="/pages/index/user"
+        blur
+        transprent
+        open-type="switchTab"
         text="图表中心"
         unicon="tmicon-account"
         icon="tmicon-userplus-fill"

@@ -36,5 +36,19 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/home"
+      },
+      {
+        "pagePath": "pages/index/schedule"
+      },
+      {
+        "pagePath": "pages/index/user"
+      }
+    ]
   }
 }
