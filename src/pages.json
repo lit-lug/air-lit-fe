@@ -36,30 +36,5 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
-  },
-  "tabBar": {
-    "color": "#3b3b3b",
-    "selectedColor": "#3e8cd7",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "pagePath": "pages/index/home",
-        "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/home_selected.png",
-        "text": "时刻"
-      },
-      {
-        "pagePath": "pages/index/schedule",
-        "iconPath": "static/tabbar/schedule.png",
-        "selectedIconPath": "static/tabbar/schedule_selected.png",
-        "text": "课表"
-      },
-      {
-        "pagePath": "pages/index/user",
-        "iconPath": "static/tabbar/user.png",
-        "selectedIconPath": "static/tabbar/user_selected.png",
-        "text": "我的"
-      }
-    ]
   }
 }
