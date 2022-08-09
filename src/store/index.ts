@@ -57,6 +57,7 @@ export const useStore = defineStore("main", {
         return {
             // 是否防止滚动穿透
             overflow: false,
+            tabBarIndex: 0,
 
             // /**
             //  * time 为了触发getPageMetaStyle更新，否则主题不会及时改变
@@ -74,6 +75,9 @@ export const useStore = defineStore("main", {
         };
     },
     getters: {
+        getTabBarIndex(): number {
+            return this.tabBarIndex;
+        },
         // getPageMetaStyle(): string {
         //     const systemInfo = uni.getSystemInfoSync();
         //     const statusBarHeight =
@@ -104,6 +108,9 @@ export const useStore = defineStore("main", {
         // },
     },
     actions: {
+        setTabBarIndex(index: number) {
+            this.tabBarIndex = index;
+        },
         // /**
         //  *
         //  * @param theme raw表示主题不变，但是重新执行以下setTabBarStyle、setBackgroundColor....
