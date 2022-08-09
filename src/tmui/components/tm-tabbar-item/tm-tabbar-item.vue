@@ -300,6 +300,7 @@ if (tmTabbarItemAutoSelect.value) {
   }
 }
 function setActive() {
+  //   _active.value = true;
   if (nowUid.value == uid) {
     _active.value = true;
   } else {
@@ -330,6 +331,10 @@ watch([() => props.load], () => {
   _load.value = props.load;
 });
 async function itemClick() {
+  if (props.active) {
+    return;
+  }
+
   if (_load.value) return;
   if (typeof props.beforeClick === "function") {
     _load.value = true;

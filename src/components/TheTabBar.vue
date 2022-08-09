@@ -17,6 +17,10 @@ const tabBarIndex = computed(() => {
   return store.tabBarIndex || props.active;
 });
 
+const isNowIndex = async (index: number): Promise<boolean> => {
+  return index === props.active;
+};
+
 onShow(async () => {
   console.log(props.active);
 });
@@ -29,8 +33,8 @@ onShow(async () => {
     :bottom="0"
     :round="16"
     :auto-select="false"
-    :shadow="8"
     :active="props.active"
+    :shadow="8"
   >
     <tm-tabbar-item
       activeColor="primary"
@@ -40,7 +44,6 @@ onShow(async () => {
       transprent
       open-type="switchTab"
       url="/pages/index/home"
-      :before-click="props.active !== 0"
       text="时刻"
       icon="tmicon-collection-fill"
     ></tm-tabbar-item>
@@ -50,7 +53,6 @@ onShow(async () => {
       text="课表"
       blur
       :active="props.active === 1"
-      :before-click="props.active !== 1"
       transprent
       open-type="switchTab"
       icon="tmicon-cog-fill"
@@ -78,7 +80,6 @@ onShow(async () => {
       :count="8"
       url="/pages/index/user"
       :active="props.active === 2"
-      :before-click="props.active !== 2"
       blur
       transprent
       text="图表中心"
