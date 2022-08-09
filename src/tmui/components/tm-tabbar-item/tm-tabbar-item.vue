@@ -331,7 +331,9 @@ watch([() => props.load], () => {
   _load.value = props.load;
 });
 async function itemClick() {
-  if (props.active) {
+  console.log("itemClick", props.active);
+
+  if (_active.value) {
     return;
   }
 

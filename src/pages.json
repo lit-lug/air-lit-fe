@@ -1,7 +1,7 @@
 {
   "pages": [
     {
-      "path": "pages/index/home",
+      "path": "pages/index/index",
       "style": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "时刻",
@@ -41,7 +41,7 @@
     "custom": true,
     "list": [
       {
-        "pagePath": "pages/index/home"
+        "pagePath": "pages/index/index"
       },
       {
         "pagePath": "pages/index/schedule"

@@ -5,8 +5,7 @@ import { onShow } from "@dcloudio/uni-app";
 
 import tmApp from "../../tmui/components/tm-app/tm-app.vue";
 
-import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
-import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
+import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
@@ -14,13 +13,30 @@ import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import TabBar from "@/components/TheTabBar.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
+
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import { ref } from "vue";
+
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+
+const tmStore = useTmpiniaStore();
+
+function onChangeDark() {
+  app.value?.setDark();
+}
 </script>
 
 <template>
-  <tm-app>
-    <tm-navbar title="1">
-      <template v-slot:right>
-        <tm-icon name="tmicon-plus"></tm-icon>
+  <tm-app ref="app">
+    <tm-navbar title="[假期]" hideHome blur>
+      <template v-slot:left>
+        <view class="flex flex-center flex-row">
+          <tm-icon
+            @click="onChangeDark"
+            :font-size="36"
+            :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+          ></tm-icon>
+        </view>
       </template>
     </tm-navbar>
 

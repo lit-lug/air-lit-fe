@@ -6,18 +6,23 @@ import { getUserInfo } from "@/common/api";
 import tmApp from "../../tmui/components/tm-app/tm-app.vue";
 
 import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
-import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
+// import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 import TabBar from "@/components/TheTabBar.vue";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
+import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
+
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import { ref } from "vue";
+
+const app = ref<InstanceType<typeof tmApp> | null>(null);
 
 // const store = useStore();
 
-import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
-const Store = useTmpiniaStore();
+const tmStore = useTmpiniaStore();
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -26,14 +31,16 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
+function onChangeDark() {
+  app.value?.setDark();
+}
+
 onShow(async () => {
   console.log("App Show");
 
-  const info = await getUserInfo();
+  // const info = await getUserInfo();
 
-  Store.setTmVuetifyDark(false);
-
-  console.log(info);
+  // console.log(info);
 
   uni.showToast({
     title: "测试弹窗",
@@ -53,10 +60,16 @@ onShow(async () => {
     <tm-button label="按钮" @click="Store.setTmVuetifyDark(true)"></tm-button>
   </tm-app> -->
 
-  <tm-app>
-    <tm-navbar title="标题导航栏">
-      <template v-slot:right>
-        <tm-icon name="tmicon-plus"></tm-icon>
+  <tm-app ref="app">
+    <tm-navbar title="时刻" hideHome blur>
+      <template v-slot:left>
+        <view class="flex flex-center flex-row">
+          <tm-icon
+            @click="onChangeDark"
+            :font-size="36"
+            :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+          ></tm-icon>
+        </view>
       </template>
     </tm-navbar>
 
@@ -77,6 +90,46 @@ onShow(async () => {
         label="卡片可以完全通过插槽自定义"
       ></tm-text>
     </tm-sheet>
+
+    <tm-carousel
+      autoplay
+      :margin="[0, 16]"
+      :round="3"
+      :width="686"
+      :height="300"
+      :list="listimg"
+      >测试</tm-carousel
+    >
+
+    <tm-carousel
+      autoplay
+      :margin="[0, 16]"
+      :round="3"
+      :width="686"
+      :height="300"
+      :list="listimg"
+      >测试</tm-carousel
+    >
+
+    <tm-carousel
+      autoplay
+      :margin="[0, 16]"
+      :round="3"
+      :width="686"
+      :height="300"
+      :list="listimg"
+      >测试</tm-carousel
+    >
+
+    <tm-carousel
+      autoplay
+      :margin="[0, 16]"
+      :round="3"
+      :width="686"
+      :height="300"
+      :list="listimg"
+      >测试</tm-carousel
+    >
 
     <tab-bar :active="0"></tab-bar>
   </tm-app>

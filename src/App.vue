@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { onLaunch, onShow, onHide, onThemeChange } from "@dcloudio/uni-app";
-import { useStore as useMainStore } from "@/store";
-
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 const tmStore = useTmpiniaStore();
 
@@ -10,7 +8,10 @@ const tmStore = useTmpiniaStore();
 const systemInfo: any = uni.getSystemInfoSync();
 
 onLaunch(() => {
+  // #ifdef H5
   uni.hideTabBar({});
+  // #endif
+
   /**
    * 设置主题，用户配置优先
    */
