@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import { useStore } from "@/store";
-import { computed } from "vue";
-import { onShow } from "@dcloudio/uni-app";
-
 import tmApp from "../../tmui/components/tm-app/tm-app.vue";
 
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
