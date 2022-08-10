@@ -26,6 +26,8 @@ const {
     }"
     :margin="[0, 0]"
     :padding="[0, 12]"
+    :height="80"
+    unit="rpx"
   >
     <view class="flex flex-col flex-col-center-center">
       <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
@@ -51,7 +53,7 @@ const {
       <tm-text
         :color="originalWeekWeekIndex === index ? 'primary' : ''"
         :font-size="30"
-        _class="font-weight-n text-align-center"
+        _class="font-weight-b text-align-center"
       >
         {{ weekTitle[index] }}</tm-text
       >

@@ -35,7 +35,7 @@ onLaunch(() => {
     left: 281,
     top: 4,
     right: 368,
-    bottom: 36,
+    bottom: 56,
   };
   // #endif
 
