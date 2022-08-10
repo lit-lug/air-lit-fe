@@ -28,13 +28,23 @@ function onChangeDark() {
 
 <template>
   <tm-app ref="app">
-    <tm-navbar title="[假期]" hideHome blur>
+    <tm-navbar title="" hideHome blur>
       <template v-slot:left>
-        <view class="flex flex-center flex-row">
+        <tm-icon
+          @click="onChangeDark"
+          :font-size="36"
+          :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+        ></tm-icon>
+      </template>
+      <template v-slot>
+        <view class="flex flex-row flex-row-center-between" @click="onChangeDark">
+          <tm-text :font-size="30" _class="text-weight-b text-overflow-1 pl-24 pr-8"
+            >第 1 周</tm-text
+          >
           <tm-icon
-            @click="onChangeDark"
             :font-size="36"
-            :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+            _class="b-16"
+            :name="tmStore.tmStore.dark ? 'tmicon-sort-down' : 'tmicon-sort-up'"
           ></tm-icon>
         </view>
       </template>

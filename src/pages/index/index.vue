@@ -133,20 +133,6 @@ onShow(async () => {
 
     <tab-bar :active="0"></tab-bar>
   </tm-app>
-
-  <!-- <view class="home fixed-top fixed-bottom">
-    <view class="home-banner">
-      <the-swiper :swiperItems="swiperItems"> </the-swiper
-    ></view>
-
-    <view class="title">夜间模式</view>
-    <switch
-      class="setting-switch-btn"
-      color="#3e8cd7"
-      @change="themeChange"
-      :checked="themeDark"
-    />
-  </view> -->
 </template>
 
 <style lang="less" scoped></style>
