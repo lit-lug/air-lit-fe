@@ -32,6 +32,9 @@ import { onShow } from "@dcloudio/uni-app";
 import { useCourseStore } from "@/store/course";
 import { weekTitle } from "@/store/course";
 
+import tmGridItem from "@/tmui/components/tm-grid-item/tm-grid-item.vue";
+import tmGrid from "@/tmui/components/tm-grid/tm-grid.vue";
+
 import { useAppStore } from "@/store/app";
 
 const { customBarHeight } = useAppStore();
@@ -52,6 +55,8 @@ const tmStore = useTmpiniaStore();
 const statusBarHeight = uni.getSystemInfoSync().statusBarHeight as number;
 const _barHeight = computed(() => statusBarHeight + 44);
 
+const _width = uni.getSystemInfoSync().windowWidth;
+
 function onChangeDark() {
   app.value?.setDark();
 }
@@ -68,16 +73,7 @@ onShow(async () => {
   // someDate.getDate();
   courseStore.setStartDay(someDate);
 
-  // const info = await getUserInfo();
-
   console.log(statusBarHeight, _barHeight);
-
-  // uni.showToast({
-  //   title: "测试弹窗",
-  //   icon: "none",
-  //   duration: 2000,
-  //   // mask: true,
-  // });
 });
 </script>
 
@@ -110,67 +106,87 @@ onShow(async () => {
         <timetable-header></timetable-header>
       </template>
       <view
+        class="flex"
         :style="{
-          height: `calc(100vh - ${customBarHeight}px - ${_barHeight}px)`,
-          marginBottom: `${_barHeight}px`,
+          width: '100%',
+          height: `calc(100vh - ${customBarHeight}px`,
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
         }"
       >
-        <view class="flex">
-          <view
-            class="flex flex-col"
-            :style="{
-              width: '9vw',
-            }"
-          >
-            <template
-              v-for="(courseTime, courseIndex) in courseTimeList"
-              :key="courseIndex"
-            >
-              <view class="flex flex-col flex-col-center-center pt-10 mt-10 pb-10 mb-10">
-                <tm-text
-                  _class="font-weight-b"
-                  :font-size="24"
-                  :label="courseIndex + 1"
-                ></tm-text>
-                <tm-text _class="font-weight-s" :font-size="20">{{
-                  courseTime.s
-                }}</tm-text>
-                <tm-text _class="font-weight-s" :font-size="20">{{
-                  courseTime.e
-                }}</tm-text>
-              </view>
-              <!-- <tm-divider></tm-divider> -->
-            </template>
-          </view>
-
-          <view
-            class="flex flex-col"
-            :style="{
-              width: '91vw',
-            }"
+        <view
+          class="flex flex-col flex-col-center"
+          :style="{
+            width: '9vw',
+          }"
+        >
+          <template
+            v-for="(courseTime, courseIndex) in courseTimeList"
+            :key="courseIndex"
           >
             <view
               class="flex flex-col"
               :style="{
-                width: '91vw',
+                paddingBottom: '3vh',
+                height: '7vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
               }"
             >
-              <view
-                class="flex flex-row"
-                :style="{
-                  width: '91vw',
-                }"
-              >
-                <view> 12141234212 </view>
-
-                <view> 1212314 </view>
-              </view>
+              <tm-text
+                _class="font-weight-b"
+                :font-size="24"
+                :label="courseIndex + 1"
+              ></tm-text>
+              <tm-text _class="font-weight-s" :font-size="20">{{ courseTime.s }}</tm-text>
+              <tm-text _class="font-weight-s" :font-size="20">{{ courseTime.e }}</tm-text>
             </view>
-
-            <!-- 1231414134134 -->
-          </view>
+          </template>
+        </view>
+        <!-- 课表主体 -->
+        <view
+          class="flex"
+          :style="{
+            width: '91vw',
+          }"
+        >
+          <!--- 循环七次 -->
+          <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
+            <view>
+              <template v-for="(_, weekIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="weekIndex">
+                <view
+                  class="absolute"
+                  :style="
+                    'width:13vw;' +
+                    'margin-left:' +
+                    weekIndex * 13.0 +
+                    'vw;margin-top:' +
+                    dIndex * 20 +
+                    'vh;'
+                  "
+                >
+                  <view
+                    class="flex"
+                    :style="{
+                      backgroundColor: '#fff087',
+                      height: '19vh',
+                      marginBottom: '1vh',
+                      marginLeft: '0.5vw',
+                      marginRight: '0.5vw',
+                      borderRadius: '10rpx',
+                      position: 'relative',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                    }"
+                  >
+                    test
+                  </view>
+                </view>
+              </template>
+            </view>
+          </template>
         </view>
       </view>
     </tm-sticky>
