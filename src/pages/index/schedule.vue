@@ -22,6 +22,8 @@ import { storeToRefs } from "pinia";
 
 import tmSticky from "@/tmui/components/tm-sticky/tm-sticky.vue";
 
+import { colorArrayList } from "@/store/course";
+
 import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 
 // import { useCourseStore } from "@/stores/course";
@@ -49,6 +51,16 @@ const {
   originalWeekWeekIndex,
   currentWeekDayArray,
 } = storeToRefs(useCourseStore());
+
+import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
+import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
+
+const show = ref(false);
+const list = ref([
+  { text: "苹果", id: "1" },
+  { text: "菠萝", id: "2" },
+  { text: "香蕉", id: "3" },
+]);
 
 const tmStore = useTmpiniaStore();
 
@@ -84,11 +96,20 @@ onShow(async () => {
         <!-- 标题状态栏 -->
         <tm-navbar title="" hideHome blur :shadow="0">
           <template v-slot:left>
-            <tm-icon
-              @click="onChangeDark"
-              :font-size="36"
-              :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
-            ></tm-icon>
+            <view class="flex flex-row flex-row-center-center">
+              <tm-icon
+                @click="onChangeDark"
+                :font-size="40"
+                _class="pr-20"
+                :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+              ></tm-icon>
+              <tm-icon
+                :font-size="32"
+                _class="pl-20"
+                @click="show = true"
+                name="tmicon-cog-fill"
+              ></tm-icon
+            ></view>
           </template>
           <template v-slot>
             <view class="flex flex-row flex-row-center-between" @click="onChangeDark">
@@ -106,7 +127,7 @@ onShow(async () => {
         <timetable-header></timetable-header>
       </template>
       <view
-        class="flex"
+        class="flex overflow"
         :style="{
           width: '100%',
           height: `calc(100vh - ${customBarHeight}px`,
@@ -127,8 +148,7 @@ onShow(async () => {
             <view
               class="flex flex-col"
               :style="{
-                paddingBottom: '3vh',
-                height: '7vh',
+                height: '7.25vh',
                 justifyContent: 'center',
                 alignItems: 'center',
                 textAlign: 'center',
@@ -154,35 +174,39 @@ onShow(async () => {
           <!--- 循环七次 -->
           <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
             <view>
-              <template v-for="(_, weekIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="weekIndex">
+              <template v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
                 <view
                   class="absolute"
                   :style="
                     'width:13vw;' +
                     'margin-left:' +
-                    weekIndex * 13.0 +
+                    tIndex * 13.0 +
                     'vw;margin-top:' +
-                    dIndex * 20 +
+                    dIndex * 14.5 +
                     'vh;'
                   "
                 >
-                  <view
-                    class="flex"
-                    :style="{
-                      backgroundColor: '#fff087',
-                      height: '19vh',
-                      marginBottom: '1vh',
-                      marginLeft: '0.5vw',
-                      marginRight: '0.5vw',
-                      borderRadius: '10rpx',
-                      position: 'relative',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                    }"
-                  >
-                    test
-                  </view>
+                  <tm-translate name="fade" autoPlay :duration="500">
+                    <view
+                      class="flex"
+                      :style="{
+                        backgroundColor:
+                          colorArrayList[0][
+                            Math.floor(Math.random() * (7 - tIndex + 1) + 0)
+                          ],
+                        height: '14vh',
+                        marginLeft: '0.5vw',
+                        marginRight: '0.5vw',
+                        borderRadius: '10rpx',
+                        position: 'relative',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                      }"
+                    >
+                      <tm-text color="white">凡哥@C1-409</tm-text>
+                    </view>
+                  </tm-translate>
                 </view>
               </template>
             </view>
@@ -190,6 +214,8 @@ onShow(async () => {
         </view>
       </view>
     </tm-sticky>
+
+    <tm-action-menu v-model="show" :list="list"></tm-action-menu>
 
     <!-- 底部状态栏-->
     <tab-bar :active="1"></tab-bar>

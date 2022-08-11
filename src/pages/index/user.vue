@@ -29,7 +29,7 @@ function onChangeDark() {
         <view class="flex flex-center flex-row">
           <tm-icon
             @click="onChangeDark"
-            :font-size="36"
+            :font-size="40"
             :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
           ></tm-icon>
         </view>

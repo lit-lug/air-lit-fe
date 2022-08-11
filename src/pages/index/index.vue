@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { onShow } from "@dcloudio/uni-app";
-// import { useStore } from "@/store";
-import { getUserInfo } from "@/common/api";
-
 import tmApp from "../../tmui/components/tm-app/tm-app.vue";
 
 import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
-// import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
+
 import TabBar from "@/components/TheTabBar.vue";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
@@ -18,7 +15,7 @@ import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { ref } from "vue";
 
-const app = ref<InstanceType<typeof tmApp> | null>(null);
+const app = ref<InstanceType<tmApp> | null>(null);
 
 // const store = useStore();
 
@@ -63,13 +60,11 @@ onShow(async () => {
   <tm-app ref="app">
     <tm-navbar title="时刻" hideHome blur>
       <template v-slot:left>
-        <view class="flex flex-center flex-row">
-          <tm-icon
-            @click="onChangeDark"
-            :font-size="36"
-            :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
-          ></tm-icon>
-        </view>
+        <tm-icon
+          @click="onChangeDark"
+          :font-size="40"
+          :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+        ></tm-icon>
       </template>
     </tm-navbar>
 

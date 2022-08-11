@@ -27,44 +27,57 @@ const {
     :margin="[0, 0]"
     :padding="[0, 12]"
     :height="80"
+    :shadow="0"
     unit="rpx"
   >
-    <view class="flex flex-col flex-col-center-center">
+    <view
+      class="flex flex-col flex-col-center-center"
+      :style="{
+        width: '9vw',
+      }"
+    >
       <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
-      <tm-text :font-size="30" _class="font-weight-b" label="月"> </tm-text>
+      <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text>
     </view>
 
     <view
-      v-for="(item, index) in currentWeekDayArray"
-      :key="index"
-      class="flex flex-col flex-col-center-center pr-10 pl-10 pb-10"
-      :style="
-        originalWeekWeekIndex === index
-          ? {
-              borderBottomStyle: 'solid',
-              borderBottomWidth: '3px',
-              borderBottomColor: theme.getColor('primary').csscolor,
-              borderBottomLeftRadius: '1px',
-              borderBottomRightRadius: '1px',
-            }
-          : {}
-      "
+      class="flex flex-row flex-row-center flex-around"
+      :style="{
+        width: '91vw',
+      }"
     >
-      <tm-text
-        :color="originalWeekWeekIndex === index ? 'primary' : ''"
-        :font-size="30"
-        _class="font-weight-b text-align-center"
+      <view
+        v-for="(item, index) in currentWeekDayArray"
+        :key="index"
+        class="flex flex-col flex-col-center-center pr-10 pl-10"
+        :style="
+          originalWeekWeekIndex === index
+            ? {
+                borderBottomStyle: 'solid',
+                borderBottomWidth: '3px',
+                borderBottomColor: theme.getColor('primary').csscolor,
+                borderBottomLeftRadius: '1px',
+                borderBottomRightRadius: '1px',
+              }
+            : {}
+        "
       >
-        {{ weekTitle[index] }}</tm-text
-      >
-      <tm-text
-        :font-size="26"
-        :color="originalWeekWeekIndex === index ? 'primary' : ''"
-        _class="font-weight-n text-align-center"
-        :label="item"
-        :border="5"
-        border-direction="bottom"
-      ></tm-text>
+        <tm-text
+          :color="originalWeekWeekIndex === index ? 'primary' : ''"
+          :font-size="30"
+          _class="font-weight-b text-align-center"
+        >
+          {{ weekTitle[index] }}</tm-text
+        >
+        <tm-text
+          :font-size="26"
+          :color="originalWeekWeekIndex === index ? 'primary' : ''"
+          _class="font-weight-n text-align-center"
+          :label="item"
+          :border="5"
+          border-direction="bottom"
+        ></tm-text>
+      </view>
     </view>
   </tm-sheet>
 </template>
