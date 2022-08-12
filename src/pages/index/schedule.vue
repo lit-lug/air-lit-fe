@@ -12,8 +12,6 @@ import TimetableHeader from "@/components/timetable/TimetableHeader.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
-import tmWeekbar from "@/tmui/components/tm-weekbar/tm-weekbar.vue";
-
 import { courseTimeList } from "@/store/course";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
@@ -38,11 +36,15 @@ import tmGridItem from "@/tmui/components/tm-grid-item/tm-grid-item.vue";
 import tmGrid from "@/tmui/components/tm-grid/tm-grid.vue";
 
 import { useAppStore } from "@/store/app";
+import { getWindow } from "@/tmui/tool/function/util";
+
+import tmScrollx from "../../tmui/components/tm-scrollx/tm-scrollx.vue";
 
 const { customBarHeight } = useAppStore();
 
 const courseStore = useCourseStore();
-const app = ref<InstanceType<typeof tmApp> | null>(null);
+
+const app = ref<InstanceType<tmApp> | null>(null);
 
 const {
   currentMonth,
@@ -52,22 +54,112 @@ const {
   currentWeekDayArray,
 } = storeToRefs(useCourseStore());
 
+import tmImage from "../../tmui/components/tm-image/tm-image.vue";
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
 import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
 
 const show = ref(false);
+const showTimeTableAction = ref(false);
+
 const list = ref([
   { text: "苹果", id: "1" },
   { text: "菠萝", id: "2" },
   { text: "香蕉", id: "3" },
 ]);
 
+const list2 = ref([
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg",
+    title: "天猫新品",
+    count: "热销",
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg",
+    title: "今日爆款",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg",
+    title: "天猫国际",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
+    title: "飞猪旅行",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
+    title: "天猫超市",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp",
+    title: "冬奥公益",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
+    title: "飞猪旅行",
+    count: 99,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
+    title: "天猫超市",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp",
+    title: "冬奥公益",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg",
+    title: "天猫新品",
+    count: 6,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg",
+    title: "今日爆款",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg",
+    title: "天猫国际",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
+    title: "飞猪旅行",
+    count: 0,
+  },
+  {
+    path:
+      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
+    title: "天猫超市",
+    count: 0,
+  },
+]);
+
 const tmStore = useTmpiniaStore();
+
+const _width = uni.getSystemInfoSync().windowWidth;
 
 const statusBarHeight = uni.getSystemInfoSync().statusBarHeight as number;
 const _barHeight = computed(() => statusBarHeight + 44);
-
-const _width = uni.getSystemInfoSync().windowWidth;
 
 function onChangeDark() {
   app.value?.setDark();
@@ -76,6 +168,20 @@ function onChangeDark() {
 // #ifdef H5
 // offset.value = 68;
 // #endif
+
+const left = ref(0);
+
+const onScroll = (e: Event) => {
+  let sL = e.detail.scrollLeft;
+  let sT = e.detail.scrollWidth;
+  let maxLeft = Math.abs(sT - uni.upx2px(50));
+  let nowLeft = (sL / maxLeft) * uni.upx2px(120);
+  if (sL <= 0) nowLeft = 0;
+  if (Math.abs(sL) >= maxLeft) {
+    nowLeft = uni.upx2px(120);
+  }
+  left.value = nowLeft;
+};
 
 onShow(async () => {
   console.log("App Show");
@@ -112,25 +218,83 @@ onShow(async () => {
             ></view>
           </template>
           <template v-slot>
-            <view class="flex flex-row flex-row-center-between" @click="onChangeDark">
+            <view
+              class="flex flex-row flex-row-center-between"
+              @click="showTimeTableAction = !showTimeTableAction"
+            >
               <tm-text :font-size="30" _class="text-weight-b text-overflow-1 pl-24 pr-8"
                 >第 1 周</tm-text
               >
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="tmStore.tmStore.dark ? 'tmicon-sort-down' : 'tmicon-sort-up'"
+                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
               ></tm-icon>
             </view>
           </template>
         </tm-navbar>
+
+        <tm-sheet
+          :padding="[0, 0]"
+          :margin="[0, 0]"
+          color="grey-3"
+          _class="overflow flex flex-col
+          flex-col-center-center"
+          :_style="{
+            height: showTimeTableAction ? '140rpx' : '0rpx',
+          }"
+          blur
+        >
+          <scroll-view :scroll-x="true" scrollWithAnimation @scroll="onScroll">
+            <tm-grid :width="14 * 120" :col="14" transprent>
+              <tm-grid-item
+                v-for="(item, index) in list2"
+                :key="index"
+                :height="140"
+                :width="100"
+                :count="item.count"
+              >
+                <tm-image :width="100" :height="79" :src="item.path"></tm-image>
+                <tm-text :font-size="24" :label="item.title"></tm-text>
+              </tm-grid-item>
+            </tm-grid>
+          </scroll-view>
+          <view>
+            <tm-sheet
+              no-level
+              :round="6"
+              :width="100"
+              :height="8"
+              :margin="[0, 0]"
+              :padding="[0, 0]"
+              color="grey-2"
+            >
+              <view
+                class="bar"
+                :style="{
+                  transform: `translateX(${left}px)`,
+                }"
+              >
+                <tm-sheet
+                  :round="6"
+                  :width="50"
+                  :height="8"
+                  color="primary"
+                  :margin="[0, 0]"
+                  :padding="[0, 0]"
+                ></tm-sheet>
+              </view>
+            </tm-sheet>
+          </view>
+        </tm-sheet>
+
         <timetable-header></timetable-header>
       </template>
       <view
         class="flex overflow"
         :style="{
           width: '100%',
-          height: `calc(100vh - ${customBarHeight}px`,
+          height: `100vh`,
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
         }"
@@ -226,3 +390,13 @@ onShow(async () => {
     <!-- 表头 -->
   </tm-app>
 </template>
+
+<style scoped>
+.bar {
+  transition-property: transform;
+  transition-delay: 0;
+  transition-duration: 0.05s;
+  transition-timing-function: linear;
+  transform: translateX(0px);
+}
+</style>
