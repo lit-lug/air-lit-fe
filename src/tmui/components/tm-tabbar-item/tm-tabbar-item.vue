@@ -314,7 +314,7 @@ watch([nowUid, () => props.active], () => {
   }
 });
 watch(tmTabbarItemActive, () => {
-  if (!tmTabbarItemAutoSelect.value) {
+  if (tmTabbarItemAutoSelect.value) {
     // 非自动选中，通过父组件的active来选中当前。
     if (tmTabbarItemList.value[tmTabbarItemActive.value] == uid) {
       nextTick(() => {
@@ -331,11 +331,9 @@ watch([() => props.load], () => {
   _load.value = props.load;
 });
 async function itemClick() {
-  console.log("itemClick", props.active);
-
-  if (_active.value) {
-    return;
-  }
+  // if (_active.value) {
+  //   return;
+  // }
 
   if (_load.value) return;
   if (typeof props.beforeClick === "function") {
