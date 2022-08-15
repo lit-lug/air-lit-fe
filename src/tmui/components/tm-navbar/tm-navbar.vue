@@ -2,8 +2,14 @@
   <view>
     <view class="statusHeight" :style="{ height: _barHeight + 'px' }"></view>
     <view
-      class="fixed l-0 t-0 statusHeightTop flex"
-      :style="{ width: _width + 'px', height: _barHeight + 'px' }"
+      class="l-0 t-0 statusHeightTop flex"
+      :style="{
+        width: _width + 'px',
+        height: _barHeight + 'px',
+        position: props.isFixed ? 'fixed' : 'absolute',
+        left: 0,
+        top: 0,
+      }"
     >
       <tm-sheet
         @click="emits('click', $event)"
@@ -207,6 +213,10 @@ const props = defineProps({
   blur: {
     type: Boolean,
     default: false,
+  },
+  isFixed: {
+    type: Boolean,
+    default: true,
   },
   unit: {
     type: String,

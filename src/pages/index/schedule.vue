@@ -171,7 +171,7 @@ function onChangeDark() {
 
 const left = ref(0);
 
-const onScroll = (e: Event) => {
+const onScroll = (e: CustomEvent) => {
   let sL = e.detail.scrollLeft;
   let sT = e.detail.scrollWidth;
   let maxLeft = Math.abs(sT - uni.upx2px(50));
@@ -197,10 +197,19 @@ onShow(async () => {
 
 <template>
   <tm-app ref="app">
-    <tm-sticky>
+    <!-- 标题状态栏 -->
+
+    <tm-sticky :offset="0">
       <template v-slot:sticky>
-        <!-- 标题状态栏 -->
-        <tm-navbar title="" hideHome blur :shadow="0">
+        <tm-navbar
+          title=""
+          hideHome
+          blur
+          :padding="[0, 0]"
+          :margin="[0, 0]"
+          :shadow="0"
+          :isFixed="false"
+        >
           <template v-slot:left>
             <view class="flex flex-row flex-row-center-center">
               <tm-icon
@@ -291,7 +300,7 @@ onShow(async () => {
         <timetable-header></timetable-header>
       </template>
       <view
-        class="flex overflow"
+        class="flex"
         :style="{
           width: '100%',
           height: `100vh`,
