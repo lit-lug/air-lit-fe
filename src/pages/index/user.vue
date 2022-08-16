@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import tmApp from "../../tmui/components/tm-app/tm-app.vue";
+import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
@@ -11,15 +11,12 @@ import TabBar from "@/components/TheTabBar.vue";
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
-import { ref } from "vue";
-
-const app = ref<InstanceType<typeof tmApp> | null>(null);
 
 const tmStore = useTmpiniaStore();
 
-function onChangeDark() {
-  app.value?.setDark();
-}
+const onChangeDark = () => {
+  tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
+};
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onShow } from "@dcloudio/uni-app";
-import tmApp from "../../tmui/components/tm-app/tm-app.vue";
+import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
 import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 
@@ -13,11 +13,6 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
-import { ref } from "vue";
-
-const app = ref<InstanceType<tmApp> | null>(null);
-
-// const store = useStore();
 
 const tmStore = useTmpiniaStore();
 
@@ -28,9 +23,9 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
-function onChangeDark() {
-  app.value?.setDark();
-}
+const onChangeDark = () => {
+  tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
+};
 
 onShow(async () => {
   console.log("App Show");
