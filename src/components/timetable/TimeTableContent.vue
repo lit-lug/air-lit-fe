@@ -2,6 +2,11 @@
 import { courseTimeList, colorArrayList } from "@/store/course";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
+
+// 课程长度处理
+const parserCourseTitle = (title: string) => {
+  return title.length > 12 ? title.substring(0, 12) : title;
+};
 </script>
 
 <template>
@@ -55,7 +60,7 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
       <!--- 循环七次 -->
       <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
         <view>
-          <template v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
+          <templae v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
             <view
               class="absolute"
               :style="
@@ -74,30 +79,36 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
                     backgroundColor:
                       colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
                     height: '14vh',
-                    marginLeft: '0.5vw',
-                    marginRight: '0.5vw',
+                    margin: '4rpx',
                     borderRadius: '10rpx',
-                    position: 'relative',
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
                   }"
                 >
-                  <tm-text
-                    color="white"
-                    _class="pa-5 ma-5 flex font-weight-b"
-                    :_style="{
+                  <text
+                    :style="{
+                      color: '#ffffff',
                       alignItems: 'center',
                       justifyContent: 'center',
                       textAlign: 'center',
                     }"
-                    :font-size="24"
-                    label="课程名称一一一一一@教室二二二"
-                  ></tm-text>
+                  >
+                    <text style="font-size: 24rpx">
+                      {{ parserCourseTitle("市场营销学") }}
+                    </text>
+                    <text
+                      :style="{
+                        fontSize: ('XC4213'.length >= 5 ? '20' : '22') + 'rpx',
+                      }"
+                    >
+                      {{ `\n@XC4213` }}
+                    </text>
+                  </text>
                 </view>
               </tm-translate>
             </view>
-          </template>
+          </templae>
         </view>
       </template>
     </view>
