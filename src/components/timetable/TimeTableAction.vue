@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmGridItem from "@/tmui/components/tm-grid-item/tm-grid-item.vue";
-import tmImage from "../../tmui/components/tm-image/tm-image.vue";
+import tmImage from "@/tmui/components/tm-image/tm-image.vue";
 import tmGrid from "@/tmui/components/tm-grid/tm-grid.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 

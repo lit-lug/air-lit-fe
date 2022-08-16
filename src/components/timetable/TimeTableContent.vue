@@ -2,10 +2,18 @@
 import { courseTimeList, colorArrayList } from "@/store/course";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
+import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
+import { ref } from "vue";
 
 // 课程长度处理
 const parserCourseTitle = (title: string) => {
   return title.length > 12 ? title.substring(0, 12) : title;
+};
+
+const showCourseCard = ref(false);
+
+const ClickCourse = (course: any) => {
+  showCourseCard.value = true;
 };
 </script>
 
@@ -60,7 +68,7 @@ const parserCourseTitle = (title: string) => {
       <!--- 循环七次 -->
       <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
         <view>
-          <templae v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
+          <template v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
             <view
               class="absolute"
               :style="
@@ -74,6 +82,7 @@ const parserCourseTitle = (title: string) => {
             >
               <tm-translate name="fade" autoPlay :duration="500">
                 <view
+                  @click="ClickCourse"
                   class="flex ma-10"
                   :style="{
                     backgroundColor:
@@ -105,13 +114,32 @@ const parserCourseTitle = (title: string) => {
                       {{ `\n@XC4213` }}
                     </text>
                   </text>
+                  <view
+                    :style="{
+                      width: '70rpx',
+                      height: '8rpx',
+                      margin: '0 auto',
+                      backgroundColor: '#ffffff',
+                      position: 'absolute',
+                      bottom: '10rpx',
+                      borderRadius: '5rpx',
+                      opacity: 0.7,
+                    }"
+                  ></view>
                 </view>
               </tm-translate>
             </view>
-          </templae>
+          </template>
         </view>
       </template>
     </view>
   </view>
+  <tm-overlay v-model:show="showCourseCard">
+    <view @click.stop="" :duration="100">
+      <tm-sheet>
+        <tm-text label="todo: 课程卡片展示详情"></tm-text>
+      </tm-sheet>
+    </view>
+  </tm-overlay>
 </template>
 view

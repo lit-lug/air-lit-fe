@@ -29,7 +29,7 @@ specifiers:
   typescript: ^4.7.4
   uni-base-components-types: ^1.1.1
   unplugin-auto-import: ^0.11.1
-  vite: ^2.9.14
+  vite: ^2.9.15
   vite-plugin-tauri: ^2.2.0
   vue: ^3.2.37
   vue-i18n: ^9.2.2
@@ -37,7 +37,7 @@ specifiers:
 
 dependencies:
   '@dcloudio/uni-app': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
-  '@dcloudio/uni-app-plus': 3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq
+  '@dcloudio/uni-app-plus': 3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq
   '@dcloudio/uni-components': 3.0.0-alpha-3050420220804004
   '@dcloudio/uni-h5': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
   '@dcloudio/uni-mp-alipay': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
@@ -57,7 +57,7 @@ dependencies:
   pinia: 2.0.18_j6bzmzd4ujpabbp5objtwxyjp4
   postcss: 8.4.16
   uni-base-components-types: 1.1.1
-  unplugin-auto-import: 0.11.1_vite@2.9.14
+  unplugin-auto-import: 0.11.1_vite@2.9.15
   vue: 3.2.37
   vue-i18n: 9.2.2_vue@3.2.37
   vuex: 4.0.2_vue@3.2.37
@@ -66,11 +66,11 @@ devDependencies:
   '@dcloudio/types': 2.6.12
   '@dcloudio/uni-automator': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
   '@dcloudio/uni-cli-shared': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
-  '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq
+  '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq
   '@tauri-apps/cli': 1.0.5
   typescript: 4.7.4
-  vite: 2.9.14_less@4.1.3
-  vite-plugin-tauri: 2.2.0_hrc4fycre34i3g5rupfzlypkj4
+  vite: 2.9.15_less@4.1.3
+  vite-plugin-tauri: 2.2.0_5goglqryw4roj4xxn4yma6bixu
 
 packages:
 
@@ -365,10 +365,10 @@ packages:
   /@dcloudio/types/2.6.12:
     resolution: {integrity: sha512-mrCMwcINy1IFjU9VUqLeWBkj404yWs5paLDttBcA+eqUjanuUQbBcTVPqlrGgkyzLXDcV2oDDZRSNxNpXi4kMQ==}
 
-  /@dcloudio/uni-app-plus/3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq:
+  /@dcloudio/uni-app-plus/3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq:
     resolution: {integrity: sha512-SnqUpnwHtpRHbnHybDWDXeZBZge4X3XRwdaLfFK34sbE/jsWtwcsHtqkIr/w+P5mTOJ+74YBOqIVIyyeW8EXZA==}
     dependencies:
-      '@dcloudio/uni-app-vite': 3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq
+      '@dcloudio/uni-app-vite': 3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq
       '@dcloudio/uni-app-vue': 3.0.0-alpha-3050420220804004
       '@dcloudio/uni-uts-vite': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
     transitivePeerDependencies:
@@ -379,7 +379,7 @@ packages:
       - vue
     dev: false
 
-  /@dcloudio/uni-app-vite/3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq:
+  /@dcloudio/uni-app-vite/3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq:
     resolution: {integrity: sha512-Q9PfPAe+DZL6DHXGyhMy4S9LFCeTA8Djog9wfin5crcqhobbpno01BjSSEK7PHM5rU6sRvxstO+HXTPHXXGsmA==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
@@ -388,13 +388,13 @@ packages:
       '@dcloudio/uni-shared': 3.0.0-alpha-3050420220804004
       '@dcloudio/uts': 3.0.0-alpha-3050420220804004
       '@rollup/pluginutils': 4.2.1
-      '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
+      '@vitejs/plugin-vue': 2.3.4_vite@2.9.15+vue@3.2.37
       '@vue/compiler-dom': 3.2.37
       '@vue/compiler-sfc': 3.2.37
       debug: 4.3.4
       fs-extra: 10.1.0
       picocolors: 1.0.0
-      rollup: 2.77.3
+      rollup: 2.78.0
     transitivePeerDependencies:
       - postcss
       - supports-color
@@ -851,7 +851,7 @@ packages:
       '@dcloudio/uts-win32-x64-msvc': 3.0.0-alpha-3050420220804004
     dev: false
 
-  /@dcloudio/vite-plugin-uni/3.0.0-alpha-3050420220804004_42uryyx4zz7ipqpduc3x5ruwfq:
+  /@dcloudio/vite-plugin-uni/3.0.0-alpha-3050420220804004_47452i42yfdxk5vv6bxy52mozq:
     resolution: {integrity: sha512-rDKWOf5BEEe/llhirjeN0JONYdQwA4FwlOpFHfT88LEnxMnOsGWniDZ8qoGWNPrFLiRw5UZVaV0xHeQqCVdzKg==}
     hasBin: true
     peerDependencies:
@@ -863,8 +863,8 @@ packages:
       '@dcloudio/uni-cli-shared': 3.0.0-alpha-3050420220804004_postcss@8.4.16+vue@3.2.37
       '@dcloudio/uni-shared': 3.0.0-alpha-3050420220804004
       '@rollup/pluginutils': 4.2.1
-      '@vitejs/plugin-legacy': 1.8.2_vite@2.9.14
-      '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
+      '@vitejs/plugin-legacy': 1.8.2_vite@2.9.15
+      '@vitejs/plugin-vue': 2.3.4_vite@2.9.15+vue@3.2.37
       '@vitejs/plugin-vue-jsx': 1.3.10
       '@vue/compiler-core': 3.2.37
       '@vue/compiler-dom': 3.2.37
@@ -879,7 +879,7 @@ packages:
       hash-sum: 2.0.0
       jsonc-parser: 3.1.0
       picocolors: 1.0.0
-      vite: 2.9.14_less@4.1.3
+      vite: 2.9.15_less@4.1.3
     transitivePeerDependencies:
       - postcss
       - supports-color
@@ -1146,7 +1146,7 @@ packages:
       vue: 2.7.8
     dev: false
 
-  /@vitejs/plugin-legacy/1.8.2_vite@2.9.14:
+  /@vitejs/plugin-legacy/1.8.2_vite@2.9.15:
     resolution: {integrity: sha512-NCOKU+pU+cxLMR9P9RTolEuOK+h+zYBXlknj+zGcKSj/NXBZYgA1GAH1FnO4zijoWRiTaiOm2ha9LQrELE7XHg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -1157,7 +1157,7 @@ packages:
       magic-string: 0.26.2
       regenerator-runtime: 0.13.9
       systemjs: 6.12.2
-      vite: 2.9.14_less@4.1.3
+      vite: 2.9.15_less@4.1.3
     dev: true
 
   /@vitejs/plugin-vue-jsx/1.3.10:
@@ -1174,14 +1174,14 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/2.3.3_vite@2.9.14+vue@3.2.37:
-    resolution: {integrity: sha512-SmQLDyhz+6lGJhPELsBdzXGc+AcaT8stgkbiTFGpXPe8Tl1tJaBw1A6pxDqDuRsVkD8uscrkx3hA7QDOoKYtyw==}
+  /@vitejs/plugin-vue/2.3.4_vite@2.9.15+vue@3.2.37:
+    resolution: {integrity: sha512-IfFNbtkbIm36O9KB8QodlwwYvTEsJb4Lll4c2IwB3VHc2gie2mSPtSzL0eYay7X2jd/2WX02FjSGTWR6OPr/zg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.14_less@4.1.3
+      vite: 2.9.15_less@4.1.3
       vue: 3.2.37
 
   /@vue/babel-helper-vue-transform-on/1.0.2:
@@ -1334,7 +1334,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.3
-      caniuse-lite: 1.0.30001375
+      caniuse-lite: 1.0.30001377
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1380,8 +1380,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001375
-      electron-to-chromium: 1.4.217
+      caniuse-lite: 1.0.30001377
+      electron-to-chromium: 1.4.221
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
 
@@ -1406,8 +1406,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001375:
-    resolution: {integrity: sha512-kWIMkNzLYxSvnjy0hL8w1NOaWNr2rn39RTAVyIwcw8juu60bZDWiF1/loOYANzjtJmy6qPgNmn38ro5Pygagdw==}
+  /caniuse-lite/1.0.30001377:
+    resolution: {integrity: sha512-I5XeHI1x/mRSGl96LFOaSk528LA/yZG3m3iQgImGujjO8gotd/DL8QaI1R1h1dg5ATeI2jqPblMpKq4Tr5iKfQ==}
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -1584,8 +1584,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
-  /electron-to-chromium/1.4.217:
-    resolution: {integrity: sha512-iX8GbAMij7cOtJPZo02CClpaPMWjvN5meqXiJXkBgwvraNWTNH0Z7F9tkznI34JRPtWASoPM/xWamq3oNb49GA==}
+  /electron-to-chromium/1.4.221:
+    resolution: {integrity: sha512-aWg2mYhpxZ6Q6Xvyk7B2ziBca4YqrCDlXzmcD7wuRs65pVEVkMT1u2ifdjpAQais2O2o0rW964ZWWWYRlAL/kw==}
 
   /encodeurl/1.0.2:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
@@ -2592,6 +2592,14 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
+  /rollup/2.78.0:
+    resolution: {integrity: sha512-4+YfbQC9QEVvKTanHhIAFVUFSRsezvQF8vFOJwtGfb9Bb+r014S+qryr9PSmw8x6sMnPkmFBGAvIFVQxvJxjtg==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: false
+
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -2778,7 +2786,7 @@ packages:
       '@dcloudio/uni-helper-json': 1.0.13
     dev: false
 
-  /unimport/0.6.7_vite@2.9.14:
+  /unimport/0.6.7_vite@2.9.15:
     resolution: {integrity: sha512-EMoVqDjswHkU+nD098QYHXH7Mkw7KwGDQAyeRF2lgairJnuO+wpkhIcmCqrD1OPJmsjkTbJ2tW6Ap8St0PuWZA==}
     dependencies:
       '@rollup/pluginutils': 4.2.1
@@ -2790,7 +2798,7 @@ packages:
       pathe: 0.3.4
       scule: 0.3.2
       strip-literal: 0.4.0
-      unplugin: 0.9.2_vite@2.9.14
+      unplugin: 0.9.2_vite@2.9.15
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -2807,7 +2815,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /unplugin-auto-import/0.11.1_vite@2.9.14:
+  /unplugin-auto-import/0.11.1_vite@2.9.15:
     resolution: {integrity: sha512-3KMbjc3Sv2h1osgQ16uKmD2XHb8MLK3Lj5Twzo3x2vDexYdNKjVljLZUX+eT5cvh2f1VzJR77dkzDhdEi9+1uw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -2820,8 +2828,8 @@ packages:
       '@rollup/pluginutils': 4.2.1
       local-pkg: 0.4.2
       magic-string: 0.26.2
-      unimport: 0.6.7_vite@2.9.14
-      unplugin: 0.9.2_vite@2.9.14
+      unimport: 0.6.7_vite@2.9.15
+      unplugin: 0.9.2_vite@2.9.15
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -2829,7 +2837,7 @@ packages:
       - webpack
     dev: false
 
-  /unplugin/0.9.2_vite@2.9.14:
+  /unplugin/0.9.2_vite@2.9.15:
     resolution: {integrity: sha512-Wo9lx9rA0O3AWhLYYNZ6DgnNhL5t5r7kV/Jg5BXjTQtY+DEWrD8VLFSaOmKN0tgqZCMqZ+XrzgOe/3DzIO4/SA==}
     peerDependencies:
       esbuild: '>=0.13'
@@ -2848,7 +2856,7 @@ packages:
     dependencies:
       acorn: 8.8.0
       chokidar: 3.5.3
-      vite: 2.9.14_less@4.1.3
+      vite: 2.9.15_less@4.1.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.4.4
     dev: false
@@ -2880,7 +2888,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vite-plugin-tauri/2.2.0_hrc4fycre34i3g5rupfzlypkj4:
+  /vite-plugin-tauri/2.2.0_5goglqryw4roj4xxn4yma6bixu:
     resolution: {integrity: sha512-MIWmOEH1hxt9VjenxGD0p1khIA2OzwwWodfmyBromU8xTDOias92beGdRQ1qggQa0K82wNultGXq6r6gXAldkw==}
     engines: {node: '>=14.6.0'}
     hasBin: true
@@ -2891,11 +2899,11 @@ packages:
       '@tauri-apps/cli': 1.0.5
       fast-glob: 3.2.11
       kolorist: 1.5.1
-      vite: 2.9.14_less@4.1.3
+      vite: 2.9.15_less@4.1.3
     dev: true
 
-  /vite/2.9.14_less@4.1.3:
-    resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
+  /vite/2.9.15_less@4.1.3:
+    resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
