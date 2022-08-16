@@ -4,7 +4,7 @@ import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 
 const tmStore = useTmpiniaStore();
 
-const systemInfo: any = uni.getSystemInfoSync();
+const systemInfo = uni.getSystemInfoSync();
 
 onLaunch(() => {
   // 隐藏原生标题栏
@@ -12,22 +12,24 @@ onLaunch(() => {
 
   // #ifdef H5
 
-  // 页面大小改变刷新页面
-  window.addEventListener("resize", () => {
-    window.location.reload();
-  });
-
   // 夜间模式监听
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
   tmStore.setTmVuetifyDark(colorScheme.matches);
   colorScheme.addEventListener("change", (e: MediaQueryListEvent) =>
     tmStore.setTmVuetifyDark(e.matches)
   );
+
+  // 页面大小改变刷新页面
+  window.addEventListener("resize", () => {
+    window.location.reload();
+  });
+
   // #endif
 
   /**
    * 设置主题，用户配置优先
    */
+  // #ifdef WEIXIN-MP
   if (["light", "dark"].includes(uni.getStorageSync("theme"))) {
     tmStore.setTmVuetifyDark(uni.getStorageSync("theme") === "dark");
   } else if (["light", "dark"].includes(systemInfo.theme as string)) {
@@ -35,6 +37,7 @@ onLaunch(() => {
   } else {
     tmStore.setTmVuetifyDark(false);
   }
+  // #endif
 });
 
 onThemeChange((res: any) => {
