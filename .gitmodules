@@ -1,0 +1,3 @@
+[submodule "src/tmui"]
+	path = src/tmui
+	url = git@github.com:icepie/tmui-custom.git
