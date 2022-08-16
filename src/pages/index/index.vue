@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onShow } from "@dcloudio/uni-app";
+import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
 import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
@@ -40,6 +40,12 @@ onShow(async () => {
     duration: 2000,
     // mask: true,
   });
+});
+
+onPullDownRefresh(async () => {
+  console.log("下拉刷新");
+
+  uni.stopPullDownRefresh();
 });
 </script>
 

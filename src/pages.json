@@ -7,7 +7,8 @@
         "navigationBarTitleText": "时刻",
         "navigationStyle": "custom",
         "backgroundColorTop": "#fff",
-        "backgroundColorBottom": "#F8F8F8"
+        "backgroundColorBottom": "#F8F8F8",
+        "enablePullDownRefresh": true
       }
     },
     {
@@ -17,7 +18,8 @@
         "navigationBarTitleText": "课表",
         "navigationStyle": "custom",
         "backgroundColorTop": "#fff",
-        "backgroundColorBottom": "#F8F8F8"
+        "backgroundColorBottom": "#F8F8F8",
+        "enablePullDownRefresh": true
       }
     },
     {

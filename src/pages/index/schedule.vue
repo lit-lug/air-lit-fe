@@ -14,7 +14,7 @@ import { ref } from "vue";
 
 import tmSticky from "@/tmui/components/tm-sticky/tm-sticky.vue";
 
-import { onShow } from "@dcloudio/uni-app";
+import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 
 import { useCourseStore, weekTitle } from "@/store/course";
 
@@ -43,6 +43,12 @@ onShow(async () => {
   console.log("App Show");
   const someDate = new Date("2022-08-01");
   courseStore.setStartDay(someDate);
+});
+
+onPullDownRefresh(async () => {
+  console.log("下拉刷新");
+
+  uni.stopPullDownRefresh();
 });
 </script>
 
