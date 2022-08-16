@@ -59,7 +59,7 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
             <view
               class="absolute"
               :style="
-                'width:15vw;' +
+                'width:13vw;' +
                 'margin-left:' +
                 tIndex * 13.0 +
                 'vw;margin-top:' +
@@ -74,6 +74,8 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
                     backgroundColor:
                       colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
                     height: '14vh',
+                    marginLeft: '0.5vw',
+                    marginRight: '0.5vw',
                     borderRadius: '10rpx',
                     position: 'relative',
                     alignItems: 'center',
