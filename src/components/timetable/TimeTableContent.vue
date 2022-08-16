@@ -59,7 +59,7 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
             <view
               class="absolute"
               :style="
-                'width:13vw;' +
+                'width:15vw;' +
                 'margin-left:' +
                 tIndex * 13.0 +
                 'vw;margin-top:' +
@@ -69,13 +69,11 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
             >
               <tm-translate name="fade" autoPlay :duration="500">
                 <view
-                  class="flex ma-5"
+                  class="flex ma-10"
                   :style="{
                     backgroundColor:
                       colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
                     height: '14vh',
-                    marginLeft: '0.5vw',
-                    marginRight: '0.5vw',
                     borderRadius: '10rpx',
                     position: 'relative',
                     alignItems: 'center',
@@ -83,7 +81,17 @@ import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
                     textAlign: 'center',
                   }"
                 >
-                  <tm-text color="white" :font-size="24">凡哥@C1-409</tm-text>
+                  <tm-text
+                    color="white"
+                    _class="pa-5 ma-5 flex font-weight-b"
+                    :_style="{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                    }"
+                    :font-size="24"
+                    label="课程名称一一一一一@教室二二二"
+                  ></tm-text>
                 </view>
               </tm-translate>
             </view>
