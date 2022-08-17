@@ -1,11 +1,12 @@
 
 /* 请求配置/响应的补充说明 */
 
-interface ListOpts {
-    page: number;
-    limit: number;
+interface ResponseData<T = any> {
+    code: number
+    data: T
+    msg: string
+    err: string
 }
-
 
 interface UserInfo {
     faculty: string;
@@ -21,8 +22,11 @@ declare interface LoginReq {
     code: string;
 }
 
-declare interface LoginResp {
+declare interface AuthInfo {
     is_bind_sec: Boolean;
     token: string;
-    user_info: UserInfo | {};
+    user_info: UserInfo;
 }
+
+
+

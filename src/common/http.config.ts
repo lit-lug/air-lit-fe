@@ -1,5 +1,6 @@
 import Http from 'luch-request';
 
+
 /** 定义默认配置 */
 const http = new Http({
     baseURL: 'https://easy-lit.singzer.cn',
@@ -22,15 +23,27 @@ http.interceptors.response.use(
             uni.hideLoading();
         }
 
-        if (response.data.code == 200) {
-            return response.data;
-        } else {
+        const resp = response.data;
+
+        console.log(resp);
+
+        if (!resp) {
             uni.showToast({
-                title: response.data.msg,
+                title: "数据异常, 请稍后再试!",
                 icon: 'none',
             });
-            return Promise.reject(response.data);
+            return Promise.resolve(response);
         }
+
+        if (resp.code != 200) {
+            uni.showToast({
+                title: response.data.msg,
+                icon: 'error',
+            });
+            return Promise.resolve(response);
+        }
+
+        return resp
     },
     (error) => {
         if (error.config.custom?.load) {

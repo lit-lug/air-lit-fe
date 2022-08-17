@@ -14,23 +14,11 @@ httpConfig.custom = {
 }
 
 // 微信用户认证
-export const WeAppAuth = (data: LoginReq) => {
-    return http.post("/weapp/auth", data);
+export const WeAppAuth = (req: LoginReq) => {
+    return http.post<AuthInfo>("/weapp/auth", req);
 }
 
 // 模拟用户请求
 export const getUserInfo = () => {
-    // http.config.custom.load = true;
-    // httpConfig.custom = {
-    //     load: false
-    // }
-    return http.get<UserInfo>('/login');
-};
-
-// 模拟请求列表
-export const getList = (params: ListOpts) => {
-    httpConfig.custom = {
-        load: true
-    }
-    return http.get('/list', { params });
+    return http.get<ResponseData<UserInfo>>('/login');
 };

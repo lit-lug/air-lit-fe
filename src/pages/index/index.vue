@@ -13,6 +13,9 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import { useAppStore } from "@/store/app";
+
+const appStore = useAppStore();
 
 const tmStore = useTmpiniaStore();
 
@@ -44,6 +47,8 @@ onShow(async () => {
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
+
+  appStore.setToken("test12345678");
 
   uni.stopPullDownRefresh();
 });

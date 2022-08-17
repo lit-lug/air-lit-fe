@@ -2,8 +2,6 @@
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
-import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
-
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
 import TabBar from "@/components/TheTabBar.vue";
@@ -12,6 +10,12 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { onChangeDark, IsDark } from "@/common/util";
+import { useAppStore } from "@/store/app";
+import { storeToRefs } from "pinia";
+
+const appStore = useAppStore();
+
+const { token, userInfo } = storeToRefs(appStore);
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -28,19 +32,13 @@ const test = () => {
 
 onShow(async () => {
   // const info = await getUserInfo();
-
   // console.log(info);
-
-  uni.showToast({
-    title: "测试弹窗",
-    icon: "none",
-    duration: 2000,
-    // mask: true,
-  });
 });
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
+
+  appStore.setToken("test");
 
   uni.stopPullDownRefresh();
 });
@@ -68,7 +66,7 @@ onPullDownRefresh(async () => {
       >测试</tm-carousel
     > -->
 
-    <tm-text @click="test" label="test123"> </tm-text>
+    <tm-text @click="test" :label="token"> </tm-text>
 
     <tab-bar :active="2"></tab-bar>
   </tm-app>
