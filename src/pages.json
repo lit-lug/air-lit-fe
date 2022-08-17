@@ -36,7 +36,7 @@
       "path": "pages/mine/account/account",
       "style": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "账户",
+        "navigationBarTitleText": "账户管理",
         "navigationStyle": "custom"
       }
     },

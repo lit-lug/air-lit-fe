@@ -35,10 +35,6 @@ const list = ref([
 
 const courseStore = useCourseStore();
 
-// const onChangeDark = () => {
-//   tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
-// };
-
 onShow(async () => {
   console.log("App Show");
   const someDate = new Date("2022-08-01");

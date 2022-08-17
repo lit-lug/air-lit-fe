@@ -24,7 +24,6 @@ const beforeClick = (index: number) => {
   >
     <tm-tabbar-item
       activeColor="primary"
-      count="HOT"
       :beforeClick="beforeClick"
       :data="0"
       blur
@@ -48,6 +47,8 @@ const beforeClick = (index: number) => {
     <tm-tabbar-item
       url="/pages/mine/mine"
       :beforeClick="beforeClick"
+      count="待更新"
+      dotColor="blue"
       :data="2"
       blur
       transprent
