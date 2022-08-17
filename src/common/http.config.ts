@@ -17,10 +17,20 @@ http.interceptors.request.use((config) => {
 /** 添加响应拦截器 */
 http.interceptors.response.use(
     (response) => {
+
         if (response.config.custom?.load) {
             uni.hideLoading();
         }
-        return response;
+
+        if (response.data.code == 200) {
+            return response.data;
+        } else {
+            uni.showToast({
+                title: response.data.msg,
+                icon: 'none',
+            });
+            return Promise.reject(response.data);
+        }
     },
     (error) => {
         if (error.config.custom?.load) {

@@ -9,19 +9,20 @@ import TabBar from "@/components/TheTabBar.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
-import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { ref } from "vue";
 
 import tmSticky from "@/tmui/components/tm-sticky/tm-sticky.vue";
 
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 
-import { useCourseStore, weekTitle } from "@/store/course";
+import { useCourseStore } from "@/store/course";
 
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
 import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
+
+import { onChangeDark, IsDark } from "@/common/util";
 
 const show = ref(false);
 const showTimeTableAction = ref(false);
@@ -33,11 +34,10 @@ const list = ref([
 ]);
 
 const courseStore = useCourseStore();
-const tmStore = useTmpiniaStore();
 
-const onChangeDark = () => {
-  tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
-};
+// const onChangeDark = () => {
+//   tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
+// };
 
 onShow(async () => {
   console.log("App Show");
@@ -55,7 +55,6 @@ onPullDownRefresh(async () => {
 <template>
   <tm-app ref="app" color="white">
     <!-- 标题状态栏 -->
-
     <tm-sticky :offset="0">
       <template v-slot:sticky>
         <tm-navbar
@@ -73,7 +72,7 @@ onPullDownRefresh(async () => {
                 @click="onChangeDark"
                 :font-size="40"
                 _class="pr-20"
-                :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+                :name="IsDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
               ></tm-icon>
               <tm-icon
                 :font-size="32"

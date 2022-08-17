@@ -13,6 +13,10 @@ httpConfig.custom = {
     load: true
 }
 
+// 微信用户认证
+export const WeAppAuth = (data: LoginReq) => {
+    return http.post("/weapp/auth", data);
+}
 
 // 模拟用户请求
 export const getUserInfo = () => {

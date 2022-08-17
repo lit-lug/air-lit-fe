@@ -12,7 +12,7 @@
       }
     },
     {
-      "path": "pages/index/schedule",
+      "path": "pages/schedule/schedule",
       "style": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "课表",
@@ -23,13 +23,27 @@
       }
     },
     {
-      "path": "pages/index/user",
+      "path": "pages/mine/mine",
       "style": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "我的",
         "navigationStyle": "custom",
         "backgroundColorTop": "#fff",
         "backgroundColorBottom": "#F8F8F8"
+      }
+    },
+    {
+      "path": "pages/mine/account/account",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "账户",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/webview/webview",
+      "style": {
+        "navigationBarTitleText": "详情"
       }
     }
   ],
@@ -40,15 +54,16 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index"
       },
       {
-        "pagePath": "pages/index/schedule"
+        "pagePath": "pages/schedule/schedule"
       },
       {
-        "pagePath": "pages/index/user"
+        "pagePath": "pages/mine/mine"
       }
     ]
   }

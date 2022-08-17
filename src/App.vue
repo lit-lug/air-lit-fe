@@ -7,10 +7,9 @@ const tmStore = useTmpiniaStore();
 const systemInfo = uni.getSystemInfoSync();
 
 onLaunch(() => {
+  // #ifdef H5
   // 隐藏原生标题栏
   uni.hideTabBar({});
-
-  // #ifdef H5
 
   // 夜间模式监听
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -29,7 +28,7 @@ onLaunch(() => {
   /**
    * 设置主题，用户配置优先
    */
-  // #ifdef WEIXIN-MP
+  // #ifdef MP-WEIXIN
   if (["light", "dark"].includes(uni.getStorageSync("theme"))) {
     tmStore.setTmVuetifyDark(uni.getStorageSync("theme") === "dark");
   } else if (["light", "dark"].includes(systemInfo.theme as string)) {

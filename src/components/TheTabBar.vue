@@ -36,7 +36,7 @@ const beforeClick = (index: number) => {
       icon="tmicon-wind-smile"
     ></tm-tabbar-item>
     <tm-tabbar-item
-      url="/pages/index/schedule"
+      url="/pages/schedule/schedule"
       text="课表"
       blur
       :beforeClick="beforeClick"
@@ -46,7 +46,7 @@ const beforeClick = (index: number) => {
       icon="tmicon-calendar-alt"
     ></tm-tabbar-item>
     <tm-tabbar-item
-      url="/pages/index/user"
+      url="/pages/mine/mine"
       :beforeClick="beforeClick"
       :data="2"
       blur
