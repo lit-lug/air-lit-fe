@@ -8,7 +8,7 @@ interface ResponseData<T = any> {
     err: string
 }
 
-interface UserInfo {
+interface SecInfo {
     faculty: string;
     grade: string;
     major: string;
@@ -18,12 +18,18 @@ interface UserInfo {
     role: string;
 }
 
+interface UserInfo {
+    is_bind_sec: Boolean;
+    is_sub_oa: Boolean;
+    is_need_update: Boolean;
+    sec_info?: SecInfo;
+}
+
 declare interface LoginReq {
     code: string;
 }
 
 declare interface AuthInfo {
-    is_bind_sec: Boolean;
     token: string;
     user_info: UserInfo;
 }

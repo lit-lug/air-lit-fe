@@ -10,15 +10,28 @@ import http from './http.config';
 export const httpConfig = http.config;
 
 httpConfig.custom = {
-    load: true
+    load: true,
+    auth: true,
+    isBindSec: true,
 }
 
 // 微信用户认证
 export const WeAppAuth = (req: LoginReq) => {
-    return http.post<AuthInfo>("/weapp/auth", req);
+    return http.post<AuthInfo>("/v2/weapp/auth", req, {
+        custom: {
+            ...httpConfig.custom,
+            auth: false
+        }
+    });
 }
 
 // 模拟用户请求
 export const getUserInfo = () => {
-    return http.get<ResponseData<UserInfo>>('/login');
+    return http.get<UserInfo>('/v2/weapp/user', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            load: false
+        }
+    });
 };

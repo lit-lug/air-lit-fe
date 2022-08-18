@@ -15,21 +15,21 @@ import { computed, ref, watch } from 'vue'
 export const useAppStore = defineStore(
     'app',
     () => {
-        const userInfo = ref<UserInfo>(uni.getStorageSync('userInfo') as UserInfo)
-        const token = ref<string>(uni.getStorageSync('token') as string)
+        const userInfo = ref<UserInfo>(uni.getStorageSync('user_info') as UserInfo)
+        const token = ref<string>(uni.getStorageSync('token'))
 
         const setUserInfo = (ui: UserInfo) => {
-            uni.setStorageSync('userInfo', userInfo.value)
             userInfo.value = ui
+            uni.setStorageSync('user_info', userInfo.value)
         }
 
-        // const getUserInfo = computed(() => {
-        //     return userInfo.value
-        // })
+        const isAuth = computed(() => {
+            return !!token.value
+        })
 
         const setToken = (tk: string) => {
-            uni.setStorageSync('token', token.value)
             token.value = tk
+            uni.setStorageSync('token', token.value)
         }
 
 
@@ -45,6 +45,7 @@ export const useAppStore = defineStore(
         return {
             userInfo,
             token,
+            isAuth,
             setUserInfo,
             setToken,
         }

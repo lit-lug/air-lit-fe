@@ -38,7 +38,7 @@ onShow(async () => {
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
 
-  appStore.setToken("test");
+  // appStore.setToken("test");
 
   uni.stopPullDownRefresh();
 });

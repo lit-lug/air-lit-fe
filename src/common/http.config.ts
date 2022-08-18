@@ -12,6 +12,34 @@ http.interceptors.request.use((config) => {
     if (config.custom?.load) {
         uni.showLoading({ title: '加载中...' });
     }
+
+    // 是否需要认证
+    if (config.custom?.auth) {
+        const token = uni.getStorageSync('token');
+
+        console.log("token", token);
+
+        // 未认证 -> 跳转到登录页
+        if (!token) {
+            uni.navigateTo({ url: '/pages/mine/account/account' });
+            return Promise.reject(config)
+        }
+
+        config.header = {
+            ...config.header,
+            Authorization: `Bearer ${token}`,
+        };
+    }
+
+    // if (config.custom?.isBindSec) {
+    //     // 未认证 -> 跳转到账户页
+    //     const isSecBound = uni.getStorageSync('isSecBound');
+    //     if (!isSecBound) {
+    //         uni.navigateTo({ url: '/pages/mine/account/account' });
+    //         return Promise.reject(config)
+    //     }
+    // }
+
     return config;
 });
 
@@ -46,9 +74,9 @@ http.interceptors.response.use(
         return resp
     },
     (error) => {
-        if (error.config.custom?.load) {
-            uni.hideLoading();
-        }
+        // if (error.config.custom?.load) {
+        uni.hideLoading();
+        // }
         return error;
     }
 );

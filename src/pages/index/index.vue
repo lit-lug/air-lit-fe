@@ -14,8 +14,12 @@ import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { useAppStore } from "@/store/app";
+import { storeToRefs } from "pinia";
+import { getUserInfo, WeAppAuth } from "@/common/api";
 
 const appStore = useAppStore();
+
+const { isAuth } = storeToRefs(appStore);
 
 const tmStore = useTmpiniaStore();
 
@@ -35,8 +39,6 @@ onShow(async () => {
 
   // const info = await getUserInfo();
 
-  // console.log(info);
-
   uni.showToast({
     title: "测试弹窗",
     icon: "none",
@@ -48,7 +50,9 @@ onShow(async () => {
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
 
-  appStore.setToken("test12345678");
+  console.log(isAuth.value);
+
+  // appStore.setToken("test12345678");
 
   uni.stopPullDownRefresh();
 });
