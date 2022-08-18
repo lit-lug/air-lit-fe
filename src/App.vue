@@ -13,7 +13,7 @@ const appStore = useAppStore();
 
 const { isAuth } = storeToRefs(appStore);
 
-onLaunch(async () => {
+onLaunch(async (res) => {
   console.log(isAuth.value);
 
   // #ifdef H5
@@ -46,36 +46,13 @@ onLaunch(async () => {
     tmStore.setTmVuetifyDark(false);
   }
   // #endif
-});
 
-onThemeChange((res) => {
-  if (["light", "dark"].includes(res.theme)) {
-    tmStore.setTmVuetifyDark(res.theme === "dark");
-  }
-});
-
-onShow(async () => {
   if (!isAuth.value) {
-    // 微信授权
-    const res = ((await uni.login({
-      provider: "weixin",
-    })) as unknown) as UniApp.LoginRes;
-
-    // 成功则获取用户信息
-    if (!res.code) {
-      return;
+    if (res.path != "pages/mine/account/account") {
+      uni.navigateTo({
+        url: "/pages/mine/account/account?back=true",
+      });
     }
-
-    // 获取用户认证信息
-    const { data: authInfo } = await WeAppAuth({ code: res.code });
-    if (!authInfo) {
-      return;
-    }
-
-    // 同步用户信息
-    appStore.setToken(authInfo.token);
-    appStore.setUserInfo(authInfo.user_info);
-
     return;
   }
 
@@ -87,6 +64,14 @@ onShow(async () => {
   // 同步用户信息
   appStore.setUserInfo(authInfo);
 });
+
+onThemeChange((res) => {
+  if (["light", "dark"].includes(res.theme)) {
+    tmStore.setTmVuetifyDark(res.theme === "dark");
+  }
+});
+
+onShow(async () => {});
 onHide(() => {
   console.log("App Hide");
 });

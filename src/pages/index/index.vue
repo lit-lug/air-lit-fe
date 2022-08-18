@@ -52,6 +52,10 @@ onPullDownRefresh(async () => {
 
   console.log(isAuth.value);
 
+  uni.navigateTo({
+    url: "/pages/index/score/score",
+  });
+
   // appStore.setToken("test12345678");
 
   uni.stopPullDownRefresh();

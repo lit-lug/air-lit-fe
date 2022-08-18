@@ -42,6 +42,14 @@
       }
     },
     {
+      "path": "pages/index/score/score",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "成绩",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/webview/webview",
       "style": {
         "navigationBarTitleText": "详情"

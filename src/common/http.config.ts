@@ -10,7 +10,7 @@ const http = new Http({
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
     if (config.custom?.load) {
-        uni.showLoading({ title: '加载中...' });
+        uni.showLoading({ title: '加载中...', mask: true });
     }
 
     // 是否需要认证
