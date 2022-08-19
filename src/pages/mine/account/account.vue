@@ -11,7 +11,6 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
-import { ref } from "vue";
 import { WeAppAuth } from "@/common/api";
 
 const appStore = useAppStore();
@@ -22,7 +21,8 @@ const props = defineProps<{
   back: boolean;
 }>();
 
-onShow(async () => {
+// #ifdef MP-WEIXIN
+const weAppAuth = async () => {
   if (!isAuth.value) {
     // 微信授权
     const res = ((await uni.login({
@@ -43,10 +43,17 @@ onShow(async () => {
     // 同步用户信息
     appStore.setToken(authInfo.token);
     appStore.setUserInfo(authInfo.user_info);
+  }
+};
+// #endif
 
-    if (props.back) {
-      uni.navigateBack({});
-    }
+onShow(async () => {
+  // #ifdef MP-WEIXIN
+  weAppAuth();
+  // #endif
+
+  if (props.back) {
+    uni.navigateBack({});
   }
 });
 </script>

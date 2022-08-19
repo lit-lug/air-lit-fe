@@ -1,0 +1,15 @@
+{
+  "language": "English-US",
+  "index.nav.title": "Moment",
+  "schedule.nav.title": "Schedule",
+  "mine.nav.title": "Mine",
+
+  "message.load.text": "Loading",
+  "message.error.text": "Error",
+  "message.info.text": "Tips",
+  "message.warn.text": "Warning",
+  "message.quest.text": "Question",
+  "message.success.text": "Success",
+  "message.disabled.text": "Disabled",
+  "message.wait.text": "Waiting"
+}

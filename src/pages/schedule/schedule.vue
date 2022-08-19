@@ -24,6 +24,8 @@ import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
 import { onChangeDark, IsDark } from "@/common/util";
 
+import { language } from "@/tmui/tool/lib/language";
+
 const show = ref(false);
 const showTimeTableAction = ref(false);
 

@@ -18,6 +18,11 @@ export interface CourseModel {
 
 export const weekTitle = ['一', '二', '三', '四', '五', '六', '日']
 
+export const weekTitleEng = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+export const monthEng = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Spt", "Oct", "Nov", "Dec"]
+
+
 export const courseTimeList = [
     { s: '08:00', e: '08:50' }, { s: '08:55', e: '09:45' },
     { s: '10:15', e: '11:05' }, { s: '11:10', e: '12:00' },

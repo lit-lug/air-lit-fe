@@ -13,6 +13,8 @@ import { onChangeDark, IsDark } from "@/common/util";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
+import { language } from "@/tmui/tool/lib/language";
+
 const appStore = useAppStore();
 
 const { token, userInfo } = storeToRefs(appStore);
@@ -46,7 +48,7 @@ onPullDownRefresh(async () => {
 
 <template>
   <tm-app ref="app">
-    <tm-navbar title="我的" hideHome blur>
+    <tm-navbar :title="language('mine.nav.title')" hideHome blur>
       <template v-slot:left>
         <tm-icon
           @click="onChangeDark"

@@ -17,6 +17,8 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 import { getUserInfo, WeAppAuth } from "@/common/api";
 
+import { language } from "@/tmui/tool/lib/language";
+
 const appStore = useAppStore();
 
 const { isAuth } = storeToRefs(appStore);
@@ -40,23 +42,23 @@ onShow(async () => {
   // const info = await getUserInfo();
 
   uni.showToast({
-    title: "测试弹窗",
+    title: language("message.load.text"),
     icon: "none",
     duration: 2000,
     // mask: true,
   });
+
+  uni.setLocale("zh-Hans");
 });
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
 
+  uni.setLocale("en");
+
   console.log(isAuth.value);
 
-  uni.navigateTo({
-    url: "/pages/index/score/score",
-  });
-
-  // appStore.setToken("test12345678");
+  uni.setLocale("en");
 
   uni.stopPullDownRefresh();
 });
@@ -72,7 +74,7 @@ onPullDownRefresh(async () => {
   </tm-app> -->
 
   <tm-app ref="app">
-    <tm-navbar title="时刻" hideHome blur>
+    <tm-navbar :title="language('index.nav.title')" hideHome blur>
       <template v-slot:left>
         <tm-icon
           @click="onChangeDark"
@@ -96,7 +98,7 @@ onPullDownRefresh(async () => {
       <tm-text
         :font-size="24"
         _class="font-weight-b"
-        label="卡片可以完全通过插槽自定义"
+        :label="language('message.load.text')"
       ></tm-text>
     </tm-sheet>
 
@@ -107,8 +109,7 @@ onPullDownRefresh(async () => {
       :width="686"
       :height="300"
       :list="listimg"
-      >测试</tm-carousel
-    >
+    ></tm-carousel>
 
     <tm-carousel
       autoplay

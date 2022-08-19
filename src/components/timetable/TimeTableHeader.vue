@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCourseStore, weekTitle } from "@/store/course";
+import { useCourseStore, weekTitle, weekTitleEng, monthEng } from "@/store/course";
 import { storeToRefs } from "pinia";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
@@ -37,7 +37,9 @@ const {
       }"
     >
       <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
-      <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text>
+      <tm-text :font-size="30" _class="font-weight-b" :label="monthEng[currentMonth - 1]">
+      </tm-text>
+      <!-- <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text> -->
     </view>
 
     <view
@@ -67,7 +69,7 @@ const {
           :font-size="30"
           _class="font-weight-b text-align-center"
         >
-          {{ weekTitle[index] }}</tm-text
+          {{ weekTitleEng[index] }}</tm-text
         >
         <tm-text
           :font-size="26"
