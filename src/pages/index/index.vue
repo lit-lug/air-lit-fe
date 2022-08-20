@@ -15,7 +15,7 @@ import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
-import { getUserInfo, WeAppAuth } from "@/common/api";
+import { GetStatus, GetUserInfo, WeAppAuth } from "@/common/api";
 
 import { language } from "@/tmui/tool/lib/language";
 
@@ -47,6 +47,11 @@ onShow(async () => {
     duration: 2000,
     // mask: true,
   });
+
+  const { data: status } = await GetStatus();
+  if (status) {
+    console.log("status", status);
+  }
 
   uni.setLocale("zh-Hans");
 });

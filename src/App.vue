@@ -3,7 +3,7 @@ import { onLaunch, onShow, onHide, onThemeChange } from "@dcloudio/uni-app";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { storeToRefs } from "pinia";
 import { useAppStore } from "./store/app";
-import { getUserInfo, WeAppAuth } from "./common/api";
+import { GetUserInfo } from "./common/api";
 
 const tmStore = useTmpiniaStore();
 
@@ -57,7 +57,7 @@ onLaunch(async (res) => {
   }
 
   // 更新用户认证信息
-  const { data: authInfo } = await getUserInfo();
+  const { data: authInfo } = await GetUserInfo();
   if (!authInfo) {
     return;
   }
