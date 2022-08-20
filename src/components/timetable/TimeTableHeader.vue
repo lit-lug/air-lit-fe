@@ -36,7 +36,7 @@ const {
         width: '9vw',
       }"
     >
-      <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
+      <!-- <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text> -->
       <tm-text :font-size="30" _class="font-weight-b" :label="monthEng[currentMonth - 1]">
       </tm-text>
       <!-- <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text> -->
