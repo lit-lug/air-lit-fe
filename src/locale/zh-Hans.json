@@ -8,7 +8,7 @@
   "mine.tab.needUpdate": "待更新",
 
   "message.load.text": "加载中",
-  "message.error.text": "操作错误",
+  "message.error.text": "数据异常,请稍后重试",
   "message.info.text": "提示信息",
   "message.warn.text": "警告信息",
   "message.quest.text": "似乎有问题",

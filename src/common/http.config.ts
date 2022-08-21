@@ -1,3 +1,4 @@
+import { language } from '@/tmui/tool/lib/language';
 import Http from 'luch-request';
 
 
@@ -10,7 +11,7 @@ const http = new Http({
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
     if (config.custom?.load) {
-        uni.showLoading({ title: '加载中...', mask: true });
+        uni.showLoading({ title: language("message.load.text"), mask: true });
     }
 
     // 是否需要认证
@@ -57,9 +58,13 @@ http.interceptors.response.use(
 
         if (!resp) {
             uni.showToast({
-                title: "数据异常, 请稍后再试!",
+                title: language("message.error.text"),
                 icon: 'none',
             });
+
+
+            uni.hideToast();
+
             return Promise.resolve(response);
         }
 
@@ -68,8 +73,11 @@ http.interceptors.response.use(
                 title: response.data.msg,
                 icon: 'error',
             });
+
+            uni.hideToast();
             return Promise.resolve(response);
         }
+
 
         return resp
     },

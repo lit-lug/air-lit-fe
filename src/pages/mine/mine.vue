@@ -4,7 +4,11 @@ import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
+import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
+
 import TabBar from "@/components/TheTabBar.vue";
+
+import tmCell from "@/tmui/components/tm-cell/tm-cell.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
@@ -70,6 +74,39 @@ onPullDownRefresh(async () => {
       </template>
     </tm-navbar>
 
+    <tm-sheet :round="4" :margin="[32, 16]" :padding="[0, 15]">
+      <tm-cell
+        showAvatar
+        avatar="https://picsum.photos/200"
+        rightText="ID: B19071121"
+        rightIcon=""
+        :margin="[0, 0]"
+        :titleFontSize="32"
+        :rightTextSize="30"
+        :avatarSize="100"
+        :avatarRound="20"
+        title="游客"
+      >
+      </tm-cell>
+    </tm-sheet>
+
+    <tm-sheet :round="4" :margin="[32, 16]" :padding="[0, 15]">
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="账户管理"> </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="公众号设置"> </tm-cell>
+    </tm-sheet>
+
+    <tm-sheet :round="4" :margin="[32, 16]" :padding="[0, 15]">
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="语言切换"> </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="更新日志"> </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="关于我们"> </tm-cell>
+    </tm-sheet>
+
+    <!-- <view class="pt-30 mb-32 mx-32 round-6">
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="头像 Avatar"> </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="徽标 Badge"> </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="卡片 Card"> </tm-cell>
+    </view> -->
+
     <!-- <tm-carousel
       autoplay
       :margin="[0, 16]"
@@ -80,7 +117,7 @@ onPullDownRefresh(async () => {
       >测试</tm-carousel
     > -->
 
-    <tm-text @click="test" :label="token"> </tm-text>
+    <!-- <tm-text @click="test" :label="token"> </tm-text> -->
 
     <tab-bar :active="2"></tab-bar>
   </tm-app>
