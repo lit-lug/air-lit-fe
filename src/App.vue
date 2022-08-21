@@ -3,7 +3,10 @@ import { onLaunch, onShow, onHide, onThemeChange } from "@dcloudio/uni-app";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { storeToRefs } from "pinia";
 import { useAppStore } from "./store/app";
-import { GetUserInfo } from "./common/api";
+import { GetStatus, GetUserInfo } from "./common/api";
+import { useCourseStore } from "./store/course";
+
+const courseStore = useCourseStore();
 
 const tmStore = useTmpiniaStore();
 
@@ -46,6 +49,12 @@ onLaunch(async (res) => {
     tmStore.setTmVuetifyDark(false);
   }
   // #endif
+
+  // 设置开学时间
+  const { data: status } = await GetStatus();
+  if (status) {
+    courseStore.setStartDay(status.jw.time.sub);
+  }
 
   if (!isAuth.value) {
     if (res.path != "pages/mine/account/account") {

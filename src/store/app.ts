@@ -3,15 +3,6 @@ import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
 
-// interface MenuButtonBoundingClientRect {
-//     width: number
-//     height: number
-//     top: number
-//     left: number
-//     right: number
-//     bottom: number
-// }
-
 export const useAppStore = defineStore(
     'app',
     () => {

@@ -43,7 +43,9 @@ const conflictCourseMap = new Map<CourseModel, CourseModel[]>()
 export const useCourseStore = defineStore(
     'course',
     () => {
-        const startDate = ref<Date | string>(new Date())
+        const startDate = ref<Date>(new Date(uni.getStorageSync('start_date') as string))
+        const originalYear = ref<number>(0)
+        const originalTerm = ref<number>(0)
         const weekNum = ref<number>(20)
         const courseList = ref<CourseModel[]>([])
         const currentMonth = ref<number>(0)
@@ -51,8 +53,6 @@ export const useCourseStore = defineStore(
         const currentWeekIndex = ref<number>(0)
         const originalWeekWeekIndex = ref<number>(new Date().getDay() === 0 ? 6 : new Date().getDay() - 1)
         const colorArrayIndex = ref<number>(0)
-
-
 
         /**
          * init course list
@@ -68,6 +68,22 @@ export const useCourseStore = defineStore(
         const weekCourseList = computed(
             () => courseList.value && courseList.value.filter(item => item.weeks.includes(currentWeekIndex.value + 1)),
         )
+
+
+        const isVacation = computed(() => {
+            return originalWeekIndex.value < 0 || originalWeekIndex.value >= weekNum.value
+        })
+
+        // // current school year
+        // const currentYear = computed(() => {
+        //     const year = startDate.value.getFullYear()
+        //     const month = startDate.value.getMonth() + 1
+        //     if (month >= 2 && month <= 8) {
+        //         return year
+        //     } else {
+        //         return year + 1
+        //     }
+        // })
 
         // data for course action
         const parsedCourseList = computed(() => {
@@ -136,9 +152,26 @@ export const useCourseStore = defineStore(
          */
         function setStartDay(someDate: string | Date) {
             startDate.value = new Date(someDate)
+            uni.setStorageSync('start_date', someDate.toString())
+
+            // set original year and term
+            const year = startDate.value.getFullYear()
+            const month = startDate.value.getMonth() + 1
+            if (month >= 2 && month <= 8) {
+                originalYear.value = year
+                originalTerm.value = 1
+            } else {
+                originalYear.value = year + 1
+                originalTerm.value = 2
+            }
+
             // set original week index
             const days = new Date().getTime() - startDate.value.getTime()
-            originalWeekIndex.value = Math.floor((days / (1000 * 60 * 60 * 24)) / 7)
+            if (days < 0) {
+                originalWeekIndex.value = -Math.floor((Math.abs(days) / (1000 * 60 * 60 * 24)) / 7)
+            } else {
+                originalWeekIndex.value = Math.floor((days / (1000 * 60 * 60 * 24)) / 7)
+            }
             // set current week index
             setCurrentWeekIndex(originalWeekIndex.value)
         }
@@ -225,9 +258,12 @@ export const useCourseStore = defineStore(
         return {
             startDate,
             currentMonth,
+            originalYear,
+            originalTerm,
             courseList,
             setCourseList,
             weekCourseList,
+            isVacation,
             parsedCourseList,
             originalWeekIndex,
             currentWeekIndex,

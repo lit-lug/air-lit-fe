@@ -48,11 +48,6 @@ onShow(async () => {
     // mask: true,
   });
 
-  const { data: status } = await GetStatus();
-  if (status) {
-    console.log("status", status);
-  }
-
   uni.setLocale("zh-Hans");
 });
 

@@ -38,9 +38,11 @@ const list = ref([
 const courseStore = useCourseStore();
 
 onShow(async () => {
-  console.log("App Show");
-  const someDate = new Date("2022-08-01");
-  courseStore.setStartDay(someDate);
+  console.log(
+    courseStore.originalWeekIndex,
+    courseStore.originalYear,
+    courseStore.originalTerm
+  );
 });
 
 onPullDownRefresh(async () => {
