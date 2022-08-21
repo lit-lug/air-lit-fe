@@ -7,6 +7,13 @@
   "mine.tab.needBind": "Need to bind",
   "mine.tab.needUpdate": "Need to update",
 
+  "mine.cell.guest": "Guest",
+  "mine.cell.account": "Account",
+  "mine.cell.setting": "Setting",
+  "mine.cell.changelog": "Changelog",
+  "mine.cell.lang": "Switch Language",
+  "mine.cell.about": "About US",
+
   "message.load.text": "Loading",
   "message.error.text": "Error",
   "message.info.text": "Tips",

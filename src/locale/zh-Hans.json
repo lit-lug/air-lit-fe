@@ -7,6 +7,13 @@
   "mine.tab.needBind": "需绑定",
   "mine.tab.needUpdate": "待更新",
 
+  "mine.cell.guest": "游客",
+  "mine.cell.account": "账户管理",
+  "mine.cell.setting": "设置",
+  "mine.cell.changelog": "更新日志",
+  "mine.cell.lang": "语言切换",
+  "mine.cell.about": "关于我们",
+
   "message.load.text": "加载中",
   "message.error.text": "数据异常,请稍后重试",
   "message.info.text": "提示信息",

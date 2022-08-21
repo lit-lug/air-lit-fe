@@ -47,18 +47,10 @@ onShow(async () => {
     duration: 2000,
     // mask: true,
   });
-
-  uni.setLocale("zh-Hans");
 });
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
-
-  uni.setLocale("en");
-
-  console.log(isAuth.value);
-
-  uni.setLocale("en");
 
   uni.stopPullDownRefresh();
 });

@@ -14,10 +14,10 @@ const systemInfo = uni.getSystemInfoSync();
 
 const appStore = useAppStore();
 
-const { isAuth } = storeToRefs(appStore);
+const { isAuth, languageType } = storeToRefs(appStore);
 
 onLaunch(async (res) => {
-  console.log(isAuth.value);
+  console.log(languageType.value);
 
   // #ifdef H5
   // 隐藏原生标题栏
@@ -41,6 +41,7 @@ onLaunch(async (res) => {
    * 设置主题，用户配置优先
    */
   // #ifdef MP-WEIXIN
+
   if (["light", "dark"].includes(uni.getStorageSync("theme"))) {
     tmStore.setTmVuetifyDark(uni.getStorageSync("theme") === "dark");
   } else if (["light", "dark"].includes(systemInfo.theme as string)) {
@@ -49,6 +50,14 @@ onLaunch(async (res) => {
     tmStore.setTmVuetifyDark(false);
   }
   // #endif
+
+  // 设置语言 (用户设置优先)
+  // if (languageType.value == "") {
+  //   const locale = uni.getLocale();
+  //   appStore.setLanguageType(locale);
+  // } else {
+  //   appStore.setLanguageType(languageType.value);
+  // }
 
   // 设置开学时间
   const { data: status } = await GetStatus();

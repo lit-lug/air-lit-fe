@@ -22,7 +22,7 @@ import { GetUserInfo } from "@/common/api";
 
 const appStore = useAppStore();
 
-const { token, userInfo } = storeToRefs(appStore);
+const { token, userInfo, languageType } = storeToRefs(appStore);
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -60,6 +60,10 @@ onPullDownRefresh(async () => {
 
   uni.stopPullDownRefresh();
 });
+
+const switchLanguage = () => {
+  appStore.setLanguageType(languageType.value == "zh-Hans" ? "en" : "zh");
+};
 </script>
 
 <template>
@@ -85,20 +89,44 @@ onPullDownRefresh(async () => {
         :rightTextSize="30"
         :avatarSize="100"
         :avatarRound="20"
-        title="游客"
+        :title="language('mine.cell.guest')"
       >
       </tm-cell>
     </tm-sheet>
 
     <tm-sheet :round="4" :margin="[32, 16]" :padding="[0, 15]">
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="账户管理"> </tm-cell>
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="公众号设置"> </tm-cell>
+      <tm-cell
+        :margin="[0, 0]"
+        :titleFontSize="30"
+        :title="language('mine.cell.account')"
+      >
+      </tm-cell>
+      <tm-cell
+        :margin="[0, 0]"
+        :titleFontSize="30"
+        :title="language('mine.cell.setting')"
+      >
+      </tm-cell>
     </tm-sheet>
 
     <tm-sheet :round="4" :margin="[32, 16]" :padding="[0, 15]">
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="语言切换"> </tm-cell>
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="更新日志"> </tm-cell>
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="关于我们"> </tm-cell>
+      <tm-cell
+        :margin="[0, 0]"
+        :titleFontSize="30"
+        :title="language('mine.cell.lang')"
+        @click="switchLanguage"
+        :rightText="language('language')"
+        rightIcon=""
+      >
+      </tm-cell>
+      <tm-cell
+        :margin="[0, 0]"
+        :titleFontSize="30"
+        :title="language('mine.cell.changelog')"
+      >
+      </tm-cell>
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" :title="language('mine.cell.about')">
+      </tm-cell>
     </tm-sheet>
 
     <!-- <view class="pt-30 mb-32 mx-32 round-6">

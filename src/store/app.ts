@@ -7,6 +7,8 @@ import { computed, ref, watch } from 'vue'
 export const useAppStore = defineStore(
     'app',
     () => {
+
+        // user
         const userInfo = ref<UserInfo>(uni.getStorageSync('user_info') as UserInfo)
         const token = ref<string>(uni.getStorageSync('token'))
 
@@ -14,6 +16,20 @@ export const useAppStore = defineStore(
         const mineCountMsg = ref("");
         const mineCountColor = ref("red");
 
+        // setting
+        const languageType = ref<string>(uni.getStorageSync('language'))
+
+
+        const setLanguageType = (lang: string) => {
+            if (lang.startsWith('zh')) {
+                languageType.value = 'zh-Hans'
+            } else {
+                languageType.value = 'en'
+            }
+            console.log("languageType", languageType.value);
+            uni.setLocale(languageType.value)
+            uni.setStorageSync('language', languageType.value)
+        }
 
         const setUserInfo = (ui: UserInfo) => {
             userInfo.value = ui
@@ -30,7 +46,6 @@ export const useAppStore = defineStore(
             }
             if (userInfo.value.is_need_update) {
                 mineCountMsg.value = language('mine.tab.needUpdate');
-                mineCountMsg.value = "待更新";
                 mineCountColor.value = "blue";
             }
         }
@@ -57,6 +72,8 @@ export const useAppStore = defineStore(
         return {
             mineCountMsg,
             mineCountColor,
+            languageType,
+            setLanguageType,
             userInfo,
             token,
             isAuth,
