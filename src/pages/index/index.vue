@@ -1,3 +1,4 @@
+isDark
 <script lang="ts" setup>
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
@@ -17,6 +18,8 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 import { GetStatus, GetUserInfo, WeAppAuth } from "@/common/api";
 
+import { onChangeDark, isDark } from "@/common/util";
+
 import { language } from "@/tmui/tool/lib/language";
 
 const appStore = useAppStore();
@@ -31,10 +34,6 @@ const listimg = [
   "https://picsum.photos/200/300?id=439",
   "https://picsum.photos/200/300?id=459",
 ];
-
-const onChangeDark = () => {
-  tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
-};
 
 onShow(async () => {
   console.log("App Show");
@@ -69,9 +68,10 @@ onPullDownRefresh(async () => {
     <tm-navbar :title="language('index.nav.title')" hideHome blur>
       <template v-slot:left>
         <tm-icon
+          _class="pl-20"
           @click="onChangeDark"
-          :font-size="40"
-          :name="tmStore.tmStore.dark ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+          :font-size="32"
+          :name="isDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
         ></tm-icon>
       </template>
     </tm-navbar>

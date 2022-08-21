@@ -11,11 +11,13 @@ import TabBar from "@/components/TheTabBar.vue";
 import tmCell from "@/tmui/components/tm-cell/tm-cell.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
+
+import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 // import tmAvatar from "@/tmui/components/tm-avatar/tm-avatar.vue";
 
-import { onChangeDark, IsDark } from "@/common/util";
+import { onChangeDark, isDark } from "@/common/util";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
@@ -73,9 +75,10 @@ const switchLanguage = () => {
     <tm-navbar :title="language('mine.nav.title')" hideHome blur>
       <template v-slot:left>
         <tm-icon
+          _class="pl-20"
           @click="onChangeDark"
-          :font-size="40"
-          :name="IsDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+          :font-size="32"
+          :name="isDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
         ></tm-icon>
       </template>
     </tm-navbar>
@@ -116,11 +119,18 @@ const switchLanguage = () => {
 
       <!-- <tm-divider :margin="[0, 0]" transprent blur align="center"></tm-divider> -->
 
-      <tm-cell
-        :margin="[0, 0]"
-        :titleFontSize="30"
-        :title="language('mine.cell.setting')"
-      >
+      <tm-cell :margin="[0, 0]" :titleFontSize="30">
+        <template v-slot:title>
+          <view class="flex flex-row flex-row-center-start">
+            <tm-icon
+              transprent
+              _class="pr-10"
+              :font-size="34"
+              name="tmicon-md-heart-empty"
+            ></tm-icon>
+            <tm-text _class="pl-10" :label="language('mine.cell.setting')"> </tm-text>
+          </view>
+        </template>
       </tm-cell>
     </tm-sheet>
 

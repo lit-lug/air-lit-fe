@@ -8,7 +8,7 @@ export const onChangeDark = () => {
     tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
 };
 
-export const IsDark = () => {
+export const isDark = () => {
     return tmStore.tmStore.dark;
 };
 

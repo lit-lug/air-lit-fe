@@ -1,3 +1,4 @@
+isDark
 <script lang="ts" setup>
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
@@ -22,7 +23,7 @@ import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
-import { onChangeDark, IsDark } from "@/common/util";
+import { onChangeDark, isDark } from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
 
@@ -67,12 +68,12 @@ onPullDownRefresh(async () => {
           :isFixed="false"
         >
           <template v-slot:left>
-            <view class="flex flex-row flex-row-center-center">
+            <view class="flex flex-row flex-row-center-start">
               <tm-icon
                 @click="onChangeDark"
-                :font-size="40"
-                _class="pr-20"
-                :name="IsDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
+                :font-size="32"
+                _class="pr-20 pl-20"
+                :name="isDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
               ></tm-icon>
               <tm-icon
                 :font-size="32"
@@ -87,13 +88,17 @@ onPullDownRefresh(async () => {
               class="flex flex-row flex-row-center-between"
               @click="showTimeTableAction = !showTimeTableAction"
             >
-              <tm-text :font-size="30" _class="text-weight-b text-overflow-1 pl-24 pr-8"
+              <tm-text
+                :font-size="30"
+                _class="text-weight-b text-overflow-1 pl-24 pr-8"
                 >第 1 周</tm-text
               >
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
+                :name="
+                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
+                "
               ></tm-icon>
             </view>
           </template>
