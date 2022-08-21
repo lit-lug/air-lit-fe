@@ -17,7 +17,7 @@ export const useAppStore = defineStore(
         const mineCountColor = ref("red");
 
         // setting
-        const languageType = ref<string>(uni.getStorageSync('language'))
+        const languageType = ref<string>(uni.getLocale().startsWith('zh') ? 'zh-Hans' : 'en')
 
 
         const setLanguageType = (lang: string) => {

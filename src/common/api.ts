@@ -46,3 +46,7 @@ export const GetStatus = (load: boolean = false) => {
         }
     });
 };
+
+export const GetIdenticonUrl = (key: string) => {
+    return http.config.baseURL + "/weapp/identicon?key=" + key;
+}
