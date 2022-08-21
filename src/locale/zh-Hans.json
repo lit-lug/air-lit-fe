@@ -4,6 +4,9 @@
   "schedule.nav.title": "课表",
   "mine.nav.title": "我的",
 
+  "mine.tab.needBind": "需绑定",
+  "mine.tab.needUpdate": "待更新",
+
   "message.load.text": "加载中",
   "message.error.text": "操作错误",
   "message.info.text": "提示信息",

@@ -26,23 +26,23 @@ export const WeAppAuth = (req: LoginReq) => {
 }
 
 // 模拟用户请求
-export const GetUserInfo = () => {
+export const GetUserInfo = (load: boolean = false) => {
     return http.get<UserInfo>('/v2/weapp/user', {
         custom: {
             ...httpConfig.custom,
             auth: true,
-            load: false
+            load: load
         }
     });
 };
 
 // 模拟用户请求
-export const GetStatus = () => {
+export const GetStatus = (load: boolean = false) => {
     return http.get<StatusResp>('/status/all', {
         custom: {
             ...httpConfig.custom,
             auth: false,
-            load: false
+            load: load
         }
     });
 };

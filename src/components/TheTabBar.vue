@@ -2,6 +2,12 @@
 import tmTabbar from "@/tmui/components/tm-tabbar/tm-tabbar.vue";
 import tmTabbarItem from "@/tmui/components/tm-tabbar-item/tm-tabbar-item.vue";
 import { language } from "@/tmui/tool/lib/language";
+import { useAppStore } from "@/store/app";
+import { storeToRefs } from "pinia";
+
+const appStore = useAppStore();
+
+const { mineCountMsg, mineCountColor } = storeToRefs(appStore);
 
 const props = defineProps<{
   // 当前激活的tabbarItem的index
@@ -49,8 +55,8 @@ const beforeClick = (index: number) => {
       url="/pages/mine/mine"
       :text="language('mine.nav.title')"
       :beforeClick="beforeClick"
-      count="待更新"
-      dotColor="blue"
+      :count="mineCountMsg"
+      :dotColor="mineCountColor"
       :data="2"
       blur
       transprent

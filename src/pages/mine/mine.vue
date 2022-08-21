@@ -14,6 +14,7 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import { language } from "@/tmui/tool/lib/language";
+import { GetUserInfo } from "@/common/api";
 
 const appStore = useAppStore();
 
@@ -33,14 +34,25 @@ const test = () => {
 };
 
 onShow(async () => {
-  // const info = await getUserInfo();
-  // console.log(info);
+  // 更新用户认证信息
+  const { data: authInfo } = await GetUserInfo();
+  if (!authInfo) {
+    return;
+  }
+  // 同步用户信息
+  appStore.setUserInfo(authInfo);
 });
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
 
-  // appStore.setToken("test");
+  // 更新用户认证信息
+  const { data: authInfo } = await GetUserInfo(true);
+  if (!authInfo) {
+    return;
+  }
+  // 同步用户信息
+  appStore.setUserInfo(authInfo);
 
   uni.stopPullDownRefresh();
 });

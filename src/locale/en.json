@@ -4,6 +4,9 @@
   "schedule.nav.title": "Schedule",
   "mine.nav.title": "Mine",
 
+  "mine.tab.needBind": "Need to bind",
+  "mine.tab.needUpdate": "Need to update",
+
   "message.load.text": "Loading",
   "message.error.text": "Error",
   "message.info.text": "Tips",
