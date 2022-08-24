@@ -8,6 +8,8 @@ const http = new Http({
     header: {},
 });
 
+http.config.timeout = 300000;
+
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
     if (config.custom?.load) {
@@ -17,8 +19,6 @@ http.interceptors.request.use((config) => {
     // 是否需要认证
     if (config.custom?.auth) {
         const token = uni.getStorageSync('token');
-
-        console.log("token", token);
 
         // 未认证 -> 跳转到登录页
         if (!token) {
@@ -31,15 +31,6 @@ http.interceptors.request.use((config) => {
             Authorization: `Bearer ${token}`,
         };
     }
-
-    // if (config.custom?.isBindSec) {
-    //     // 未认证 -> 跳转到账户页
-    //     const isSecBound = uni.getStorageSync('isSecBound');
-    //     if (!isSecBound) {
-    //         uni.navigateTo({ url: '/pages/mine/account/account' });
-    //         return Promise.reject(config)
-    //     }
-    // }
 
     return config;
 });
