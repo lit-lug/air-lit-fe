@@ -19,14 +19,12 @@ export const useAppStore = defineStore(
         // setting
         const languageType = ref<string>(uni.getLocale().startsWith('zh') ? 'zh-Hans' : 'en')
 
-
         const setLanguageType = (lang: string) => {
             if (lang.startsWith('zh')) {
                 languageType.value = 'zh-Hans'
             } else {
                 languageType.value = 'en'
             }
-            console.log("languageType", languageType.value);
             uni.setLocale(languageType.value)
             uni.setStorageSync('language', languageType.value)
         }

@@ -88,17 +88,13 @@ onPullDownRefresh(async () => {
               class="flex flex-row flex-row-center-between"
               @click="showTimeTableAction = !showTimeTableAction"
             >
-              <tm-text
-                :font-size="30"
-                _class="text-weight-b text-overflow-1 pl-24 pr-8"
+              <tm-text :font-size="30" _class="text-weight-b text-overflow-1 pl-24 pr-8"
                 >第 1 周</tm-text
               >
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="
-                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
-                "
+                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
               ></tm-icon>
             </view>
           </template>
@@ -122,5 +118,3 @@ onPullDownRefresh(async () => {
     <tab-bar :active="1"></tab-bar>
   </tm-app>
 </template>
-
-<style scoped></style>

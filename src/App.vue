@@ -17,11 +17,12 @@ const appStore = useAppStore();
 const { isAuth, languageType } = storeToRefs(appStore);
 
 onLaunch(async (res) => {
-  console.log(languageType.value);
-
   // #ifdef H5
   // 隐藏原生标题栏
-  uni.hideTabBar({});
+
+  uni.hideTabBar({
+    animation: false,
+  });
 
   // 夜间模式监听
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");

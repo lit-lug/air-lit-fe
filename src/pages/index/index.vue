@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
-// import tmApp from "@/tmui/components/tm-app/tm-app.vue";
+import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
-// import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
+import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 
-// import TabBar from "@/components/TheTabBar.vue";
+import TabBar from "@/components/TheTabBar.vue";
 
-// import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
-// import tmText from "@/tmui/components/tm-text/tm-text.vue";
+import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
+import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
-// import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
-// import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
+import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
+import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { useAppStore } from "@/store/app";
@@ -24,8 +24,6 @@ import { language } from "@/tmui/tool/lib/language";
 const appStore = useAppStore();
 
 const { isAuth } = storeToRefs(appStore);
-
-const tmStore = useTmpiniaStore();
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -135,5 +133,3 @@ onPullDownRefresh(async () => {
     <tab-bar :active="0"></tab-bar>
   </tm-app>
 </template>
-
-<style lang="less" scoped></style>

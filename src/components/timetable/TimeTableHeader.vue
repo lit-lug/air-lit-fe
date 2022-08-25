@@ -5,6 +5,11 @@ import { storeToRefs } from "pinia";
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import theme from "@/tmui/tool/theme/theme";
+import { useAppStore } from "@/store/app";
+
+const appStore = useAppStore();
+
+const { languageType } = storeToRefs(appStore);
 
 const _width = uni.getSystemInfoSync().windowWidth;
 const {
@@ -36,10 +41,18 @@ const {
         width: '9vw',
       }"
     >
-      <!-- <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text> -->
-      <tm-text :font-size="30" _class="font-weight-b" :label="monthEng[currentMonth - 1]">
-      </tm-text>
-      <!-- <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text> -->
+      <view v-if="languageType == 'en'">
+        <tm-text
+          :font-size="30"
+          _class="font-weight-b"
+          :label="monthEng[currentMonth - 1]"
+        >
+        </tm-text>
+      </view>
+      <view v-else class="flex flex-col flex-col-center-center">
+        <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
+        <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text>
+      </view>
     </view>
 
     <view
@@ -68,9 +81,10 @@ const {
           :color="originalWeekWeekIndex === index ? 'primary' : ''"
           :font-size="30"
           _class="font-weight-b text-align-center"
+          :label="languageType == 'en' ? weekTitleEng[index] : weekTitle[index]"
         >
-          {{ weekTitleEng[index] }}</tm-text
-        >
+        </tm-text>
+
         <tm-text
           :font-size="26"
           :color="originalWeekWeekIndex === index ? 'primary' : ''"

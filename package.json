@@ -63,9 +63,7 @@
     "@dcloudio/uni-automator": "^3.0.0-alpha-3050520220824001",
     "@dcloudio/uni-cli-shared": "^3.0.0-alpha-3050520220824001",
     "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3050520220824001",
-    "@tauri-apps/cli": "^1.0.5",
     "typescript": "^4.7.4",
-    "vite": "^2.9.15",
-    "vite-plugin-tauri": "^2.2.0"
+    "vite": "^2.9.15"
   }
 }

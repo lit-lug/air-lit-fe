@@ -2,8 +2,6 @@
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
-// import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
-
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 
 import TabBar from "@/components/TheTabBar.vue";
@@ -14,8 +12,6 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
-
-// import tmAvatar from "@/tmui/components/tm-avatar/tm-avatar.vue";
 
 import { onChangeDark, isDark } from "@/common/util";
 import { useAppStore } from "@/store/app";
@@ -102,9 +98,6 @@ const switchLanguage = () => {
           userInfo.is_bind_sec ? userInfo.sec_info?.name : language('mine.cell.guest')
         "
       >
-        <!-- <template v-slot:avatar>
-          <tm-avatar ></tm-avatar>
-        </template> -->
       </tm-cell>
     </tm-sheet>
 
@@ -116,8 +109,6 @@ const switchLanguage = () => {
         url="/pages/mine/account/account"
       >
       </tm-cell>
-
-      <!-- <tm-divider :margin="[0, 0]" transprent blur align="center"></tm-divider> -->
 
       <tm-cell :margin="[0, 0]" :titleFontSize="30">
         <template v-slot:title>
@@ -156,26 +147,6 @@ const switchLanguage = () => {
       </tm-cell>
     </tm-sheet>
 
-    <!-- <view class="pt-30 mb-32 mx-32 round-6">
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="头像 Avatar"> </tm-cell>
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="徽标 Badge"> </tm-cell>
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" title="卡片 Card"> </tm-cell>
-    </view> -->
-
-    <!-- <tm-carousel
-      autoplay
-      :margin="[0, 16]"
-      :round="3"
-      :width="686"
-      :height="300"
-      :list="listimg"
-      >测试</tm-carousel
-    > -->
-
-    <!-- <tm-text @click="test" :label="token"> </tm-text> -->
-
     <tab-bar :active="2"></tab-bar>
   </tm-app>
 </template>
-
-<style lang="less" scoped></style>
