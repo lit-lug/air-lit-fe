@@ -1,22 +1,21 @@
-isDark
 <script lang="ts" setup>
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
-import tmApp from "@/tmui/components/tm-app/tm-app.vue";
+// import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
-import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
+// import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 
-import TabBar from "@/components/TheTabBar.vue";
+// import TabBar from "@/components/TheTabBar.vue";
 
-import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
-import tmText from "@/tmui/components/tm-text/tm-text.vue";
+// import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
+// import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
-import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
-import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
+// import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
+// import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
-import { GetStatus, GetUserInfo, WeAppAuth } from "@/common/api";
+// import { GetStatus, GetUserInfo, WeAppAuth } from "@/common/api";
 
 import { onChangeDark, isDark } from "@/common/util";
 
