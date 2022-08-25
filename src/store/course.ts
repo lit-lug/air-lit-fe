@@ -48,7 +48,7 @@ export const useCourseStore = defineStore(
         const originalTerm = ref<number>(0)
         const weekNum = ref<number>(20)
         const courseList = ref<CourseModel[]>([])
-        const currentMonth = ref<number>(0)
+        const currentMonth = ref<number>(new Date().getMonth() + 1)
         const originalWeekIndex = ref<number>(0)
         const currentWeekIndex = ref<number>(0)
         const originalWeekWeekIndex = ref<number>(new Date().getDay() === 0 ? 6 : new Date().getDay() - 1)
