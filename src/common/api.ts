@@ -38,7 +38,7 @@ export const GetUserInfo = (load: boolean = false) => {
 
 // 模拟用户请求
 export const GetStatus = (load: boolean = false) => {
-    return http.get<StatusResp>('/status/all', {
+    return http.get<StatusResp>('/v2/weapp/status', {
         custom: {
             ...httpConfig.custom,
             auth: false,

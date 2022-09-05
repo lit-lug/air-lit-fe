@@ -14,6 +14,8 @@
   "mine.cell.lang": "语言切换",
   "mine.cell.about": "关于我们",
 
+  "schedule.nav.week": "第{week}周",
+
   "message.load.text": "加载中",
   "message.error.text": "数据异常,请稍后重试",
   "message.info.text": "提示信息",

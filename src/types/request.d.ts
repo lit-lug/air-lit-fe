@@ -35,8 +35,9 @@ declare interface AuthInfo {
 }
 
 interface StatusResp {
+    time: string;
     sec: IsWork;
-    jw: Jw;
+    jw: IsWork;
     zhyd: IsWork;
     health: IsWork;
 }
@@ -45,18 +46,6 @@ interface IsWork {
     is_work: boolean;
 }
 
-interface Jw extends IsWork {
-    time: JwTime;
-}
-
-interface JwTime {
-    sub: Date;
-    is_vacation: boolean;
-    year: number;
-    term: number;
-    week: number;
-    day: number;
-}
 
 
 

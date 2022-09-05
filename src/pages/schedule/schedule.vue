@@ -17,6 +17,7 @@ import tmSticky from "@/tmui/components/tm-sticky/tm-sticky.vue";
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 
 import { useCourseStore } from "@/store/course";
+import { storeToRefs } from "pinia";
 
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
 import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
@@ -24,8 +25,13 @@ import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
 import { onChangeDark, isDark } from "@/common/util";
+import { useAppStore } from "@/store/app";
 
-import { language } from "@/tmui/tool/lib/language";
+const appStore = useAppStore();
+
+const { languageType } = storeToRefs(appStore);
+
+const { currentWeekIndex } = storeToRefs(useCourseStore());
 
 const show = ref(false);
 const showTimeTableAction = ref(false);
@@ -88,9 +94,22 @@ onPullDownRefresh(async () => {
               class="flex flex-row flex-row-center-between"
               @click="showTimeTableAction = !showTimeTableAction"
             >
-              <tm-text :font-size="30" _class="text-weight-b text-overflow-1 pl-24 pr-8"
-                >第 1 周</tm-text
-              >
+              <!-- 标题 -->
+              <view v-if="languageType == 'en'">
+                <tm-text
+                  :font-size="30"
+                  _class="text-weight-b text-overflow-1 pl-24 pr-8"
+                  :label="`Week ${currentWeekIndex}`"
+                ></tm-text>
+              </view>
+              <view v-else>
+                <tm-text
+                  :font-size="30"
+                  _class="text-weight-b text-overflow-1 pl-24 pr-8"
+                  :label="`第 ${currentWeekIndex} 周`"
+                ></tm-text>
+              </view>
+
               <tm-icon
                 :font-size="36"
                 _class="b-16"

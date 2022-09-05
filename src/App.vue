@@ -59,7 +59,7 @@ onLaunch(async (res) => {
   // 设置开学时间
   const { data: status } = await GetStatus();
   if (status) {
-    courseStore.setStartDay(status.jw.time.sub);
+    courseStore.setStartDay(status.time);
   }
 
   // #ifdef MP-WEIXIN

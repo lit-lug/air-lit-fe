@@ -2,6 +2,9 @@ import { computed, ref, watch } from "vue"
 
 import { defineStore } from "pinia"
 import { pinia } from "@/modules/pinia"
+import * as dayJs from "@/tmui/tool/dayjs/esm/index"
+const dayjs = dayJs.default;
+//这里的DayJs就是dayjs对象啦。
 
 
 export interface CourseModel {
@@ -165,13 +168,11 @@ export const useCourseStore = defineStore(
                 originalTerm.value = 2
             }
 
-            // set original week index
-            const days = new Date().getTime() - startDate.value.getTime()
-            if (days < 0) {
-                originalWeekIndex.value = -Math.floor((Math.abs(days) / (1000 * 60 * 60 * 24)) / 7)
-            } else {
-                originalWeekIndex.value = Math.floor((days / (1000 * 60 * 60 * 24)) / 7)
-            }
+            // 
+            const weekFloat = dayjs().diff(dayjs(startDate.value), 'week', true)
+
+            originalWeekIndex.value = Math.ceil(weekFloat)
+
             // set current week index
             setCurrentWeekIndex(originalWeekIndex.value)
         }
