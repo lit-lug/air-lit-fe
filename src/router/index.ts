@@ -1,13 +1,7 @@
-import { useAppStore } from "@/store/app";
-import { routerTo } from "@/tmui/tool/function/util";
-import { storeToRefs } from "pinia";
 import { ComponentPublicInstance, nextTick } from "vue"
 //如果想要使用框架的自带工具函数请输入uni.$tm.u.?你的方法
 //网络请示为uni.$tm.fetch.?你的方法
 
-const appStore = useAppStore();
-
-const { isAuth, userInfo } = storeToRefs(appStore);
 
 interface beforeRouterOpts {
     path: string,//当前页面路径，不含前缀 /
@@ -15,9 +9,6 @@ interface beforeRouterOpts {
     context: ComponentPublicInstance | null,
 }
 
-const pagesNeedAuth = [
-    '/pages/index/score/score',
-]
 
 /**
  * 路由访问前执行的函数

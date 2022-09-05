@@ -14,7 +14,7 @@ const systemInfo = uni.getSystemInfoSync();
 
 const appStore = useAppStore();
 
-const { isAuth, languageType } = storeToRefs(appStore);
+const { isAuth } = storeToRefs(appStore);
 
 onLaunch(async (res) => {
   // #ifdef H5
@@ -52,19 +52,13 @@ onLaunch(async (res) => {
   }
   // #endif
 
-  // 设置语言 (用户设置优先)
-  // if (languageType.value == "") {
-  //   const locale = uni.getLocale();
-  //   appStore.setLanguageType(locale);
-  // } else {
-  //   appStore.setLanguageType(languageType.value);
-  // }
-
   // 设置开学时间
   const { data: status } = await GetStatus();
   if (status) {
     courseStore.setStartDay(status.jw.time.sub);
   }
+
+  // #ifdef MP-WEIXIN
 
   if (!isAuth.value) {
     if (res.path != "pages/mine/account/account") {
@@ -74,6 +68,8 @@ onLaunch(async (res) => {
     }
     return;
   }
+
+  // #endif
 
   // 更新用户认证信息
   const { data: authInfo } = await GetUserInfo();

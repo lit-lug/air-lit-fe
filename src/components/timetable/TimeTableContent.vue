@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { courseTimeList, colorArrayList } from "@/store/course";
+import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";

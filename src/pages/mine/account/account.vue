@@ -17,9 +17,12 @@ const appStore = useAppStore();
 
 const { isAuth, userInfo } = storeToRefs(appStore);
 
-const props = defineProps<{
-  back: boolean;
-}>();
+const props = defineProps({
+  back: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 // #ifdef MP-WEIXIN
 const weAppAuth = async () => {

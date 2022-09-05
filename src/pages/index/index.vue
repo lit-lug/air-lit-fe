@@ -21,9 +21,9 @@ import { onChangeDark, isDark } from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
 
-const appStore = useAppStore();
+// const appStore = useAppStore();
 
-const { isAuth } = storeToRefs(appStore);
+// const { isAuth } = storeToRefs(appStore);
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",

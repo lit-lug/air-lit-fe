@@ -31,12 +31,6 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
-const test = () => {
-  uni.navigateTo({
-    url: "/pages/mine/account/account",
-  });
-};
-
 onShow(async () => {
   // 更新用户认证信息
   const { data: authInfo } = await GetUserInfo();
