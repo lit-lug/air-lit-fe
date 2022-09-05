@@ -39,7 +39,7 @@ const beforeClick = (index: number) => {
       open-type="switchTab"
       url="/pages/index/index"
       :text="language('index.nav.title')"
-      icon="tmicon-wind-smile"
+      icon="tmicon-lightbulb"
     ></tm-tabbar-item>
     <tm-tabbar-item
       url="/pages/schedule/schedule"
