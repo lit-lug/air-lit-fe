@@ -15,8 +15,12 @@ const systemInfo = uni.getSystemInfoSync();
 const appStore = useAppStore();
 
 const { isAuth } = storeToRefs(appStore);
+const { startDate } = storeToRefs(courseStore);
 
 onLaunch(async (res) => {
+  // 初始化时间
+  courseStore.setStartDay(startDate.value);
+
   // #ifdef H5
   // 隐藏原生标题栏
 
