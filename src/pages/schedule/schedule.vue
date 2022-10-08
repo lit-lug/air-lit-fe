@@ -117,13 +117,11 @@ onPullDownRefresh(async () => {
           </template>
         </tm-navbar>
 
-        <!-- <view :v-if="showTimeTableAction"> -->
         <time-table-action
           :show="showTimeTableAction"
           :list="list"
           @click="showTimeTableAction = false"
         ></time-table-action>
-        <!-- </view> -->
 
         <time-table-header></time-table-header>
       </template>

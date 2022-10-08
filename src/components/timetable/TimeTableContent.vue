@@ -34,7 +34,10 @@ const ClickCourse = (course: any) => {
       }"
     >
       <!-- 课表时间 -->
-      <template v-for="(courseTime, courseIndex) in courseTimeList" :key="courseIndex">
+      <template
+        v-for="(courseTime, courseIndex) in courseTimeList"
+        :key="courseIndex"
+      >
         <view
           class="flex flex-col"
           :style="{
@@ -49,12 +52,18 @@ const ClickCourse = (course: any) => {
             :font-size="20"
             :label="courseIndex + 1"
           ></tm-text>
-          <tm-text _class="font-weight-s" color="grey-darken-1" :font-size="18">{{
-            courseTime.s
-          }}</tm-text>
-          <tm-text _class="font-weight-s" color="grey-darken-1" :font-size="18">{{
-            courseTime.e
-          }}</tm-text>
+          <tm-text
+            _class="font-weight-s"
+            color="grey-darken-1"
+            :font-size="18"
+            >{{ courseTime.s }}</tm-text
+          >
+          <tm-text
+            _class="font-weight-s"
+            color="grey-darken-1"
+            :font-size="18"
+            >{{ courseTime.e }}</tm-text
+          >
         </view>
       </template>
     </view>
@@ -86,7 +95,9 @@ const ClickCourse = (course: any) => {
                 class="flex ma-10"
                 :style="{
                   backgroundColor:
-                    colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
+                    colorArrayList[0][
+                      Math.floor(Math.random() * (7 - tIndex + 1) + 0)
+                    ],
                   height: '14vh',
                   margin: '4rpx',
                   borderRadius: '10rpx',
