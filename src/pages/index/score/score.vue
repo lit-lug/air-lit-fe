@@ -11,8 +11,8 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
-import { ref } from "vue";
-import { WeAppAuth } from "@/common/api";
+// import { ref } from "vue";
+// import { WeAppAuth } from "@/common/api";
 
 const appStore = useAppStore();
 

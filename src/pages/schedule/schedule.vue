@@ -45,11 +45,7 @@ const list = ref([
 const courseStore = useCourseStore();
 
 onShow(async () => {
-  console.log(
-    courseStore.originalWeekIndex,
-    courseStore.originalYear,
-    courseStore.originalTerm
-  );
+  console.log(showTimeTableAction.value);
 });
 
 onPullDownRefresh(async () => {
@@ -113,17 +109,21 @@ onPullDownRefresh(async () => {
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
+                :name="
+                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
+                "
               ></tm-icon>
             </view>
           </template>
         </tm-navbar>
 
+        <!-- <view :v-if="showTimeTableAction"> -->
         <time-table-action
           :show="showTimeTableAction"
           :list="list"
           @click="showTimeTableAction = false"
         ></time-table-action>
+        <!-- </view> -->
 
         <time-table-header></time-table-header>
       </template>

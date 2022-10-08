@@ -17,45 +17,36 @@ const props = defineProps({
 
 <template>
   <tm-sheet
+    v-show="props.show"
     :padding="[0, 0]"
     :margin="[0, 0]"
     color="grey-3"
-    _class="overflow flex flex-row flex-row-center-start"
-    :_style="{
-      height: props.show ? '140rpx' : '0rpx',
-    }"
     blur
   >
     <scroll-view scroll-x scrollWithAnimation class="week-nav">
       <!-- <template :key="week" class="week-item"> -->
-      <tm-grid :width="96 * 22" :col="20" transprent>
-        <tm-grid-item v-for="week in 20" :key="week" :height="100" :width="96">
-          <view class="item-main">
+      <tm-grid :width="100 * 22" :col="20" transprent>
+        <tm-grid-item v-for="week in 20" :key="week" :height="120" :width="100">
+          <view class="flex flex-col flex-col-center-center ma-2">
             <tm-text :label="'第 ' + week + ' 周'" :font-size="20"></tm-text>
 
-            <tm-grid
+            <!-- 宫格 -->
+            <view
               v-for="day in 5"
               :key="day"
-              :width="90"
-              :height="100"
-              :row="5"
-              :col="5"
-              transprent
+              class="flex flex-row flex-row-center-center"
             >
-              <tm-grid-item v-for="s in 5" :key="s" :height="10" :width="10">
-                <view class="item-dot"></view>
-              </tm-grid-item>
-            </tm-grid>
-
-            <!-- <block v-for="day in 5" :key="day" grid="~ flow-col cols-5 rows-5">
-              <block v-for="s in 5" :key="s">
-                
-              </block>
-            </block> -->
+              <view
+                v-for="s in 5"
+                :key="s"
+                class="flex flex-col flex-col-center-center"
+              >
+                <view class="item-dot ma-1 pa-1"></view>
+              </view>
+            </view>
           </view>
         </tm-grid-item>
       </tm-grid>
-      <!-- </template> -->
     </scroll-view>
   </tm-sheet>
 </template>
@@ -73,8 +64,8 @@ const props = defineProps({
 }
 
 .item-dot {
-  width: 10rpx;
-  height: 10rpx;
+  width: 8rpx;
+  height: 8rpx;
   border-radius: 50%;
   background-color: #3fd0a9;
   justify-content: center;
