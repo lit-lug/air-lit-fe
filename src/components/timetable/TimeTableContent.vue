@@ -2,7 +2,6 @@
 import { courseTimeList, colorArrayList } from "@/store/course";
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
-import tmTranslate from "@/tmui/components/tm-translate/tm-translate.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
 import { ref } from "vue";
 
@@ -81,54 +80,54 @@ const ClickCourse = (course: any) => {
                 'vh;'
               "
             >
-              <tm-translate name="fade" autoPlay :duration="500">
-                <view
-                  @click="ClickCourse"
-                  class="flex ma-10"
+              <!-- <tm-translate name="fade" autoPlay :duration="500"> -->
+              <view
+                @click="ClickCourse"
+                class="flex ma-10"
+                :style="{
+                  backgroundColor:
+                    colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
+                  height: '14vh',
+                  margin: '4rpx',
+                  borderRadius: '10rpx',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                }"
+              >
+                <text
                   :style="{
-                    backgroundColor:
-                      colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
-                    height: '14vh',
-                    margin: '4rpx',
-                    borderRadius: '10rpx',
+                    color: '#ffffff',
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
                   }"
                 >
+                  <text style="font-size: 24rpx">
+                    {{ parserCourseTitle("市场营销学") }}
+                  </text>
                   <text
                     :style="{
-                      color: '#ffffff',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
+                      fontSize: ('XC4213'.length >= 5 ? '20' : '22') + 'rpx',
                     }"
                   >
-                    <text style="font-size: 24rpx">
-                      {{ parserCourseTitle("市场营销学") }}
-                    </text>
-                    <text
-                      :style="{
-                        fontSize: ('XC4213'.length >= 5 ? '20' : '22') + 'rpx',
-                      }"
-                    >
-                      {{ `\n@XC4213` }}
-                    </text>
+                    {{ `\n@XC4213` }}
                   </text>
-                  <view
-                    :style="{
-                      width: '70rpx',
-                      height: '8rpx',
-                      margin: '0 auto',
-                      backgroundColor: '#ffffff',
-                      position: 'absolute',
-                      bottom: '10rpx',
-                      borderRadius: '5rpx',
-                      opacity: 0.7,
-                    }"
-                  ></view>
-                </view>
-              </tm-translate>
+                </text>
+                <view
+                  :style="{
+                    width: '70rpx',
+                    height: '8rpx',
+                    margin: '0 auto',
+                    backgroundColor: '#ffffff',
+                    position: 'absolute',
+                    bottom: '10rpx',
+                    borderRadius: '5rpx',
+                    opacity: 0.7,
+                  }"
+                ></view>
+              </view>
+              <!-- </tm-translate> -->
             </view>
           </template>
         </view>

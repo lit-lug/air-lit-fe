@@ -7,93 +7,6 @@ import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
 import { ref } from "vue";
 
-const list2 = ref([
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg",
-    title: "天猫新品",
-    count: "热销",
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg",
-    title: "今日爆款",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg",
-    title: "天猫国际",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
-    title: "飞猪旅行",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
-    title: "天猫超市",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp",
-    title: "冬奥公益",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
-    title: "飞猪旅行",
-    count: 99,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
-    title: "天猫超市",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp",
-    title: "冬奥公益",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg",
-    title: "天猫新品",
-    count: 6,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg",
-    title: "今日爆款",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg",
-    title: "天猫国际",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg",
-    title: "飞猪旅行",
-    count: 0,
-  },
-  {
-    path:
-      "https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg",
-    title: "天猫超市",
-    count: 0,
-  },
-]);
-
 const props = defineProps({
   show: {
     type: Boolean,
@@ -107,26 +20,65 @@ const props = defineProps({
     :padding="[0, 0]"
     :margin="[0, 0]"
     color="grey-3"
-    _class="overflow flex flex-col
-          flex-col-center-center"
+    _class="overflow flex flex-row flex-row-center-start"
     :_style="{
       height: props.show ? '140rpx' : '0rpx',
     }"
     blur
   >
-    <scroll-view :scroll-x="true" scrollWithAnimation>
-      <tm-grid :width="14 * 120" :col="14" transprent>
-        <tm-grid-item
-          v-for="(item, index) in list2"
-          :key="index"
-          :height="140"
-          :width="100"
-          :count="item.count"
-        >
-          <tm-image :width="100" :height="79" :src="item.path"></tm-image>
-          <tm-text :font-size="22" :label="item.title"></tm-text>
+    <scroll-view scroll-x scrollWithAnimation class="week-nav">
+      <!-- <template :key="week" class="week-item"> -->
+      <tm-grid :width="96 * 22" :col="20" transprent>
+        <tm-grid-item v-for="week in 20" :key="week" :height="100" :width="96">
+          <view class="item-main">
+            <tm-text :label="'第 ' + week + ' 周'" :font-size="20"></tm-text>
+
+            <tm-grid
+              v-for="day in 5"
+              :key="day"
+              :width="90"
+              :height="100"
+              :row="5"
+              :col="5"
+              transprent
+            >
+              <tm-grid-item v-for="s in 5" :key="s" :height="10" :width="10">
+                <view class="item-dot"></view>
+              </tm-grid-item>
+            </tm-grid>
+
+            <!-- <block v-for="day in 5" :key="day" grid="~ flow-col cols-5 rows-5">
+              <block v-for="s in 5" :key="s">
+                
+              </block>
+            </block> -->
+          </view>
         </tm-grid-item>
       </tm-grid>
+      <!-- </template> -->
     </scroll-view>
   </tm-sheet>
 </template>
+
+<style lang="less" scoped>
+.item-main {
+  width: 96rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  // padding: 8rpx 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background-color: #3fd0a9;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
