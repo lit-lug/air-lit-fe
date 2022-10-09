@@ -5,6 +5,8 @@ import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
 import { ref } from "vue";
 
+const showBackButton = ref(false);
+
 // 课程长度处理
 const parserCourseTitle = (title: string) => {
   return title.length > 12 ? title.substring(0, 12) : title;
@@ -13,7 +15,8 @@ const parserCourseTitle = (title: string) => {
 const showCourseCard = ref(false);
 
 const ClickCourse = (course: any) => {
-  showCourseCard.value = true;
+  // showCourseCard.value = true;
+  showBackButton.value = !showBackButton.value;
 };
 </script>
 
@@ -34,10 +37,7 @@ const ClickCourse = (course: any) => {
       }"
     >
       <!-- 课表时间 -->
-      <template
-        v-for="(courseTime, courseIndex) in courseTimeList"
-        :key="courseIndex"
-      >
+      <template v-for="(courseTime, courseIndex) in courseTimeList" :key="courseIndex">
         <view
           class="flex flex-col"
           :style="{
@@ -52,18 +52,12 @@ const ClickCourse = (course: any) => {
             :font-size="20"
             :label="courseIndex + 1"
           ></tm-text>
-          <tm-text
-            _class="font-weight-s"
-            color="grey-darken-1"
-            :font-size="18"
-            >{{ courseTime.s }}</tm-text
-          >
-          <tm-text
-            _class="font-weight-s"
-            color="grey-darken-1"
-            :font-size="18"
-            >{{ courseTime.e }}</tm-text
-          >
+          <tm-text _class="font-weight-s" color="grey-darken-1" :font-size="18">{{
+            courseTime.s
+          }}</tm-text>
+          <tm-text _class="font-weight-s" color="grey-darken-1" :font-size="18">{{
+            courseTime.e
+          }}</tm-text>
         </view>
       </template>
     </view>
@@ -89,15 +83,12 @@ const ClickCourse = (course: any) => {
                 'vh;'
               "
             >
-              <!-- <tm-translate name="fade" autoPlay :duration="500"> -->
               <view
                 @click="ClickCourse"
                 class="flex ma-10"
                 :style="{
                   backgroundColor:
-                    colorArrayList[0][
-                      Math.floor(Math.random() * (7 - tIndex + 1) + 0)
-                    ],
+                    colorArrayList[0][Math.floor(Math.random() * (7 - tIndex + 1) + 0)],
                   height: '14vh',
                   margin: '4rpx',
                   borderRadius: '10rpx',
@@ -138,19 +129,37 @@ const ClickCourse = (course: any) => {
                   }"
                 ></view>
               </view>
-              <!-- </tm-translate> -->
             </view>
           </template>
         </view>
       </template>
     </view>
   </view>
+
+  <view
+    class="fixed zIndex-26 text-white right-0 flex flex-center"
+    :style="{
+      transitionProperty: 'all',
+      transitionDuration: '250ms',
+      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      top: '40%',
+      backgroundColor: '#3B5CF0',
+      right: showBackButton ? '0rem' : '-10rem',
+      borderTopLeftRadius: '9px',
+      borderBottomLeftRadius: '9px',
+    }"
+  >
+    <text class="text-size-l text-align-center ma-5 pa-5">返回本周</text>
+  </view>
+
   <tm-overlay v-model:show="showCourseCard">
-    <view @click.stop="" :duration="100">
+    <view @click.stop="">
       <tm-sheet>
         <tm-text label="todo: 课程卡片展示详情"></tm-text>
       </tm-sheet>
     </view>
   </tm-overlay>
 </template>
-view

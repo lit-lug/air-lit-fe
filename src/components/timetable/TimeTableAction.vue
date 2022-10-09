@@ -37,7 +37,7 @@ const props = defineProps({
       :scroll-into-view="scrollTo"
       :style="{
         transitionProperty: 'height',
-        transitionDuration: '250ms',
+        transitionDuration: '200ms',
         overflow: 'scroll',
         height: props.show ? '120rpx' : '0rpx',
       }"
@@ -89,15 +89,5 @@ const props = defineProps({
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-
-.element {
-  height: 0;
-  overflow: hidden;
-  transition: height 75s;
-}
-
-.element:hover {
-  height: auto; /* 没有transition效果，仅仅生硬地隐藏/展开 */
 }
 </style>

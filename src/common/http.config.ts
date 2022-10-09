@@ -4,7 +4,7 @@ import Http from 'luch-request';
 
 /** 定义默认配置 */
 const http = new Http({
-    baseURL: 'https://easy-lit.singzer.cn',
+    baseURL: 'https://a-lit.singzer.cn',
     header: {},
 });
 
