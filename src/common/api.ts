@@ -20,7 +20,8 @@ export const WeAppAuth = (req: LoginReq) => {
     return http.post<AuthInfo>("/v2/weapp/auth", req, {
         custom: {
             ...httpConfig.custom,
-            auth: false
+            auth: false,
+            load: true
         }
     });
 }

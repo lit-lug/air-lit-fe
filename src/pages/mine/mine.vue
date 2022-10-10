@@ -13,25 +13,32 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import { onChangeDark, isDark } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import { language } from "@/tmui/tool/lib/language";
 import { GetUserInfo, GetIdenticonUrl } from "@/common/api";
+import { ref } from "vue";
 
 const appStore = useAppStore();
 
-const { token, userInfo, languageType } = storeToRefs(appStore);
+const { token, isAuth, userInfo, languageType } = storeToRefs(appStore);
 
-const listimg = [
-  "https://picsum.photos/200/300?id=43335",
-  "https://picsum.photos/200/300?id=433",
-  "https://picsum.photos/200/300?id=439",
-  "https://picsum.photos/200/300?id=459",
-];
+// 修复小程序tab切换状态栏颜色跟随
+const currentThemeIsDark = ref(isDark());
+
+const fixNavigationBar = async () => {
+  const themeIsDark = isDark();
+  if (currentThemeIsDark.value !== themeIsDark) {
+    currentThemeIsDark.value = themeIsDark;
+    FixNavigationBar();
+  }
+};
 
 onShow(async () => {
+  fixNavigationBar();
+
   // 更新用户认证信息
   const { data: authInfo } = await GetUserInfo();
   if (!authInfo) {
@@ -62,7 +69,7 @@ const switchLanguage = () => {
 
 <template>
   <tm-app ref="app">
-    <tm-navbar :title="language('mine.nav.title')" hideHome blur>
+    <tm-navbar :title="language('mine.nav.title')" hideHome hideBack blur>
       <template v-slot:left>
         <tm-icon
           _class="pl-20"

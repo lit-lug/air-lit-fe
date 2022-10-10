@@ -22,7 +22,7 @@ http.interceptors.request.use((config) => {
 
         // 未认证 -> 跳转到登录页
         if (!token) {
-            uni.navigateTo({ url: '/pages/mine/account/account?back=false' });
+            uni.navigateTo({ url: '/pages/mine/account/account' });
             return Promise.reject(config)
         }
 

@@ -3,6 +3,7 @@ import { courseTimeList, colorArrayList } from "@/store/course";
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
+import { language } from "@/tmui/tool/lib/language";
 import { ref } from "vue";
 
 const showBackButton = ref(false);
@@ -152,7 +153,9 @@ const ClickCourse = (course: any) => {
       borderBottomLeftRadius: '9px',
     }"
   >
-    <text class="text-size-l text-align-center ma-5 pa-5">返回本周</text>
+    <text class="text-size-l text-align-center ma-5 pa-5">{{
+      language("schedule.msg.back")
+    }}</text>
   </view>
 
   <tm-overlay v-model:show="showCourseCard">

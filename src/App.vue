@@ -73,15 +73,14 @@ onLaunch(async (res) => {
     return;
   }
 
-  // #endif
-
   // 更新用户认证信息
   const { data: authInfo } = await GetUserInfo();
-  if (!authInfo) {
-    return;
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
   }
-  // 同步用户信息
-  appStore.setUserInfo(authInfo);
+
+  // #endif
 });
 
 onThemeChange((res) => {

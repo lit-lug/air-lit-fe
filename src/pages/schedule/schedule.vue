@@ -24,7 +24,7 @@ import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
-import { onChangeDark, isDark } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
 import { useAppStore } from "@/store/app";
 
 const appStore = useAppStore();
@@ -44,7 +44,21 @@ const list = ref([
 
 const courseStore = useCourseStore();
 
+// 修复小程序tab切换状态栏颜色跟随
+const currentThemeIsDark = ref(isDark());
+
+const fixNavigationBar = async () => {
+  const themeIsDark = isDark();
+  if (currentThemeIsDark.value !== themeIsDark) {
+    currentThemeIsDark.value = themeIsDark;
+    FixNavigationBar();
+  }
+};
+
 onShow(async () => {
+  // 修复小程序tab切换状态栏颜色跟随
+  fixNavigationBar();
+
   console.log(showTimeTableAction.value);
 });
 
@@ -63,6 +77,7 @@ onPullDownRefresh(async () => {
         <tm-navbar
           title=""
           hideHome
+          hideBack
           blur
           :padding="[0, 0]"
           :margin="[0, 0]"
@@ -109,9 +124,7 @@ onPullDownRefresh(async () => {
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="
-                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
-                "
+                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
               ></tm-icon>
             </view>
           </template>

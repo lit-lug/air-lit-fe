@@ -6,24 +6,13 @@ import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 
 import TabBar from "@/components/TheTabBar.vue";
 
-import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
-import tmText from "@/tmui/components/tm-text/tm-text.vue";
-
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
-import { useAppStore } from "@/store/app";
-import { storeToRefs } from "pinia";
-// import { GetStatus, GetUserInfo, WeAppAuth } from "@/common/api";
-
-import { onChangeDark, isDark } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
-
-// const appStore = useAppStore();
-
-// const { isAuth } = storeToRefs(appStore);
+import { ref } from "vue";
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -32,17 +21,19 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
+// 修复小程序tab切换状态栏颜色跟随
+const currentThemeIsDark = ref(isDark());
+
+const fixNavigationBar = async () => {
+  const themeIsDark = isDark();
+  if (currentThemeIsDark.value !== themeIsDark) {
+    currentThemeIsDark.value = themeIsDark;
+    FixNavigationBar();
+  }
+};
+
 onShow(async () => {
-  console.log("App Show");
-
-  // const info = await getUserInfo();
-
-  uni.showToast({
-    title: language("message.load.text"),
-    icon: "none",
-    duration: 2000,
-    // mask: true,
-  });
+  fixNavigationBar();
 });
 
 onPullDownRefresh(async () => {
@@ -53,16 +44,8 @@ onPullDownRefresh(async () => {
 </script>
 
 <template>
-  <!-- <page-meta :page-style="pageStyle" />
-
-  <the-nav-bar title="时刻" :back="false" :filter="false" :bg="true"> </the-nav-bar> -->
-  <!-- 
-  <tm-app>
-    <tm-button label="按钮" @click="Store.setTmVuetifyDark(true)"></tm-button>
-  </tm-app> -->
-
   <tm-app ref="app">
-    <tm-navbar :title="language('index.nav.title')" hideHome blur>
+    <tm-navbar :title="language('index.nav.title')" hideHome hideBack blur>
       <template v-slot:left>
         <tm-icon
           _class="pl-20"
@@ -72,53 +55,6 @@ onPullDownRefresh(async () => {
         ></tm-icon>
       </template>
     </tm-navbar>
-
-    <tm-carousel
-      autoplay
-      :margin="[0, 16]"
-      :round="3"
-      :width="686"
-      :height="300"
-      :list="listimg"
-      >测试</tm-carousel
-    >
-
-    <tm-sheet>
-      <tm-text
-        :font-size="24"
-        _class="font-weight-b"
-        :label="language('message.load.text')"
-      ></tm-text>
-    </tm-sheet>
-
-    <tm-carousel
-      autoplay
-      :margin="[0, 16]"
-      :round="3"
-      :width="686"
-      :height="300"
-      :list="listimg"
-    ></tm-carousel>
-
-    <tm-carousel
-      autoplay
-      :margin="[0, 16]"
-      :round="3"
-      :width="686"
-      :height="300"
-      :list="listimg"
-      >测试</tm-carousel
-    >
-
-    <tm-carousel
-      autoplay
-      :margin="[0, 16]"
-      :round="3"
-      :width="686"
-      :height="300"
-      :list="listimg"
-      >测试</tm-carousel
-    >
 
     <tm-carousel
       autoplay
