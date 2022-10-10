@@ -24,7 +24,7 @@ import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
-import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
 import { useAppStore } from "@/store/app";
 
 const appStore = useAppStore();
@@ -51,7 +51,7 @@ const fixNavigationBar = async () => {
   const themeIsDark = isDark();
   if (currentThemeIsDark.value !== themeIsDark) {
     currentThemeIsDark.value = themeIsDark;
-    FixNavigationBar();
+    FixNavigationBarColor();
   }
 };
 
@@ -124,7 +124,9 @@ onPullDownRefresh(async () => {
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
+                :name="
+                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
+                "
               ></tm-icon>
             </view>
           </template>

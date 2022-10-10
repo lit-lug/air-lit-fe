@@ -13,7 +13,7 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
@@ -32,7 +32,7 @@ const fixNavigationBar = async () => {
   const themeIsDark = isDark();
   if (currentThemeIsDark.value !== themeIsDark) {
     currentThemeIsDark.value = themeIsDark;
-    FixNavigationBar();
+    FixNavigationBarColor();
   }
 };
 
@@ -96,7 +96,9 @@ const switchLanguage = () => {
         :avatarSize="120"
         :avatarRound="20"
         :title="
-          userInfo.is_bind_sec ? userInfo.sec_info?.name : language('mine.cell.guest')
+          userInfo.is_bind_sec
+            ? userInfo.sec_info?.name
+            : language('mine.cell.guest')
         "
       >
       </tm-cell>
@@ -120,7 +122,8 @@ const switchLanguage = () => {
               :font-size="34"
               name="tmicon-md-heart-empty"
             ></tm-icon>
-            <tm-text _class="pl-10" :label="language('mine.cell.setting')"> </tm-text>
+            <tm-text _class="pl-10" :label="language('mine.cell.setting')">
+            </tm-text>
           </view>
         </template>
       </tm-cell>
@@ -144,7 +147,11 @@ const switchLanguage = () => {
       >
       </tm-cell>
 
-      <tm-cell :margin="[0, 0]" :titleFontSize="30" :title="language('mine.cell.about')">
+      <tm-cell
+        :margin="[0, 0]"
+        :titleFontSize="30"
+        :title="language('mine.cell.about')"
+      >
       </tm-cell>
     </tm-sheet>
 

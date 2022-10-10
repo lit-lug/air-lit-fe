@@ -9,7 +9,7 @@ import TabBar from "@/components/TheTabBar.vue";
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import { onChangeDark, isDark, FixNavigationBar } from "@/common/util";
+import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
 import { ref } from "vue";
@@ -28,7 +28,7 @@ const fixNavigationBar = async () => {
   const themeIsDark = isDark();
   if (currentThemeIsDark.value !== themeIsDark) {
     currentThemeIsDark.value = themeIsDark;
-    FixNavigationBar();
+    FixNavigationBarColor();
   }
 };
 
