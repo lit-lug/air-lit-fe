@@ -8,16 +8,25 @@ export const onChangeDark = () => {
     tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
 };
 
-export const FixNavigationBar = () => {
+export const FixNavigationBarColor = () => {
     if (isDark()) {
         uni.setNavigationBarColor({
             backgroundColor: '#050505',
             frontColor: "#ffffff",
+            animation: {
+                duration: 400,
+                timingFunc: 'easeIn'
+            }
+
         });
     } else {
         uni.setNavigationBarColor({
             backgroundColor: '#ffffff',
             frontColor: "#000000",
+            animation: {
+                duration: 400,
+                timingFunc: 'easeIn'
+            }
         });
     }
 };
