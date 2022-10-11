@@ -27,13 +27,14 @@ const currentThemeIsDark = ref(isDark());
 const fixNavigationBar = async () => {
   const themeIsDark = isDark();
   if (currentThemeIsDark.value !== themeIsDark) {
-    currentThemeIsDark.value = themeIsDark;
     FixNavigationBarColor();
+    currentThemeIsDark.value = themeIsDark;
   }
 };
 
 onShow(async () => {
-  fixNavigationBar();
+  // 修复小程序tab切换状态栏颜色跟随
+  FixNavigationBarColor();
 });
 
 onPullDownRefresh(async () => {

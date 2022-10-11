@@ -64,6 +64,7 @@
     "initialRenderingCache": "static"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index"

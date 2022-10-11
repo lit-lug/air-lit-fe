@@ -44,21 +44,9 @@ const list = ref([
 
 const courseStore = useCourseStore();
 
-// 修复小程序tab切换状态栏颜色跟随
-const currentThemeIsDark = ref(isDark());
-
-const fixNavigationBar = async () => {
-  const themeIsDark = isDark();
-  if (currentThemeIsDark.value !== themeIsDark) {
-    currentThemeIsDark.value = themeIsDark;
-    FixNavigationBarColor();
-  }
-};
-
 onShow(async () => {
   // 修复小程序tab切换状态栏颜色跟随
-  fixNavigationBar();
-
+  FixNavigationBarColor();
   console.log(showTimeTableAction.value);
 });
 
@@ -124,19 +112,13 @@ onPullDownRefresh(async () => {
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="
-                  showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'
-                "
+                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
               ></tm-icon>
             </view>
           </template>
         </tm-navbar>
 
-        <time-table-action
-          :show="showTimeTableAction"
-          :list="list"
-          @click="showTimeTableAction = false"
-        ></time-table-action>
+        <time-table-action :show="showTimeTableAction" :list="list"></time-table-action>
 
         <time-table-header></time-table-header>
       </template>

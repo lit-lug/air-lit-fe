@@ -21,12 +21,12 @@ onLaunch(async (res) => {
   // 初始化时间
   courseStore.setStartDay(startDate.value);
 
+  // #ifdef H5
+  // 隐藏原生标题栏
+
   uni.hideTabBar({
     animation: true,
   });
-
-  // #ifdef H5
-  // 隐藏原生标题栏
 
   // 夜间模式监听
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");

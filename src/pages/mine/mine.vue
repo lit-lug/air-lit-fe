@@ -25,19 +25,9 @@ const appStore = useAppStore();
 
 const { token, isAuth, userInfo, languageType } = storeToRefs(appStore);
 
-// 修复小程序tab切换状态栏颜色跟随
-const currentThemeIsDark = ref(isDark());
-
-const fixNavigationBar = async () => {
-  const themeIsDark = isDark();
-  if (currentThemeIsDark.value !== themeIsDark) {
-    currentThemeIsDark.value = themeIsDark;
-    FixNavigationBarColor();
-  }
-};
-
 onShow(async () => {
-  fixNavigationBar();
+  // 修复小程序tab切换状态栏颜色跟随
+  FixNavigationBarColor();
 
   // 更新用户认证信息
   const { data: authInfo } = await GetUserInfo();
@@ -96,9 +86,7 @@ const switchLanguage = () => {
         :avatarSize="120"
         :avatarRound="20"
         :title="
-          userInfo.is_bind_sec
-            ? userInfo.sec_info?.name
-            : language('mine.cell.guest')
+          userInfo.is_bind_sec ? userInfo.sec_info?.name : language('mine.cell.guest')
         "
       >
       </tm-cell>
@@ -122,8 +110,7 @@ const switchLanguage = () => {
               :font-size="34"
               name="tmicon-md-heart-empty"
             ></tm-icon>
-            <tm-text _class="pl-10" :label="language('mine.cell.setting')">
-            </tm-text>
+            <tm-text _class="pl-10" :label="language('mine.cell.setting')"> </tm-text>
           </view>
         </template>
       </tm-cell>
@@ -147,11 +134,7 @@ const switchLanguage = () => {
       >
       </tm-cell>
 
-      <tm-cell
-        :margin="[0, 0]"
-        :titleFontSize="30"
-        :title="language('mine.cell.about')"
-      >
+      <tm-cell :margin="[0, 0]" :titleFontSize="30" :title="language('mine.cell.about')">
       </tm-cell>
     </tm-sheet>
 
