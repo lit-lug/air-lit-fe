@@ -4,6 +4,7 @@ import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
 import { language } from "@/tmui/tool/lib/language";
+import theme from "@/tmui/tool/theme/theme";
 import { ref } from "vue";
 
 const showBackButton = ref(false);
@@ -147,7 +148,7 @@ const ClickCourse = (course: any) => {
       alignItems: 'center',
       textAlign: 'center',
       top: '40%',
-      backgroundColor: '#3B5CF0',
+      backgroundColor: theme.getColor('primary').csscolor,
       right: showBackButton ? '0rem' : '-10rem',
       borderTopLeftRadius: '9px',
       borderBottomLeftRadius: '9px',

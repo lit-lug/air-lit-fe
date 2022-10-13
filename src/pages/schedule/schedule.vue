@@ -20,7 +20,7 @@ import { useCourseStore } from "@/store/course";
 import { storeToRefs } from "pinia";
 
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
-import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
+// import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
@@ -78,12 +78,21 @@ onPullDownRefresh(async () => {
                 @click="onChangeDark"
                 :font-size="32"
                 _class="pr-20 pl-20"
+                :_style="{
+                  transform: isDark() ? 'rotate(360deg)' : 'rotate(0deg)',
+                  transitionDuration: '200ms',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                }"
                 :name="isDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
               ></tm-icon>
               <tm-icon
                 :font-size="32"
                 _class="pl-20"
                 @click="show = true"
+                :_style="{
+                  transitionDuration: '200ms',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                }"
                 name="tmicon-cog-fill"
               ></tm-icon
             ></view>
@@ -112,7 +121,11 @@ onPullDownRefresh(async () => {
               <tm-icon
                 :font-size="36"
                 _class="b-16"
-                :name="showTimeTableAction ? 'tmicon-sort-down' : 'tmicon-sort-up'"
+                :_style="{
+                  transform: showTimeTableAction ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transitionDuration: '200ms',
+                }"
+                name="tmicon-sort-down"
               ></tm-icon>
             </view>
           </template>
@@ -120,7 +133,7 @@ onPullDownRefresh(async () => {
 
         <time-table-action :show="showTimeTableAction" :list="list"></time-table-action>
 
-        <time-table-header></time-table-header>
+        <!-- <time-table-header></time-table-header> -->
       </template>
       <time-table-content></time-table-content>
     </tm-sticky>

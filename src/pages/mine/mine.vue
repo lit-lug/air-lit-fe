@@ -65,6 +65,11 @@ const switchLanguage = () => {
           _class="pl-20"
           @click="onChangeDark"
           :font-size="32"
+          :_style="{
+            transform: isDark() ? 'rotate(360deg)' : 'rotate(0deg)',
+            transitionDuration: '200ms',
+            transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          }"
           :name="isDark() ? 'tmicon-md-moon' : 'tmicon-ios-sunny'"
         ></tm-icon>
       </template>

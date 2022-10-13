@@ -4,20 +4,38 @@ import tmGridItem from "@/tmui/components/tm-grid-item/tm-grid-item.vue";
 import tmGrid from "@/tmui/components/tm-grid/tm-grid.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import { storeToRefs } from "pinia";
-import { useCourseStore } from "@/store/course";
-import { ref, watch } from "vue";
 
-const { parsedCourseList, originalWeekIndex, currentWeekIndex } = storeToRefs(
-  useCourseStore()
-);
+import { ref, watch } from "vue";
+import { useCourseStore, weekTitle, weekTitleEng, monthEng } from "@/store/course";
+import { useAppStore } from "@/store/app";
+
+import TimeTableHeader from "./TimeTableHeader.vue";
+
+const appStore = useAppStore();
+
+const {
+  currentMonth,
+  originalWeekIndex,
+  currentWeekIndex,
+  originalWeekWeekIndex,
+  currentWeekDayArray,
+} = storeToRefs(useCourseStore());
 
 const { setCurrentWeekIndex } = useCourseStore();
+
 const scrollTo = ref("week0");
+
+const { languageType } = storeToRefs(appStore);
+
+const _width = uni.getSystemInfoSync().windowWidth;
 
 watch(
   () => +props.show + currentWeekIndex.value,
   () => {
     if (props.show) scrollTo.value = `week${currentWeekIndex.value - 1}`;
+    else {
+      scrollTo.value = "week0";
+    }
   }
 );
 
@@ -30,7 +48,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <tm-sheet :padding="[0, 0]" :margin="[0, 0]" blur>
+  <tm-sheet
+    :padding="[0, 0]"
+    _class="flex flex-col flex-col-center-center"
+    :margin="[0, 0]"
+    blur
+  >
     <scroll-view
       scroll-x
       scroll-with-animation
@@ -38,8 +61,9 @@ const props = defineProps({
       :style="{
         transitionProperty: 'height',
         transitionDuration: '200ms',
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         overflow: 'scroll',
-        height: props.show ? '120rpx' : '0rpx',
+        height: props.show ? '125rpx' : '0rpx',
       }"
     >
       <tm-grid :width="100 * 22" :col="20" transprent>
@@ -65,11 +89,7 @@ const props = defineProps({
               :key="day"
               class="flex flex-row flex-row-center-center"
             >
-              <view
-                v-for="s in 5"
-                :key="s"
-                class="flex flex-col flex-col-center-center"
-              >
+              <view v-for="s in 5" :key="s" class="flex flex-col flex-col-center-center">
                 <view class="item-dot ma-1 pa-1"></view>
               </view>
             </view>
@@ -77,6 +97,8 @@ const props = defineProps({
         </tm-grid-item>
       </tm-grid>
     </scroll-view>
+
+    <time-table-header></time-table-header>
   </tm-sheet>
 </template>
 

@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  useCourseStore,
-  weekTitle,
-  weekTitleEng,
-  monthEng,
-} from "@/store/course";
+import { useCourseStore, weekTitle, weekTitleEng, monthEng } from "@/store/course";
 import { storeToRefs } from "pinia";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
@@ -27,19 +22,7 @@ const {
 </script>
 
 <template>
-  <tm-sheet
-    _class="flex flex-row flex-around"
-    blur
-    :width="_width"
-    :_style="{
-      width: _width + 'px',
-    }"
-    :margin="[0, 0]"
-    :padding="[0, 12]"
-    :height="80"
-    :shadow="0"
-    unit="rpx"
-  >
+  <view class="flex flex-row flex-around pb-8">
     <view
       class="flex flex-col flex-col-center-center"
       :style="{
@@ -55,8 +38,7 @@ const {
         </tm-text>
       </view>
       <view v-else class="flex flex-col flex-col-center-center">
-        <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth">
-        </tm-text>
+        <tm-text :font-size="30" _class="font-weight-b" :label="currentMonth"> </tm-text>
         <tm-text :font-size="26" _class="font-weight-s" label="月"> </tm-text>
       </view>
     </view>
@@ -101,5 +83,5 @@ const {
         ></tm-text>
       </view>
     </view>
-  </tm-sheet>
+  </view>
 </template>
