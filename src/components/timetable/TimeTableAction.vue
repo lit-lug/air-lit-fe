@@ -48,7 +48,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <view class="flex flex-col flex-col-center-center">
+  <tm-sheet :margin="[0, 0]" :padding="[0, 0]" blur>
     <scroll-view
       scroll-x
       scroll-with-animation
@@ -94,7 +94,7 @@ const props = defineProps({
     </scroll-view>
 
     <time-table-header></time-table-header>
-  </view>
+  </tm-sheet>
 </template>
 
 <style lang="less" scoped>
