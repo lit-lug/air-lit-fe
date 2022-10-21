@@ -20,7 +20,7 @@ import { useCourseStore } from "@/store/course";
 import { storeToRefs } from "pinia";
 
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
-// import timeTableHeader from "@/components/timetable/TimeTableHeader.vue";
+
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
