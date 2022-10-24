@@ -5,6 +5,7 @@ import { storeToRefs } from "pinia";
 import { useAppStore } from "./store/app";
 import { GetStatus, GetUserInfo } from "./common/api";
 import { useCourseStore } from "./store/course";
+import { UpdateBaseInfo } from "./common/util";
 
 const courseStore = useCourseStore();
 
@@ -17,7 +18,11 @@ const appStore = useAppStore();
 const { isAuth } = storeToRefs(appStore);
 const { startDate } = storeToRefs(courseStore);
 
+const path = ref("");
+
 onLaunch(async (res) => {
+  path.value = res.path;
+
   // 初始化时间
   courseStore.setStartDay(startDate.value);
 
@@ -64,10 +69,24 @@ onLaunch(async (res) => {
 
   // #ifdef MP-WEIXIN
 
+  // #endif
+});
+
+onThemeChange((res) => {
+  if (["light", "dark"].includes(res.theme)) {
+    tmStore.setTmVuetifyDark(res.theme === "dark");
+  }
+});
+
+onShow(async () => {
+  await nextTick();
+
+  console.log(getCurrentPages());
+
   if (!isAuth.value) {
-    if (res.path != "pages/mine/account/account") {
+    if (path.value != "pages/mine/account/account") {
       uni.navigateTo({
-        url: "/pages/mine/account/account?back=true",
+        url: "/pages/mine/account/account",
       });
     }
     return;
@@ -79,17 +98,8 @@ onLaunch(async (res) => {
     // 同步用户信息
     appStore.setUserInfo(authInfo);
   }
-
-  // #endif
 });
 
-onThemeChange((res) => {
-  if (["light", "dark"].includes(res.theme)) {
-    tmStore.setTmVuetifyDark(res.theme === "dark");
-  }
-});
-
-onShow(async () => {});
 onHide(() => {
   console.log("App Hide");
 });

@@ -16,7 +16,6 @@ const parserCourseTitle = (title: string) => {
 const showCourseCard = ref(false);
 
 const ClickCourse = (course: any) => {
-  // showCourseCard.value = true;
   showBackButton.value = !showBackButton.value;
 };
 </script>

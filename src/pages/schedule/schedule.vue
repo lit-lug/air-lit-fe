@@ -24,7 +24,12 @@ import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
-import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
+import {
+  onChangeDark,
+  isDark,
+  FixNavigationBarColor,
+  UpdateBaseInfo,
+} from "@/common/util";
 import { useAppStore } from "@/store/app";
 
 const appStore = useAppStore();
@@ -52,6 +57,8 @@ onShow(async () => {
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
+
+  await UpdateBaseInfo();
 
   uni.stopPullDownRefresh();
 });

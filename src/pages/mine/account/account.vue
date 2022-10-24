@@ -52,10 +52,13 @@ const weAppAuth = async () => {
 
 onShow(async () => {
   // #ifdef MP-WEIXIN
-  weAppAuth();
+  await weAppAuth();
   // #endif
 
   if (props.back) {
+    // 等待页面加载完成
+    await nextTick();
+
     uni.navigateBack({});
   }
 });

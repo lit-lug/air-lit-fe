@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { onPullDownRefresh, onShow } from "@dcloudio/uni-app";
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
-
 import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
-
 import TabBar from "@/components/TheTabBar.vue";
-
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
-
-import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
+import {
+  onChangeDark,
+  isDark,
+  FixNavigationBarColor,
+  UpdateBaseInfo,
+} from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
-import { ref } from "vue";
 
 const listimg = [
   "https://picsum.photos/200/300?id=43335",
@@ -39,6 +39,8 @@ onShow(async () => {
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
+
+  await UpdateBaseInfo();
 
   uni.stopPullDownRefresh();
 });

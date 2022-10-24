@@ -1,12 +1,20 @@
 
+import { useAppStore } from "@/store/app";
+import { useCourseStore } from "@/store/course";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import { GetStatus, GetUserInfo } from "./api";
 
 const tmStore = useTmpiniaStore();
+
+const appStore = useAppStore();
+
+const courseStore = useCourseStore();
 
 
 export const onChangeDark = () => {
     tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
 };
+
 
 export const FixNavigationBarColor = () => {
     if (isDark()) {
@@ -32,10 +40,22 @@ export const FixNavigationBarColor = () => {
 };
 
 export const isDark = () => {
-    // console.log("1", tmStore.tmStore.dark);
     return tmStore.tmStore.dark;
 };
 
-export default {
-    onChangeDark,
-};
+
+export const UpdateBaseInfo = async () => {
+    // 设置开学时间
+    const { data: status } = await GetStatus();
+    if (status) {
+        courseStore.setStartDay(status.time);
+    }
+
+    // 更新用户认证信息
+    const { data: authInfo } = await GetUserInfo();
+    if (authInfo) {
+        // 同步用户信息
+        appStore.setUserInfo(authInfo);
+    }
+
+}

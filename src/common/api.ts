@@ -55,5 +55,5 @@ export const GetStatus = (load: boolean = false) => {
 };
 
 export const GetIdenticonUrl = (key: string) => {
-    return http.config.baseURL + "/weapp/identicon?key=" + key;
+    return http.config.baseURL + "/api/weapp/identicon?key=" + key;
 }

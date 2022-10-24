@@ -13,41 +13,31 @@ import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import { onChangeDark, isDark, FixNavigationBarColor } from "@/common/util";
+import {
+  onChangeDark,
+  isDark,
+  FixNavigationBarColor,
+  UpdateBaseInfo,
+} from "@/common/util";
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import { language } from "@/tmui/tool/lib/language";
 import { GetUserInfo, GetIdenticonUrl } from "@/common/api";
-import { ref } from "vue";
 
 const appStore = useAppStore();
-
 const { token, isAuth, userInfo, languageType } = storeToRefs(appStore);
 
 onShow(async () => {
   // 修复小程序tab切换状态栏颜色跟随
   FixNavigationBarColor();
-
-  // 更新用户认证信息
-  const { data: authInfo } = await GetUserInfo();
-  if (!authInfo) {
-    return;
-  }
-  // 同步用户信息
-  appStore.setUserInfo(authInfo);
 });
 
 onPullDownRefresh(async () => {
   console.log("下拉刷新");
 
-  // 更新用户认证信息
-  const { data: authInfo } = await GetUserInfo(true);
-  if (!authInfo) {
-    return;
-  }
-  // 同步用户信息
-  appStore.setUserInfo(authInfo);
+  // 更新基础信息
+  await UpdateBaseInfo();
 
   uni.stopPullDownRefresh();
 });
