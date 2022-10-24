@@ -10,7 +10,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types", "uni-base-components-types"],
+    "types": [
+      "@dcloudio/types",
+      "uni-base-components-types",
+      "@types/crypto-js"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -21,7 +25,8 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "vite.config.ts"
+    "vite.config.ts",
+    "./auto-imports.d.ts"
   ],
-  "exclude": ["node_modules", "dist", "tmui"]
+  "exclude": ["node_modules", "dist", "src/tmui"]
 }

@@ -3,7 +3,7 @@ import tmTabbar from "@/tmui/components/tm-tabbar/tm-tabbar.vue";
 import tmTabbarItem from "@/tmui/components/tm-tabbar-item/tm-tabbar-item.vue";
 import { language } from "@/tmui/tool/lib/language";
 import { useAppStore } from "@/store/app";
-import { storeToRefs } from "pinia";
+// import { storeToRefs } from "pinia";
 
 const appStore = useAppStore();
 

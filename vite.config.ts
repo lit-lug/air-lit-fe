@@ -4,6 +4,12 @@ import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [uni(),AutoImport({ /* options */ })]
+    plugins: [uni(), AutoImport({
+        imports: [
+            'vue',
+            'pinia',
+            'uni-app',
+        ],
+    })]
 })
 

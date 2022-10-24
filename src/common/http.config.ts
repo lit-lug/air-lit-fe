@@ -1,6 +1,6 @@
 import { language } from '@/tmui/tool/lib/language';
 import Http from 'luch-request';
-
+import { Encryption } from './cipher.config';
 
 /** 定义默认配置 */
 const http = new Http({
@@ -14,6 +14,14 @@ http.config.timeout = 300000;
 http.interceptors.request.use((config) => {
     if (config.custom?.load) {
         uni.showLoading({ title: language("message.load.text"), mask: true });
+    }
+
+
+    // 判断是否需要加密
+    if (config.custom?.encryption) {
+        if (config.method === "POST") {
+            config.data = { data: Encryption.encryptByAES(JSON.stringify(config.data)) };
+        }
     }
 
     // 是否需要认证
@@ -43,9 +51,22 @@ http.interceptors.response.use(
             uni.hideLoading();
         }
 
-        const resp = response.data;
+        if (!response.data.data) {
+            uni.showToast({
+                title: language("message.error.text"),
+                icon: 'none',
+            });
 
-        console.log(resp);
+            uni.hideToast();
+
+            return Promise.resolve(response);
+        }
+
+        if (response.config.custom?.encryption) {
+            response.data = JSON.parse(Encryption.decryptByAES(response.data.data));
+        }
+
+        const resp = response.data
 
         if (!resp) {
             uni.showToast({
@@ -73,9 +94,9 @@ http.interceptors.response.use(
         return resp
     },
     (error) => {
-        // if (error.config.custom?.load) {
-        uni.hideLoading();
-        // }
+        if (error.config.custom?.load) {
+            uni.hideLoading();
+        }
         return error;
     }
 );

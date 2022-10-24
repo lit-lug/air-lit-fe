@@ -1,4 +1,5 @@
 
+import { Encryption } from './cipher.config';
 import http from './http.config';
 /* api->index.ts 统一命名规范
  * 1. 接口暴露前缀统一为req -> request(请求)
@@ -12,6 +13,7 @@ export const httpConfig = http.config;
 httpConfig.custom = {
     load: true,
     auth: true,
+    encryption: false,
     isBindSec: true,
 }
 
@@ -21,18 +23,21 @@ export const WeAppAuth = (req: LoginReq) => {
         custom: {
             ...httpConfig.custom,
             auth: false,
-            load: true
+            load: true,
+            encryption: true,
         }
     });
 }
 
 // 模拟用户请求
 export const GetUserInfo = (load: boolean = false) => {
+
     return http.get<UserInfo>('/api/weapp/user', {
         custom: {
             ...httpConfig.custom,
             auth: true,
-            load: load
+            load: load,
+            encryption: true,
         }
     });
 };
@@ -43,7 +48,8 @@ export const GetStatus = (load: boolean = false) => {
         custom: {
             ...httpConfig.custom,
             auth: false,
-            load: load
+            load: load,
+            encryption: true,
         }
     });
 };

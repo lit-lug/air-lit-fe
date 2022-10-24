@@ -5,7 +5,6 @@ import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import tmOverlay from "@/tmui/components/tm-overlay/tm-overlay.vue";
 import { language } from "@/tmui/tool/lib/language";
 import theme from "@/tmui/tool/theme/theme";
-import { ref } from "vue";
 
 const showBackButton = ref(false);
 
