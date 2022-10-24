@@ -17,7 +17,7 @@ httpConfig.custom = {
 
 // 微信用户认证
 export const WeAppAuth = (req: LoginReq) => {
-    return http.post<AuthInfo>("/v2/weapp/auth", req, {
+    return http.post<AuthInfo>("/api/weapp/auth", req, {
         custom: {
             ...httpConfig.custom,
             auth: false,
@@ -28,7 +28,7 @@ export const WeAppAuth = (req: LoginReq) => {
 
 // 模拟用户请求
 export const GetUserInfo = (load: boolean = false) => {
-    return http.get<UserInfo>('/v2/weapp/user', {
+    return http.get<UserInfo>('/api/weapp/user', {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -39,7 +39,7 @@ export const GetUserInfo = (load: boolean = false) => {
 
 // 模拟用户请求
 export const GetStatus = (load: boolean = false) => {
-    return http.get<StatusResp>('/v2/weapp/status', {
+    return http.get<StatusResp>('/api/weapp/status', {
         custom: {
             ...httpConfig.custom,
             auth: false,
