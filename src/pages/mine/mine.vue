@@ -34,11 +34,7 @@ onShow(async () => {
 });
 
 onPullDownRefresh(async () => {
-  console.log("下拉刷新");
-
-  // 更新基础信息
-  await UpdateBaseInfo();
-
+  await UpdateBaseInfo(true);
   uni.stopPullDownRefresh();
 });
 

@@ -46,7 +46,7 @@ export const isDark = () => {
 };
 
 
-export const UpdateBaseInfo = async () => {
+export const UpdateBaseInfo = async (load = false) => {
     // 设置开学时间
     const { data: status } = await GetStatus();
     if (status) {
@@ -55,7 +55,7 @@ export const UpdateBaseInfo = async () => {
 
     if (isAuth.value) {
         // 更新用户认证信息
-        const { data: authInfo } = await GetUserInfo();
+        const { data: authInfo } = await GetUserInfo(load);
         if (authInfo) {
             // 同步用户信息
             appStore.setUserInfo(authInfo);

@@ -2,11 +2,16 @@
 import tmApp from "@/tmui/components/tm-app/tm-app.vue";
 
 import tmSheet from "@/tmui/components/tm-sheet/tm-sheet.vue";
+
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
 
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
 import tmResult from "@/tmui/components/tm-result/tm-result.vue";
+
+import tmInput from "@/tmui/components/tm-input/tm-input.vue";
+
+import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 
 import { onShow } from "@dcloudio/uni-app";
 
@@ -72,12 +77,20 @@ onShow(async () => {
   }
   // #endif
 
-  console.log(props.back);
-
   if (props.back && isAuth.value) {
     console.log("back");
     uni.navigateBack({});
   }
+});
+
+onPullDownRefresh(async () => {
+  if (!isAuth.value) {
+    await weAppAuth();
+  } else {
+    await UpdateBaseInfo(true);
+  }
+
+  uni.stopPullDownRefresh();
 });
 
 //
@@ -105,6 +118,39 @@ const navBarbeforeBack = async (): Promise<boolean> => {
 <template>
   <tm-app ref="app">
     <tm-navbar title="账户管理" blur :beforeBack="navBarbeforeBack"> </tm-navbar>
+
+    <view>
+      <tm-sheet :round="4" :margin="[32, 24]" :padding="[15, 24]">
+        <view class="flex flex-around pb-10 pt=10">
+          <tm-text :font-size="32" _class="font-weight-b" label="智慧门户"></tm-text>
+        </view>
+
+        <!-- <tm-divider></tm-divider> -->
+        <tm-input
+          :margin="[12, 24]"
+          :padding="[12, 0]"
+          prefix="tmicon-user-fill"
+          showClear
+          focus
+          placeholder="请输入学号/手机号(已绑定)"
+          placeholderClass="placeholder"
+          holdKeyboard
+          confirmType="done"
+          confirmHold
+        ></tm-input>
+        <tm-input
+          :margin="[12, 24]"
+          :padding="[12, 0]"
+          password
+          placeholder="请输入密码"
+          prefix="tmicon-lock-fill"
+          holdKeyboard
+          confirmType="done"
+          confirmHold
+          showClear
+        ></tm-input>
+      </tm-sheet>
+    </view>
 
     <view v-if="isNetworkError">
       <tm-result

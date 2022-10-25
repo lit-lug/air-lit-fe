@@ -21,27 +21,13 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
-// 修复小程序tab切换状态栏颜色跟随
-const currentThemeIsDark = ref(isDark());
-
-const fixNavigationBar = async () => {
-  const themeIsDark = isDark();
-  if (currentThemeIsDark.value !== themeIsDark) {
-    FixNavigationBarColor();
-    currentThemeIsDark.value = themeIsDark;
-  }
-};
-
 onShow(async () => {
   // 修复小程序tab切换状态栏颜色跟随
   FixNavigationBarColor();
 });
 
 onPullDownRefresh(async () => {
-  console.log("下拉刷新");
-
-  await UpdateBaseInfo();
-
+  await UpdateBaseInfo(true);
   uni.stopPullDownRefresh();
 });
 </script>

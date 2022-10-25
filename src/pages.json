@@ -38,7 +38,8 @@
       "style": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "账户管理",
-        "navigationStyle": "custom"
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true
       }
     },
     {
