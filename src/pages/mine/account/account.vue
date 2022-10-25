@@ -40,6 +40,13 @@ const isNetworkError = ref(false);
 const bindSecBtnLabel = ref("绑定");
 const bindSecBtnLoading = ref(false);
 
+const inputUsername = ref("");
+const inputPassword = ref("");
+
+const bindSecBtnDisabled = computed(() => {
+  return inputUsername.value.length === 0 || inputPassword.value.length === 0;
+});
+
 // #ifdef MP-WEIXIN
 const weAppAuth = async () => {
   // 微信授权
@@ -131,6 +138,8 @@ const bindSecBtnClick = async () => {
   bindSecBtnLoading.value = false;
 
   bindSecBtnLabel.value = "绑定";
+
+  console.log("bindSecBtnClick", inputPassword.value, inputUsername.value);
 };
 </script>
 
@@ -153,6 +162,7 @@ const bindSecBtnClick = async () => {
           showClear
           focus
           placeholder="请输入学号 / 手机号 (已绑定)"
+          v-model="inputUsername"
           holdKeyboard
           confirmType="done"
           confirmHold
@@ -164,6 +174,7 @@ const bindSecBtnClick = async () => {
           placeholder="请输入密码"
           prefix="tmicon-lock-fill"
           holdKeyboard
+          v-model="inputPassword"
           confirmType="done"
           confirmHold
           showClear
@@ -177,6 +188,7 @@ const bindSecBtnClick = async () => {
             size="normal"
             :label="bindSecBtnLabel"
             :loading="bindSecBtnLoading"
+            :disabled="bindSecBtnDisabled"
           ></tm-button>
         </view>
       </tm-sheet>
