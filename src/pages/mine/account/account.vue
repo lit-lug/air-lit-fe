@@ -55,6 +55,8 @@ const weAppAuth = async () => {
     return;
   }
 
+  isNetworkError.value = false;
+
   // 同步用户信息
   appStore.setToken(authInfo.token);
   appStore.setUserInfo(authInfo.user_info);
@@ -65,15 +67,15 @@ onShow(async () => {
   // #ifdef MP-WEIXIN
   if (!isAuth.value) {
     await weAppAuth();
+  } else {
+    await UpdateBaseInfo();
   }
-
-  await UpdateBaseInfo();
-
   // #endif
 
+  console.log(props.back);
+
   if (props.back && isAuth.value) {
-    // 等待页面加载完成
-    await nextTick();
+    console.log("back");
     uni.navigateBack({});
   }
 });

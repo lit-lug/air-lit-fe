@@ -14,6 +14,7 @@ const { isAuth } = storeToRefs(appStore);
 
 export const onChangeDark = () => {
     tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
+    FixNavigationBarColor();
 };
 
 

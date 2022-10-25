@@ -5,7 +5,6 @@ import { storeToRefs } from "pinia";
 import { useAppStore } from "./store/app";
 import { GetStatus, GetUserInfo } from "./common/api";
 import { useCourseStore } from "./store/course";
-import { UpdateBaseInfo } from "./common/util";
 
 const courseStore = useCourseStore();
 
@@ -69,24 +68,10 @@ onLaunch(async (res) => {
 
   // #ifdef MP-WEIXIN
 
-  // #endif
-});
-
-onThemeChange((res) => {
-  if (["light", "dark"].includes(res.theme)) {
-    tmStore.setTmVuetifyDark(res.theme === "dark");
-  }
-});
-
-onShow(async () => {
-  await nextTick();
-
-  console.log(getCurrentPages());
-
   if (!isAuth.value) {
     if (path.value != "pages/mine/account/account") {
       uni.navigateTo({
-        url: "/pages/mine/account/account",
+        url: "/pages/mine/account/account?back=true",
       });
     }
     return;
@@ -98,6 +83,18 @@ onShow(async () => {
     // 同步用户信息
     appStore.setUserInfo(authInfo);
   }
+
+  // #endif
+});
+
+onThemeChange((res) => {
+  if (["light", "dark"].includes(res.theme)) {
+    tmStore.setTmVuetifyDark(res.theme === "dark");
+  }
+});
+
+onShow(async () => {
+  // await nextTick();
 });
 
 onHide(() => {

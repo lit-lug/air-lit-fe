@@ -23,7 +23,7 @@ import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import { language } from "@/tmui/tool/lib/language";
-import { GetUserInfo, GetIdenticonUrl } from "@/common/api";
+import { GetIdenticonUrl } from "@/common/api";
 
 const appStore = useAppStore();
 const { token, isAuth, userInfo, languageType } = storeToRefs(appStore);

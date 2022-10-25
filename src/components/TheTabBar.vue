@@ -17,6 +17,10 @@ const props = defineProps<{
 const beforeClick = (index: number) => {
   return props.active !== index;
 };
+
+onMounted(() => {
+  // uni.showNavigationBarLoading();
+});
 </script>
 
 <template>
@@ -28,6 +32,7 @@ const beforeClick = (index: number) => {
     :auto-select="false"
     :active="props.active"
     :shadow="8"
+    :eventPenetrationEnabled="true"
   >
     <tm-tabbar-item
       activeColor="primary"
