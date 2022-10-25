@@ -8,7 +8,7 @@ export default defineConfig({
         imports: [
             'vue',
             'pinia',
-            'uni-app',
+            'uni-app'
         ],
     })]
 })

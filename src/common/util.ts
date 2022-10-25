@@ -10,6 +10,7 @@ const appStore = useAppStore();
 
 const courseStore = useCourseStore();
 
+const { isAuth } = storeToRefs(appStore);
 
 export const onChangeDark = () => {
     tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
@@ -51,11 +52,14 @@ export const UpdateBaseInfo = async () => {
         courseStore.setStartDay(status.time);
     }
 
-    // 更新用户认证信息
-    const { data: authInfo } = await GetUserInfo();
-    if (authInfo) {
-        // 同步用户信息
-        appStore.setUserInfo(authInfo);
+    if (isAuth.value) {
+        // 更新用户认证信息
+        const { data: authInfo } = await GetUserInfo();
+        if (authInfo) {
+            // 同步用户信息
+            appStore.setUserInfo(authInfo);
+        }
     }
+
 
 }

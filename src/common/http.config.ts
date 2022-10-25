@@ -55,9 +55,8 @@ http.interceptors.response.use(
             uni.showToast({
                 title: language("message.error.text"),
                 icon: 'none',
+                duration: 2000,
             });
-
-            uni.hideToast();
 
             return Promise.resolve(response);
         }
@@ -72,10 +71,8 @@ http.interceptors.response.use(
             uni.showToast({
                 title: language("message.error.text"),
                 icon: 'none',
+                duration: 2000,
             });
-
-
-            uni.hideToast();
 
             return Promise.resolve(response);
         }
@@ -83,17 +80,23 @@ http.interceptors.response.use(
         if (resp.code != 200) {
             uni.showToast({
                 title: response.data.msg,
-                icon: 'error',
+                icon: 'none',
+                duration: 2000,
             });
 
-            uni.hideToast();
             return Promise.resolve(response);
         }
-
 
         return resp
     },
     (error) => {
+
+        uni.showToast({
+            title: language("message.error.text"),
+            icon: 'none',
+            duration: 2000,
+        });
+
         if (error.config.custom?.load) {
             uni.hideLoading();
         }
