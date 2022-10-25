@@ -13,6 +13,8 @@ import tmInput from "@/tmui/components/tm-input/tm-input.vue";
 
 import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 
+import tmButton from "@/tmui/components/tm-button/tm-button.vue";
+
 import { onShow } from "@dcloudio/uni-app";
 
 import { useAppStore } from "@/store/app";
@@ -34,6 +36,9 @@ const props = defineProps({
 });
 
 const isNetworkError = ref(false);
+
+const bindSecBtnLabel = ref("绑定");
+const bindSecBtnLoading = ref(false);
 
 // #ifdef MP-WEIXIN
 const weAppAuth = async () => {
@@ -113,6 +118,20 @@ const navBarbeforeBack = async (): Promise<boolean> => {
 
   return true;
 };
+
+const bindSecBtnClick = async () => {
+  bindSecBtnLabel.value = "";
+
+  bindSecBtnLoading.value = true;
+
+  // #ifdef MP-WEIXIN
+  await weAppAuth();
+  // #endif
+
+  bindSecBtnLoading.value = false;
+
+  bindSecBtnLabel.value = "绑定";
+};
 </script>
 
 <template>
@@ -122,18 +141,18 @@ const navBarbeforeBack = async (): Promise<boolean> => {
     <view>
       <tm-sheet :round="4" :margin="[32, 24]" :padding="[15, 24]">
         <view class="flex flex-around pb-10 pt=10">
-          <tm-text :font-size="32" _class="font-weight-b" label="智慧门户"></tm-text>
+          <tm-text :font-size="36" _class="text-weight-b" label="智慧门户"></tm-text>
         </view>
 
-        <!-- <tm-divider></tm-divider> -->
+        <tm-divider :margin="[24, 34]"></tm-divider>
+
         <tm-input
           :margin="[12, 24]"
           :padding="[12, 0]"
           prefix="tmicon-user-fill"
           showClear
           focus
-          placeholder="请输入学号/手机号(已绑定)"
-          placeholderClass="placeholder"
+          placeholder="请输入学号 / 手机号 (已绑定)"
           holdKeyboard
           confirmType="done"
           confirmHold
@@ -149,6 +168,17 @@ const navBarbeforeBack = async (): Promise<boolean> => {
           confirmHold
           showClear
         ></tm-input>
+
+        <view class="flex flex-around">
+          <tm-button
+            @click="bindSecBtnClick"
+            :margin="[50, 24]"
+            :round="4"
+            size="normal"
+            :label="bindSecBtnLabel"
+            :loading="bindSecBtnLoading"
+          ></tm-button>
+        </view>
       </tm-sheet>
     </view>
 
