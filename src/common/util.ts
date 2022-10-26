@@ -2,7 +2,12 @@
 import { useAppStore } from "@/store/app";
 import { useCourseStore } from "@/store/course";
 import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import { Ref } from "@vue/runtime-core";
 import { GetStatus, GetUserInfo } from "./api";
+
+
+// 仅用于获取组件类型
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
 
 const tmStore = useTmpiniaStore();
 
@@ -11,12 +16,6 @@ const appStore = useAppStore();
 const courseStore = useCourseStore();
 
 const { isAuth } = storeToRefs(appStore);
-
-export const onChangeDark = () => {
-    tmStore.setTmVuetifyDark(!tmStore.tmStore.dark);
-    FixNavigationBarColor();
-};
-
 
 export const FixNavigationBarColor = () => {
     if (isDark()) {
@@ -46,21 +45,20 @@ export const isDark = () => {
 };
 
 
-export const UpdateBaseInfo = async (load = false) => {
+export const UpdateBaseInfo = async (msg?: Ref<InstanceType<typeof tmMessage> | null>) => {
     // 设置开学时间
-    const { data: status } = await GetStatus();
+    const { data: status } = await GetStatus(msg);
     if (status) {
         courseStore.setStartDay(status.time);
     }
 
     if (isAuth.value) {
         // 更新用户认证信息
-        const { data: authInfo } = await GetUserInfo(load);
+        const { data: authInfo } = await GetUserInfo(msg);
         if (authInfo) {
             // 同步用户信息
             appStore.setUserInfo(authInfo);
         }
     }
-
 
 }

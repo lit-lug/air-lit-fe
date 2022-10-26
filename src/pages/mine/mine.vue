@@ -11,19 +11,21 @@ import tmCell from "@/tmui/components/tm-cell/tm-cell.vue";
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 
 import tmText from "@/tmui/components/tm-text/tm-text.vue";
+
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
+
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
 
-import {
-  onChangeDark,
-  isDark,
-  FixNavigationBarColor,
-  UpdateBaseInfo,
-} from "@/common/util";
+import { isDark, FixNavigationBarColor, UpdateBaseInfo } from "@/common/util";
+
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
 import { language } from "@/tmui/tool/lib/language";
 import { GetIdenticonUrl } from "@/common/api";
+
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const msg = ref<InstanceType<typeof tmMessage> | null>(null);
 
 const appStore = useAppStore();
 const { token, isAuth, userInfo, languageType } = storeToRefs(appStore);
@@ -34,9 +36,13 @@ onShow(async () => {
 });
 
 onPullDownRefresh(async () => {
-  await UpdateBaseInfo(true);
+  await UpdateBaseInfo(msg);
   uni.stopPullDownRefresh();
 });
+
+const onChangeDark = () => {
+  app.value?.setDark();
+};
 
 const switchLanguage = () => {
   appStore.setLanguageType(languageType.value == "zh-Hans" ? "en" : "zh");
@@ -88,7 +94,7 @@ const switchLanguage = () => {
         :margin="[0, 0]"
         :titleFontSize="30"
         :title="language('mine.cell.account')"
-        url="/pages/mine/account/account"
+        url="../account/account"
       >
       </tm-cell>
 
@@ -128,6 +134,8 @@ const switchLanguage = () => {
       <tm-cell :margin="[0, 0]" :titleFontSize="30" :title="language('mine.cell.about')">
       </tm-cell>
     </tm-sheet>
+
+    <tm-message ref="msg" mask></tm-message>
 
     <tab-bar :active="2"></tab-bar>
   </tm-app>

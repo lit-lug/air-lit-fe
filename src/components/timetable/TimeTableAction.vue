@@ -6,7 +6,7 @@ import tmText from "@/tmui/components/tm-text/tm-text.vue";
 import { storeToRefs } from "pinia";
 
 import { ref, watch } from "vue";
-import { useCourseStore, weekTitle, weekTitleEng, monthEng } from "@/store/course";
+import { useCourseStore } from "@/store/course";
 import { useAppStore } from "@/store/app";
 
 import TimeTableHeader from "./TimeTableHeader.vue";

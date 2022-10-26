@@ -69,7 +69,7 @@ const ClickCourse = (course: any) => {
       }"
     >
       <!--- 循环七次 -->
-      <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
+      <!-- <template v-for="(_, dIndex) in [1, 2, 3, 4, 5]" :key="dIndex">
         <view>
           <template v-for="(_, tIndex) in [1, 2, 3, 4, 5, 6, 7]" :key="tIndex">
             <view
@@ -132,7 +132,7 @@ const ClickCourse = (course: any) => {
             </view>
           </template>
         </view>
-      </template>
+      </template> -->
     </view>
   </view>
 

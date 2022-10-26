@@ -15,14 +15,18 @@ import tmDivider from "@/tmui/components/tm-divider/tm-divider.vue";
 
 import tmButton from "@/tmui/components/tm-button/tm-button.vue";
 
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
+
 import { onShow } from "@dcloudio/uni-app";
 
 import { useAppStore } from "@/store/app";
 import { storeToRefs } from "pinia";
 
-import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
 import { WeAppAuth } from "@/common/api";
 import { UpdateBaseInfo } from "@/common/util";
+
+// 消息提示
+const msg = ref<InstanceType<typeof tmMessage> | null>(null);
 
 const appStore = useAppStore();
 
@@ -56,10 +60,12 @@ const weAppAuth = async () => {
 
   // 成功则获取用户信息
   if (!res.code) {
-    uni.showToast({
-      title: "请检查网络后, 点击重试",
-      icon: "error",
-    });
+    // uni.showToast({
+    //   title: "请检查网络后, 点击重试",
+    //   icon: "error",
+    // });
+
+    msg.value?.show({ mask: false, model: "error" });
 
     isNetworkError.value = true;
     return;
@@ -82,12 +88,15 @@ const weAppAuth = async () => {
 
 onShow(async () => {
   // #ifdef MP-WEIXIN
+
   if (!isAuth.value) {
     await weAppAuth();
   } else {
     await UpdateBaseInfo();
   }
   // #endif
+
+  // console.log("isAuth.value", isAuth.value);
 
   if (props.back && isAuth.value) {
     console.log("back");
@@ -96,13 +105,18 @@ onShow(async () => {
 });
 
 onPullDownRefresh(async () => {
+  // show.value = !show.value;
+
+  // msg.value?.show({ model: "load" });
+
   if (!isAuth.value) {
     await weAppAuth();
   } else {
-    await UpdateBaseInfo(true);
+    await UpdateBaseInfo(msg);
   }
 
   uni.stopPullDownRefresh();
+  // msg.value?.hide();
 });
 
 //
@@ -110,16 +124,19 @@ const networkErrorBtnClick = async () => {
   await weAppAuth();
 
   // if (isAuth.value) {
-  await UpdateBaseInfo();
+  await UpdateBaseInfo(msg);
   // }
 };
 
 const navBarbeforeBack = async (): Promise<boolean> => {
   if (isNetworkError.value) {
-    uni.showToast({
-      title: "请检查网络后, 点击重试",
-      icon: "none",
-    });
+    // uni.showToast({
+    //   title: "请检查网络后, 点击重试",
+    //   icon: "none",
+    // });
+
+    msg.value?.show({ mask: false, model: "error" });
+
     return false;
   }
 
@@ -147,7 +164,20 @@ const bindSecBtnClick = async () => {
   <tm-app ref="app">
     <tm-navbar title="账户管理" blur :beforeBack="navBarbeforeBack"> </tm-navbar>
 
-    <view>
+    <tm-sheet color="primary" :round="3" :shadow="2">
+      <tm-text
+        :font-size="24"
+        label="特别注意：为了兼容全端，本row col采用flex布局，一定要严格按照文档属性使用，因为row col可能在布局中会大量嵌套，因此不采用计算宽，以及微信官方的百分比，浮动的布局，因此 带来了些不便。但却获得了最大的性能优势。"
+      ></tm-text>
+    </tm-sheet>
+
+    <view
+      :style="{
+        WebkitAnimation: 'fadeIn 0.5s',
+        animation: 'fadeIn 0.5s',
+        animationTimingFunction: 'ease-in',
+      }"
+    >
       <tm-sheet :round="4" :margin="[32, 24]" :padding="[15, 24]">
         <view class="flex flex-around pb-10 pt=10">
           <tm-text :font-size="36" _class="text-weight-b" label="智慧门户"></tm-text>
@@ -160,23 +190,20 @@ const bindSecBtnClick = async () => {
           :padding="[12, 0]"
           prefix="tmicon-user-fill"
           showClear
-          focus
+          blur
           placeholder="请输入学号 / 手机号 (已绑定)"
           v-model="inputUsername"
           holdKeyboard
-          confirmType="done"
-          confirmHold
         ></tm-input>
         <tm-input
           :margin="[12, 24]"
           :padding="[12, 0]"
           password
+          blur
           placeholder="请输入密码"
           prefix="tmicon-lock-fill"
           holdKeyboard
           v-model="inputPassword"
-          confirmType="done"
-          confirmHold
           showClear
         ></tm-input>
 
@@ -211,12 +238,8 @@ const bindSecBtnClick = async () => {
           :label="userInfo.sec_info?.name"
         ></tm-text>
       </tm-sheet>
-
-      <tm-sheet>
-        <tm-text label="点击中间+按钮可以体验异步加载动态效果."></tm-text>
-      </tm-sheet>
-
-      <tm-message ref="msg"></tm-message>
     </view>
+
+    <tm-message ref="msg" mask></tm-message>
   </tm-app>
 </template>

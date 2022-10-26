@@ -68,13 +68,16 @@
     "custom": true,
     "list": [
       {
-        "pagePath": "pages/index/index"
+        "pagePath": "pages/index/index",
+        "text": "时刻"
       },
       {
-        "pagePath": "pages/schedule/schedule"
+        "pagePath": "pages/schedule/schedule",
+        "text": "课表"
       },
       {
-        "pagePath": "pages/mine/mine"
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   }

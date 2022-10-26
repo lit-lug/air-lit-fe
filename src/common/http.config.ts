@@ -12,10 +12,10 @@ http.config.timeout = 300000;
 
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
-    if (config.custom?.load) {
-        uni.showLoading({ title: language("message.load.text"), mask: true });
+    if (config.custom?.msgRef) {
+        // uni.showLoading({ title: language("message.load.text"), mask: true });
+        config.custom?.msgRef.value?.show({ model: "load", mask: true, duration: -1 });
     }
-
 
     // 判断是否需要加密
     if (config.custom?.encryption) {
@@ -47,16 +47,19 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use(
     (response) => {
 
-        if (response.config.custom?.load) {
-            uni.hideLoading();
+        if (response.config.custom?.msgRef) {
+            // uni.hideLoading();
+            response.config.custom?.msgRef.value?.hide();
         }
 
         if (!response.data.data) {
-            uni.showToast({
-                title: language("message.error.text"),
-                icon: 'none',
-                duration: 2000,
-            });
+            // uni.showToast({
+            //     title: language("message.error.text"),
+            //     icon: 'none',
+            //     duration: 2000,
+            // });
+
+            response.config.custom?.msgRef.value?.show({ model: "error", text: language("message.error.text") });
 
             return Promise.resolve(response);
         }
@@ -68,37 +71,47 @@ http.interceptors.response.use(
         const resp = response.data
 
         if (!resp) {
-            uni.showToast({
-                title: language("message.error.text"),
-                icon: 'none',
-                duration: 2000,
-            });
+            // uni.showToast({
+            //     title: language("message.error.text"),
+            //     icon: 'none',
+            //     duration: 2000,
+            // });
+
+            response.config.custom?.msgRef.value?.show({ model: "error", text: language("message.error.text") });
 
             return Promise.resolve(response);
         }
 
         if (resp.code != 200) {
-            uni.showToast({
-                title: response.data.msg,
-                icon: 'none',
-                duration: 2000,
-            });
+            // uni.showToast({
+            //     title: response.data.msg,
+            //     icon: 'none',
+            //     duration: 2000,
+            // });
+
+            response.config.custom?.msgRef.value?.show({ model: "error", text: resp.msg });
 
             return Promise.resolve(response);
+        }
+
+        if (response.config.custom?.msgRef) {
+            // uni.hideLoading();
+            response.config.custom?.msgRef.value?.show({ model: "success", text: resp.msg });
         }
 
         return resp
     },
     (error) => {
 
-        uni.showToast({
-            title: language("message.error.text"),
-            icon: 'none',
-            duration: 2000,
-        });
+        // uni.showToast({
+        //     title: language("message.error.text"),
+        //     icon: 'none',
+        //     duration: 2000,
+        // });
 
-        if (error.config.custom?.load) {
-            uni.hideLoading();
+        if (error.config.custom?.msgRef) {
+            // uni.hideLoading();
+            error.config.custom?.msgRef.value?.hide();
         }
         return error;
     }

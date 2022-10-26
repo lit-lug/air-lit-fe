@@ -21,16 +21,18 @@ import { storeToRefs } from "pinia";
 
 import tmActionMenu from "@/tmui/components/tm-action-menu/tm-action-menu.vue";
 
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
+
 import timeTableAction from "@/components/timetable/TimeTableAction.vue";
+
 import timeTableContent from "@/components/timetable/TimeTableContent.vue";
 
-import {
-  onChangeDark,
-  isDark,
-  FixNavigationBarColor,
-  UpdateBaseInfo,
-} from "@/common/util";
+import { isDark, FixNavigationBarColor, UpdateBaseInfo } from "@/common/util";
 import { useAppStore } from "@/store/app";
+
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+
+const msg = ref<InstanceType<typeof tmMessage> | null>(null);
 
 const appStore = useAppStore();
 
@@ -56,12 +58,14 @@ onShow(async () => {
 });
 
 onPullDownRefresh(async () => {
-  console.log("下拉刷新");
-
-  await UpdateBaseInfo();
+  await UpdateBaseInfo(msg);
 
   uni.stopPullDownRefresh();
 });
+
+const onChangeDark = () => {
+  app.value?.setDark();
+};
 </script>
 
 <template>
@@ -139,14 +143,14 @@ onPullDownRefresh(async () => {
         </tm-navbar>
 
         <time-table-action :show="showTimeTableAction" :list="list"></time-table-action>
-
-        <!-- <time-table-header></time-table-header> -->
       </template>
       <time-table-content></time-table-content>
     </tm-sticky>
 
     <!-- 设置菜单 -->
     <tm-action-menu v-model="show" :list="list"></tm-action-menu>
+
+    <tm-message ref="msg" mask></tm-message>
 
     <!-- 底部状态栏-->
     <tab-bar :active="1"></tab-bar>

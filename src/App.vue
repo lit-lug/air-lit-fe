@@ -26,11 +26,6 @@ onLaunch(async (res) => {
   courseStore.setStartDay(startDate.value);
 
   // #ifdef H5
-  // 隐藏原生标题栏
-
-  uni.hideTabBar({
-    animation: true,
-  });
 
   // 夜间模式监听
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -102,11 +97,33 @@ onHide(() => {
 });
 </script>
 
-<style lang="css">
-/* #ifdef APP-NVUE */
+<style>
+/* #ifdef APP-PLUS-NVUE */
 @import "./tmui/scss/nvue.css";
+
 /* #endif */
-/* #ifndef APP-NVUE */
+
+/* #ifndef APP-PLUS-NVUE */
+
 @import "./tmui/scss/noNvue.css";
+
+/* #endif */
+
+/* #ifdef H5 */
+
+body::-webkit-scrollbar,
+div::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body.pages-index-index uni-page-body,
+body {
+  padding-bottom: 0 !important;
+}
+text {
+  font-family: "sans-serif";
+}
+
 /* #endif */
 </style>

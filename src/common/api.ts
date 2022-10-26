@@ -1,5 +1,9 @@
 
-import { Encryption } from './cipher.config';
+
+// 仅用于获取组件类型
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
+import { Ref } from "vue";
+
 import http from './http.config';
 /* api->index.ts 统一命名规范
  * 1. 接口暴露前缀统一为req -> request(请求)
@@ -11,49 +15,51 @@ import http from './http.config';
 export const httpConfig = http.config;
 
 httpConfig.custom = {
-    load: true,
+    // load: true,
     auth: true,
+    msgRef: ref<InstanceType<typeof tmMessage> | null>(null),
     encryption: false,
     isBindSec: true,
 }
 
 // 微信用户认证
-export const WeAppAuth = (req: LoginReq) => {
+export const WeAppAuth = (req: LoginReq, msgRef?: Ref<InstanceType<typeof tmMessage> | null>) => {
     return http.post<AuthInfo>("/api/weapp/auth", req, {
         custom: {
             ...httpConfig.custom,
             auth: false,
-            load: true,
+            msgRef,
             encryption: true,
         }
     });
 }
 
-// 模拟用户请求
-export const GetUserInfo = (load: boolean = false) => {
+// 获取用户信息
+export const GetUserInfo = (msgRef?: Ref<InstanceType<typeof tmMessage> | null>) => {
 
     return http.get<UserInfo>('/api/weapp/user', {
         custom: {
             ...httpConfig.custom,
             auth: true,
-            load: load,
+            msgRef,
             encryption: true,
         }
     });
 };
 
-// 模拟用户请求
-export const GetStatus = (load: boolean = false) => {
+// 获取状态
+export const GetStatus = (msgRef?: Ref<InstanceType<typeof tmMessage> | null>) => {
     return http.get<StatusResp>('/api/weapp/status', {
         custom: {
             ...httpConfig.custom,
-            auth: false,
-            load: load,
+            msgRef,
             encryption: true,
         }
     });
 };
 
+
+// 获取 Identicon
 export const GetIdenticonUrl = (key: string) => {
     return http.config.baseURL + "/api/weapp/identicon?key=" + key;
 }

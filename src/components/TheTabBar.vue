@@ -25,14 +25,12 @@ onMounted(() => {
 
 <template>
   <tm-tabbar
-    transprent
     blur
     :bottom="0"
     :round="16"
     :auto-select="false"
     :active="props.active"
     :shadow="8"
-    :eventPenetrationEnabled="true"
   >
     <tm-tabbar-item
       activeColor="primary"
@@ -40,7 +38,6 @@ onMounted(() => {
       :data="0"
       blur
       :active="props.active === 0"
-      transprent
       open-type="switchTab"
       url="/pages/index/index"
       :text="language('index.nav.title')"
@@ -52,7 +49,6 @@ onMounted(() => {
       blur
       :beforeClick="beforeClick"
       :data="1"
-      transprent
       open-type="switchTab"
       icon="tmicon-calendar-alt"
     ></tm-tabbar-item>
@@ -64,9 +60,7 @@ onMounted(() => {
       :dotColor="mineCountColor"
       :data="2"
       blur
-      transprent
       open-type="switchTab"
-      unicon="tmicon-account"
       icon="tmicon-account"
     ></tm-tabbar-item>
   </tm-tabbar>

@@ -46,11 +46,13 @@
     "usingComponents": true,
     "darkmode": true,
     "setting": {
-      "darkmode": true,
       "urlCheck": true,
       "es6": true,
       "postcss": true,
       "minified": true
+    },
+    "uniStatistics": {
+      "enable": false
     }
   },
   "mp-alipay": {

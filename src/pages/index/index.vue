@@ -5,12 +5,11 @@ import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 import TabBar from "@/components/TheTabBar.vue";
 import tmNavbar from "@/tmui/components/tm-navbar/tm-navbar.vue";
 import tmIcon from "@/tmui/components/tm-icon/tm-icon.vue";
-import {
-  onChangeDark,
-  isDark,
-  FixNavigationBarColor,
-  UpdateBaseInfo,
-} from "@/common/util";
+import tmInput from "@/tmui/components/tm-input/tm-input.vue";
+
+import tmMessage from "@/tmui/components/tm-message/tm-message.vue";
+
+import { isDark, FixNavigationBarColor, UpdateBaseInfo } from "@/common/util";
 
 import { language } from "@/tmui/tool/lib/language";
 
@@ -21,13 +20,20 @@ const listimg = [
   "https://picsum.photos/200/300?id=459",
 ];
 
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const msg = ref<InstanceType<typeof tmMessage> | null>(null);
+
+const onChangeDark = () => {
+  app.value?.setDark();
+};
+
 onShow(async () => {
   // 修复小程序tab切换状态栏颜色跟随
   FixNavigationBarColor();
 });
 
 onPullDownRefresh(async () => {
-  await UpdateBaseInfo(true);
+  await UpdateBaseInfo(msg);
   uni.stopPullDownRefresh();
 });
 </script>
@@ -59,6 +65,10 @@ onPullDownRefresh(async () => {
       :list="listimg"
       >测试</tm-carousel
     >
+
+    <tm-input prefix="tmicon-search" searchLabel="搜索"></tm-input>
+
+    <tm-message ref="msg" mask></tm-message>
 
     <tab-bar :active="0"></tab-bar>
   </tm-app>
