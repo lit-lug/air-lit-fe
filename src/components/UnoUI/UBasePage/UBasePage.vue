@@ -6,7 +6,7 @@ const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(
   useAppStore()
 );
 
-const { resetNavBarColor } = useAppStore();
+const { resetNavBarColor, setDarkMode } = useAppStore();
 
 const { pageReset } = usePageStore();
 
@@ -20,6 +20,8 @@ const {
 } = storeToRefs(usePageStore());
 
 const handleNavigateBack = () => uni.navigateBack({});
+
+const toggleDarkMode = () => setDarkMode(!darkMode.value);
 
 const notifyRef = ref<{ handleShowNotify: (options: UNotifyOptions) => {} }>();
 const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>();
@@ -50,7 +52,6 @@ onUnmounted(() => pageReset());
         >
           <div class="h-full text-center px-6 relative">
             <div
-              v-if="showBackAction || showCustomAction"
               class="flex h-full text-xl left-4 absolute justify-center items-center"
             >
               <slot name="navAction">
@@ -59,11 +60,17 @@ onUnmounted(() => pageReset());
                   class="i-carbon-chevron-left"
                   @click="handleNavigateBack"
                 />
+                <div
+                  :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+                  @click="toggleDarkMode"
+                ></div>
               </slot>
             </div>
-            <div class="flex h-full text-lg justify-center items-center">
+            <div
+              class="flex flex-row h-full text-lg justify-center items-center"
+            >
               <slot name="navContent">
-                {{ pageTitle }}
+                <div class="text-center">{{ pageTitle }}</div>
               </slot>
             </div>
           </div>
