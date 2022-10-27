@@ -6,7 +6,7 @@ const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(
   useAppStore()
 );
 
-const { resetNavBarColor, setDarkMode } = useAppStore();
+const { NavBarColorReset, setDarkMode } = useAppStore();
 
 const { pageReset } = usePageStore();
 
@@ -29,10 +29,18 @@ const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>();
 onMounted(() => {
   _notifyRef.value = notifyRef.value;
   _toastRef.value = toastRef.value;
-  resetNavBarColor();
+  NavBarColorReset();
+});
+
+onShow(() => {
+  _notifyRef.value = notifyRef.value;
+  _toastRef.value = toastRef.value;
+  NavBarColorReset();
 });
 
 onUnmounted(() => pageReset());
+
+// onHide(() => pageReset());
 </script>
 
 <template>
@@ -41,7 +49,8 @@ onUnmounted(() => pageReset());
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
-        class="w-full top-0 z-200 fixed font-bold"
+        class="w-full top-0 z-200 fixed font-bold shadow-sm"
+        :class="darkMode ? 'bg-black' : 'bg-white'"
         :style="{ height: `${customBarHeight}px` }"
       >
         <div
@@ -57,20 +66,23 @@ onUnmounted(() => pageReset());
               <slot name="navAction">
                 <div
                   v-if="showBackAction && !showCustomAction"
-                  class="i-carbon-chevron-left"
+                  class="i-carbon-chevron-left pr-2 text-2xl"
                   @click="handleNavigateBack"
                 />
                 <div
                   :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+                  class="transition-all z-20 duration-300"
                   @click="toggleDarkMode"
                 ></div>
               </slot>
             </div>
             <div
-              class="flex flex-row h-full text-lg justify-center items-center"
+              class="flex flex-row h-full text-lg justify-center items-center transition-all z-20 duration-300"
             >
               <slot name="navContent">
-                <div class="text-center">{{ pageTitle }}</div>
+                <div class="text-center">
+                  {{ pageTitle }}
+                </div>
               </slot>
             </div>
           </div>

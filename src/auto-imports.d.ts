@@ -3,7 +3,9 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const colorList: typeof import('./stores/course')['colorList']
   const computed: typeof import('vue')['computed']
+  const courseTimeList: typeof import('./stores/course')['courseTimeList']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']
@@ -84,6 +86,8 @@ declare global {
   const useAppStore: typeof import('./stores/app')['useAppStore']
   const useAppStoreWidthOut: typeof import('./stores/app')['useAppStoreWidthOut']
   const useAttrs: typeof import('vue')['useAttrs']
+  const useCourseStore: typeof import('./stores/course')['useCourseStore']
+  const useCourseStoreWidthOut: typeof import('./stores/course')['useCourseStoreWidthOut']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const usePageStore: typeof import('./stores/page')['usePageStore']
@@ -93,6 +97,7 @@ declare global {
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
   const watchSyncEffect: typeof import('vue')['watchSyncEffect']
+  const weekTitle: typeof import('./stores/course')['weekTitle']
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
@@ -100,7 +105,9 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly colorList: UnwrapRef<typeof import('./stores/course')['colorList']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
+    readonly courseTimeList: UnwrapRef<typeof import('./stores/course')['courseTimeList']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
@@ -181,6 +188,8 @@ declare module 'vue' {
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useAppStoreWidthOut: UnwrapRef<typeof import('./stores/app')['useAppStoreWidthOut']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useCourseStore: UnwrapRef<typeof import('./stores/course')['useCourseStore']>
+    readonly useCourseStoreWidthOut: UnwrapRef<typeof import('./stores/course')['useCourseStoreWidthOut']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly usePageStore: UnwrapRef<typeof import('./stores/page')['usePageStore']>
@@ -190,5 +199,6 @@ declare module 'vue' {
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
     readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+    readonly weekTitle: UnwrapRef<typeof import('./stores/course')['weekTitle']>
   }
 }

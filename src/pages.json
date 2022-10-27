@@ -10,9 +10,61 @@
     "navigationStyle": "custom"
   },
   "pages": [
-    { "path": "pages/splash/splash" },
-    { "path": "pages/dashboard/dashboard" }
+    {
+      "path": "pages/splash/splash",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/dashboard/dashboard",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/schedule/schedule",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/schedule/detail/detail",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    }
   ],
+  "tabBar": {
+    "color": "",
+    "selectedColor": "",
+    "backgroundColor": "",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+
+        "text": "时刻"
+      },
+      {
+        "pagePath": "pages/schedule/schedule",
+        "enablePullDownRefresh": true,
+        "text": "课表"
+      },
+      {
+        "pagePath": "pages/dashboard/dashboard",
+        "enablePullDownRefresh": true,
+        "text": "我的"
+      }
+    ]
+  },
   "easycom": {
     "autoscan": true,
     "custom": {

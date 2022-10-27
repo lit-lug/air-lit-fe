@@ -5,13 +5,13 @@ onReady(() => {
   setPageConfig({
     showNavBar: false,
   });
-
-  setTimeout(() => {
-    uni.redirectTo({
-      url: "/pages/dashboard/dashboard",
-    });
-  }, 500);
 });
+
+setTimeout(() => {
+  uni.switchTab({
+    url: "/pages/dashboard/dashboard",
+  });
+}, 500);
 </script>
 
 <template>

@@ -9,6 +9,12 @@ onReady(() => {
   });
 });
 
+onShow(() => {
+  setPageConfig({
+    pageTitle: "Dashboard",
+  });
+});
+
 const handleTestApi = async () => {
   const res = await loginApi({ username: "admin", password: "123456" });
   if (res.token) {

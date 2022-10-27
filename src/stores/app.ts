@@ -21,7 +21,7 @@ export const useAppStore = defineStore(
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
 
-    const resetNavBarColor = () => {
+    const NavBarColorReset = () => {
       if (darkMode.value) {
         uni.setNavigationBarColor({
           backgroundColor: "#050505",
@@ -31,6 +31,14 @@ export const useAppStore = defineStore(
             timingFunc: "easeIn",
           },
         });
+
+        uni.setTabBarStyle({
+          backgroundColor: "#000000",
+          borderStyle: "black",
+          color: "#ffffff",
+          selectedColor: "#ffffff",
+        });
+
       } else {
         uni.setNavigationBarColor({
           backgroundColor: "#ffffff",
@@ -40,18 +48,26 @@ export const useAppStore = defineStore(
             timingFunc: "easeIn",
           },
         });
+
+        uni
+          .setTabBarStyle({
+            backgroundColor: "#ffffff",
+            borderStyle: "white",
+            color: "#000000",
+            selectedColor: "#000000",
+          })
       }
     }
 
     const setDarkMode = (mode: boolean) => {
       darkMode.value = mode
-      resetNavBarColor()
+      NavBarColorReset()
     }
 
     return {
       setDarkMode,
       darkMode,
-      resetNavBarColor,
+      NavBarColorReset,
       statusBarHeight,
       customBarHeight,
       menuButtonBounding,
