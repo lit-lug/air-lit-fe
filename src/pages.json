@@ -1,0 +1,22 @@
+{
+  "globalStyle": {
+    "backgroundColor": "@bgColor",
+    "backgroundColorBottom": "@bgColorBottom",
+    "backgroundColorTop": "@bgColorTop",
+    "backgroundTextStyle": "@bgTxtStyle",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "@navTxtStyle",
+    "navigationBarTitleText": "云小洛",
+    "navigationStyle": "custom"
+  },
+  "pages": [
+    { "path": "pages/splash/splash" },
+    { "path": "pages/dashboard/dashboard" }
+  ],
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^U(.*)": "~/components/UnoUI/U$1/U$1.vue"
+    }
+  }
+}
