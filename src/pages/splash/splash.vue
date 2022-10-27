@@ -1,17 +1,17 @@
 <script setup lang="ts">
-const { setPageConfig } = usePageStore();
+const { setPageConfig, showNotify } = usePageStore();
 
-onShow(() => {
+onReady(() => {
   setPageConfig({
     showNavBar: false,
   });
-});
 
-setTimeout(() => {
-  uni.redirectTo({
-    url: "/pages/dashboard/dashboard",
-  });
-}, 500);
+  setTimeout(() => {
+    uni.redirectTo({
+      url: "/pages/dashboard/dashboard",
+    });
+  }, 500);
+});
 </script>
 
 <template>

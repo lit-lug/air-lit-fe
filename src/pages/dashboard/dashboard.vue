@@ -3,11 +3,12 @@ import { loginApi } from "~/apis/sys/user";
 
 const { setPageConfig, showNotify, showToast } = usePageStore();
 
-onShow(() => {
+onReady(() => {
   setPageConfig({
     pageTitle: "Dashboard",
   });
 });
+
 const handleTestApi = async () => {
   const res = await loginApi({ username: "admin", password: "123456" });
   if (res.token) {

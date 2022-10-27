@@ -5,7 +5,11 @@ import type { UToastOptions } from "../UToast/types";
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(
   useAppStore()
 );
+
+const { resetNavBarColor } = useAppStore();
+
 const { pageReset } = usePageStore();
+
 const {
   showNavBar,
   showBackAction,
@@ -23,6 +27,7 @@ const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>();
 onMounted(() => {
   _notifyRef.value = notifyRef.value;
   _toastRef.value = toastRef.value;
+  resetNavBarColor();
 });
 
 onUnmounted(() => pageReset());
@@ -34,7 +39,7 @@ onUnmounted(() => pageReset());
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
-        class="bg-primary text-white w-full top-0 z-200 fixed font-bold"
+        class="w-full top-0 z-200 fixed font-bold"
         :style="{ height: `${customBarHeight}px` }"
       >
         <div
