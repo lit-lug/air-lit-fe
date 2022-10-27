@@ -1,5 +1,10 @@
 import { pinia } from '~/modules/pinia'
 
+
+import pages from "~/pages.json";
+
+
+
 interface MenuButtonBoundingClientRect {
   width: number
   height: number
@@ -22,6 +27,13 @@ export const useAppStore = defineStore(
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
 
     const NavBarColorReset = () => {
+
+      // 获取当前页面
+      const currentPage = getCurrentPages().pop();
+
+      // 判断是否为tab
+      const isTabPage = pages.tabBar.list.some((item) => item.pagePath === currentPage?.route);
+
       if (darkMode.value) {
         uni.setNavigationBarColor({
           backgroundColor: "#050505",
@@ -32,12 +44,14 @@ export const useAppStore = defineStore(
           },
         });
 
-        uni.setTabBarStyle({
-          backgroundColor: "#000000",
-          borderStyle: "black",
-          color: "#ffffff",
-          selectedColor: "#ffffff",
-        });
+        if (isTabPage) {
+          uni.setTabBarStyle({
+            backgroundColor: "#000000",
+            borderStyle: "black",
+            color: "#ffffff",
+            selectedColor: "#ffffff",
+          });
+        }
 
       } else {
         uni.setNavigationBarColor({
@@ -49,13 +63,15 @@ export const useAppStore = defineStore(
           },
         });
 
-        uni
-          .setTabBarStyle({
-            backgroundColor: "#ffffff",
-            borderStyle: "white",
-            color: "#000000",
-            selectedColor: "#000000",
-          })
+        if (isTabPage) {
+          uni
+            .setTabBarStyle({
+              backgroundColor: "#ffffff",
+              borderStyle: "white",
+              color: "#000000",
+              selectedColor: "#000000",
+            })
+        }
       }
     }
 

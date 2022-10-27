@@ -8,8 +8,9 @@ withDefaults(defineProps<{ showCourseAction: boolean }>(), {
 });
 const emit = defineEmits(["courseItemClick"]);
 const { customBarHeight } = storeToRefs(useAppStore());
-const { weekNum, weekCourseList, currentWeekIndex, originalWeekIndex } =
-  storeToRefs(useCourseStore());
+const { weekNum, weekCourseList, currentWeekIndex, originalWeekIndex } = storeToRefs(
+  useCourseStore()
+);
 const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
 // delete a course when course at the same time
 const deleteWeekCourse = computed(() => {
@@ -89,17 +90,12 @@ function getCoursePosition(item: CourseModel) {
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
     >
-      <template
-        v-for="(courseTime, courseIndex) in courseTimeList"
-        :key="courseIndex"
-      >
+      <template v-for="(courseTime, courseIndex) in courseTimeList" :key="courseIndex">
         <div class="text-sm min-h-18" flex="~ col" justify-evenly items-center>
           <div class="font-medium">
             {{ courseIndex + 1 }}
           </div>
-          <div class="px-0.5 text-8px">
-            {{ courseTime.s }}<br />{{ courseTime.e }}
-          </div>
+          <div class="px-0.5 text-8px">{{ courseTime.s }}<br />{{ courseTime.e }}</div>
         </div>
       </template>
       <template
@@ -141,9 +137,7 @@ function getCoursePosition(item: CourseModel) {
       class="bg-primary fixed top-40% z-30 rounded-l-full transition-all duration-300"
       text="white sm"
       p="l-4 y-2 r-2"
-      :class="
-        originalWeekIndex !== currentWeekIndex ? 'right-0' : '-right-full'
-      "
+      :class="originalWeekIndex !== currentWeekIndex ? 'right-0' : '-right-full'"
       @click="setCurrentWeekIndex(originalWeekIndex)"
     >
       返回本周

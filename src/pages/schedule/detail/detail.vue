@@ -22,8 +22,7 @@ onLoad((option: any) => {
     const courseListTemp = courseStore.courseList.filter(
       (item) => item.title === option?.course
     );
-    for (const courseItem of courseListTemp)
-      courseList.value.push(cloneDeep(courseItem));
+    for (const courseItem of courseListTemp) courseList.value.push(cloneDeep(courseItem));
     originalCourseTitle.value = option?.course;
     courseTitle.value = option?.course;
   } else {
@@ -46,9 +45,7 @@ function handleDeleteCourseItem(courseIndex: number) {
   });
 }
 function handleAddNewTime() {
-  courseList.value.push(
-    cloneDeep(courseList.value[courseList.value.length - 1])
-  );
+  courseList.value.push(cloneDeep(courseList.value[courseList.value.length - 1]));
 }
 function handleSaveCourse() {
   if (!courseTitle.value) {
@@ -60,8 +57,7 @@ function handleSaveCourse() {
   }
   for (const courseItem of courseList.value)
     Object.assign(courseItem, { title: courseTitle.value });
-  if (isUpdate.value)
-    courseStore.deleteCourseItemByTitle(originalCourseTitle.value);
+  if (isUpdate.value) courseStore.deleteCourseItemByTitle(originalCourseTitle.value);
   courseStore.setCourseList(courseStore.courseList.concat(courseList.value));
   uni.showModal({
     title: "提示",
@@ -89,8 +85,7 @@ function transformArray2String(weeks: number[]): string {
     } else {
       if (weeks[i] !== weeks[i - 1] + 1) {
         const last = weeksString.split(",")[weeksString.split(",").length - 1];
-        if (Number.parseInt(last) !== weeks[i - 1])
-          weeksString += `-${weeks[i - 1]}`;
+        if (Number.parseInt(last) !== weeks[i - 1]) weeksString += `-${weeks[i - 1]}`;
         weeksString += `,${weeks[i]}`;
       } else {
         if (i === weeks.length - 1) weeksString += `-${weeks[i]}`;
@@ -121,16 +116,7 @@ function handleShowTimeActionSheet(clickIndex: number) {
   timeValue.value = [week, start, duration];
 }
 const timeList = [
-  [
-    "星期数",
-    "星期一",
-    "星期二",
-    "星期三",
-    "星期四",
-    "星期五",
-    "星期六",
-    "星期日",
-  ],
+  ["星期数", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
   [
     "开始节次",
     "第1节",
@@ -169,9 +155,7 @@ function handleConfirmTimeActionSheet() {
 <template>
   <UBasePage>
     <div>
-      <div
-        class="bg-white mb-4 py-1 justify-center items-start dark:bg-#121212"
-      >
+      <div class="bg-white mb-4 py-1 justify-center items-start dark:bg-#121212">
         <div class="px-4">
           <div class="text-lg">通用信息</div>
         </div>
@@ -182,14 +166,12 @@ function handleConfirmTimeActionSheet() {
             class="w-full"
             type="text"
             placeholder="输入课程名（必填）"
+            placeholder-class="text-gray-500 dark:text-gray-400"
           />
         </div>
       </div>
 
-      <template
-        v-for="(courseItem, courseIndex) of courseList"
-        :key="courseIndex"
-      >
+      <template v-for="(courseItem, courseIndex) of courseList" :key="courseIndex">
         <div
           class="bg-white flex flex-col mb-4 py-1 gap-2 justify-center dark:bg-#121212"
         >
@@ -232,7 +214,7 @@ function handleConfirmTimeActionSheet() {
 
       <div class="flex flex-col pb-safe gap-1 justify-center">
         <div
-          class="flex bg-green-500 h-12 text-white text-center justify-center items-center"
+          class="flex bg-green-500 h-12 text-center justify-center items-center"
           hover-class="bg-green-600"
           :hover-stay-time="150"
           @click="handleAddNewTime"
@@ -241,7 +223,7 @@ function handleConfirmTimeActionSheet() {
           添加其他时间段
         </div>
         <div
-          class="flex bg-blue-500 h-12 text-white text-center justify-center items-center"
+          class="flex bg-blue-500 h-12 text-center justify-center items-center"
           hover-class="bg-blue-600"
           :hover-stay-time="150"
           @click="handleSaveCourse"
@@ -258,9 +240,7 @@ function handleConfirmTimeActionSheet() {
         :class="showWeekActionSheet ? 'bottom-0' : '-bottom-full'"
       >
         <div class="flex flex-col py-6 gap-6">
-          <div
-            class="flex font-medium text-xl px-4 justify-between items-center"
-          >
+          <div class="flex font-medium text-xl px-4 justify-between items-center">
             选择上课周
             <div
               class="font-normal text-base text-green-500"
@@ -273,11 +253,7 @@ function handleConfirmTimeActionSheet() {
             <template v-for="(item, index) of 20" :key="index">
               <div
                 class="flex h-8 text-center text-white transition-all inline-block justify-center items-center"
-                :class="
-                  clickedWeeks.includes(index + 1)
-                    ? 'bg-blue-500'
-                    : 'bg-gray-300'
-                "
+                :class="clickedWeeks.includes(index + 1) ? 'bg-blue-500' : 'bg-gray-300'"
                 @click="handleClickWeek(index + 1)"
               >
                 {{ item }}
@@ -296,9 +272,7 @@ function handleConfirmTimeActionSheet() {
       </div>
       <div
         class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
-        :class="
-          showWeekActionSheet ? 'opacity-100 visible' : 'opacity-0 invisible'
-        "
+        :class="showWeekActionSheet ? 'opacity-100 visible' : 'opacity-0 invisible'"
         @click="showWeekActionSheet = false"
       />
     </div>
@@ -310,9 +284,7 @@ function handleConfirmTimeActionSheet() {
         :class="showTimeActionSheet ? 'bottom-0' : '-bottom-full'"
       >
         <div class="flex flex-col py-6 gap-6">
-          <div
-            class="flex font-medium text-xl px-4 justify-between items-center"
-          >
+          <div class="flex font-medium text-xl px-4 justify-between items-center">
             选择上课周
             <div
               class="font-normal text-base text-green-500"
@@ -321,11 +293,7 @@ function handleConfirmTimeActionSheet() {
               确定
             </div>
           </div>
-          <picker-view
-            class="h-40"
-            :value="timeValue"
-            @change="handleTimeChange"
-          >
+          <picker-view class="h-40" :value="timeValue" @change="handleTimeChange">
             <picker-view-column>
               <div
                 v-for="(item, index) in timeList[0]"
@@ -366,9 +334,7 @@ function handleConfirmTimeActionSheet() {
       </div>
       <div
         class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
-        :class="
-          showTimeActionSheet ? 'opacity-100 visible' : 'opacity-0 invisible'
-        "
+        :class="showTimeActionSheet ? 'opacity-100 visible' : 'opacity-0 invisible'"
         @click="showTimeActionSheet = false"
       />
     </div>

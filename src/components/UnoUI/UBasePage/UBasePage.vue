@@ -2,9 +2,7 @@
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 
-const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(
-  useAppStore()
-);
+const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
 
@@ -60,25 +58,20 @@ onUnmounted(() => pageReset());
           }"
         >
           <div class="h-full text-center px-6 relative">
-            <div
-              class="flex h-full text-xl left-4 absolute justify-center items-center"
-            >
+            <div class="flex h-full text-xl left-1 absolute justify-center items-center">
               <slot name="navAction">
                 <div
                   v-if="showBackAction && !showCustomAction"
-                  class="i-carbon-chevron-left pr-2 text-2xl"
+                  class="i-carbon-chevron-left text-2xl"
                   @click="handleNavigateBack"
                 />
                 <div
                   :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
-                  class="transition-all z-20 duration-300"
                   @click="toggleDarkMode"
                 ></div>
               </slot>
             </div>
-            <div
-              class="flex flex-row h-full text-lg justify-center items-center transition-all z-20 duration-300"
-            >
+            <div class="flex flex-row h-full text-lg justify-center items-center">
               <slot name="navContent">
                 <div class="text-center">
                   {{ pageTitle }}

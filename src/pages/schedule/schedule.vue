@@ -3,7 +3,10 @@ import type { CourseModel } from "~/stores/course";
 import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
 import courses from "~/static/courses";
-const { customBarHeight, statusBarHeight, darkMode } = useAppStore();
+const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
+
+const { setDarkMode } = useAppStore();
+
 const { setPageConfig } = usePageStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
@@ -19,8 +22,13 @@ setStartDay(someDate);
 function handleCreateCourse() {
   uni.navigateTo({
     url: "./detail/detail",
+    animationType: "auto",
+    animationDuration: 500,
   });
 }
+
+const toggleDarkMode = () => setDarkMode(!darkMode.value);
+
 // handle course item click
 const showActionSheet = ref(false);
 const clickedCourseItem = ref<CourseModel>();
@@ -36,8 +44,8 @@ function handleCloseActionSheet() {
 <template>
   <UBasePage>
     <div
-      class="text-white w-full top-0 z-200 fixed font-bold"
-      :class="darkMode ? 'bg-black' : 'bg-white'"
+      class="w-full top-0 z-200 fixed font-bold"
+      :class="darkMode ? 'bg-black' : 'bg-white '"
       :style="{ height: `${customBarHeight}px` }"
     >
       <div
@@ -47,15 +55,23 @@ function handleCloseActionSheet() {
         }"
       >
         <div class="h-full text-center px-6 relative">
+          <div>
+            <div
+              class="h-full text-2xl left-1 i-carbon-add absolute"
+              @click="handleCreateCourse"
+            />
+            <div
+              class="h-full text-xl left-8 absolute"
+              :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+              @click="toggleDarkMode"
+            />
+          </div>
+
           <div
-            class="h-full text-xl left-4 i-carbon-add absolute"
-            @click="handleCreateCourse"
-          />
-          <div
-            class="flex h-full mx-auto justify-center items-center inline-block text-lg"
+            class="base flex h-full mx-auto justify-center items-center inline-block text-lg"
             @click="showCourseAction = !showCourseAction"
           >
-            {{ `第${currentWeekIndex + 1}周${!isStart ? "(未开学)" : ""}` }}
+            {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
             <div
               class="transition-transform duration-300 i-carbon-chevron-up"
               :class="showCourseAction ? 'rotate-180' : 'rotate-0'"

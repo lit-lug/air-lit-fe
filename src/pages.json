@@ -31,7 +31,7 @@
     {
       "path": "pages/schedule/schedule",
       "style": {
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": false
       }
     },
     {
@@ -55,12 +55,10 @@
       },
       {
         "pagePath": "pages/schedule/schedule",
-        "enablePullDownRefresh": true,
         "text": "课表"
       },
       {
         "pagePath": "pages/dashboard/dashboard",
-        "enablePullDownRefresh": true,
         "text": "我的"
       }
     ]

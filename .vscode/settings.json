@@ -21,5 +21,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true
-  }
+  },
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": true
 }
