@@ -3,26 +3,17 @@ import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 
 import pages from "~/pages.json";
-import { on } from "events";
 
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
-
-const { pageReset } = usePageStore();
 
 withDefaults(defineProps<{ showNavBar?: boolean; pageTitle?: string }>(), {
   showNavBar: true,
   pageTitle: "",
 });
 
-const {
-  // showBackAction,
-  // showCustomAction,
-  // pageTitle,
-  notifyRef: _notifyRef,
-  toastRef: _toastRef,
-} = storeToRefs(usePageStore());
+const { notifyRef: _notifyRef, toastRef: _toastRef } = storeToRefs(usePageStore());
 
 const handleNavigateBack = () => uni.navigateBack({});
 
@@ -72,10 +63,6 @@ onReady(() => {
 onShow(() => {
   initPage();
 });
-
-// onUnmounted(() => pageReset());
-
-// onHide(() => pageReset());
 </script>
 
 <template>

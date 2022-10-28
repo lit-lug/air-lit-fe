@@ -1,28 +1,26 @@
 <script setup lang="ts">
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
-
 import pages from "~/pages.json";
-import { on } from "events";
+
+withDefaults(
+  defineProps<{
+    showNavBar?: boolean;
+    pageTitle?: string;
+    showShadow?: boolean;
+  }>(),
+  {
+    showNavBar: true,
+    pageTitle: "",
+    showShadow: true,
+  }
+);
 
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
 
-const { pageReset } = usePageStore();
-
-withDefaults(defineProps<{ showNavBar?: boolean; pageTitle?: string }>(), {
-  showNavBar: true,
-  pageTitle: "",
-});
-
-const {
-  // showBackAction,
-  // showCustomAction,
-  // pageTitle,
-  notifyRef: _notifyRef,
-  toastRef: _toastRef,
-} = storeToRefs(usePageStore());
+const { notifyRef: _notifyRef, toastRef: _toastRef } = storeToRefs(usePageStore());
 
 const handleNavigateBack = () => uni.navigateBack({});
 
@@ -79,8 +77,8 @@ onShow(() => {
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
-        class="w-full top-0 z-90 fixed font-bold"
-        :class="darkMode ? 'bg-base' : 'bg-white'"
+        class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
+        :class="showShadow ? 'shadow' : ''"
         :style="{
           height: `${customBarHeight}px`,
         }"

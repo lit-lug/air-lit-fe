@@ -40,7 +40,7 @@ function handleCloseActionSheet() {
 </script>
 
 <template>
-  <UBasePage>
+  <UBasePage :showShadow="false">
     <template v-slot:navAction>
       <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
       <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />

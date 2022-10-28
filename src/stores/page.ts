@@ -2,13 +2,6 @@ import { pinia } from '~/modules/pinia'
 import type { UNotifyOptions } from '~/components/UnoUI/UNotify/types'
 import type { UToastOptions } from '~/components/UnoUI/UToast/types'
 
-// interface PageConfig {
-//   // showNavBar?: boolean
-//   // showBackAction?: boolean
-//   // showCustomAction?: boolean
-//   // pageTitle?: string
-// }
-
 export const usePageStore = defineStore(
   'page',
   () => {
@@ -33,24 +26,11 @@ export const usePageStore = defineStore(
 
     const showToast = (options: UToastOptions) => toastRef.value!.handleShowToast(options)
 
-    const pageReset = () => {
-      showBackAction.value = false
-      showCustomAction.value = false
-      pageTitle.value = ''
-      notifyRef.value = undefined
-      toastRef.value = undefined
-    }
-
     return {
-      // setPageConfig,
-      // pageTitle,
-      // showBackAction,
-      // showCustomAction,
       notifyRef,
       toastRef,
       showNotify,
       showToast,
-      pageReset,
     }
   })
 
