@@ -62,8 +62,8 @@ const swiperChange = (e: CustomEvent) => {
           ></view>
           <view class="flex flex-col w-full absolute top-8 left-4 z-2">
             <text
-              class="overflow-hidden font-bold relative"
-              :class="enjoySwiper === index ? 'animation' : ''"
+              class="overflow-hidden font-bold relative opacity-0"
+              :class="enjoySwiper === index ? 'title' : ''"
               :style="{
                 fontSize: titleFontSize + 'rpx',
                 color: titleColor,
@@ -74,8 +74,8 @@ const swiperChange = (e: CustomEvent) => {
             </text>
             <text
               v-if="item.subTitle"
-              class="overflow-hidden relative pt-2"
-              :class="enjoySwiper === index ? 'animation' : ''"
+              class="overflow-hidden relative pt-2 opacity-0"
+              :class="enjoySwiper === index ? 'subTitle' : ''"
               :style="{
                 fontSize: subTitleFontSize + 'rpx',
                 color: subTitleColor,
@@ -85,8 +85,8 @@ const swiperChange = (e: CustomEvent) => {
               {{ item.subTitle }}
             </text>
             <view
-              class="overflow-hidden relative pt-2 w-19"
-              :class="enjoySwiper === index ? 'mt-2 animation' : ''"
+              class="overflow-hidden relative pt-2 w-19 opacity-0"
+              :class="enjoySwiper === index ? 'bt' : ''"
               :style="{
                 fontSize: subTitleFontSize + 'rpx',
                 color: subTitleColor,
@@ -182,8 +182,19 @@ const swiperChange = (e: CustomEvent) => {
   display: flex;
 }
 
-.animation {
+.title {
+  font-weight: bold;
+  width: 60%;
   animation: textAnimation 0.8s 0.3s forwards;
+}
+.subTitle {
+  width: 70%;
+  animation: textAnimation 0.8s 0.5s forwards;
+}
+
+.bt {
+  margin-top: 20rpx;
+  animation: textAnimation 0.8s 0.7s forwards;
 }
 
 @keyframes Select {
