@@ -4,15 +4,15 @@ import { loginApi } from "~/apis/sys/user";
 const { setPageConfig, showNotify, showToast } = usePageStore();
 
 onReady(() => {
-  setPageConfig({
-    pageTitle: "Dashboard",
-  });
+  // setPageConfig({
+  //   pageTitle: "Dashboard",
+  // });
 });
 
 onShow(() => {
-  setPageConfig({
-    pageTitle: "Dashboard",
-  });
+  // setPageConfig({
+  //   pageTitle: "Dashboard",
+  // });
 });
 
 const handleTestApi = async () => {
@@ -28,6 +28,9 @@ const handleTestApi = async () => {
 
 <template>
   <UBasePage>
+    <!-- 标题栏 -->
+    <template v-slot:navContent>我的</template>
+
     <div class="p-6" flex="~ col gap2" justify-center>
       <UButton
         type="error"
@@ -59,10 +62,7 @@ const handleTestApi = async () => {
       </div>
     </div>
     <div class="p-6">
-      <UButton
-        type="default"
-        @click="showToast({ type: 'default', message: 'error' })"
-      >
+      <UButton type="default" @click="showToast({ type: 'default', message: 'error' })">
         Show Toast
       </UButton>
     </div>

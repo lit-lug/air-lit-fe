@@ -1,21 +1,16 @@
 <script setup lang="ts">
 const { setPageConfig, showNotify, showToast } = usePageStore();
 
-onReady(() => {
-  setPageConfig({
-    pageTitle: "主页",
-  });
-});
+onReady(() => {});
 
-onShow(() => {
-  setPageConfig({
-    pageTitle: "主页",
-  });
-});
+onShow(() => {});
 </script>
 
 <template>
   <UBasePage>
+    <!-- 标题栏 -->
+    <template v-slot:navContent>时刻</template>
+
     <div>主页</div>
     <UButton
       type="error"
