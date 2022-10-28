@@ -21,7 +21,7 @@ const isCurrentWeek = (weekIndex: number) => {
 
 <template>
   <div class="h-10 shadow-sm px-1 top-0" grid="~ cols-[0.7fr_repeat(7,1fr)] gap-1">
-    <div class="flex font-medium text-sm items-center justify-center">
+    <div class="flex font-600 text-sm items-center justify-center">
       {{ `${currentMonth}月` }}
     </div>
     <div
@@ -34,10 +34,12 @@ const isCurrentWeek = (weekIndex: number) => {
       b="y-transparent x-none t-4 b-4"
       :class="isCurrentWeek(index) ? 'b-b-rounded b-b-blue-400' : ''"
     >
-      <p class="font-medium">
+      <p class="text-xs font-600" :class="isCurrentWeek(index) ? 'text-Blue' : ''">
         {{ weekTitle[index] }}
       </p>
-      <p>{{ item }}</p>
+      <p class="text-xs font-400" :class="isCurrentWeek(index) ? 'text-Blue' : ''">
+        {{ item }}
+      </p>
     </div>
   </div>
 </template>

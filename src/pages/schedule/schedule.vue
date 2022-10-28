@@ -42,13 +42,13 @@ function handleCloseActionSheet() {
 <template>
   <UBasePage>
     <template v-slot:navAction>
-      <div class="i-carbon-add text-2xl" @click="handleCreateCourse" />
+      <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
       <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
     </template>
 
     <template v-slot:navContent>
       <div
-        class="base flex h-full mx-auto justify-center items-center inline-block text-lg"
+        class="base flex h-full mx-auto justify-center items-center inline-block text-ls"
         @click="showCourseAction = !showCourseAction"
       >
         {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}

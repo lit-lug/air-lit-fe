@@ -37,8 +37,6 @@ const showBackAction = ref(false);
 
 const showHomeAction = ref(false);
 
-const pageDepth = ref(0);
-
 const initPage = () => {
   // console.log(getCurrentPages().length);
   NavBarColorReset();
@@ -63,17 +61,19 @@ const initPage = () => {
   }
 };
 
-onMounted(() => {});
+onMounted(() => {
+  initPage();
+});
+
+onReady(() => {
+  initPage();
+});
 
 onShow(() => {
   initPage();
 });
 
-onLaunch(() => {
-  initPage();
-});
-
-onUnmounted(() => pageReset());
+// onUnmounted(() => pageReset());
 
 // onHide(() => pageReset());
 </script>
