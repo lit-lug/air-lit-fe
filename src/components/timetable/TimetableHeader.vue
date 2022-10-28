@@ -34,10 +34,10 @@ const isCurrentWeek = (weekIndex: number) => {
       b="y-transparent x-none t-4 b-4"
       :class="isCurrentWeek(index) ? 'b-b-rounded b-b-blue-400' : ''"
     >
-      <p class="text-xs font-600" :class="isCurrentWeek(index) ? 'text-Blue' : ''">
+      <p class="text-xs font-600" :class="isCurrentWeek(index) ? 'text-blue' : ''">
         {{ weekTitle[index] }}
       </p>
-      <p class="text-xs font-400" :class="isCurrentWeek(index) ? 'text-Blue' : ''">
+      <p class="text-xs font-400" :class="isCurrentWeek(index) ? 'text-blue' : ''">
         {{ item }}
       </p>
     </div>

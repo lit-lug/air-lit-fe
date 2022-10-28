@@ -38,7 +38,6 @@ const showBackAction = ref(false);
 const showHomeAction = ref(false);
 
 const initPage = () => {
-  // console.log(getCurrentPages().length);
   NavBarColorReset();
 
   _notifyRef.value = notifyRef.value;
@@ -72,10 +71,6 @@ onReady(() => {
 onShow(() => {
   initPage();
 });
-
-// onUnmounted(() => pageReset());
-
-// onHide(() => pageReset());
 </script>
 
 <template>
