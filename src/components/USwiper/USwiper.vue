@@ -34,7 +34,7 @@ const swiperChange = (e: CustomEvent) => {
 </script>
 
 <template>
-  <div class="mt-3 relative">
+  <div class="content-top">
     <swiper
       @change="swiperChange"
       :style="{ height: height + 'rpx' }"
@@ -50,69 +50,41 @@ const swiperChange = (e: CustomEvent) => {
             marginRight: margin + 'rpx',
             borderRadius: borderRadius + 'rpx',
           }"
-          class="overflow-hidden relative"
+          class="content"
         >
-          <image :src="item.img" mode="aspectFill" class="object-fill w-full"></image>
-          <view
-            class="z-1 w-full h-full absolute top-0 left-0"
-            :style="{
-              background:
-                'linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(67, 72, 92, 0) 100%)',
-            }"
-          ></view>
-          <view class="flex flex-col w-full absolute top-8 left-4 z-2">
+          <image :src="item.img" mode="aspectFill" class="swiper-img"></image>
+          <view class="mask"></view>
+          <view class="written">
             <text
-              class="overflow-hidden font-bold relative opacity-0"
-              :class="enjoySwiper === index ? 'title' : ''"
-              :style="{
-                fontSize: titleFontSize + 'rpx',
-                color: titleColor,
-                width: '70%',
-              }"
+              class="Text-initialization overflow"
+              :style="{ fontSize: titleFontSize + 'rpx', color: titleColor }"
+              :class="[index === enjoySwiper ? 'title' : '']"
             >
               {{ item.title }}
             </text>
             <text
               v-if="item.subTitle"
-              class="overflow-hidden relative pt-2 opacity-0"
-              :class="enjoySwiper === index ? 'subTitle' : ''"
+              class="Text-initialization overflow"
               :style="{
                 fontSize: subTitleFontSize + 'rpx',
                 color: subTitleColor,
-                width: '60%',
               }"
+              :class="[index === enjoySwiper ? 'subTitle' : '']"
             >
               {{ item.subTitle }}
             </text>
             <view
-              class="overflow-hidden relative pt-2 w-19 opacity-0"
-              :class="enjoySwiper === index ? 'bt' : ''"
-              :style="{
-                fontSize: subTitleFontSize + 'rpx',
-                color: subTitleColor,
-              }"
+              class="Text-initialization"
+              :class="[index === enjoySwiper ? 'bt' : '']"
             >
-              <view
-                class="justify-center items-center"
-                :style="{
-                  color: '#ffffff',
-                  border: '#ffffff solid 1px',
-                  borderRadius: '10rpx',
-                  fontSize: '24rpx',
-                  padding: '4rpx 10rpx',
-                  backgroundColor: 'rgb(0, 0, 0, 0.3)',
-                }"
-              >
-                <text>查看详情</text>
-                <div class="i-carbon-chevron-right text-xs"></div>
-              </view>
+              <text class="bt-ico"> 查看详情 ➜ </text>
             </view>
           </view>
         </view>
       </swiper-item>
     </swiper>
 
-    <view class="pt-2 ml-2">
+    <view>
       <view
         class="dot"
         :style="{
@@ -146,21 +118,97 @@ const swiperChange = (e: CustomEvent) => {
 </template>
 
 <style>
+.content-top {
+  margin-top: 30rpx;
+  position: relative;
+}
+.content {
+  overflow: hidden !important;
+  position: relative;
+}
+.mask {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0rpx;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(67, 72, 92, 0) 100%);
+  z-index: 1;
+}
+.swiper-img {
+  width: 100%;
+  object-fit: cover;
+}
+.written {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  top: 25%;
+  left: 30rpx;
+  z-index: 2;
+}
+.Text-initialization {
+  opacity: 0;
+}
+.title {
+  font-weight: bold;
+  width: 60%;
+  animation: textAnimation 0.8s 0.3s forwards;
+}
+.subTitle {
+  width: 70%;
+  animation: textAnimation 0.8s 0.5s forwards;
+}
+.overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.bt {
+  margin-top: 20rpx;
+  animation: textAnimation 0.8s 0.7s forwards;
+}
+.bt-ico {
+  color: #ffffff;
+  border: #ffffff solid 1px;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  padding: 4rpx 10rpx;
+  background-color: rgb(0, 0, 0, 0.3);
+}
+@keyframes textAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-80rpx);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.dot {
+  position: absolute;
+  display: flex;
+}
 .Select {
   height: 6rpx;
   width: 10rpx;
   border-radius: 10rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
   animation: Select 1s 0s 1 forwards;
 }
-
 .Unchecked {
   height: 6rpx;
   width: 10rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
   border-radius: 10rpx;
 }
-
+@keyframes Select {
+  to {
+    height: 6rpx;
+    width: 60rpx;
+  }
+}
 .Select1 {
   height: 6rpx;
   width: 10rpx;
@@ -176,34 +224,6 @@ const swiperChange = (e: CustomEvent) => {
   border-radius: 10rpx;
   background-color: rgba(255, 255, 255, 0) !important;
 }
-
-.dot {
-  position: absolute;
-  display: flex;
-}
-
-.title {
-  font-weight: bold;
-  width: 60%;
-  animation: textAnimation 0.8s 0.3s forwards;
-}
-.subTitle {
-  width: 70%;
-  animation: textAnimation 0.8s 0.5s forwards;
-}
-
-.bt {
-  margin-top: 20rpx;
-  animation: textAnimation 0.8s 0.7s forwards;
-}
-
-@keyframes Select {
-  to {
-    height: 6rpx;
-    width: 60rpx;
-  }
-}
-
 @keyframes Select1 {
   from {
     height: 6rpx;
@@ -212,16 +232,6 @@ const swiperChange = (e: CustomEvent) => {
   to {
     height: 6rpx;
     width: 60rpx;
-  }
-}
-
-@keyframes textAnimation {
-  0% {
-    opacity: 0;
-    transform: translateX(-80rpx);
-  }
-  100% {
-    opacity: 1;
   }
 }
 </style>
