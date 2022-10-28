@@ -10,9 +10,7 @@ const props = withDefaults(
 );
 const emit = defineEmits(["cancel"]);
 const courseStore = useCourseStore();
-const courseList = computed(() =>
-  courseStore.getConflictCourse(props.courseItem)
-);
+const courseList = computed(() => courseStore.getConflictCourse(props.courseItem));
 const courseTime = computed(() => getCourseTime(courseList.value[0]));
 function getCourseTime(item: CourseModel) {
   const { week, start, duration } = item;
@@ -21,7 +19,7 @@ function getCourseTime(item: CourseModel) {
 function navigateToDetail(courseItem: CourseModel) {
   closeActionSheet();
   uni.navigateTo({
-    url: `/pages/detail/detail?course=${courseItem.title}`,
+    url: `./detail/detail?course=${courseItem.title}`,
   });
 }
 function closeActionSheet() {
@@ -30,27 +28,19 @@ function closeActionSheet() {
 </script>
 
 <template>
-  <div @touchmove.prevent>
+  <div @touchmove.prevent class="z-200">
     <div
-      class="bg-base w-full min-h-10 z-100 fixed"
+      class="bg-base w-full min-h-10 z-220 fixed"
       transition="all duration-300 ease-in-out"
-      :class="
-        showActionSheet && courseList?.length ? 'bottom-0' : '-bottom-full'
-      "
+      :class="showActionSheet && courseList?.length ? 'bottom-0' : '-bottom-full'"
     >
       <div class="py-6" flex="~ col gap6">
         <div v-if="courseList?.length" class="font-medium text-xl px-4">
           {{ courseTime }}
         </div>
         <template v-for="(courseItem, index) of courseList" :key="index">
-          <div
-            class="px-4"
-            flex="~ col gap-2"
-            @click="navigateToDetail(courseItem)"
-          >
-            <div
-              class="flex mb-1 w-full gap-2 justify-start items-center relative"
-            >
+          <div class="px-4" flex="~ col gap-2" @click="navigateToDetail(courseItem)">
+            <div class="flex mb-1 w-full gap-2 justify-start items-center relative">
               <div
                 class="rounded-full h-5 w-1 inline-block"
                 :style="`background-color:${courseItem.color}`"

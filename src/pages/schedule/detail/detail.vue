@@ -2,7 +2,9 @@
 import { cloneDeep } from "lodash-es";
 import type { CourseModel } from "~/stores/course";
 const appStore = useAppStore();
-const { setPageConfig } = usePageStore();
+
+const pageTitle = ref("课程详情");
+
 const defaultCourse: CourseModel = {
   title: "",
   location: "课程地点",
@@ -30,10 +32,7 @@ onLoad((option: any) => {
   }
 });
 onShow(() => {
-  setPageConfig({
-    pageTitle: isUpdate.value ? "编辑课程" : "添加课程",
-    showBackAction: true,
-  });
+  pageTitle.value = isUpdate.value ? "编辑课程" : "添加课程";
 });
 function handleDeleteCourseItem(courseIndex: number) {
   uni.showModal({
@@ -153,7 +152,7 @@ function handleConfirmTimeActionSheet() {
 </script>
 
 <template>
-  <UBasePage>
+  <UBasePage :pageTitle="pageTitle">
     <div>
       <div class="bg-white mb-4 py-1 justify-center items-start dark:bg-#121212">
         <div class="px-4">

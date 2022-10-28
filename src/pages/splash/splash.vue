@@ -1,16 +1,14 @@
 <script setup lang="ts">
-const { setPageConfig } = usePageStore();
-
 onLaunch(() => {
-  setPageConfig({
-    showNavBar: false,
-  });
+  // setPageConfig({
+  //   showNavBar: false,
+  // });
 });
 
 onReady(() => {
-  setPageConfig({
-    showNavBar: false,
-  });
+  // setPageConfig({
+  //   showNavBar: false,
+  // });
 });
 
 setTimeout(() => {
@@ -21,7 +19,7 @@ setTimeout(() => {
 </script>
 
 <template>
-  <UBasePage>
+  <UBasePage :showNavBar="false">
     <div class="loader absolute top-72vh left-50vw rotate-165deg" />
   </UBasePage>
 </template>

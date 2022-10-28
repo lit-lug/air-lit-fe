@@ -1,8 +1,5 @@
 import { pinia } from '~/modules/pinia'
-
-
 import pages from "~/pages.json";
-
 
 
 interface MenuButtonBoundingClientRect {
@@ -26,6 +23,20 @@ export const useAppStore = defineStore(
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
 
+
+    // const currentPage = computed(() => {
+    //   const pages = getCurrentPages()
+
+    //   console.log(pages)
+
+    //   return pages.pop()?.route
+    // })
+
+    // watch(getCurrentPages(), (newPage) => {
+    //   console.log(newPage)
+    // })
+
+
     const NavBarColorReset = () => {
 
       // 获取当前页面
@@ -44,15 +55,6 @@ export const useAppStore = defineStore(
           },
         });
 
-        if (isTabPage) {
-          uni.setTabBarStyle({
-            backgroundColor: "#222222",
-            borderStyle: "black",
-            color: "#ffffff",
-            selectedColor: "#ffffff",
-          });
-        }
-
       } else {
         uni.setNavigationBarColor({
           backgroundColor: "#ffffff",
@@ -62,17 +64,27 @@ export const useAppStore = defineStore(
             timingFunc: "easeIn",
           },
         });
+      }
 
-        if (isTabPage) {
-          uni
-            .setTabBarStyle({
-              backgroundColor: "#ffffff",
-              borderStyle: "white",
-              color: "#222222",
-              selectedColor: "#000000",
-            })
+      if (isTabPage) {
+
+        if (darkMode.value) {
+          uni.setTabBarStyle({
+            backgroundColor: "#222222",
+            borderStyle: "black",
+            color: "#ffffff",
+            selectedColor: "#ffffff",
+          });
+        } else {
+          uni.setTabBarStyle({
+            backgroundColor: "#ffffff",
+            borderStyle: "white",
+            color: "#222222",
+            selectedColor: "#000000",
+          });
         }
       }
+
     }
 
     const setDarkMode = (mode: boolean) => {

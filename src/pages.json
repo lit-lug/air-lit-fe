@@ -23,6 +23,12 @@
       }
     },
     {
+      "path": "pages/pl/pl",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
       "path": "pages/mine/mine",
       "style": {
         "enablePullDownRefresh": true

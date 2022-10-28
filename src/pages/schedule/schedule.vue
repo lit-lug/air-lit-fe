@@ -7,12 +7,10 @@ const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore()
 
 const { setDarkMode } = useAppStore();
 
-const { setPageConfig } = usePageStore();
+// const { setPageConfig } = usePageStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
-onShow(() => {
-  setPageConfig({ showNavBar: true });
-});
+onShow(() => {});
 setCourseList(courses as CourseModel[]);
 const showCourseAction = ref(false);
 // set the start date
