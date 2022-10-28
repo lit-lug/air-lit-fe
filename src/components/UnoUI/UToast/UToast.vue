@@ -1,37 +1,41 @@
 <script setup lang="ts">
-import type { UToastOptions, UToastType } from './types'
+import type { UToastOptions, UToastType } from "./types";
 
-const { customBarHeight } = storeToRefs(useAppStore())
+const { customBarHeight } = storeToRefs(useAppStore());
 
-const timer = ref<number | undefined>(undefined)
-const show = ref(false)
-const notifyType = ref<UToastType>('default')
-const message = ref('')
+const timer = ref<number | undefined>(undefined);
+const show = ref(false);
+const notifyType = ref<UToastType>("default");
+const message = ref("");
 
 const handleShowToast = (options: UToastOptions) => {
-  const { type = 'default', message: _message = 'Unable to connect to the server.', duration = 2000 } = options
-  clearTimeout(timer.value)
-  show.value = true
-  notifyType.value = type
-  message.value = _message
-  timer.value = setTimeout(() => {
-    show.value = false
-    clearTimeout(timer.value)
-    timer.value = undefined
-  }, duration) as unknown as number
-}
+  const {
+    type = "default",
+    message: _message = "Unable to connect to the server.",
+    duration = 2000,
+  } = options;
+  clearTimeout(timer.value);
+  show.value = true;
+  notifyType.value = type;
+  message.value = _message;
+  timer.value = (setTimeout(() => {
+    show.value = false;
+    clearTimeout(timer.value);
+    timer.value = undefined;
+  }, duration) as unknown) as number;
+};
 
 defineExpose({
   handleShowToast,
-})
+});
 
 const ToastClass = {
-  default: 'bg-gray-5 border-gray-2',
-  success: 'bg-green-5 border-green-3',
-  error: 'bg-red-5 border-red-3',
-  warning: 'bg-orange-5 border-orange-3',
-  primary: 'bg-blue-5 border-blue-3',
-}
+  default: "bg-gray-5 border-gray-2",
+  success: "bg-green-5 border-green-3",
+  error: "bg-red-5 border-red-3",
+  warning: "bg-orange-5 border-orange-3",
+  primary: "bg-blue-5 border-blue-3",
+};
 </script>
 
 <template>
@@ -48,5 +52,4 @@ const ToastClass = {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -4,7 +4,7 @@
     "backgroundColorBottom": "@bgColorBottom",
     "backgroundColorTop": "@bgColorTop",
     "backgroundTextStyle": "@bgTxtStyle",
-    "navigationBarBackgroundColor": "#000000",
+    "navigationBarBackgroundColor": "#0000",
     "navigationBarTextStyle": "@navTxtStyle",
     "navigationBarTitleText": "云小洛",
     "navigationStyle": "custom"
@@ -23,7 +23,7 @@
       }
     },
     {
-      "path": "pages/dashboard/dashboard",
+      "path": "pages/mine/mine",
       "style": {
         "enablePullDownRefresh": true
       }
@@ -44,7 +44,7 @@
   "tabBar": {
     "color": "",
     "selectedColor": "",
-    "backgroundColor": "",
+    "backgroundColor": "@tabBgColor",
     "position": "bottom",
     "borderStyle": "black",
     "list": [
@@ -58,7 +58,7 @@
         "text": "课表"
       },
       {
-        "pagePath": "pages/dashboard/dashboard",
+        "pagePath": "pages/mine/mine",
         "text": "我的"
       }
     ]

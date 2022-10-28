@@ -46,7 +46,7 @@ export const useAppStore = defineStore(
 
         if (isTabPage) {
           uni.setTabBarStyle({
-            backgroundColor: "#000000",
+            backgroundColor: "#222222",
             borderStyle: "black",
             color: "#ffffff",
             selectedColor: "#ffffff",
@@ -68,7 +68,7 @@ export const useAppStore = defineStore(
             .setTabBarStyle({
               backgroundColor: "#ffffff",
               borderStyle: "white",
-              color: "#000000",
+              color: "#222222",
               selectedColor: "#000000",
             })
         }

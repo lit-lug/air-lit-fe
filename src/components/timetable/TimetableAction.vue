@@ -8,8 +8,7 @@ const scrollTo = ref("week0");
 watch(
   () => +props.showCourseAction + currentWeekIndex.value,
   () => {
-    if (props.showCourseAction)
-      scrollTo.value = `week${currentWeekIndex.value - 1}`;
+    if (props.showCourseAction) scrollTo.value = `week${currentWeekIndex.value - 1}`;
   }
 );
 </script>
@@ -22,10 +21,7 @@ watch(
     scroll-with-animation
     :scroll-into-view="scrollTo"
   >
-    <template
-      v-for="(weeksTimetable, weeksIndex) of parsedCourseList"
-      :key="weeksIndex"
-    >
+    <template v-for="(weeksTimetable, weeksIndex) of parsedCourseList" :key="weeksIndex">
       <div
         :id="`week${weeksIndex + 1}`"
         class="py-1 px-2 inline-block"

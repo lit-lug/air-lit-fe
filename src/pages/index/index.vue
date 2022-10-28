@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { setPageConfig, showNotify, showToast } = usePageStore();
+const { showNotify } = usePageStore();
 
 onReady(() => {});
 

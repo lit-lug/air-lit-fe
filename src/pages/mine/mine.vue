@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import { loginApi } from "~/apis/sys/user";
 
-const { setPageConfig, showNotify, showToast } = usePageStore();
+const { showNotify, showToast } = usePageStore();
 
-onReady(() => {
-  // setPageConfig({
-  //   pageTitle: "Dashboard",
-  // });
-});
+onReady(() => {});
 
-onShow(() => {
-  // setPageConfig({
-  //   pageTitle: "Dashboard",
-  // });
-});
+onShow(() => {});
 
 const handleTestApi = async () => {
   const res = await loginApi({ username: "admin", password: "123456" });

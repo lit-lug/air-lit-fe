@@ -1,37 +1,41 @@
 <script setup lang="ts">
-import type { UNotifyOptions, UNotifyType } from './types'
+import type { UNotifyOptions, UNotifyType } from "./types";
 
-const { customBarHeight } = storeToRefs(useAppStore())
+const { customBarHeight } = storeToRefs(useAppStore());
 
-const timer = ref<number | undefined>(undefined)
-const show = ref(false)
-const notifyType = ref<UNotifyType>('default')
-const message = ref('')
+const timer = ref<number | undefined>(undefined);
+const show = ref(false);
+const notifyType = ref<UNotifyType>("default");
+const message = ref("");
 
 const handleShowNotify = (options: UNotifyOptions) => {
-  const { type = 'default', message: _message = 'Unable to connect to the server.', duration = 2000 } = options
-  clearTimeout(timer.value)
-  show.value = true
-  notifyType.value = type
-  message.value = _message
-  timer.value = setTimeout(() => {
-    show.value = false
-    clearTimeout(timer.value)
-    timer.value = undefined
-  }, duration) as unknown as number
-}
+  const {
+    type = "default",
+    message: _message = "Unable to connect to the server.",
+    duration = 2000,
+  } = options;
+  clearTimeout(timer.value);
+  show.value = true;
+  notifyType.value = type;
+  message.value = _message;
+  timer.value = (setTimeout(() => {
+    show.value = false;
+    clearTimeout(timer.value);
+    timer.value = undefined;
+  }, duration) as unknown) as number;
+};
 
 defineExpose({
   handleShowNotify,
-})
+});
 
 const bgColor = {
-  default: 'bg-gray-5',
-  success: 'bg-green-4',
-  error: 'bg-red-5',
-  warning: 'bg-orange-5',
-  primary: 'bg-blue-5',
-}
+  default: "bg-gray-5",
+  success: "bg-green-4",
+  error: "bg-red-5",
+  warning: "bg-orange-5",
+  primary: "bg-blue-5",
+};
 </script>
 
 <template>
@@ -44,5 +48,4 @@ const bgColor = {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

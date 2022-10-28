@@ -55,7 +55,7 @@ function handleCloseActionSheet() {
       >
         {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
         <div
-          class="transition-transform duration-300 i-carbon-chevron-up"
+          class="transition-transform duration-300 text-2xl i-carbon-chevron-up"
           :class="showCourseAction ? 'rotate-180' : 'rotate-0'"
         />
       </div>

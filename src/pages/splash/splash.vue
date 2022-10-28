@@ -15,7 +15,7 @@ onReady(() => {
 
 setTimeout(() => {
   uni.switchTab({
-    url: "/pages/dashboard/dashboard",
+    url: "/pages/index/index",
   });
 }, 500);
 </script>

@@ -47,15 +47,18 @@ onUnmounted(() => pageReset());
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
-        class="w-full top-0 z-200 fixed font-bold shadow-sm"
-        :class="darkMode ? 'bg-black' : 'bg-white'"
-        :style="{ height: `${customBarHeight}px` }"
+        class="w-full top-0 z-200 fixed font-bold"
+        :class="darkMode ? 'bg-base' : 'bg-white'"
+        :style="{
+          height: `${customBarHeight}px`,
+        }"
       >
         <div
           :style="{
             'padding-top': `${statusBarHeight}px`,
             height: `${customBarHeight - statusBarHeight}px`,
           }"
+          class="z-100"
         >
           <div class="h-full text-center px-6 relative">
             <div class="flex h-full text-xl left-1 absolute justify-center items-center">
@@ -85,7 +88,7 @@ onUnmounted(() => pageReset());
       <UToast ref="toastRef" />
       <!-- page container -->
       <div
-        class="overflow-auto"
+        class="overflow-auto dark:bg-black"
         :style="{
           height: `calc(100vh - ${customBarHeight}px)`,
           'padding-top': `${customBarHeight}px`,

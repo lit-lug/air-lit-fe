@@ -7,10 +7,11 @@ withDefaults(defineProps<{ showCourseAction: boolean }>(), {
   showCourseAction: false,
 });
 const emit = defineEmits(["courseItemClick"]);
-const { customBarHeight } = storeToRefs(useAppStore());
+const { customBarHeight, darkMode } = storeToRefs(useAppStore());
 const { weekNum, weekCourseList, currentWeekIndex, originalWeekIndex } = storeToRefs(
   useCourseStore()
 );
+
 const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
 // delete a course when course at the same time
 const deleteWeekCourse = computed(() => {
@@ -72,18 +73,22 @@ function getCoursePosition(item: CourseModel) {
 
 <template>
   <div
-    class="overflow-y-scroll relative bg-base"
+    class="overflow-y-scroll relative"
     :style="{ height: `calc(100vh - ${customBarHeight}px)` }"
   >
     <div
-      class="w-full top-0 z-10 fixed bg-base"
-      :style="{ 'padding-top': `${customBarHeight}px` }"
+      :class="darkMode ? 'bg-base' : 'bg-white'"
+      class="w-full top-0 z-10 fixed opacity-320"
+      :style="{
+        'padding-top': `${customBarHeight}px`,
+        backdropFilter: 'blur(5px)',
+      }"
     >
       <TimetableAction :show-course-action="showCourseAction" />
       <TimetableHeader />
     </div>
     <div
-      class="min-h-max pb-safe p-1 transition-all z-20 duration-300 bg-base"
+      class="min-h-max pb-safe p-1 transition-all z-20 duration-300"
       grid="~ flow-col rows-10 cols-[0.7fr_repeat(7,1fr)] gap-1"
       :class="showCourseAction ? 'pt-31' : 'pt-11'"
       @touchstart="handleTouchStart"
@@ -91,7 +96,7 @@ function getCoursePosition(item: CourseModel) {
       @touchend="handleTouchEnd"
     >
       <template v-for="(courseTime, courseIndex) in courseTimeList" :key="courseIndex">
-        <div class="text-sm min-h-18" flex="~ col" justify-evenly items-center>
+        <div class="text-sm min-h-14" flex="~ col" justify-evenly items-center>
           <div class="font-medium">
             {{ courseIndex + 1 }}
           </div>
@@ -127,7 +132,7 @@ function getCoursePosition(item: CourseModel) {
             </div>
             <div
               v-if="hasConflictCourseByMap(courseItem).length > 1"
-              class="rounded h-1 top-1 left-1 right-1 absolute bg-white/80"
+              class="rounded h-1 bottom-1 left-1 right-1 absolute bg-white/80"
             />
           </div>
         </div>
