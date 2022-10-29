@@ -25,6 +25,12 @@ function navigateToDetail(courseItem: CourseModel) {
 function closeActionSheet() {
   emit("cancel");
 }
+
+const bottom = ref("0rpx");
+
+// #ifdef H5
+bottom.value = "6%";
+// #endif
 </script>
 
 <template>
@@ -32,7 +38,9 @@ function closeActionSheet() {
     <div
       class="bg-base w-full min-h-10 z-220 fixed"
       transition="all duration-200 ease-in-out"
-      :class="showActionSheet && courseList?.length ? 'bottom-0' : '-bottom-full'"
+      :style="{
+        bottom: showActionSheet && courseList?.length ? bottom : '-100%',
+      }"
     >
       <div class="py-6" flex="~ col gap6">
         <div v-if="courseList?.length" class="font-medium text-xl px-4">

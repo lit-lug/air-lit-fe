@@ -186,8 +186,8 @@ const closeDrawer = () => {
         <slot />
 
         <div
-          class="transition-all transition-ease-in-out duration-200 bg-dark-100 bg-opacity-30 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
-          :class="Page !== 0 ? 'opacity-100 visible' : 'opacity-0 invisible'"
+          class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
+          :class="Page !== 0 ? 'opacity-60 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
