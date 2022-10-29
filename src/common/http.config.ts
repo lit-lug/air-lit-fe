@@ -2,6 +2,8 @@
 import Http from 'luch-request';
 import { Encryption } from './cipher.config';
 
+const { showToast } = usePageStore();
+
 /** 定义默认配置 */
 const http = new Http({
     baseURL: 'https://a-lit.singzer.cn',
@@ -12,9 +14,8 @@ http.config.timeout = 300000;
 
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
-    if (config.custom?.msgRef) {
+    if (config.custom?.load) {
         // uni.showLoading({ title: language("message.load.text"), mask: true });
-        config.custom?.msgRef.value?.show({ model: "load", mask: true, duration: -1 });
     }
 
     // 判断是否需要加密
@@ -98,6 +99,8 @@ http.interceptors.response.use(
             // uni.hideLoading();
             // response.config.custom?.msgRef.value?.show({ model: "success", text: resp.msg });
         }
+
+        showToast({ type: "primary", message: resp.msg })
 
         return resp
     },

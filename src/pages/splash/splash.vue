@@ -1,8 +1,49 @@
 <script setup lang="ts">
-onLaunch(() => {
-  // setPageConfig({
-  //   showNavBar: false,
-  // });
+import { WeAppAuth } from "~/common/api";
+import { useAppStore } from "~/stores/app";
+const appStore = useAppStore();
+
+const { isAuth, userInfo } = storeToRefs(appStore);
+
+// #ifdef MP-WEIXIN
+
+const weAppAuth = async () => {
+  // 微信授权
+  const res = ((await uni.login({
+    provider: "weixin",
+  })) as unknown) as UniApp.LoginRes;
+  // 成功则获取用户信息
+  if (!res.code) {
+    // uni.showToast({
+    //   title: "请检查网络后, 点击重试",
+    //   icon: "error",
+    // });
+    // msg.value?.show({ mask: false, model: "error" });
+    // isNetworkError.value = true;
+    return;
+  }
+  // 获取用户认证信息
+  const { data: authInfo } = await WeAppAuth({ code: res.code });
+  if (!authInfo) {
+    // isNetworkError.value = true;
+    return;
+  }
+  // isNetworkError.value = false;
+  // 同步用户信息
+  appStore.setToken(authInfo.token);
+  appStore.setUserInfo(authInfo.user_info);
+};
+
+// #endif
+
+onReady(async () => {
+  await weAppAuth();
+
+  setTimeout(() => {
+    uni.switchTab({
+      url: "/pages/index/index",
+    });
+  }, 500);
 });
 
 onReady(() => {
@@ -10,12 +51,6 @@ onReady(() => {
   //   showNavBar: false,
   // });
 });
-
-setTimeout(() => {
-  uni.switchTab({
-    url: "/pages/index/index",
-  });
-}, 500);
 </script>
 
 <template>

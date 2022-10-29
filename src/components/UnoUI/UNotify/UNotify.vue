@@ -40,7 +40,7 @@ const bgColor = {
 
 <template>
   <div
-    class="flex h-8 text-white w-full py-1 px-2 transition-all z-100 justify-center items-center fixed"
+    class="flex h-8 text-white w-full py-1 px-2 transition-all z-99 justify-center items-center fixed"
     :class="bgColor[notifyType]"
     :style="{ top: show ? `${customBarHeight}px` : '-100%' }"
   >

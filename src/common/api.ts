@@ -13,6 +13,7 @@ export const httpConfig = http.config;
 httpConfig.custom = {
     // load: true,
     auth: true,
+    load: true,
     // msgRef: ref<InstanceType<typeof tmMessage> | null>(null),
     encryption: false,
     isBindSec: true,

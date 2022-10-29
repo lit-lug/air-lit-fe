@@ -2,7 +2,7 @@
 import { USwiperItem } from "~/components/USwiper/types";
 import USwiper from "~/components/USwiper/USwiper.vue";
 
-const { showNotify } = usePageStore();
+const { showNotify, showToast } = usePageStore();
 
 const swiperItems = ref<Array<USwiperItem>>([
   {
@@ -26,11 +26,13 @@ onReady(() => {});
 onShow(() => {});
 
 function btnClick() {
-  uni.navigateTo({
-    url: "/pages/pl/pl",
-    animationType: "auto",
-    animationDuration: 500,
-  });
+  showToast({ type: "default", message: "error" });
+
+  // uni.navigateTo({
+  //   url: "/pages/pl/pl",
+  //   animationType: "auto",
+  //   animationDuration: 500,
+  // });
 }
 </script>
 

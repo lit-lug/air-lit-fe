@@ -16,6 +16,26 @@ export const useAppStore = defineStore(
   () => {
     const darkMode = ref(false)
 
+    // user
+    const userInfo = ref<UserInfo>(uni.getStorageSync('user_info') as UserInfo)
+    const token = ref<string>(uni.getStorageSync('token'))
+
+    const setUserInfo = (ui: UserInfo) => {
+      userInfo.value = ui
+      uni.setStorageSync('user_info', userInfo.value)
+    }
+
+
+    const isAuth = computed(() => {
+      return !!token.value
+    })
+
+    const setToken = (tk: string) => {
+      token.value = tk
+      uni.setStorageSync('token', token.value)
+    }
+
+
     const statusBarHeight = ref(0)
     const menuButtonBounding = ref<MenuButtonBoundingClientRect>()
     const customBarHeight = computed(
@@ -23,18 +43,6 @@ export const useAppStore = defineStore(
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
 
-
-    // const currentPage = computed(() => {
-    //   const pages = getCurrentPages()
-
-    //   console.log(pages)
-
-    //   return pages.pop()?.route
-    // })
-
-    // watch(getCurrentPages(), (newPage) => {
-    //   console.log(newPage)
-    // })
 
 
     const NavBarColorReset = () => {
@@ -98,6 +106,10 @@ export const useAppStore = defineStore(
 
     return {
       setDarkMode,
+      setUserInfo,
+      userInfo,
+      isAuth,
+      setToken,
       darkMode,
       NavBarColorReset,
       statusBarHeight,

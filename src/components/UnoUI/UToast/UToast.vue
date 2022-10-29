@@ -31,10 +31,10 @@ defineExpose({
 
 const ToastClass = {
   default: "bg-gray-5 border-gray-2",
-  success: "bg-green-5 border-green-3",
-  error: "bg-red-5 border-red-3",
-  warning: "bg-orange-5 border-orange-3",
-  primary: "bg-blue-5 border-blue-3",
+  success: "bg-green-5 border-gray-2",
+  error: "bg-red-5 border-gray-2",
+  warning: "bg-orange-5 border-gray-2",
+  primary: "bg-blue-5 border-gray-2",
 };
 </script>
 
