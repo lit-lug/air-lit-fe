@@ -124,7 +124,7 @@ const closeDrawer = () => {
       <div
         v-if="showNavBar"
         class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
-        :class="showShadow ? 'shadow' : ''"
+        :class="showShadow ? 'shadow-sm' : ''"
         :style="{
           height: `${customBarHeight}px`,
         }"
@@ -191,8 +191,6 @@ const closeDrawer = () => {
           @click="closeDrawer"
         />
       </div>
-
-      <!-- <u-tabbar v-model-fulrrent" :list="list" :mid-button="true"></u-tabbar> -->
     </view>
   </div>
 </template>

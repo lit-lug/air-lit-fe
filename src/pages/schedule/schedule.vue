@@ -45,7 +45,7 @@ function handleCloseActionSheet() {
     <!-- #endif -->
 
     <!-- #ifdef H5 -->
-    <UBasePage :showNavBar="false">
+    <UBasePage :showShadow="false">
       <template v-slot:navAction>
         <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
         <div
