@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { darkMode, statusBarHeight, menuButtonBounding } = storeToRefs(
-  useAppStore()
-);
+const { darkMode, statusBarHeight, menuButtonBounding } = storeToRefs(useAppStore());
 const { setDarkMode } = useAppStore();
 
 onLaunch(() => {

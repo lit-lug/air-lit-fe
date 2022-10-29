@@ -1,21 +1,9 @@
 <script setup lang="ts">
-import { loginApi } from "~/apis/sys/user";
-
 const { showNotify, showToast } = usePageStore();
 
 onReady(() => {});
 
 onShow(() => {});
-
-const handleTestApi = async () => {
-  const res = await loginApi({ username: "admin", password: "123456" });
-  if (res.token) {
-    showNotify({
-      type: "success",
-      message: "登录成功",
-    });
-  }
-};
 </script>
 
 <template>
@@ -38,12 +26,7 @@ const handleTestApi = async () => {
       >
         Show Primary Notify
       </UButton>
-      <UButton
-        bg="bg-orange"
-        class="w-full"
-        icon="i-carbon-notification"
-        @click="handleTestApi"
-      >
+      <UButton bg="bg-orange" class="w-full" icon="i-carbon-notification">
         Custom Button
       </UButton>
     </div>

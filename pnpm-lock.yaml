@@ -21,11 +21,14 @@ specifiers:
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3060720221018006
   '@iconify-json/carbon': ^1.1.9
   '@iconify-json/mdi': ^1.1.34
+  '@types/crypto-js': ^4.1.1
   '@types/lodash-es': ^4.17.6
   '@types/node': ^18.11.7
+  crypto-js: ^4.1.1
   eslint: ^8.26.0
   less: ^4.1.3
   lodash-es: ^4.17.21
+  luch-request: ^3.0.8
   pinia: ^2.0.23
   postcss: ^8.4.18
   terser: ^5.15.1
@@ -52,8 +55,11 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3060720221018006_postcss@8.4.18+vue@3.2.41
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3060720221018006_postcss@8.4.18+vue@3.2.41
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3060720221018006_postcss@8.4.18+vue@3.2.41
+  '@types/crypto-js': 4.1.1
+  crypto-js: 4.1.1
   less: 4.1.3
   lodash-es: 4.17.21
+  luch-request: 3.0.8
   pinia: 2.0.23_l7r24p6nevbtlimqmqcwa3ouhu
   vue: 3.2.41
   vue-demi: 0.13.11_vue@3.2.41
@@ -465,6 +471,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+
+  /@dcloudio/types/2.6.12:
+    resolution: {integrity: sha512-mrCMwcINy1IFjU9VUqLeWBkj404yWs5paLDttBcA+eqUjanuUQbBcTVPqlrGgkyzLXDcV2oDDZRSNxNpXi4kMQ==}
+    dev: false
 
   /@dcloudio/types/3.0.17:
     resolution: {integrity: sha512-8Uhejd2zvP9KVsCFPuDOGkfBXAkWyEI4BMjv2Fako6CuEC62YxocMaZCoqr+rN1cI2EVa+jR1np9XBTQyVccYA==}
@@ -1228,6 +1238,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
+
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
+    dev: false
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
@@ -2089,6 +2103,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-font-size-keywords/1.0.0:
     resolution: {integrity: sha512-Q+svMDbMlelgCfH/RVDKtTDaf5021O486ZThQPIpahnIjUkMUslC+WuOQSWTgGSrNCH08Y7tYNEmmy0hkfMI8Q==}
@@ -3641,6 +3659,12 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /luch-request/3.0.8:
+    resolution: {integrity: sha512-5ZVp1y4tFaizbGMOuQwbeyfHnf4PhQAwQ3S1Fm1tS7juMoB14pXslxWriElhiSq6ytYYW0KVC8RShfHiNujFcQ==}
+    dependencies:
+      '@dcloudio/types': 2.6.12
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
