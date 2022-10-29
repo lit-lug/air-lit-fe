@@ -98,17 +98,18 @@ const closeDrawer = () => {
       height: `calc(100vh - ${customBarHeight}px)`,
     }"
   >
-    <view
+    <div
       class="drawer bg-base"
       :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
-      ><slot name="drawer">
+    >
+      <slot name="drawer">
         <button @click="openDrawer">Open</button>
         <button @click="closeDrawer">Close</button>
-      </slot></view
-    >
+      </slot>
+    </div>
 
     <view
-      class="Page bg-base"
+      class="Page"
       :style="
         'left :' +
         Page +
@@ -170,22 +171,22 @@ const closeDrawer = () => {
       <UNotify ref="notifyRef" />
       <UToast ref="toastRef" />
       <div
-        class="overflow-auto dark:bg-black bg-base color-base text-base"
+        class="overflow-auto bg-base color-base text-base dark:bg-black"
         :style="{
-          height: `calc(100vh - ${customBarHeight}px)`,
           'padding-top': `${customBarHeight}px`,
+          height: `calc(100vh - ${customBarHeight}px)`,
         }"
       >
         <slot />
 
         <div
-          class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
+          class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
           :class="Page !== 0 ? 'opacity-100 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
 
-      <!-- <u-tabbar v-model="current" :list="list" :mid-button="true"></u-tabbar> -->
+      <!-- <u-tabbar v-model=-barrent" :list="list" :mid-button="true"></u-tabbar> -->
     </view>
   </view>
 </template>
@@ -208,7 +209,7 @@ const closeDrawer = () => {
   top: 0;
   width: 60%;
   height: 100%;
-  z-index: 99;
+  z-index: 100;
   padding-top: 100rpx;
   padding-right: 15%;
 }
@@ -217,10 +218,9 @@ const closeDrawer = () => {
   transition: all 0.3s;
   position: absolute;
   overflow: hidden;
-  z-index: 999;
+  z-index: 100;
   right: 0%;
   top: 0;
-  overflow: hidden;
   width: 100%;
   height: 100%;
 }
