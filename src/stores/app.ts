@@ -66,6 +66,8 @@ export const useAppStore = defineStore(
         });
       }
 
+      // ifdef MP-WEIXIN
+
       if (isTabPage) {
 
         if (darkMode.value) {
@@ -84,6 +86,8 @@ export const useAppStore = defineStore(
           });
         }
       }
+
+      // endif
 
     }
 

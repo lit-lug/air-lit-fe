@@ -90,16 +90,16 @@ const closeDrawer = () => {
 </script>
 
 <template>
-  <view
+  <div
     :class="darkMode ? 'dark' : ''"
-    class="Content bg-base color-base text-base"
+    class="relative w-full h-full bg-base color-base text-base overflow-hidden top-none"
     :style="{
       'padding-top': `${customBarHeight}px`,
       height: `calc(100vh - ${customBarHeight}px)`,
     }"
   >
     <div
-      class="drawer bg-base"
+      class="drawer z-100 top-0 absolute overflow-hidden right-full bg-base duration-200 transition-ease-in-out"
       :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
     >
       <slot name="drawer">
@@ -109,7 +109,7 @@ const closeDrawer = () => {
     </div>
 
     <view
-      class="Page"
+      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out"
       :style="
         'left :' +
         Page +
@@ -141,7 +141,11 @@ const closeDrawer = () => {
               class="flex h-full text-xl left-2 absolute justify-center items-center dark:text-white"
             >
               <slot name="navAction">
-                <div class="i-carbon-menu text-xl mr-2" @click="openDrawer" />
+                <div
+                  class="i-carbon-menu text-xl mr-2 transition-transform transition-ease-in-out duration-200"
+                  :class="Page > 0 ? 'rotate-90' : 'rotate-0'"
+                  @click="openDrawer"
+                />
                 <div
                   v-if="showHomeAction"
                   class="i-carbon-home text-xl mr-2"
@@ -168,10 +172,12 @@ const closeDrawer = () => {
           </div>
         </div>
       </div>
+
       <UNotify ref="notifyRef" />
       <UToast ref="toastRef" />
+
       <div
-        class="overflow-auto bg-base color-base text-base dark:bg-black"
+        class="overflow-auto w-full h-full bg-base color-base text-base dark:bg-black"
         :style="{
           'padding-top': `${customBarHeight}px`,
           height: `calc(100vh - ${customBarHeight}px)`,
@@ -180,48 +186,22 @@ const closeDrawer = () => {
         <slot />
 
         <div
-          class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
+          class="transition-all transition-ease-in-out duration-200 bg-dark-100 bg-opacity-30 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
           :class="Page !== 0 ? 'opacity-100 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
 
-      <!-- <u-tabbar v-model=-barrent" :list="list" :mid-button="true"></u-tabbar> -->
+      <!-- <u-tabbar v-model-fulrrent" :list="list" :mid-button="true"></u-tabbar> -->
     </view>
-  </view>
+  </div>
 </template>
 
 <style scoped>
-.Content {
-  position: relative;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
 .drawer {
-  transition: all 0.3s;
-  overflow: hidden;
-  position: absolute;
-  right: 100%;
-  top: 0;
   width: 60%;
   height: 100%;
-  z-index: 100;
   padding-top: 100rpx;
   padding-right: 15%;
-}
-
-.Page {
-  transition: all 0.3s;
-  position: absolute;
-  overflow: hidden;
-  z-index: 100;
-  right: 0%;
-  top: 0;
-  width: 100%;
-  height: 100%;
 }
 </style>

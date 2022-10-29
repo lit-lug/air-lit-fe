@@ -40,37 +40,53 @@ function handleCloseActionSheet() {
 </script>
 
 <template>
+  <!-- #ifdef MP-WEIXIN -->
   <UDrawerPage :showShadow="false">
-    <!-- <template v-slot:navAction>
-      <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
-      <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
-    </template> -->
+    <!-- #endif -->
 
-    <template v-slot:navContent>
-      <div
-        class="base flex h-full mx-auto justify-center items-center inline-block text-ls"
-        @click="showCourseAction = !showCourseAction"
-      >
-        {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
+    <!-- #ifdef H5 -->
+    <UBasePage :showNavBar="false">
+      <template v-slot:navAction>
+        <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
         <div
-          class="transition-transform duration-300 text-2xl i-carbon-chevron-up"
-          :class="showCourseAction ? 'rotate-180' : 'rotate-0'"
+          :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+          @click="toggleDarkMode"
         />
-      </div>
-    </template>
+      </template>
+      <!-- #endif -->
 
-    <!-- timetable main content -->
-    <TimetableContent
-      :show-course-action="showCourseAction"
-      @course-item-click="handleShowActionSheet"
-    />
-    <!-- course card -->
-    <CourseActionSheet
-      :show-action-sheet="showActionSheet"
-      :course-item="clickedCourseItem"
-      @cancel="handleCloseActionSheet"
-    />
+      <template v-slot:navContent>
+        <div
+          class="base flex h-full mx-auto justify-center items-center inline-block text-ls"
+          @click="showCourseAction = !showCourseAction"
+        >
+          {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
+          <div
+            class="transition-transform duration-200 text-2xl i-carbon-chevron-up"
+            :class="showCourseAction ? 'rotate-180' : 'rotate-0'"
+          />
+        </div>
+      </template>
+
+      <!-- timetable main content -->
+      <TimetableContent
+        :show-course-action="showCourseAction"
+        @course-item-click="handleShowActionSheet"
+      />
+      <!-- course card -->
+      <CourseActionSheet
+        :show-action-sheet="showActionSheet"
+        :course-item="clickedCourseItem"
+        @cancel="handleCloseActionSheet"
+      />
+
+      <!-- #ifdef H5 -->
+    </UBasePage>
+    <!-- #endif -->
+
+    <!-- #ifdef MP-WEIXIN -->
   </UDrawerPage>
+  <!-- #endif -->
 </template>
 
 <style scoped></style>

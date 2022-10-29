@@ -31,7 +31,7 @@ function closeActionSheet() {
   <div @touchmove.prevent class="z-200">
     <div
       class="bg-base w-full min-h-10 z-220 fixed"
-      transition="all duration-300 ease-in-out"
+      transition="all duration-200 ease-in-out"
       :class="showActionSheet && courseList?.length ? 'bottom-0' : '-bottom-full'"
     >
       <div class="py-6" flex="~ col gap6">
