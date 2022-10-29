@@ -29,7 +29,6 @@ const enjoySwiper = ref(0);
 
 const swiperChange = (e: CustomEvent) => {
   enjoySwiper.value = e.detail.current;
-  console.log(e.detail.current);
 };
 </script>
 

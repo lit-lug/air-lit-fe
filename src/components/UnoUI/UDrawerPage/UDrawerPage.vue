@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
-
 import pages from "~/pages.json";
+
+withDefaults(
+  defineProps<{
+    showNavBar?: boolean;
+    pageTitle?: string;
+    showShadow?: boolean;
+  }>(),
+  {
+    showNavBar: true,
+    pageTitle: "",
+    showShadow: true,
+  }
+);
 
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
-
-withDefaults(defineProps<{ showNavBar?: boolean; pageTitle?: string }>(), {
-  showNavBar: true,
-  pageTitle: "",
-});
 
 const { notifyRef: _notifyRef, toastRef: _toastRef } = storeToRefs(usePageStore());
 
@@ -29,7 +36,6 @@ const showBackAction = ref(false);
 const showHomeAction = ref(false);
 
 const initPage = () => {
-  // console.log(getCurrentPages().length);
   NavBarColorReset();
 
   _notifyRef.value = notifyRef.value;
@@ -63,16 +69,61 @@ onReady(() => {
 onShow(() => {
   initPage();
 });
+
+const DrawerWidth = ref(100);
+const DraWidth = ref(60);
+
+const Page = ref(0);
+
+const openDrawer = () => {
+  //   if (!Open.value) return;
+  DrawerWidth.value = 100 - DraWidth.value;
+  Page.value = DraWidth.value - 15;
+  //   emit("IsOpen", true);
+};
+
+const closeDrawer = () => {
+  DrawerWidth.value = 100;
+  Page.value = 0;
+  //   emit("IsOpen", false);
+};
 </script>
 
 <template>
-  <div :class="darkMode ? 'dark' : ''">
-    <div class="bg-base color-base text-base relative">
+  <view
+    :class="darkMode ? 'dark' : ''"
+    class="Content bg-base color-base text-base"
+    :style="{
+      'padding-top': `${customBarHeight}px`,
+      height: `calc(100vh - ${customBarHeight}px)`,
+    }"
+  >
+    <view
+      class="drawer bg-base"
+      :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
+      ><slot name="drawer">
+        <button @click="openDrawer">Open</button>
+        <button @click="closeDrawer">Close</button>
+      </slot></view
+    >
+
+    <view
+      class="Page bg-base"
+      :style="
+        'left :' +
+        Page +
+        '%;transform: translate(' +
+        Page / 2 +
+        'rpx);border-radius:' +
+        Page +
+        'rpx;'
+      "
+    >
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
-        class="w-full top-0 z-90 fixed font-bold"
-        :class="darkMode ? 'bg-base' : 'bg-white'"
+        class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
+        :class="showShadow ? 'shadow' : ''"
         :style="{
           height: `${customBarHeight}px`,
         }"
@@ -84,9 +135,12 @@ onShow(() => {
           }"
           class="z-100"
         >
-          <div class="h-full text-center px-6 relative">
-            <div class="flex h-full text-xl left-2 absolute justify-center items-center">
+          <div class="h-full text-center px-6 relative color-base text-base">
+            <div
+              class="flex h-full text-xl left-2 absolute justify-center items-center dark:text-white"
+            >
               <slot name="navAction">
+                <div class="i-carbon-menu text-xl mr-2" @click="openDrawer" />
                 <div
                   v-if="showHomeAction"
                   class="i-carbon-home text-xl mr-2"
@@ -115,16 +169,59 @@ onShow(() => {
       </div>
       <UNotify ref="notifyRef" />
       <UToast ref="toastRef" />
-      <!-- page container -->
       <div
-        class="overflow-auto dark:bg-black"
+        class="overflow-auto dark:bg-black bg-base color-base text-base"
         :style="{
           height: `calc(100vh - ${customBarHeight}px)`,
           'padding-top': `${customBarHeight}px`,
         }"
       >
         <slot />
+
+        <div
+          class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
+          :class="Page !== 0 ? 'opacity-100 visible' : 'opacity-0 invisible'"
+          @click="closeDrawer"
+        />
       </div>
-    </div>
-  </div>
+
+      <!-- <u-tabbar v-model="current" :list="list" :mid-button="true"></u-tabbar> -->
+    </view>
+  </view>
 </template>
+
+<style scoped>
+.Content {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.drawer {
+  transition: all 0.3s;
+  overflow: hidden;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 99;
+  padding-top: 100rpx;
+  padding-right: 15%;
+}
+
+.Page {
+  transition: all 0.3s;
+  position: absolute;
+  overflow: hidden;
+  z-index: 999;
+  right: 0%;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+</style>

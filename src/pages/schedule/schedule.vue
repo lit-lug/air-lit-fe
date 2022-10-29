@@ -40,11 +40,11 @@ function handleCloseActionSheet() {
 </script>
 
 <template>
-  <UBasePage :showShadow="false">
-    <template v-slot:navAction>
+  <UDrawerPage :showShadow="false">
+    <!-- <template v-slot:navAction>
       <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
       <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
-    </template>
+    </template> -->
 
     <template v-slot:navContent>
       <div
@@ -70,7 +70,7 @@ function handleCloseActionSheet() {
       :course-item="clickedCourseItem"
       @cancel="handleCloseActionSheet"
     />
-  </UBasePage>
+  </UDrawerPage>
 </template>
 
 <style scoped></style>
