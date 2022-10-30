@@ -26,8 +26,9 @@ onReady(() => {});
 onShow(() => {});
 
 function btnClick() {
-  showToast({ type: "default", message: "error" });
+  showToast({ type: "success", message: "error" });
 
+  // showToast({ type: "warning", message: "error" });
   // uni.navigateTo({
   //   url: "/pages/pl/pl",
   //   animationType: "auto",

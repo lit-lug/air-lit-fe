@@ -37,7 +37,9 @@ const weAppAuth = async () => {
 // #endif
 
 onReady(async () => {
+  // #ifdef MP-WEIXIN
   await weAppAuth();
+  // #endif
 
   setTimeout(() => {
     uni.switchTab({

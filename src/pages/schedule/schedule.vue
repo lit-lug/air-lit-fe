@@ -68,6 +68,12 @@ function handleCloseActionSheet() {
         </div>
       </template>
 
+      <template v-slot:drawer>
+        <div class="base justify-center items-center h-full mx-auto flex">
+          <div class="text-center text-2xl">Drawer</div>
+        </div>
+      </template>
+
       <!-- timetable main content -->
       <TimetableContent
         :show-course-action="showCourseAction"

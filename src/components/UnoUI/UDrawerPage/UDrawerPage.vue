@@ -2,6 +2,7 @@
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 import pages from "~/pages.json";
+import { pad } from "crypto-js/pad-pkcs7";
 
 withDefaults(
   defineProps<{
@@ -75,10 +76,29 @@ const DraWidth = ref(60);
 
 const Page = ref(0);
 
+const PageStyle = computed(() => {
+  // :style="
+  //       'left :' +
+  //       Page +
+  //       '%;transform: translate(' +
+  //       Page / 2 +
+  //       'rpx)' +
+  //       ' scale(0.8, 0.8);border-radius:' +
+  //       Page +
+  //       'rpx;'
+
+  return {
+    left: Page.value + "%",
+    transform:
+      "translate(" + Page.value / 2 + "rpx)" + (Page.value > 0 ? " scale(0.8, 0.8)" : ""),
+    borderRadius: Page.value + "rpx",
+  };
+});
+
 const openDrawer = () => {
   //   if (!Open.value) return;
   DrawerWidth.value = 100 - DraWidth.value;
-  Page.value = DraWidth.value - 15;
+  Page.value = DraWidth.value - 30;
   //   emit("IsOpen", true);
 };
 
@@ -92,33 +112,24 @@ const closeDrawer = () => {
 <template>
   <div
     :class="darkMode ? 'dark' : ''"
-    class="relative w-full h-full bg-base color-base text-base overflow-hidden top-none"
+    class="relative w-full bg-blueGray color-base text-base overflow-hidden top-none"
     :style="{
-      'padding-top': `${customBarHeight}px`,
-      height: `calc(100vh - ${customBarHeight}px)`,
+      height: `100vh`,
     }"
   >
     <div
-      class="drawer z-100 top-0 absolute overflow-hidden right-full bg-base duration-200 transition-ease-in-out"
+      class="drawer z-100 top-0 absolute overflow-hidden right-full color-base text-white duration-200 transition-ease-in-out"
       :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
     >
       <slot name="drawer">
-        <button @click="openDrawer">Open</button>
-        <button @click="closeDrawer">Close</button>
+        <!-- <button @click="openDrawer">Open</button>
+        <button @click="closeDrawer">Close</button> -->
       </slot>
     </div>
 
     <view
-      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out"
-      :style="
-        'left :' +
-        Page +
-        '%;transform: translate(' +
-        Page / 2 +
-        'rpx);border-radius:' +
-        Page +
-        'rpx;'
-      "
+      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out shadow-sm"
+      :style="PageStyle"
     >
       <!-- custom navigation bar -->
       <div
@@ -187,7 +198,7 @@ const closeDrawer = () => {
 
         <div
           class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
-          :class="Page !== 0 ? 'opacity-60 visible' : 'opacity-0 invisible'"
+          :class="Page !== 0 ? 'opacity-10 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
