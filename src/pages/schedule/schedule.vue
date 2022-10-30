@@ -48,7 +48,7 @@ const setDrawer = (isOpen: boolean) => {
 
 <template>
   <!-- #ifdef MP-WEIXIN -->
-  <UDrawerPage :showShadow="false" :drawerOpen="true" ref="drawer">
+  <UDrawerPage :showShadow="false" ref="drawer">
     <!-- #endif -->
 
     <!-- #ifdef H5 -->
@@ -77,8 +77,8 @@ const setDrawer = (isOpen: boolean) => {
 
       <template v-slot:drawer>
         <div class="base justify-center items-center h-full mx-auto flex flex-col">
-          <div class="text-center text-2xl">Drawer</div>
-          <div @click="setDrawer(false)" class="text-center text-2xl">Back</div>
+          <div class="text-center text-2xl px-auto">Drawer</div>
+          <div @click="setDrawer(false)" class="text-center text-2xl px-auto">返回</div>
         </div>
       </template>
 

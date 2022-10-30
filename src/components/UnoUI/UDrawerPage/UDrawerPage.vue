@@ -97,17 +97,24 @@ const pageStyle = computed(() => {
   };
 });
 
+const drawerStyle = computed(() => {
+  // :style="'right:' + drawerWidth + '%; width:' + draWidth + '%;'"
+
+  return {
+    right: drawerWidth.value + "%",
+    width: draWidth.value + "%",
+    transform: "translate(" + drawerWidth.value / 2 + "rpx" + ")",
+    // bottom: `${statusBarHeight}px`,
+  };
+});
+
 const openDrawer = () => {
-  // if (isOpen.value) return;
-  // props.drawerOpen = true;
   drawerWidth.value = 100 - draWidth.value;
   page.value = draWidth.value - 30;
   emit("open", true);
 };
 
 const closeDrawer = () => {
-  // props.drawerOpen = false;
-  // if (!isOpen.value) return;
   drawerWidth.value = 100;
   page.value = 0;
   emit("open", false);
@@ -124,7 +131,8 @@ const handleTouchmove = (e: TouchEvent) => {
     if (page.value < 0) {
       closeDrawer();
     } else {
-      page.value = page.value + currentX < 0 ? 0 : page.value - 3;
+      page.value = page.value - 3 < 0 ? 0 : page.value - 3;
+      drawerWidth.value = drawerWidth.value + 3 > 100 ? 100 : drawerWidth.value + 3;
     }
   }
 
@@ -132,7 +140,8 @@ const handleTouchmove = (e: TouchEvent) => {
     if (page.value > 30) {
       openDrawer();
     } else {
-      page.value = page.value + currentX > 30 ? 30 : page.value + 3;
+      page.value = page.value + 3 > 30 ? 30 : page.value + 3;
+      drawerWidth.value = drawerWidth.value - 3 < 70 ? 70 : drawerWidth.value - 3;
     }
   }
 };
@@ -148,8 +157,6 @@ const handleTouchEnd = (e: TouchEvent) => {
     closeDrawer();
   }
 };
-
-console.log("drawerOpen", props.drawerOpen);
 
 if (props.drawerOpen) {
   openDrawer();
@@ -176,7 +183,7 @@ defineExpose({
       @touchstart.start="handleTouchStart"
       @touchend.end="handleTouchEnd"
       class="drawer z-100 top-0 absolute overflow-hidden right-full color-base text-white duration-200 transition-ease-in-out"
-      :style="'right:' + drawerWidth + '%; width:' + draWidth + '%;'"
+      :style="drawerStyle"
     >
       <slot name="drawer"> </slot>
     </div>
