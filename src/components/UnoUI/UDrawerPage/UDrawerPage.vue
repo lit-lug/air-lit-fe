@@ -3,18 +3,22 @@ import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 import pages from "~/pages.json";
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     showNavBar?: boolean;
     pageTitle?: string;
     showShadow?: boolean;
+    drawerOpen?: boolean;
   }>(),
   {
     showNavBar: true,
     pageTitle: "",
     showShadow: true,
+    drawerOpen: false,
   }
 );
+
+const emit = defineEmits(["open"]);
 
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
@@ -94,19 +98,20 @@ const pageStyle = computed(() => {
 });
 
 const openDrawer = () => {
-  //   if (!Open.value) return;
+  // if (isOpen.value) return;
+  // props.drawerOpen = true;
   drawerWidth.value = 100 - draWidth.value;
   page.value = draWidth.value - 30;
-  //   emit("IsOpen", true);
+  emit("open", true);
 };
 
 const closeDrawer = () => {
+  // props.drawerOpen = false;
+  // if (!isOpen.value) return;
   drawerWidth.value = 100;
   page.value = 0;
-  //   emit("IsOpen", false);
+  emit("open", false);
 };
-
-// const currentX = ref(0);
 
 const startX = ref(0);
 
@@ -119,8 +124,7 @@ const handleTouchmove = (e: TouchEvent) => {
     if (page.value < 0) {
       closeDrawer();
     } else {
-      page.value -= 2;
-      drawerWidth.value += 2;
+      page.value = page.value + currentX < 0 ? 0 : page.value - 3;
     }
   }
 
@@ -128,23 +132,35 @@ const handleTouchmove = (e: TouchEvent) => {
     if (page.value > 30) {
       openDrawer();
     } else {
-      page.value += 2;
-      drawerWidth.value -= 2;
+      page.value = page.value + currentX > 30 ? 30 : page.value + 3;
     }
   }
 };
 
-const handleTouchstart = (e: TouchEvent) => {
+const handleTouchStart = (e: TouchEvent) => {
   startX.value = e.changedTouches[0].clientX;
   lastX.value = e.changedTouches[0].clientX;
 };
-const handleTouchend = (e: TouchEvent) => {
+const handleTouchEnd = (e: TouchEvent) => {
   if (page.value > 15) {
     openDrawer();
   } else {
     closeDrawer();
   }
 };
+
+console.log("drawerOpen", props.drawerOpen);
+
+if (props.drawerOpen) {
+  openDrawer();
+} else {
+  closeDrawer();
+}
+
+defineExpose({
+  openDrawer,
+  closeDrawer,
+});
 </script>
 
 <template>
@@ -157,15 +173,12 @@ const handleTouchend = (e: TouchEvent) => {
   >
     <div
       @touchmove="handleTouchmove"
-      @touchstart.stop="handleTouchstart"
-      @touchend.end="handleTouchend"
+      @touchstart.start="handleTouchStart"
+      @touchend.end="handleTouchEnd"
       class="drawer z-100 top-0 absolute overflow-hidden right-full color-base text-white duration-200 transition-ease-in-out"
       :style="'right:' + drawerWidth + '%; width:' + draWidth + '%;'"
     >
-      <slot name="drawer">
-        <!-- <button @click="openDrawer">Open</button>
-        <button @click="closeDrawer">Close</button> -->
-      </slot>
+      <slot name="drawer"> </slot>
     </div>
 
     <view
@@ -174,6 +187,9 @@ const handleTouchend = (e: TouchEvent) => {
     >
       <!-- custom navigation bar -->
       <div
+        @touchmove="handleTouchmove"
+        @touchstart.start="handleTouchStart"
+        @touchend.end="handleTouchEnd"
         v-if="showNavBar"
         class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
         :class="showShadow ? 'shadow-sm' : ''"
@@ -238,6 +254,9 @@ const handleTouchend = (e: TouchEvent) => {
         <slot />
 
         <div
+          @touchmove="handleTouchmove"
+          @touchstart.start="handleTouchStart"
+          @touchend.end="handleTouchEnd"
           class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
           :class="isOpen ? 'opacity-10 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"

@@ -3,6 +3,7 @@ import type { CourseModel } from "~/stores/course";
 import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
 import courses from "~/static/courses";
+import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
 const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
 
 const { setDarkMode } = useAppStore();
@@ -37,11 +38,17 @@ function handleShowActionSheet(courseItem: CourseModel) {
 function handleCloseActionSheet() {
   showActionSheet.value = false;
 }
+
+const drawer = ref();
+const setDrawer = (isOpen: boolean) => {
+  console.log("setDrawer", isOpen);
+  isOpen ? drawer.value?.openDrawer() : drawer.value?.closeDrawer();
+};
 </script>
 
 <template>
   <!-- #ifdef MP-WEIXIN -->
-  <UDrawerPage :showShadow="false">
+  <UDrawerPage :showShadow="false" :drawerOpen="true" ref="drawer">
     <!-- #endif -->
 
     <!-- #ifdef H5 -->
@@ -69,8 +76,9 @@ function handleCloseActionSheet() {
       </template>
 
       <template v-slot:drawer>
-        <div class="base justify-center items-center h-full mx-auto flex">
+        <div class="base justify-center items-center h-full mx-auto flex flex-col">
           <div class="text-center text-2xl">Drawer</div>
+          <div @click="setDrawer(false)" class="text-center text-2xl">Back</div>
         </div>
       </template>
 
