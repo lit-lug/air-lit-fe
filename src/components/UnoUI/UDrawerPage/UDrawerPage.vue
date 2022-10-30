@@ -2,7 +2,6 @@
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 import pages from "~/pages.json";
-import { pad } from "crypto-js/pad-pkcs7";
 
 withDefaults(
   defineProps<{
@@ -71,41 +70,80 @@ onShow(() => {
   initPage();
 });
 
-const DrawerWidth = ref(100);
-const DraWidth = ref(60);
+const drawerWidth = ref(100);
+const draWidth = ref(60);
 
-const Page = ref(0);
+const isOpen = computed(() => {
+  return page.value > 0;
+});
 
-const PageStyle = computed(() => {
-  // :style="
-  //       'left :' +
-  //       Page +
-  //       '%;transform: translate(' +
-  //       Page / 2 +
-  //       'rpx)' +
-  //       ' scale(0.8, 0.8);border-radius:' +
-  //       Page +
-  //       'rpx;'
+const page = ref(0);
 
+const pageStyle = computed(() => {
   return {
-    left: Page.value + "%",
+    left: page.value + "%",
     transform:
-      "translate(" + Page.value / 2 + "rpx)" + (Page.value > 0 ? " scale(0.8, 0.8)" : ""),
-    borderRadius: Page.value + "rpx",
+      "translate(" +
+      page.value / 2 +
+      "rpx" +
+      // (isOpen() ? ",5%" : "") +
+      ")" +
+      (isOpen.value ? " scale(0.9, 0.9)" : ""),
+    borderRadius: page.value + "rpx",
   };
 });
 
 const openDrawer = () => {
   //   if (!Open.value) return;
-  DrawerWidth.value = 100 - DraWidth.value;
-  Page.value = DraWidth.value - 30;
+  drawerWidth.value = 100 - draWidth.value;
+  page.value = draWidth.value - 30;
   //   emit("IsOpen", true);
 };
 
 const closeDrawer = () => {
-  DrawerWidth.value = 100;
-  Page.value = 0;
+  drawerWidth.value = 100;
+  page.value = 0;
   //   emit("IsOpen", false);
+};
+
+// const currentX = ref(0);
+
+const startX = ref(0);
+
+const lastX = ref(0);
+
+const handleTouchmove = (e: TouchEvent) => {
+  const currentX = Math.floor(e.changedTouches[0].clientX - lastX.value);
+
+  if (currentX < -2 && page.value > 0) {
+    if (page.value < 0) {
+      closeDrawer();
+    } else {
+      page.value -= 2;
+      drawerWidth.value += 2;
+    }
+  }
+
+  if (currentX > 2 && page.value < 30) {
+    if (page.value > 30) {
+      openDrawer();
+    } else {
+      page.value += 2;
+      drawerWidth.value -= 2;
+    }
+  }
+};
+
+const handleTouchstart = (e: TouchEvent) => {
+  startX.value = e.changedTouches[0].clientX;
+  lastX.value = e.changedTouches[0].clientX;
+};
+const handleTouchend = (e: TouchEvent) => {
+  if (page.value > 15) {
+    openDrawer();
+  } else {
+    closeDrawer();
+  }
 };
 </script>
 
@@ -118,8 +156,11 @@ const closeDrawer = () => {
     }"
   >
     <div
+      @touchmove="handleTouchmove"
+      @touchstart.stop="handleTouchstart"
+      @touchend.end="handleTouchend"
       class="drawer z-100 top-0 absolute overflow-hidden right-full color-base text-white duration-200 transition-ease-in-out"
-      :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
+      :style="'right:' + drawerWidth + '%; width:' + draWidth + '%;'"
     >
       <slot name="drawer">
         <!-- <button @click="openDrawer">Open</button>
@@ -129,7 +170,7 @@ const closeDrawer = () => {
 
     <view
       class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out shadow-sm"
-      :style="PageStyle"
+      :style="pageStyle"
     >
       <!-- custom navigation bar -->
       <div
@@ -154,7 +195,7 @@ const closeDrawer = () => {
               <slot name="navAction">
                 <div
                   class="i-carbon-menu text-xl mr-2 transition-transform transition-ease-in-out duration-200"
-                  :class="Page > 0 ? 'rotate-90' : 'rotate-0'"
+                  :class="isOpen ? 'rotate-90' : 'rotate-0'"
                   @click="openDrawer"
                 />
                 <div
@@ -198,7 +239,7 @@ const closeDrawer = () => {
 
         <div
           class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
-          :class="Page !== 0 ? 'opacity-10 visible' : 'opacity-0 invisible'"
+          :class="isOpen ? 'opacity-10 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
