@@ -21,9 +21,9 @@ const swiperItems = ref<Array<USwiperItem>>([
   },
 ]);
 
-onReady(() => {});
+onReady(() => { });
 
-onShow(() => {});
+onShow(() => { });
 
 function btnClick() {
   showToast({ type: "success", message: "error" });

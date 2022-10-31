@@ -45,6 +45,12 @@
       "style": {
         "enablePullDownRefresh": true
       }
+    },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "enablePullDownRefresh": true
+      }
     }
   ],
   "tabBar": {
