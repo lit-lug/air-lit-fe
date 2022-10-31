@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-const query = wx.createSelectorQuery()
 const user_isfoucs = ref(false)
 const username = ref('')
 const user_focus = () => {
@@ -19,12 +18,17 @@ const pass_block = computed(() => {
     return password.value.length > 0 ? true : (pass_isfoucs.value ? true : false)
 })
 
+const cleanfocus = () => {
+    user_isfoucs.value = false
+    pass_isfoucs.value = false
+}
+
 
 
 </script>
 <template>
-    <view class="container" @touchend="test">
-        <view class="inputBox" @touchend="user_focus">
+    <view class="container" @touchend="cleanfocus">
+        <view class="inputBox" @touchend.stop="user_focus">
             <input type="text" v-model="username">
             <label class="user-label" :style="{
                 'color': user_block ? ' #00dfc4' : '', 'transform': user_block ? 'translate(10px, -18px)' : '',
@@ -34,7 +38,7 @@ const pass_block = computed(() => {
             }">First
                 Name</label>
         </view>
-        <view class="inputBox" @touchend="pass_focus">
+        <view class="inputBox" @touchend.stop="pass_focus">
             <input type="text" v-model="password">
             <label :style="{
                 'color': pass_block ? ' #1d2b3a' : '', 'transform': pass_block ? 'translate(10px, -18px)' : '',
