@@ -88,6 +88,14 @@ bottom.value = "6%";
       </div>
     </div>
 
-    <UOverlay @close="closeActionSheet" :show="showActionSheet"> </UOverlay>
+    <div
+      class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
+      :class="
+        showActionSheet && courseList?.length
+          ? 'opacity-100 visible'
+          : 'opacity-0 invisible'
+      "
+      @click="closeActionSheet"
+    />
   </div>
 </template>

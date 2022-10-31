@@ -32,25 +32,43 @@ defineExpose({
 
 <template>
   <div
-    v-if="show"
-    class="transition-all duration-300 transition-ease-in-out z-120 fixed w-full h-full flex items-center justify-center bottom-0 left-0 right-0 bg-dark duration-200 bg-opacity-20"
+    class="z-120 fixed w-full h-full flex items-center justify-center bottom-0 left-0 right-0 bg-dark duration-200 bg-opacity-20"
+    :class="{ 'opacity-0 pointer-events-none ': !show }"
   >
     <div
-      class="bg-white dark:bg-dark flex flex-col items-center justify-center bottom-0 left-0 right-0 rounded-6 shadow color-base text-base"
+      v-if="show"
+      class="bg-white dark:bg-dark flex flex-col items-center justify-center bottom-0 left-0 right-0 rounded-6 shadow color-base text-base transform-initial transition-all duration-200"
       :style="{
         width: '300rpx',
         height: '300rpx',
+        transform: !show ? 'scale(0,0)' : 'scale(1,1)',
       }"
     >
-      <div pt-5>
+      <div pt-10>
         <div class="loader absolute"></div>
       </div>
-      <div pt-10>加载中</div>
+      <div class="pt-10">加载中</div>
     </div>
   </div>
 </template>
 
 <style>
+.overflowMask {
+  position: fixed;
+  /* #ifndef APP-NVUE */
+  z-index: 1000 !important;
+  animation: aniover 0.5s;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s;
+  transition-property: background, transform;
+  transition-timing-function: ease;
+  transition-delay: 0.3s;
+  /* #endif */
+  /* #ifdef APP-NVUE */
+  background-color: rgba(0, 0, 0, 0);
+  /* #endif */
+}
+
 .loader:after,
 .loader:before {
   content: "";
