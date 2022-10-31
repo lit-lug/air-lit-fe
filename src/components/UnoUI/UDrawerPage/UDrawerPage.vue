@@ -3,18 +3,22 @@ import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
 import pages from "~/pages.json";
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     showNavBar?: boolean;
     pageTitle?: string;
     showShadow?: boolean;
+    drawerOpen?: boolean;
   }>(),
   {
     showNavBar: true,
     pageTitle: "",
     showShadow: true,
+    drawerOpen: false,
   }
 );
+
+const emit = defineEmits(["open"]);
 
 const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore());
 
@@ -70,58 +74,129 @@ onShow(() => {
   initPage();
 });
 
-const DrawerWidth = ref(100);
-const DraWidth = ref(60);
+const drawerWidth = ref(100);
+const draWidth = ref(60);
 
-const Page = ref(0);
+const isOpen = computed(() => {
+  return page.value > 0;
+});
+
+const page = ref(0);
+
+const pageStyle = computed(() => {
+  return {
+    left: page.value + "%",
+    transform:
+      "translate(" +
+      page.value / 2 +
+      "rpx" +
+      // (isOpen() ? ",5%" : "") +
+      ")" +
+      (isOpen.value ? " scale(0.9, 0.9)" : ""),
+    borderRadius: page.value + "rpx",
+  };
+});
+
+const drawerStyle = computed(() => {
+  // :style="'right:' + drawerWidth + '%; width:' + draWidth + '%;'"
+
+  return {
+    right: drawerWidth.value + "%",
+    width: draWidth.value + "%",
+    transform: "translate(" + drawerWidth.value / 2 + "rpx" + ")",
+    // bottom: `${statusBarHeight}px`,
+  };
+});
 
 const openDrawer = () => {
-  //   if (!Open.value) return;
-  DrawerWidth.value = 100 - DraWidth.value;
-  Page.value = DraWidth.value - 15;
-  //   emit("IsOpen", true);
+  drawerWidth.value = 100 - draWidth.value;
+  page.value = draWidth.value - 30;
+  emit("open", true);
 };
 
 const closeDrawer = () => {
-  DrawerWidth.value = 100;
-  Page.value = 0;
-  //   emit("IsOpen", false);
+  drawerWidth.value = 100;
+  page.value = 0;
+  emit("open", false);
 };
+
+const startX = ref(0);
+
+const lastX = ref(0);
+
+const handleTouchmove = (e: TouchEvent) => {
+  const currentX = Math.floor(e.changedTouches[0].clientX - lastX.value);
+
+  if (currentX < -2 && page.value > 0) {
+    if (page.value < 0) {
+      closeDrawer();
+    } else {
+      page.value = page.value - 3 < 0 ? 0 : page.value - 3;
+      drawerWidth.value = drawerWidth.value + 3 > 100 ? 100 : drawerWidth.value + 3;
+    }
+  }
+
+  if (currentX > 2 && page.value < 30) {
+    if (page.value > 30) {
+      openDrawer();
+    } else {
+      page.value = page.value + 3 > 30 ? 30 : page.value + 3;
+      drawerWidth.value = drawerWidth.value - 3 < 70 ? 70 : drawerWidth.value - 3;
+    }
+  }
+};
+
+const handleTouchStart = (e: TouchEvent) => {
+  startX.value = e.changedTouches[0].clientX;
+  lastX.value = e.changedTouches[0].clientX;
+};
+const handleTouchEnd = (e: TouchEvent) => {
+  if (page.value > 15) {
+    openDrawer();
+  } else {
+    closeDrawer();
+  }
+};
+
+if (props.drawerOpen) {
+  openDrawer();
+} else {
+  closeDrawer();
+}
+
+defineExpose({
+  openDrawer,
+  closeDrawer,
+});
 </script>
 
 <template>
   <div
     :class="darkMode ? 'dark' : ''"
-    class="relative w-full h-full bg-base color-base text-base overflow-hidden top-none"
+    class="relative w-full bg-blueGray color-base text-base overflow-hidden top-none"
     :style="{
-      'padding-top': `${customBarHeight}px`,
-      height: `calc(100vh - ${customBarHeight}px)`,
+      height: `100vh`,
     }"
   >
     <div
-      class="drawer z-100 top-0 absolute overflow-hidden right-full bg-base duration-200 transition-ease-in-out"
-      :style="'right:' + DrawerWidth + '%; width:' + DraWidth + '%;'"
+      @touchmove="handleTouchmove"
+      @touchstart.start="handleTouchStart"
+      @touchend.end="handleTouchEnd"
+      class="drawer z-100 top-0 absolute overflow-hidden right-full color-base text-white duration-200 transition-ease-in-out"
+      :style="drawerStyle"
     >
-      <slot name="drawer">
-        <button @click="openDrawer">Open</button>
-        <button @click="closeDrawer">Close</button>
-      </slot>
+      <slot name="drawer"> </slot>
     </div>
 
     <view
-      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out"
-      :style="
-        'left :' +
-        Page +
-        '%;transform: translate(' +
-        Page / 2 +
-        'rpx);border-radius:' +
-        Page +
-        'rpx;'
-      "
+      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out shadow-sm"
+      :style="pageStyle"
     >
       <!-- custom navigation bar -->
       <div
+        @touchmove="handleTouchmove"
+        @touchstart.start="handleTouchStart"
+        @touchend.end="handleTouchEnd"
         v-if="showNavBar"
         class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
         :class="showShadow ? 'shadow-sm' : ''"
@@ -143,7 +218,7 @@ const closeDrawer = () => {
               <slot name="navAction">
                 <div
                   class="i-carbon-menu text-xl mr-2 transition-transform transition-ease-in-out duration-200"
-                  :class="Page > 0 ? 'rotate-90' : 'rotate-0'"
+                  :class="isOpen ? 'rotate-90' : 'rotate-0'"
                   @click="openDrawer"
                 />
                 <div
@@ -186,8 +261,11 @@ const closeDrawer = () => {
         <slot />
 
         <div
+          @touchmove="handleTouchmove"
+          @touchstart.start="handleTouchStart"
+          @touchend.end="handleTouchEnd"
           class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
-          :class="Page !== 0 ? 'opacity-60 visible' : 'opacity-0 invisible'"
+          :class="isOpen ? 'opacity-10 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />
       </div>
