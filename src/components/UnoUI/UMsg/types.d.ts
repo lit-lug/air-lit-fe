@@ -1,7 +1,7 @@
-export type UMsgType = 'success' | 'error' | 'warning' | 'loading'
+export type UMsgType = 'success' | 'error' | 'warning' | 'loading' | 'hide'
 
 export interface UMsgOptions {
     type?: UMsgType
-    message: string
+    message?: string
     duration?: number
 }

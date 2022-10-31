@@ -31,8 +31,8 @@ defineExpose({
 
 const ToastClass = {
   default: "bg-gray-5 border-gray-2",
-  success: "bg-green-5 border-gray-2",
-  error: "bg-red-5 border-gray-2",
+  success: "bg-green border-gray-2",
+  error: "bg-red border-gray-2",
   warning: "bg-orange-5 border-gray-2",
   primary: "bg-blue-5 border-gray-2",
 };

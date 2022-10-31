@@ -26,20 +26,26 @@ onReady(() => {});
 const test = ref(false);
 
 onShow(() => {
-  uni.setTabBarBadge({
-    index: 0,
-    text: "+",
-  });
+  // uni.setTabBarBadge({
+  //   index: 0,
+  //   text: "+",
+  // });
+  // showMsg({ type: "success" });
+});
+
+onReady(() => {
+  showMsg({ type: "success" });
 });
 
 function btnClick() {
   // showToast({ type: "success", message: "error" });
 
-  showMsg({ type: "loading", message: "success" });
+  showMsg({ type: "loading" });
 
-  // setTimeout(() => {
-  //   test.value = false;
-  // }, 1000);
+  setTimeout(() => {
+    showMsg({ type: "hide" });
+    showToast({ type: "error", message: "失败" });
+  }, 3000);
 
   // showToast({ type: "warning", message: "error" });
   // uni.navigateTo({

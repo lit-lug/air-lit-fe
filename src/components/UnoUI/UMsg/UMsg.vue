@@ -9,11 +9,7 @@ const msgType = ref<UMsgType>("loading");
 const message = ref("");
 
 const handleShowMsg = (options: UMsgOptions) => {
-  const {
-    type = "loading",
-    message: _message = "Unable to connect to the server.",
-    duration = 2000,
-  } = options;
+  const { type = "loading", message: _message = "", duration = 0 } = options;
 
   if (duration > 0) {
     clearTimeout(timer.value);
@@ -25,7 +21,29 @@ const handleShowMsg = (options: UMsgOptions) => {
       clearTimeout(timer.value);
       timer.value = undefined;
     }, duration) as unknown) as number;
+  } else {
+    show.value = true;
+    msgType.value = type;
+    message.value = _message;
   }
+
+  if (type == "hide") {
+    show.value = false;
+    clearTimeout(timer.value);
+    timer.value = undefined;
+  }
+};
+
+const msgTypeClass = {
+  success: " bg-green-5 i-carbon-checkmark-outline",
+  error: "bg-red-5 i-carbon-close-outline",
+  warning: "bg-orange-5 i-carbon-warning",
+};
+
+const msgTypeMsg = {
+  success: "成功",
+  error: "错误",
+  warning: "警告",
 };
 
 defineExpose({
@@ -40,16 +58,22 @@ defineExpose({
   >
     <div
       v-if="show"
-      class="bg-white dark:bg-dark bg-opacity-90 dark:bg-opacity-90 flex items-center justify-center bottom-0 left-0 right-0 rounded-6 shadow color-base text-base transform-initial transition-all duration-200 backdrop-filter backdrop-blur-sm"
+      class="bg-white dark:bg-dark bg-opacity-90 dark:bg-opacity-90 bottom-0 left-0 right-0 rounded-6 shadow color-base text-base transform-initial transition-all duration-200 backdrop-filter backdrop-blur-sm"
       :style="{
         width: '300rpx',
         height: '300rpx',
         transform: !show ? 'scale(0,0)' : 'scale(1,1)',
       }"
     >
-      <div v-if="msgType === 'loading'">
+      <div v-if="msgType === 'loading'" class="text-center">
         <div class="loader"></div>
-        <div class="pt-22">{{ message }}</div>
+        <div class="pt-24">{{ message !== "" ? message : "加载中" }}</div>
+      </div>
+      <div v-else class="text-center flex flex-col p-8 items-center justify-center">
+        <div class="text-5xl" :class="msgTypeClass[msgType]"></div>
+        <div class="pt-3">
+          {{ message !== "" ? message : msgTypeMsg[msgType] }}
+        </div>
       </div>
     </div>
   </div>
@@ -60,7 +84,7 @@ defineExpose({
 .loader:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   display: block;
   width: 0.5em;
