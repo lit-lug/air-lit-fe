@@ -37,7 +37,7 @@ bottom.value = "6%";
 <template>
   <div @touchmove.prevent class="z-200">
     <div
-      class="bg-base w-full min-h-10 z-220 fixed"
+      class="bg-base w-full dark:bg-dark min-h-10 z-220 fixed"
       transition="all duration-200 ease-in-out"
       :style="{
         bottom: showActionSheet && courseList?.length ? bottom : '-100%',

@@ -35,7 +35,7 @@ onShow(() => {
 function btnClick() {
   // showToast({ type: "success", message: "error" });
 
-  showMsg({ type: "success", message: "success" });
+  showMsg({ type: "loading", message: "success" });
 
   // setTimeout(() => {
   //   test.value = false;

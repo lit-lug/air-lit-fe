@@ -5,24 +5,27 @@ import type { UMsgOptions, UMsgType } from "./types";
 
 const timer = ref<number | undefined>(undefined);
 const show = ref(false);
-const notifyType = ref<UMsgType>("default");
+const msgType = ref<UMsgType>("loading");
 const message = ref("");
 
 const handleShowMsg = (options: UMsgOptions) => {
   const {
-    type = "default",
+    type = "loading",
     message: _message = "Unable to connect to the server.",
     duration = 2000,
   } = options;
-  clearTimeout(timer.value);
-  show.value = true;
-  notifyType.value = type;
-  message.value = _message;
-  timer.value = (setTimeout(() => {
-    show.value = false;
+
+  if (duration > 0) {
     clearTimeout(timer.value);
-    timer.value = undefined;
-  }, duration) as unknown) as number;
+    show.value = true;
+    msgType.value = type;
+    message.value = _message;
+    timer.value = (setTimeout(() => {
+      show.value = false;
+      clearTimeout(timer.value);
+      timer.value = undefined;
+    }, duration) as unknown) as number;
+  }
 };
 
 defineExpose({
@@ -32,43 +35,27 @@ defineExpose({
 
 <template>
   <div
-    class="z-120 fixed w-full h-full flex items-center justify-center bottom-0 left-0 right-0 bg-dark duration-200 bg-opacity-20"
-    :class="{ 'opacity-0 pointer-events-none ': !show }"
+    class="z-120 fixed w-full opacity-0 h-full flex items-center justify-center bottom-0 left-0 right-0 bg-dark duration-200 bg-opacity-20"
+    :class="!show ? 'opacity-0 invisible' : 'opacity-100 visible'"
   >
     <div
       v-if="show"
-      class="bg-white dark:bg-dark flex flex-col items-center justify-center bottom-0 left-0 right-0 rounded-6 shadow color-base text-base transform-initial transition-all duration-200"
+      class="bg-white dark:bg-dark bg-opacity-90 dark:bg-opacity-90 flex items-center justify-center bottom-0 left-0 right-0 rounded-6 shadow color-base text-base transform-initial transition-all duration-200 backdrop-filter backdrop-blur-sm"
       :style="{
         width: '300rpx',
         height: '300rpx',
         transform: !show ? 'scale(0,0)' : 'scale(1,1)',
       }"
     >
-      <div pt-10>
-        <div class="loader absolute"></div>
+      <div v-if="msgType === 'loading'">
+        <div class="loader"></div>
+        <div class="pt-22">{{ message }}</div>
       </div>
-      <div class="pt-10">加载中</div>
     </div>
   </div>
 </template>
 
 <style>
-.overflowMask {
-  position: fixed;
-  /* #ifndef APP-NVUE */
-  z-index: 1000 !important;
-  animation: aniover 0.5s;
-  background-color: rgba(0, 0, 0, 0.3);
-  transition-duration: 0.5s;
-  transition-property: background, transform;
-  transition-timing-function: ease;
-  transition-delay: 0.3s;
-  /* #endif */
-  /* #ifdef APP-NVUE */
-  background-color: rgba(0, 0, 0, 0);
-  /* #endif */
-}
-
 .loader:after,
 .loader:before {
   content: "";

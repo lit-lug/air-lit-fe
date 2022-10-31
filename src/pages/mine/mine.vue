@@ -9,7 +9,7 @@ onReady(() => {});
 onShow(() => {});
 
 onPullDownRefresh(() => {
-  showMsg({ type: "success", message: "success" });
+  showMsg({ type: "loading", message: "success" });
 
   //
   uni.stopPullDownRefresh();
@@ -44,7 +44,6 @@ onPullDownRefresh(() => {
     </div>
     <div class="bg-base-second m-6 rounded-lg p-6 border-base">
       <div class="text-center">
-        abcdefghijklmnopqrstuvwxyz
         <div class="color-base-second" text="red right" p-2>1234567890</div>
       </div>
     </div>

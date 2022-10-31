@@ -77,11 +77,10 @@ function getCoursePosition(item: CourseModel) {
     :style="{ height: `calc(100vh - ${customBarHeight}px)` }"
   >
     <div
-      :class="darkMode ? 'bg-base' : 'bg-white'"
-      class="w-full top-0 z-10 fixed opacity-320"
+      class="w-full top-0 z-10 fixed bg-white dark:bg-dark"
       :style="{
         'padding-top': `${customBarHeight}px`,
-        backdropFilter: 'blur(5px)',
+        //   backdropFilter: `blur(5px)`,
       }"
     >
       <TimetableAction :show-course-action="showCourseAction" />

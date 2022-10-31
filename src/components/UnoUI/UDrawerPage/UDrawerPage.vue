@@ -48,6 +48,7 @@ const initPage = () => {
 
   _notifyRef.value = notifyRef.value;
   _toastRef.value = toastRef.value;
+  _msgRef.value = msgRef.value;
 
   const isTabPage = pages.tabBar.list.some(
     (item) => item.pagePath === getCurrentPages().pop()?.route
@@ -193,7 +194,7 @@ defineExpose({
     </div>
 
     <view
-      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out shadow-sm"
+      class="z-100 top-0 right-0 absolute overflow-hidden h-full w-full duration-200 transition-ease-in-out"
       :style="pageStyle"
     >
       <!-- custom navigation bar -->
@@ -206,6 +207,7 @@ defineExpose({
         :class="showShadow ? 'shadow-sm' : ''"
         :style="{
           height: `${customBarHeight}px`,
+          //backdropFilter: `blur(5px)`,
         }"
       >
         <div

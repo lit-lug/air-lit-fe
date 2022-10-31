@@ -1,4 +1,4 @@
-export type UMsgType = 'default' | 'success' | 'error' | 'warning' | 'primary' | 'loading'
+export type UMsgType = 'success' | 'error' | 'warning' | 'loading'
 
 export interface UMsgOptions {
     type?: UMsgType
