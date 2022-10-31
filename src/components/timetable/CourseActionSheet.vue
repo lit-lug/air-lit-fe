@@ -23,6 +23,7 @@ function navigateToDetail(courseItem: CourseModel) {
   });
 }
 function closeActionSheet() {
+  console.log("closeActionSheet");
   emit("cancel");
 }
 
@@ -74,9 +75,9 @@ bottom.value = "6%";
         </template>
       </div>
       <div
-        class="flex pb-safe h-12"
-        text="center lg dark:!white"
-        b="t-4 gray-200 dark:op-20"
+        class="flex pb-safe h-10"
+        text="center lg "
+        b="t-4 gray-200 "
         justify-center
         items-center
         hover-class="bg-gray-200 bg-opacity-50"
@@ -86,14 +87,7 @@ bottom.value = "6%";
         关闭
       </div>
     </div>
-    <div
-      class="bg-dark-100 bg-opacity-50 transition-all top-0 right-0 bottom-0 left-0 z-90 fixed"
-      :class="
-        showActionSheet && courseList?.length
-          ? 'opacity-100 visible'
-          : 'opacity-0 invisible'
-      "
-      @click="closeActionSheet"
-    />
+
+    <UOverlay @close="closeActionSheet" :show="showActionSheet"> </UOverlay>
   </div>
 </template>

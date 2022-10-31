@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
+import type { UMsgOptions } from "../UMsg/types";
 import pages from "~/pages.json";
 
 const props = withDefaults(
@@ -24,7 +25,9 @@ const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore()
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
 
-const { notifyRef: _notifyRef, toastRef: _toastRef } = storeToRefs(usePageStore());
+const { notifyRef: _notifyRef, toastRef: _toastRef, msgRef: _msgRef } = storeToRefs(
+  usePageStore()
+);
 
 const handleNavigateBack = () => uni.navigateBack({});
 
@@ -34,6 +37,7 @@ const toggleDarkMode = () => setDarkMode(!darkMode.value);
 
 const notifyRef = ref<{ handleShowNotify: (options: UNotifyOptions) => {} }>();
 const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>();
+const msgRef = ref<{ handleShowMsg: (options: UMsgOptions) => {} }>();
 
 const showBackAction = ref(false);
 
@@ -250,6 +254,7 @@ defineExpose({
 
       <UNotify ref="notifyRef" />
       <UToast ref="toastRef" />
+      <UMsg ref="msgRef" />
 
       <div
         class="overflow-auto w-full h-full bg-base color-base text-base dark:bg-black"
@@ -264,7 +269,7 @@ defineExpose({
           @touchmove="handleTouchmove"
           @touchstart.start="handleTouchStart"
           @touchend.end="handleTouchEnd"
-          class="transition-all transition-ease-in-out bg-dark duration-200 transition-all top-0 right-0 bottom-0 left-0 z-100 fixed"
+          class="transition-all transition-ease-in-out bg-dark duration-200 top-0 right-0 bottom-0 left-0 z-100 fixed"
           :class="isOpen ? 'opacity-10 visible' : 'opacity-0 invisible'"
           @click="closeDrawer"
         />

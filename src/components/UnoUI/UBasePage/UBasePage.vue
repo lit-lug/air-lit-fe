@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UNotifyOptions } from "../UNotify/types";
 import type { UToastOptions } from "../UToast/types";
+import type { UMsgOptions } from "../UMsg/types";
 import pages from "~/pages.json";
 
 withDefaults(
@@ -20,7 +21,9 @@ const { darkMode, customBarHeight, statusBarHeight } = storeToRefs(useAppStore()
 
 const { NavBarColorReset, setDarkMode } = useAppStore();
 
-const { notifyRef: _notifyRef, toastRef: _toastRef } = storeToRefs(usePageStore());
+const { notifyRef: _notifyRef, toastRef: _toastRef, msgRef: _msgRef } = storeToRefs(
+  usePageStore()
+);
 
 const handleNavigateBack = () => uni.navigateBack({});
 
@@ -30,6 +33,7 @@ const toggleDarkMode = () => setDarkMode(!darkMode.value);
 
 const notifyRef = ref<{ handleShowNotify: (options: UNotifyOptions) => {} }>();
 const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>();
+const msgRef = ref<{ handleShowMsg: (options: UMsgOptions) => {} }>();
 
 const showBackAction = ref(false);
 
@@ -40,6 +44,7 @@ const initPage = () => {
 
   _notifyRef.value = notifyRef.value;
   _toastRef.value = toastRef.value;
+  _msgRef.value = msgRef.value;
 
   const isTabPage = pages.tabBar.list.some(
     (item) => item.pagePath === getCurrentPages().pop()?.route
@@ -121,6 +126,7 @@ onShow(() => {
       </div>
       <UNotify ref="notifyRef" />
       <UToast ref="toastRef" />
+      <UMsg ref="msgRef" />
       <!-- page container -->
       <div
         class="overflow-auto dark:bg-black"

@@ -2,7 +2,7 @@
 import { USwiperItem } from "~/components/USwiper/types";
 import USwiper from "~/components/USwiper/USwiper.vue";
 
-const { showNotify, showToast } = usePageStore();
+const { showNotify, showToast, showMsg } = usePageStore();
 
 const swiperItems = ref<Array<USwiperItem>>([
   {
@@ -21,12 +21,25 @@ const swiperItems = ref<Array<USwiperItem>>([
   },
 ]);
 
-onReady(() => { });
+onReady(() => {});
 
-onShow(() => { });
+const test = ref(false);
+
+onShow(() => {
+  uni.setTabBarBadge({
+    index: 0,
+    text: "+",
+  });
+});
 
 function btnClick() {
-  showToast({ type: "success", message: "error" });
+  // showToast({ type: "success", message: "error" });
+
+  showMsg({ type: "success", message: "success" });
+
+  // setTimeout(() => {
+  //   test.value = false;
+  // }, 1000);
 
   // showToast({ type: "warning", message: "error" });
   // uni.navigateTo({
@@ -45,9 +58,7 @@ function btnClick() {
     <!-- 主体内容 -->
     <div>
       <USwiper :swiperItems="swiperItems"></USwiper>
-    </div>
-
-    <div class="px-5 mt-10">
+      <div class="px-5 mt-10"></div>
       <UButton type="error" class="w-full" @click="btnClick"> Show Error Notify </UButton>
     </div>
   </UBasePage>
