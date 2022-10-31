@@ -11,20 +11,19 @@ const message = ref("");
 const handleShowMsg = (options: UMsgOptions) => {
   const { type = "loading", message: _message = "", duration = 0 } = options;
 
+  show.value = true;
+  msgType.value = type;
+  message.value = _message;
+
+  console.log("handleShowMsg", options);
+
   if (duration > 0) {
     clearTimeout(timer.value);
-    show.value = true;
-    msgType.value = type;
-    message.value = _message;
     timer.value = (setTimeout(() => {
       show.value = false;
       clearTimeout(timer.value);
       timer.value = undefined;
     }, duration) as unknown) as number;
-  } else {
-    show.value = true;
-    msgType.value = type;
-    message.value = _message;
   }
 
   if (type == "hide") {
@@ -44,6 +43,7 @@ const msgTypeMsg = {
   success: "成功",
   error: "错误",
   warning: "警告",
+  loading: "加载中",
 };
 
 defineExpose({
@@ -67,12 +67,14 @@ defineExpose({
     >
       <div v-if="msgType === 'loading'" class="text-center">
         <div class="loader"></div>
-        <div class="pt-24">{{ message !== "" ? message : "加载中" }}</div>
+        <div class="pt-24">
+          {{ message.length > 0 ? message : msgTypeMsg["loading"] }}
+        </div>
       </div>
       <div v-else class="text-center flex flex-col p-8 items-center justify-center">
         <div class="text-5xl" :class="msgTypeClass[msgType]"></div>
         <div class="pt-3">
-          {{ message !== "" ? message : msgTypeMsg[msgType] }}
+          {{ message.length > 0 ? message : msgTypeMsg[msgType] }}
         </div>
       </div>
     </div>

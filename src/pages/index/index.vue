@@ -34,7 +34,7 @@ onShow(() => {
 });
 
 onReady(() => {
-  showMsg({ type: "success" });
+  // showMsg({ type: "success" });
 });
 
 function btnClick() {
@@ -44,6 +44,9 @@ function btnClick() {
 
   setTimeout(() => {
     showMsg({ type: "hide" });
+
+    showMsg({ type: "error", duration: 2000, message: "失败xxxxxxxxxxx" });
+
     showToast({ type: "error", message: "失败" });
   }, 3000);
 
@@ -65,6 +68,9 @@ function btnClick() {
     <div>
       <USwiper :swiperItems="swiperItems"></USwiper>
       <div class="px-5 mt-10"></div>
+
+      <UCard></UCard>
+
       <UButton type="error" class="w-full" @click="btnClick"> Show Error Notify </UButton>
     </div>
   </UBasePage>

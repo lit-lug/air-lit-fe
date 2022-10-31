@@ -11,13 +11,13 @@
   },
   "pages": [
     {
-      "path": "pages/splash/splash",
+      "path": "pages/index/index",
       "style": {
         "enablePullDownRefresh": true
       }
     },
     {
-      "path": "pages/index/index",
+      "path": "pages/splash/splash",
       "style": {
         "enablePullDownRefresh": true
       }
