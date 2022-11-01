@@ -54,23 +54,28 @@
     }
   ],
   "tabBar": {
-    "color": "",
-    "selectedColor": "",
+    "color": "@bgColor",
+    "selectedColor": "@selectedColor",
     "backgroundColor": "@tabBgColor",
     "position": "bottom",
-    "borderStyle": "black",
+    "borderStyle": "@tabBorderStyle",
     "list": [
       {
         "pagePath": "pages/index/index",
-
+        "iconPath": "@scheduleIconPath",
+        "selectedIconPath": "@scheduleSelectedIconPath",
         "text": "时刻"
       },
       {
         "pagePath": "pages/schedule/schedule",
+        "iconPath": "@scheduleIconPath",
+        "selectedIconPath": "@scheduleSelectedIconPath",
         "text": "课表"
       },
       {
         "pagePath": "pages/mine/mine",
+        "iconPath": "@scheduleIconPath",
+        "selectedIconPath": "@scheduleSelectedIconPath",
         "text": "我的"
       }
     ]

@@ -80,17 +80,17 @@ export const useAppStore = defineStore(
 
         if (darkMode.value) {
           uni.setTabBarStyle({
-            backgroundColor: "#222222",
-            borderStyle: "black",
-            color: "#ffffff",
+            backgroundColor: "#2c2c2c",
+            borderStyle: "white",
+            color: "#999999",
             selectedColor: "#ffffff",
           });
         } else {
           uni.setTabBarStyle({
             backgroundColor: "#ffffff",
-            borderStyle: "white",
-            color: "#222222",
-            selectedColor: "#000000",
+            borderStyle: "black",
+            color: "#999999",
+            selectedColor: "#2c2c2c",
           });
         }
       }

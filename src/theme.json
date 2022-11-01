@@ -1,13 +1,17 @@
 {
   "dark": {
-    "bgColor": "#222222",
-    "bgColorBottom": "#222222",
-    "bgColorTop": "#222222",
+    "bgColor": "#2c2c2c",
+    "bgColorBottom": "#2c2c2c",
+    "bgColorTop": "#2c2c2c",
     "bgTxtStyle": "light",
-    "navBgColor": "#222222",
+    "navBgColor": "#2c2c2c",
     "navTxtStyle": "white",
-    "tabBgColor": "#222222",
-    "tabBorderStyle": "white"
+    "tabBgColor": "#2c2c2c",
+    "tabBorderStyle": "white",
+    "tabColor": "#999999",
+    "selectedColor": "#999999",
+    "scheduleIconPath": "static/img/tab-bar-schedule.png",
+    "scheduleSelectedIconPath": "static/img/tab-bar-schedule-s.png"
   },
   "light": {
     "bgColor": "#FFFFFF",
@@ -17,6 +21,10 @@
     "navBgColor": "#FFFFFF",
     "navTxtStyle": "white",
     "tabBgColor": "#FFFFFF",
-    "tabBorderStyle": "black"
+    "tabBorderStyle": "black",
+    "tabColor": "#999999",
+    "selectedColor": "#FFFFFF",
+    "scheduleIconPath": "static/img/tab-bar-schedule.png",
+    "scheduleSelectedIconPath": "static/img/tab-bar-schedule-s.png"
   }
 }

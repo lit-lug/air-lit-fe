@@ -15,7 +15,7 @@ const handleShowMsg = (options: UMsgOptions) => {
   msgType.value = type;
   message.value = _message;
 
-  console.log("handleShowMsg", options);
+  //   console.log("handleShowMsg", options);
 
   if (duration > 0) {
     clearTimeout(timer.value);
