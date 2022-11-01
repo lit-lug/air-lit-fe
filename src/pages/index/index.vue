@@ -107,16 +107,20 @@ function btnClick() {
 
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
-      <div class="grid grid-cols-3 grid-rows-3 text-center gap-2">
-        <div class="p-2 m-2">考试成绩</div>
+      <div class="grid grid-cols-3 grid-rows-2 text-center gap-2">
+        <div
+          class="p-2 m-2 text-center flex flex-col justify-center items-center text-green-500"
+          hover-class="opacity-50"
+          :hover-stay-time="150"
+        >
+          <div class="i-carbon-chart-stepper text-2xl font-bold"></div>
+          <div class="text-24rpx font-bold">考试成绩</div>
+        </div>
         <div class="p-2 m-2">等级成绩</div>
         <div class="p-2 m-2">宿舍用电</div>
         <div class="p-2 m-2">4</div>
         <div class="p-2 m-2">5</div>
         <div class="p-2 m-2">6</div>
-        <div class="p-2 m-2">7</div>
-        <div class="p-2 m-2">8</div>
-        <div class="p-2 m-2">9</div>
       </div>
     </div>
 
