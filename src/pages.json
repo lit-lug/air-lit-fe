@@ -62,20 +62,20 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "@indexIconPath",
-        "selectedIconPath": "@indexSelectedIconPath",
+        "iconPath": "static/img/index.png",
+        "selectedIconPath": "static/img/index-s.png",
         "text": "时刻"
       },
       {
         "pagePath": "pages/schedule/schedule",
-        "iconPath": "@scheduleIconPath",
-        "selectedIconPath": "@scheduleSelectedIconPath",
+        "iconPath": "static/img/schedule.png",
+        "selectedIconPath": "static/img/schedule-s.png",
         "text": "课表"
       },
       {
         "pagePath": "pages/mine/mine",
-        "iconPath": "@mineIconPath",
-        "selectedIconPath": "@mineSelectedIconPath",
+        "iconPath": "static/img/mine.png",
+        "selectedIconPath": "static/img/mine-s.png",
         "text": "我的"
       }
     ]
