@@ -70,7 +70,7 @@ function btnClick() {
     <USwiper :swiperItems="swiperItems"></USwiper>
 
     <div
-      class="flex flex-row justify-between p-2 m-3 dark:bg-dark bg-white rounded-lg shadow items-center"
+      class="flex flex-row justify-between p-2 m-3 dark:bg-dark bg-white rounded-lg shadow items-center shadow-sm"
     >
       <div class="text-sm font-bold">11月1日 星期二</div>
       <div class="text-sm font-bold">第 10 周</div>
@@ -78,10 +78,10 @@ function btnClick() {
 
     <!-- 今日课程 -->
 
-    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow">
+    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">今日课程</div>
-        <div class="text-sm">共 2 门</div>
+        <div class="text-sm text-gray dark:text-gray-2">共 2 门</div>
       </div>
 
       <!-- 分割线 -->
@@ -97,7 +97,7 @@ function btnClick() {
 
     <!-- grid -->
 
-    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow">
+    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">功能列表</div>
         <!-- <div class="text-sm justify-end items-end">共 3 门</div> -->
@@ -114,7 +114,7 @@ function btnClick() {
           :hover-stay-time="150"
         >
           <div class="i-carbon-chart-stepper text-2xl font-bold"></div>
-          <div class="text-24rpx font-bold">考试成绩</div>
+          <div class="text-24rpx">考试成绩</div>
         </div>
         <div class="p-2 m-2">等级成绩</div>
         <div class="p-2 m-2">宿舍用电</div>
