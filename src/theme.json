@@ -6,12 +6,16 @@
     "bgTxtStyle": "light",
     "navBgColor": "#2c2c2c",
     "navTxtStyle": "white",
-    "tabBgColor": "#2c2c2c",
+    "tabBgColor": "#151515",
     "tabBorderStyle": "white",
     "tabColor": "#999999",
-    "selectedColor": "#999999",
-    "scheduleIconPath": "static/img/tab-bar-schedule.png",
-    "scheduleSelectedIconPath": "static/img/tab-bar-schedule-s.png"
+    "selectedColor": "#2c5ccb",
+    "indexIconPath": "static/img/index.png",
+    "indexSelectedIconPath": "static/img/index-s.png",
+    "scheduleIconPath": "static/img/schedule.png",
+    "scheduleSelectedIconPath": "static/img/schedule-s.png",
+    "mineIconPath": "static/img/mine.png",
+    "mineSelectedIconPath": "static/img/mine-s.png"
   },
   "light": {
     "bgColor": "#FFFFFF",
@@ -23,8 +27,12 @@
     "tabBgColor": "#FFFFFF",
     "tabBorderStyle": "black",
     "tabColor": "#999999",
-    "selectedColor": "#FFFFFF",
-    "scheduleIconPath": "static/img/tab-bar-schedule.png",
-    "scheduleSelectedIconPath": "static/img/tab-bar-schedule-s.png"
+    "selectedColor": "#2c5ccb",
+    "indexIconPath": "static/img/index.png",
+    "indexSelectedIconPath": "static/img/index-s.png",
+    "scheduleIconPath": "static/img/schedule.png",
+    "scheduleSelectedIconPath": "static/img/schedule-s.png",
+    "mineIconPath": "static/img/mine.png",
+    "mineSelectedIconPath": "static/img/mine-s.png"
   }
 }

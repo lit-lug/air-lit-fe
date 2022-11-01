@@ -83,7 +83,7 @@ onShow(() => {
       <div
         v-if="showNavBar"
         class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
-        :class="showShadow ? 'shadow-sm' : ''"
+        :class="showShadow ? 'shadow-sm ' : ''"
         :style="{
           height: `${customBarHeight}px`,
         }"

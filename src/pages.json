@@ -62,8 +62,8 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "@scheduleIconPath",
-        "selectedIconPath": "@scheduleSelectedIconPath",
+        "iconPath": "@indexIconPath",
+        "selectedIconPath": "@indexSelectedIconPath",
         "text": "时刻"
       },
       {
@@ -74,8 +74,8 @@
       },
       {
         "pagePath": "pages/mine/mine",
-        "iconPath": "@scheduleIconPath",
-        "selectedIconPath": "@scheduleSelectedIconPath",
+        "iconPath": "@mineIconPath",
+        "selectedIconPath": "@mineSelectedIconPath",
         "text": "我的"
       }
     ]

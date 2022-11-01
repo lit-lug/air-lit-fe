@@ -32,14 +32,26 @@ const isCurrentWeek = (weekIndex: number) => {
       justify-evenly
       items-center
       b="y-transparent x-none t-4 b-4"
-      :class="isCurrentWeek(index) ? 'b-b-rounded b-b-blue-400' : ''"
+      :class="isCurrentWeek(index) ? 'current-day' : ''"
     >
-      <p class="text-xs font-600" :class="isCurrentWeek(index) ? 'text-blue' : ''">
+      <p class="text-xs font-600" :class="isCurrentWeek(index) ? 'current-day-text' : ''">
         {{ weekTitle[index] }}
       </p>
-      <p class="text-xs font-400" :class="isCurrentWeek(index) ? 'text-blue' : ''">
+      <p class="text-xs font-400" :class="isCurrentWeek(index) ? 'current-day-text' : ''">
         {{ item }}
       </p>
     </div>
   </div>
 </template>
+
+<style>
+.current-day {
+  border-radius: 2rpx;
+  border-bottom-color: #7395e2;
+}
+
+.current-day-text {
+  color: #7395e2;
+  font-weight: bold;
+}
+</style>
