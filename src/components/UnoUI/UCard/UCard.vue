@@ -1,15 +1,23 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    showShadow?: boolean;
+  }>(),
+  {
+    showShadow: true,
+  }
+);
+</script>
 
 <template>
   <div
-    class="rounded-8 bg-orange-5/80 dark:bg-orange-5 text-white m-10 justify-center items-center flex flex-col shadow"
-    :style="{
-      width: `300rpx`,
-      height: `300rpx`,
-    }"
+    class="rounded-lg text-white text-base flex justify-center items-center shadow py-2"
+    :class="showShadow ? 'shadow' : ''"
   >
     <slot />
 
-    112312
+    112312 asdads
   </div>
 </template>
+
+<style></style>
