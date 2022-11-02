@@ -69,19 +69,19 @@ function btnClick() {
 
     <USwiper :swiperItems="swiperItems"></USwiper>
 
-    <div
+    <!-- <div
       class="flex flex-row justify-between p-2 m-3 dark:bg-dark bg-white rounded-lg shadow items-center shadow-sm"
     >
       <div class="text-sm font-bold">11月1日 星期二</div>
       <div class="text-sm font-bold">第 10 周</div>
-    </div>
+    </div> -->
 
     <!-- 今日课程 -->
 
     <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">今日课程</div>
-        <div class="text-sm text-gray dark:text-gray-2">共 2 门</div>
+        <div class="text-sm text-gray dark:text-gray-2">第 10 周 | 共 2 门</div>
       </div>
 
       <!-- 分割线 -->

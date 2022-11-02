@@ -21,36 +21,47 @@ onPullDownRefresh(() => {
     <!-- 标题栏 -->
     <template v-slot:navContent>我的</template>
 
-    <div class="p-6" flex="~ col gap2" justify-center>
-      <UButton
-        type="error"
-        class="w-full"
-        @click="showNotify({ type: 'error', message: 'error' })"
+    <!-- 内容 -->
+    <div flex="~ col" justify-center>
+      <div
+        class="flex flex-row justify-between p-2 m-3 dark:bg-dark bg-white rounded-lg shadow items-center shadow-sm"
       >
-        Show Error Notify
-      </UButton>
-      <UButton
-        type="primary"
-        class="w-full"
-        @click="showNotify({ type: 'primary', message: 'primary' })"
-      >
-        Show Primary Notify
-      </UButton>
-      <UButton bg="bg-orange" class="w-full" icon="i-carbon-notification">
-        Custom Button
-      </UButton>
-      <!-- 跳转登陆页 -->
-      <UButton type="primary" class="w-full" @click="gologin"> 登陆 </UButton>
-    </div>
-    <div class="bg-base-second m-6 rounded-lg p-6 border-base">
-      <div class="text-center">
-        <div class="color-base-second" text="red right" p-2>1234567890</div>
+        <div>头像 | 用户信息</div>
       </div>
-    </div>
-    <div class="p-6">
-      <UButton type="default" @click="showToast({ type: 'default', message: 'error' })">
-        Show Toast
-      </UButton>
+
+      <div
+        class="flex flex-col justify-center p-2 m-3 dark:bg-dark bg-white rounded-lg shadow shadow-sm"
+      >
+        <div
+          class="flex flex-row justify-between items-center p-2"
+          hover-class="opacity-50"
+        >
+          <div>选项1</div>
+          <!-- 箭头 -->
+          <div class="i-carbon-chevron-right"></div>
+        </div>
+        <!-- <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div> -->
+        <div
+          class="flex flex-row justify-between items-center p-2"
+          hover-class="opacity-50"
+        >
+          <div class="flex flex-row justify-start items-center gap-1">
+            <div class="i-carbon:settings"></div>
+            <div>选项1</div>
+          </div>
+          <!-- 箭头 -->
+          <div class="i-carbon-chevron-right"></div>
+        </div>
+        <!-- <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div> -->
+        <div
+          class="flex flex-row justify-between items-center p-2"
+          hover-class="opacity-50"
+        >
+          <div>选项3</div>
+          <!-- 箭头 -->
+          <div class="i-carbon-chevron-right"></div>
+        </div>
+      </div>
     </div>
   </UBasePage>
 </template>
