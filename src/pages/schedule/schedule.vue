@@ -64,13 +64,13 @@ const setDrawer = (isOpen: boolean) => {
 
       <template v-slot:navContent>
         <div
-          class="base flex h-full mx-auto justify-center items-center inline-block text-ls"
+          class="base flex h-full mx-auto justify-center items-center text-ls"
           @click="showCourseAction = !showCourseAction"
         >
           {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
           <div
             class="transition-transform duration-200 text-2xl i-carbon-chevron-up"
-            :class="showCourseAction ? 'rotate-180' : 'rotate-0'"
+            :class="showCourseAction ? 'rotate-to-180' : 'rotate-to-0'"
           />
         </div>
       </template>
@@ -103,4 +103,12 @@ const setDrawer = (isOpen: boolean) => {
   <!-- #endif -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.rotate-to-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-to-0 {
+  transform: rotate(0deg);
+}
+</style>
