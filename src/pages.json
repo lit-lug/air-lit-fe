@@ -51,6 +51,12 @@
       "style": {
         "enablePullDownRefresh": true
       }
+    },
+    {
+      "path": "pages/mine/account/account",
+      "style": {
+        "enablePullDownRefresh": true
+      }
     }
   ],
   "tabBar": {

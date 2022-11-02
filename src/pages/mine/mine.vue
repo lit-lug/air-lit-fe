@@ -17,6 +17,12 @@ onPullDownRefresh(() => {
   //
   uni.stopPullDownRefresh();
 });
+
+const toAccountPage = () => {
+  uni.navigateTo({
+    url: "/pages/mine/account/account",
+  });
+};
 </script>
 
 <template>
@@ -41,7 +47,9 @@ onPullDownRefresh(() => {
         <!-- 学号姓名 -->
         <div class="mr-10 flex flex-col justify-center items-start gap-1">
           <div class="text-lg font-bold">李跃萌</div>
-          <div class="text-sm font-medium text-gray-500">ID: B19071121</div>
+          <div class="text-sm font-medium text-gray-5 dark:text-gray-4">
+            ID: B19071121
+          </div>
         </div>
 
         <!-- 账号状态 -->
@@ -52,17 +60,22 @@ onPullDownRefresh(() => {
         </div>
       </div>
     </div>
-    <!-- 选项 -->
+
+    <!-- 选项 todo: 抽离成 cell 组件 -->
 
     <div
       class="flex flex-col justify-center p-2 m-3 dark:bg-dark bg-white rounded-lg shadow shadow-sm"
     >
       <div
-        class="flex flex-row justify-between items-center p-2"
+        class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
+        @click="toAccountPage"
       >
-        <div>选项1</div>
-        <!-- 箭头 -->
+        <div class="flex flex-row items-center gap-2">
+          <div class="i-carbon:account text-xl"></div>
+          <div>账户管理</div>
+        </div>
+
         <div class="i-carbon-chevron-right"></div>
       </div>
 
@@ -71,19 +84,36 @@ onPullDownRefresh(() => {
         hover-class="opacity-50"
       >
         <div class="flex flex-row items-center gap-2">
-          <div class="i-carbon:settings"></div>
-          <div>选项1</div>
+          <div class="i-carbon:settings text-xl"></div>
+          <div>公众号配置</div>
         </div>
 
         <div class="i-carbon-chevron-right"></div>
       </div>
 
       <div
-        class="flex flex-row justify-between items-center p-2"
+        class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
       >
-        <div>选项3</div>
-        <!-- 箭头 -->
+        <div class="flex flex-row items-center gap-2 mr-20">
+          <div class="i-carbon:catalog text-xl"></div>
+          <div>更新日志</div>
+        </div>
+
+        <div class="text-sm text-gray-5 dark:text-gray-4 ml-20">V2.1</div>
+
+        <div class="i-carbon-chevron-right"></div>
+      </div>
+
+      <div
+        class="flex flex-row justify-between items-center p-2 my-2"
+        hover-class="opacity-50"
+      >
+        <div class="flex flex-row items-center gap-2">
+          <div class="i-carbon:information text-xl"></div>
+          <div>关于我们</div>
+        </div>
+
         <div class="i-carbon-chevron-right"></div>
       </div>
     </div>
