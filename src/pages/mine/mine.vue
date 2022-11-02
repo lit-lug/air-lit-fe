@@ -65,19 +65,19 @@ onPullDownRefresh(() => {
         <!-- 箭头 -->
         <div class="i-carbon-chevron-right"></div>
       </div>
-      <!-- <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div> -->
+
       <div
-        class="flex flex-row justify-between items-center p-2"
+        class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
       >
-        <div class="flex flex-row justify-start items-center gap-1">
+        <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:settings"></div>
           <div>选项1</div>
         </div>
-        <!-- 箭头 -->
+
         <div class="i-carbon-chevron-right"></div>
       </div>
-      <!-- <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div> -->
+
       <div
         class="flex flex-row justify-between items-center p-2"
         hover-class="opacity-50"

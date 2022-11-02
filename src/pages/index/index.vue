@@ -102,7 +102,6 @@ function btnClick() {
     <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">功能列表</div>
-        <!-- <div class="text-sm justify-end items-end">共 3 门</div> -->
       </div>
 
       <!-- 分割线 -->
