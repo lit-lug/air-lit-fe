@@ -47,6 +47,8 @@ export const useAppStore = defineStore(
 
     const NavBarColorReset = () => {
 
+      // ifdef MP-WEIXIN
+
       // 获取当前页面
       const currentPage = getCurrentPages().pop();
 
@@ -74,7 +76,7 @@ export const useAppStore = defineStore(
         });
       }
 
-      // ifdef MP-WEIXIN
+
 
       if (isTabPage) {
 

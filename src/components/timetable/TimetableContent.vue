@@ -138,7 +138,7 @@ function getCoursePosition(item: CourseModel) {
       </template>
     </div>
     <div
-      class="bg-primary fixed top-40% z-30 rounded-l-full transition-all duration-300"
+      class="bg-light-blue-500 fixed top-40% z-30 rounded-l-full transition-all duration-300"
       text="white sm"
       p="l-4 y-2 r-2"
       :class="originalWeekIndex !== currentWeekIndex ? 'right-0' : '-right-full'"
