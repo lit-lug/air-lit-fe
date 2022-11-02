@@ -81,7 +81,9 @@ function btnClick() {
     <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">今日课程</div>
-        <div class="text-sm text-gray dark:text-gray-2">第 10 周 | 共 2 门</div>
+        <div class="text-sm text-gray dark:text-gray-2 text-24rpx">
+          第 10 周 | 共 2 门
+        </div>
       </div>
 
       <!-- 分割线 -->
