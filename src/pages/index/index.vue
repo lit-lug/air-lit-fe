@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { USwiperItem } from "~/components/USwiper/types";
-import USwiper from "~/components/USwiper/USwiper.vue";
+import { USwiperItem } from "~/components/index/USwiper/types";
+import USwiper from "~/components/index/USwiper/USwiper.vue";
+import UGridGroup from "~/components/index/UGridGroup/UGridGroup.vue";
+import UGridItem from "~/components/index/UGridItem/UGridItem.vue";
 
 const { showNotify, showToast, showMsg } = usePageStore();
 
@@ -116,31 +118,36 @@ function btnClick() {
 
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
-      <UGridGroup :gap="2">
-        <UGrid _class="text-blue-5">
+      <UGridGroup>
+        <UGridItem _class="text-blue-5">
           <div class="i-carbon-calendar text-2xl font-bold"></div>
           <div class="text-24rpx">校历</div>
-        </UGrid>
+        </UGridItem>
 
-        <UGrid _class="text-green-5">
+        <UGridItem _class="text-green-5">
           <div class="i-carbon-chart-stepper text-2xl font-bold"></div>
           <div class="text-24rpx">考试成绩</div>
-        </UGrid>
+        </UGridItem>
 
-        <UGrid _class="text-sky-5">
+        <UGridItem _class="text-orange-5">
+          <div class="i-carbon-skill-level text-2xl font-bold"></div>
+          <div class="text-24rpx">环节</div>
+        </UGridItem>
+
+        <UGridItem _class="text-sky-5">
           <div class="i-carbon-skill-level text-2xl font-bold"></div>
           <div class="text-24rpx">等级成绩</div>
-        </UGrid>
+        </UGridItem>
 
-        <UGrid _class="text-amber-5">
+        <UGridItem _class="text-amber-5">
           <div class="i-carbon-lightning text-2xl font-bold"></div>
           <div class="text-24rpx">宿舍用电</div>
-        </UGrid>
+        </UGridItem>
 
-        <UGrid _class="text-indigo-5">
+        <UGridItem _class="text-indigo-5">
           <div class="i-carbon-overflow-menu-horizontal text-2xl font-bold"></div>
           <div class="text-24rpx">更多</div>
-        </UGrid>
+        </UGridItem>
       </UGridGroup>
     </div>
   </UBasePage>
