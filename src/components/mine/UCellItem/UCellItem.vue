@@ -10,6 +10,10 @@ const props = withDefaults(
   }
 );
 
+const emits = defineEmits<{
+  (e: "click"): void;
+}>();
+
 const { _class, _style } = toRefs(props);
 
 const cellClass = computed(() => {
@@ -18,7 +22,12 @@ const cellClass = computed(() => {
 </script>
 
 <template>
-  <div :class="cellClass" :style="_style" hover-class="opacity-50">
+  <div
+    @click="emits('click')"
+    :class="cellClass"
+    :style="_style"
+    hover-class="opacity-50"
+  >
     <slot />
   </div>
 </template>
