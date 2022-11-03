@@ -23,6 +23,45 @@ const swiperItems = ref<Array<USwiperItem>>([
   },
 ]);
 
+type UGridItem = {
+  title: string;
+  icon: string;
+  url: string;
+};
+
+const gridItems = ref<Array<UGridItem>>([
+  {
+    icon: "i-carbon-calendar",
+    title: "校历",
+    url: "",
+  },
+  {
+    icon: "i-carbon-chart-stepper",
+    title: "考试成绩",
+    url: "",
+  },
+  {
+    icon: "i-carbon-navaid-civil",
+    title: "环节",
+    url: "",
+  },
+  {
+    icon: "i-carbon-skill-level",
+    title: "等级成绩",
+    url: "",
+  },
+  {
+    icon: "i-carbon-lightning",
+    title: "宿舍用电",
+    url: "",
+  },
+  {
+    icon: "i-carbon-overflow-menu-horizontal",
+    title: "更多",
+    url: "",
+  },
+]);
+
 onReady(() => {});
 
 const test = ref(false);
@@ -113,34 +152,13 @@ function btnClick() {
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
       <UGridGroup>
-        <UGridItem _class="text-orange-5">
-          <div class="i-carbon-calendar text-2xl font-bold"></div>
-          <div class="text-24rpx">校历</div>
-        </UGridItem>
-
-        <UGridItem _class="text-green-5">
-          <div class="i-carbon-chart-stepper text-2xl font-bold"></div>
-          <div class="text-24rpx">考试成绩</div>
-        </UGridItem>
-
-        <UGridItem _class="text-blue-5">
-          <div class="i-carbon-skill-level text-2xl font-bold"></div>
-          <div class="text-24rpx">环节</div>
-        </UGridItem>
-
-        <UGridItem _class="text-sky-5">
-          <div class="i-carbon-skill-level text-2xl font-bold"></div>
-          <div class="text-24rpx">等级成绩</div>
-        </UGridItem>
-
-        <UGridItem _class="text-amber-5">
-          <div class="i-carbon-lightning text-2xl font-bold"></div>
-          <div class="text-24rpx">宿舍用电</div>
-        </UGridItem>
-
-        <UGridItem _class="text-indigo-5">
-          <div class="i-carbon-overflow-menu-horizontal text-2xl font-bold"></div>
-          <div class="text-24rpx">更多</div>
+        <UGridItem v-for="(v, i) in gridItems" :key="i">
+          <div class="rounded-50 bg-blue-5 bg-opacity-10 p-2 m-1">
+            <div class="text-2xl font-bold text-blue-5" :class="v.icon"></div>
+          </div>
+          <div class="text-24rpx text-gray-5 dark:text-gray-3">
+            {{ v.title }}
+          </div>
         </UGridItem>
       </UGridGroup>
     </div>

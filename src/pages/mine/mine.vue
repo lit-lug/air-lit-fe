@@ -17,9 +17,13 @@ onShow(() => {});
 onPullDownRefresh(() => {
   showMsg({ type: "loading", message: "success" });
 
-  //
-  uni.stopPullDownRefresh();
+  setTimeout(() => {
+    showMsg({ type: "hide", message: "" });
+    uni.stopPullDownRefresh();
+  }, 1000);
 });
+
+// 待抽离
 
 const toAccountPage = () => {
   uni.navigateTo({
@@ -107,9 +111,10 @@ const toAboutPage = () => {
           <div>更新日志</div>
         </div>
 
-        <div class="text-sm text-gray-5 dark:text-gray-4 ml-22">V2.1</div>
-
-        <div class="i-carbon-chevron-right"></div>
+        <div class="flex flex-row justify-center items-center gap-2">
+          <div class="text-gray-5 dark:text-gray-3 text-sm px-1">V2.1</div>
+          <div class="i-carbon-chevron-right"></div>
+        </div>
       </UCellItem>
 
       <UCellItem _class="p-2 my-2" @click="toAboutPage">
@@ -118,7 +123,14 @@ const toAboutPage = () => {
           <div>关于我们</div>
         </div>
 
-        <div class="i-carbon-chevron-right"></div>
+        <div class="flex flex-row justify-center items-center gap-2">
+          <div
+            class="text-green justify-center items-center text-sm bg-green-5/10 rounded-lg px-2"
+          >
+            as you wish ~
+          </div>
+          <div class="i-carbon-chevron-right"></div>
+        </div>
       </UCellItem>
     </UCellGroup>
   </UBasePage>

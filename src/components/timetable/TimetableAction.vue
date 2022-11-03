@@ -49,7 +49,7 @@ watch(
                 <template v-for="(item, _idx) of weekWeekTimetable" :key="_idx">
                   <div
                     class="rounded-full mx-auto h-1.5 w-1.5"
-                    :class="item ? 'bg-light-blue-500' : 'bg-gray-200'"
+                    :class="item ? 'bg-blue-400' : 'bg-gray-200'"
                   />
                 </template>
               </template>
