@@ -12,13 +12,13 @@ const props = withDefaults(
 
 const { _class, _style } = toRefs(props);
 
-const gridClass = computed(() => {
-  return `p-2 m-2 text-center flex flex-col justify-center items-center ${_class.value}`;
+const cellClass = computed(() => {
+  return `flex flex-row justify-between items-center ${_class.value}`;
 });
 </script>
 
 <template>
-  <div :class="gridClass" :style="_style" hover-class="opacity-50" :hover-stay-time="150">
+  <div :class="cellClass" :style="_style" hover-class="opacity-50">
     <slot />
   </div>
 </template>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { GetIdenticonUrl } from "~/common/api";
 
+import UCellGroup from "~/components/mine/UCellGroup/UCellGroup.vue";
+import UCellItem from "~/components/mine/UCellItem/UCellItem.vue";
+
 const { showNotify, showToast, showMsg } = usePageStore();
 
 const getIdenticonUrl = () => {
@@ -80,41 +83,25 @@ const toAboutPage = () => {
     </div>
 
     <!-- 选项 todo: 抽离成 cell 组件 -->
-
-    <div
-      class="flex flex-col justify-center p-2 m-3 dark:bg-dark bg-white rounded-lg shadow shadow-sm"
-    >
-      <div
-        class="flex flex-row justify-between items-center p-2 my-2"
-        hover-class="opacity-50"
-        @click="toAccountPage"
-      >
+    <UCellGroup _class="p-2 m-3">
+      <UCellItem _class="p-2 my-2" @click="toAccountPage">
         <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:account text-xl"></div>
           <div>账户管理</div>
         </div>
-
         <div class="i-carbon-chevron-right"></div>
-      </div>
+      </UCellItem>
 
-      <div
-        class="flex flex-row justify-between items-center p-2 my-2"
-        hover-class="opacity-50"
-        @click="toSettingPage"
-      >
+      <UCellItem _class="p-2 my-2" @click="toSettingPage">
         <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:settings text-xl"></div>
           <div>公众号配置</div>
         </div>
 
         <div class="i-carbon-chevron-right"></div>
-      </div>
+      </UCellItem>
 
-      <div
-        class="flex flex-row justify-between items-center p-2 my-2"
-        hover-class="opacity-50"
-        @click="toChangelogPage"
-      >
+      <UCellItem _class="p-2 my-2" @click="toChangelogPage">
         <div class="flex flex-row items-center gap-2 mr-22">
           <div class="i-carbon:catalog text-xl"></div>
           <div>更新日志</div>
@@ -123,21 +110,17 @@ const toAboutPage = () => {
         <div class="text-sm text-gray-5 dark:text-gray-4 ml-22">V2.1</div>
 
         <div class="i-carbon-chevron-right"></div>
-      </div>
+      </UCellItem>
 
-      <div
-        class="flex flex-row justify-between items-center p-2 my-2"
-        hover-class="opacity-50"
-        @click="toAboutPage"
-      >
+      <UCellItem _class="p-2 my-2" @click="toAboutPage">
         <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:information text-xl"></div>
           <div>关于我们</div>
         </div>
 
         <div class="i-carbon-chevron-right"></div>
-      </div>
-    </div>
+      </UCellItem>
+    </UCellGroup>
   </UBasePage>
 </template>
 

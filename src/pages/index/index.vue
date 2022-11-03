@@ -119,7 +119,7 @@ function btnClick() {
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
       <UGridGroup>
-        <UGridItem _class="text-blue-5">
+        <UGridItem _class="text-orange-5">
           <div class="i-carbon-calendar text-2xl font-bold"></div>
           <div class="text-24rpx">校历</div>
         </UGridItem>
@@ -129,7 +129,7 @@ function btnClick() {
           <div class="text-24rpx">考试成绩</div>
         </UGridItem>
 
-        <UGridItem _class="text-orange-5">
+        <UGridItem _class="text-blue-5">
           <div class="i-carbon-skill-level text-2xl font-bold"></div>
           <div class="text-24rpx">环节</div>
         </UGridItem>
