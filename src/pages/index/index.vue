@@ -92,8 +92,16 @@ function btnClick() {
 
       <!-- 课程列表 -->
       <div>
-        <div class="p-2 m-2 bg-gray-100 dark:bg-gray-6 rounded-lg text-sm">| 课程一</div>
-        <div class="p-2 m-2 bg-gray-100 dark:bg-gray-6 rounded-lg text-sm">| 课程二</div>
+        <div
+          class="p-2 m-2 bg-gray-1 dark:bg-gray-6 rounded-lg text-sm text-gray-5 dark:text-gray-3"
+        >
+          | 课程一
+        </div>
+        <div
+          class="p-2 m-2 bg-gray-1 dark:bg-gray-6 rounded-lg text-sm text-gray-5 dark:text-gray-3"
+        >
+          | 课程二
+        </div>
       </div>
     </div>
 
@@ -108,25 +116,32 @@ function btnClick() {
 
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
-      <div class="grid grid-cols-3 grid-rows-2 text-center gap-2">
-        <div
-          class="p-2 m-2 text-center flex flex-col justify-center items-center text-green-500"
-          hover-class="opacity-50"
-          :hover-stay-time="150"
-        >
+      <UGridGroup :gap="2">
+        <UGrid _class="text-blue-5">
+          <div class="i-carbon-calendar text-2xl font-bold"></div>
+          <div class="text-24rpx">校历</div>
+        </UGrid>
+
+        <UGrid _class="text-green-5">
           <div class="i-carbon-chart-stepper text-2xl font-bold"></div>
           <div class="text-24rpx">考试成绩</div>
-        </div>
-        <div class="p-2 m-2">等级成绩</div>
-        <div class="p-2 m-2">宿舍用电</div>
-        <div class="p-2 m-2">4</div>
-        <div class="p-2 m-2">5</div>
-        <div class="p-2 m-2">6</div>
-      </div>
-    </div>
+        </UGrid>
 
-    <!-- <div class="m-3">
-      <UButton type="error" class="w-full" @click="btnClick"> Show Error Notify </UButton>
-    </div> -->
+        <UGrid _class="text-sky-5">
+          <div class="i-carbon-skill-level text-2xl font-bold"></div>
+          <div class="text-24rpx">等级成绩</div>
+        </UGrid>
+
+        <UGrid _class="text-amber-5">
+          <div class="i-carbon-lightning text-2xl font-bold"></div>
+          <div class="text-24rpx">宿舍用电</div>
+        </UGrid>
+
+        <UGrid _class="text-indigo-5">
+          <div class="i-carbon-overflow-menu-horizontal text-2xl font-bold"></div>
+          <div class="text-24rpx">更多</div>
+        </UGrid>
+      </UGridGroup>
+    </div>
   </UBasePage>
 </template>

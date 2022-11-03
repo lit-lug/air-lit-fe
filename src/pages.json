@@ -35,6 +35,30 @@
       }
     },
     {
+      "path": "pages/mine/account/account",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/mine/setting/setting",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/mine/changelog/changelog",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/mine/about/about",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/schedule/schedule",
       "style": {
         "enablePullDownRefresh": false
@@ -42,18 +66,6 @@
     },
     {
       "path": "pages/schedule/detail/detail",
-      "style": {
-        "enablePullDownRefresh": true
-      }
-    },
-    {
-      "path": "pages/login/login",
-      "style": {
-        "enablePullDownRefresh": true
-      }
-    },
-    {
-      "path": "pages/mine/account/account",
       "style": {
         "enablePullDownRefresh": true
       }

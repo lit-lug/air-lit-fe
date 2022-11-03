@@ -23,6 +23,24 @@ const toAccountPage = () => {
     url: "/pages/mine/account/account",
   });
 };
+
+const toSettingPage = () => {
+  uni.navigateTo({
+    url: "/pages/mine/setting/setting",
+  });
+};
+
+const toChangelogPage = () => {
+  uni.navigateTo({
+    url: "/pages/mine/changelog/changelog",
+  });
+};
+
+const toAboutPage = () => {
+  uni.navigateTo({
+    url: "/pages/mine/about/about",
+  });
+};
 </script>
 
 <template>
@@ -54,7 +72,7 @@ const toAccountPage = () => {
 
         <!-- 账号状态 -->
         <div
-          class="ml-10 flex flex-row justify-center items-center gap-1 px-2 py-1 rounded-lg bg-gray-100 dark:bg-gray-6"
+          class="ml-10 flex flex-row justify-center items-center gap-1 px-2 py-1 rounded-lg bg-gray-1 dark:bg-gray-6"
         >
           <div class="text-sm font-medium text-gray-5 dark:text-gray-3">状态正常</div>
         </div>
@@ -82,6 +100,7 @@ const toAccountPage = () => {
       <div
         class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
+        @click="toSettingPage"
       >
         <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:settings text-xl"></div>
@@ -94,13 +113,14 @@ const toAccountPage = () => {
       <div
         class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
+        @click="toChangelogPage"
       >
-        <div class="flex flex-row items-center gap-2 mr-20">
+        <div class="flex flex-row items-center gap-2 mr-22">
           <div class="i-carbon:catalog text-xl"></div>
           <div>更新日志</div>
         </div>
 
-        <div class="text-sm text-gray-5 dark:text-gray-4 ml-20">V2.1</div>
+        <div class="text-sm text-gray-5 dark:text-gray-4 ml-22">V2.1</div>
 
         <div class="i-carbon-chevron-right"></div>
       </div>
@@ -108,6 +128,7 @@ const toAccountPage = () => {
       <div
         class="flex flex-row justify-between items-center p-2 my-2"
         hover-class="opacity-50"
+        @click="toAboutPage"
       >
         <div class="flex flex-row items-center gap-2">
           <div class="i-carbon:information text-xl"></div>
@@ -120,4 +141,4 @@ const toAccountPage = () => {
   </UBasePage>
 </template>
 
-<style scoped></style>
+<style></style>

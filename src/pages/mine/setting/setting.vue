@@ -5,6 +5,6 @@ onLaunch(() => {});
 <template>
   <UBasePage>
     <!-- 标题栏 -->
-    <template v-slot:navContent>账户管理</template>
+    <template v-slot:navContent>公众号配置</template>
   </UBasePage>
 </template>
