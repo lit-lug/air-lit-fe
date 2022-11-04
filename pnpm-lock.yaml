@@ -1460,7 +1460,7 @@ packages:
     dependencies:
       '@iconify/utils': 2.0.1
       '@unocss/core': 0.45.30
-      ohmyfetch: 0.4.20
+      ohmyfetch: 0.4.21
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1495,7 +1495,7 @@ packages:
     resolution: {integrity: sha512-1biz2YDEkTbAmtaUZUCcA95PILXpCAyWoCXDNBMVp7fgeDr/AoiKgeDbgBb4wLKSPGwWAWUQWTT3HdAXoOjMcA==}
     dependencies:
       '@unocss/core': 0.45.30
-      ohmyfetch: 0.4.20
+      ohmyfetch: 0.4.21
     dev: true
 
   /@unocss/preset-wind/0.45.30:
@@ -1798,7 +1798,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001429
+      caniuse-lite: 1.0.30001430
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1859,7 +1859,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001429
+      caniuse-lite: 1.0.30001430
       electron-to-chromium: 1.4.284
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -1917,8 +1917,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001429:
-    resolution: {integrity: sha512-511ThLu1hF+5RRRt0zYCf2U2yRr9GPF6m5y90SBCWsvSoYoW7yAGlv/elyPaNfvGCkp6kj/KFZWU0BMA69Prsg==}
+  /caniuse-lite/1.0.30001430:
+    resolution: {integrity: sha512-IB1BXTZKPDVPM7cnV4iaKaHxckvdr/3xtctB3f7Hmenx3qYBhGtTZ//7EllK66aKXW98Lx0+7Yr0kxBtIt3tzg==}
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -3869,8 +3869,8 @@ packages:
       es-abstract: 1.20.4
     dev: true
 
-  /ohmyfetch/0.4.20:
-    resolution: {integrity: sha512-+c3/l+X91owrT1reTos1R13rb2j8NGZpKi0bRWwrnxIHlr1FZ8NzghIsNBKpUvk9nsnFoNK4phw+nTnXrcALzA==}
+  /ohmyfetch/0.4.21:
+    resolution: {integrity: sha512-VG7f/JRvqvBOYvL0tHyEIEG7XHWm7OqIfAs6/HqwWwDfjiJ1g0huIpe5sFEmyb+7hpFa1EGNH2aERWR72tlClw==}
     dependencies:
       destr: 1.2.0
       node-fetch-native: 0.1.8
