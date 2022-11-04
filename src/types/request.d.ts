@@ -17,6 +17,8 @@ interface SecInfo {
     role: string;
 }
 
+
+
 interface UserInfo {
     is_bind_sec: Boolean;
     is_sub_oa: Boolean;
@@ -26,6 +28,11 @@ interface UserInfo {
 
 declare interface LoginReq {
     code: string;
+}
+
+interface BindSecReq {
+    username: string;
+    password: string;
 }
 
 declare interface AuthInfo {

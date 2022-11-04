@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { GetIdenticonUrl } from "~/common/api";
 
+import { GetUserInfo } from "~/common/api";
+
 import UCellGroup from "~/components/mine/UCellGroup/UCellGroup.vue";
 import UCellItem from "~/components/mine/UCellItem/UCellItem.vue";
+import { useAppStore } from "~/stores/app";
+const appStore = useAppStore();
 
-const { showNotify, showToast, showMsg } = usePageStore();
+const { isAuth, userInfo } = storeToRefs(appStore);
 
 const getIdenticonUrl = () => {
   return GetIdenticonUrl("tesqwtasas");
@@ -14,13 +18,15 @@ onReady(() => {});
 
 onShow(() => {});
 
-onPullDownRefresh(() => {
-  showMsg({ type: "loading", message: "success" });
-
-  setTimeout(() => {
-    showMsg({ type: "hide", message: "" });
-    uni.stopPullDownRefresh();
-  }, 1000);
+onPullDownRefresh(async () => {
+  // if (isAuth.value) {
+  // 更新用户认证信息
+  const { data: authInfo } = await GetUserInfo();
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
+  // }
 });
 
 // 待抽离

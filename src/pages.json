@@ -17,7 +17,7 @@
       }
     },
     {
-      "path": "pages/splash/splash",
+      "path": "pages/auth/auth",
       "style": {
         "enablePullDownRefresh": true
       }

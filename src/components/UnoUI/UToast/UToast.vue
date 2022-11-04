@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { UToastOptions, UToastType } from "./types";
 
-const { customBarHeight } = storeToRefs(useAppStore());
+// const { customBarHeight } = storeToRefs(useAppStore());
 
 const timer = ref<number | undefined>(undefined);
 const show = ref(false);

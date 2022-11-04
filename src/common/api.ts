@@ -1,5 +1,3 @@
-import { Ref } from "vue";
-
 import http from './http.config';
 /* api->index.ts 统一命名规范
  * 1. 接口暴露前缀统一为req -> request(请求)
@@ -25,15 +23,28 @@ export const WeAppAuth = (req: LoginReq) => {
         custom: {
             ...httpConfig.custom,
             auth: false,
+            load: false,
             encryption: true,
         }
     });
 }
 
+
 // 获取用户信息
 export const GetUserInfo = () => {
 
     return http.get<UserInfo>('/api/weapp/user', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+        }
+    });
+};
+
+// 绑定智慧门户
+export const BindSec = (req: BindSecReq) => {
+    return http.post<UserInfo>('/api/weapp/sec', req, {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -52,8 +63,7 @@ export const GetStatus = () => {
     });
 };
 
-
 // 获取 Identicon
 export const GetIdenticonUrl = (key: string) => {
-    return http.config.baseURL + "/api/weapp/identicon?key=" + key;
+    return http.config.baseURL + "/api/weapp/identicon?key=" + key + "&t=" + new Date().getTime();
 }

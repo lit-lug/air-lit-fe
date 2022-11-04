@@ -25,7 +25,6 @@ export const useAppStore = defineStore(
       uni.setStorageSync('user_info', userInfo.value)
     }
 
-
     const isAuth = computed(() => {
       return !!token.value
     })
@@ -35,15 +34,12 @@ export const useAppStore = defineStore(
       uni.setStorageSync('token', token.value)
     }
 
-
     const statusBarHeight = ref(0)
     const menuButtonBounding = ref<MenuButtonBoundingClientRect>()
     const customBarHeight = computed(
       () => !menuButtonBounding.value
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
-
-
 
     const NavBarColorReset = () => {
 
@@ -76,10 +72,7 @@ export const useAppStore = defineStore(
         });
       }
 
-
-
       if (isTabPage) {
-
         if (darkMode.value) {
           uni.setTabBarStyle({
             backgroundColor: "#151515",
@@ -96,7 +89,6 @@ export const useAppStore = defineStore(
           });
         }
       }
-
       // endif
 
     }
