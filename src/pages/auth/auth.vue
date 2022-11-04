@@ -14,15 +14,17 @@ const weAppAuth = async () => {
   })) as unknown) as UniApp.LoginRes;
   // 成功则获取用户信息
   if (!res.code) {
-    return;
+    return Promise.reject("微信授权失败");
   }
   // 获取用户认证信息
   const { data: authInfo } = await WeAppAuth({ code: res.code });
   if (!authInfo) {
-    return;
+    return Promise.reject("获取用户信息失败");
   }
   appStore.setToken(authInfo.token);
   appStore.setUserInfo(authInfo.user_info);
+
+  return authInfo;
 };
 
 // #endif
@@ -33,14 +35,15 @@ const weAppAuth = async () => {
 
 onReady(async () => {
   // #ifdef MP-WEIXIN
-  await weAppAuth();
+  const authInfo = await weAppAuth();
+  if (authInfo) {
+    setTimeout(() => {
+      uni.navigateBack({
+        delta: 1,
+      });
+    }, 500);
+  }
   // #endif
-
-  // setTimeout(() => {
-  //   uni.switchTab({
-  //     url: "/pages/index/index",
-  //   });
-  // }, 500);
 });
 
 onReady(() => {});

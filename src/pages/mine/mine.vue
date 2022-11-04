@@ -1,32 +1,60 @@
 <script setup lang="ts">
-import { GetIdenticonUrl } from "~/common/api";
-
-import { GetUserInfo } from "~/common/api";
+import { GetIdenticonUrl, GetUserInfo } from "~/common/api";
 
 import UCellGroup from "~/components/mine/UCellGroup/UCellGroup.vue";
 import UCellItem from "~/components/mine/UCellItem/UCellItem.vue";
+
 import { useAppStore } from "~/stores/app";
 const appStore = useAppStore();
 
 const { isAuth, userInfo } = storeToRefs(appStore);
 
 const getIdenticonUrl = () => {
-  return GetIdenticonUrl("tesqwtasas");
+  if (userInfo.value.sec_info && userInfo.value.is_bind_sec) {
+    return GetIdenticonUrl(userInfo.value.sec_info?.card_id);
+  }
+  return GetIdenticonUrl("Guest");
 };
 
-onReady(() => {});
+const cardId = computed(() => {
+  if (userInfo.value.sec_info && userInfo.value.is_bind_sec) {
+    return userInfo.value.sec_info?.card_id;
+  }
+  return "Guest";
+});
 
-onShow(() => {});
+const name = computed(() => {
+  if (userInfo.value.sec_info && userInfo.value.is_bind_sec) {
+    return userInfo.value.sec_info?.name;
+  }
+  return "游客";
+});
 
-onPullDownRefresh(async () => {
-  // if (isAuth.value) {
-  // 更新用户认证信息
-  const { data: authInfo } = await GetUserInfo();
+onReady(async () => {
+  // 更新用户信息
+  const { data: authInfo } = await GetUserInfo({ tip: false });
   if (authInfo) {
     // 同步用户信息
     appStore.setUserInfo(authInfo);
   }
-  // }
+});
+
+onShow(async () => {
+  // 更新用户信息
+  const { data: authInfo } = await GetUserInfo({ tip: false });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
+});
+
+onPullDownRefresh(async () => {
+  const { data: authInfo } = await GetUserInfo({ tip: true, load: true });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
+  uni.stopPullDownRefresh();
 });
 
 // 待抽离
@@ -69,7 +97,7 @@ const toAboutPage = () => {
       <div class="p-2 flex flex-row justify-between items-center gap-1">
         <!-- 头像 -->
         <image
-          class="w-15 h-15 rounded-full bg-gray-3 dark:bg-gray-6 bg-opacity-30"
+          class="w-15 h-15 rounded-full bg-gray-1 dark:bg-gray-1 bg-opacity-30"
           mode="scaleToFill"
           :userInteractionEnabled="false"
           :src="getIdenticonUrl()"
@@ -77,17 +105,30 @@ const toAboutPage = () => {
 
         <!-- 学号姓名 -->
         <div class="mr-10 flex flex-col justify-center items-start gap-1">
-          <div class="text-lg font-bold">李跃萌</div>
+          <div class="text-lg font-bold">{{ name }}</div>
           <div class="text-sm font-medium text-gray-5 dark:text-gray-4">
-            ID: B19071121
+            ID: {{ cardId }}
           </div>
         </div>
 
         <!-- 账号状态 -->
         <div
-          class="ml-10 flex flex-row justify-center items-center gap-1 px-2 py-1 rounded-lg bg-gray-1 dark:bg-gray-6"
+          @click="toAccountPage"
+          class="ml-10 flex flex-row justify-center items-center gap-1 px-2 py-1 rounded-lg"
+          :class="{
+            'bg-blue-1/80 dark:bg-blue-5/10': userInfo.is_bind_sec,
+            'bg-gray-1/80 dark:bg-gray-5/10': !userInfo.is_bind_sec,
+          }"
         >
-          <div class="text-sm font-medium text-gray-5 dark:text-gray-3">状态正常</div>
+          <div
+            class="text-sm font-medium"
+            :class="{
+              'text-blue-5': userInfo.is_bind_sec,
+              'text-gray-5': !userInfo.is_bind_sec,
+            }"
+          >
+            {{ userInfo.is_bind_sec ? "状态正常" : "未绑定" }}
+          </div>
         </div>
       </div>
     </div>

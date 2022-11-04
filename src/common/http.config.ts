@@ -32,7 +32,7 @@ http.interceptors.request.use((config) => {
         if (!token) {
             showMsg({ type: "hide" });
             uni.navigateTo({ url: '/pages/auth/auth' });
-            return Promise.reject(config)
+            return Promise.reject()
         }
 
         config.header = {
@@ -54,7 +54,7 @@ http.interceptors.response.use(
 
         if (!response.data.data) {
             showToast({ message: "网络错误" });
-            return Promise.resolve(response);
+            return Promise.resolve();
         }
 
         if (response.config.custom?.encryption) {
@@ -65,16 +65,17 @@ http.interceptors.response.use(
 
         if (!resp) {
             showToast({ message: "未知错误" });
-            return Promise.resolve(response);
+            return Promise.reject();
         }
 
         if (resp.code != 200) {
-            showToast({ message: "resp.msg" });
-            return Promise.resolve(response);
+            showToast({ message: resp.msg });
+            return
         }
 
-        // showToast({ message: resp.msg })
-
+        if (response.config.custom?.tip) {
+            showToast({ message: resp.msg })
+        }
         return resp
     },
     (error: any) => {
@@ -83,8 +84,17 @@ http.interceptors.response.use(
             showMsg({ type: "hide" });
         }
 
+        if (error.statusCode == 401) {
+            showToast({ message: "授权失效" });
+            uni.navigateTo({ url: '/pages/auth/auth' });
+            return Promise.reject(error);
+        }
+
         showToast({ message: "未知错误" });
-        return error;
+
+        error.data.data = null
+
+        return Promise.reject(error);
     }
 );
 

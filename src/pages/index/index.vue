@@ -4,6 +4,9 @@ import USwiper from "~/components/index/USwiper/USwiper.vue";
 import UGridGroup from "~/components/index/UGridGroup/UGridGroup.vue";
 import UGridItem from "~/components/index/UGridItem/UGridItem.vue";
 
+import { GetUserInfo } from "~/common/api";
+
+const appStore = useAppStore();
 const { showNotify, showToast, showMsg } = usePageStore();
 
 const swiperItems = ref<Array<USwiperItem>>([
@@ -62,43 +65,32 @@ const gridItems = ref<Array<UGridItem>>([
   },
 ]);
 
-onReady(() => {});
-
-const test = ref(false);
-
-onShow(() => {
-  // uni.setTabBarBadge({
-  //   index: 0,
-  //   text: "+",
-  // });
-  // showMsg({ type: "success" });
+onReady(async () => {
+  // 更新用户信息
+  const { data: authInfo } = await GetUserInfo({ tip: false });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
 });
 
-onReady(() => {
-  // showMsg({ type: "success" });
+onShow(async () => {
+  // 更新用户信息
+  const { data: authInfo } = await GetUserInfo({ tip: false });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
 });
 
-function btnClick() {
-  // showToast({ type: "success", message: "error" });
-
-  showMsg({ type: "loading" });
-
-  uni.hideTabBar({
-    animation: true,
-  });
-
-  setTimeout(() => {
-    showMsg({ type: "hide" });
-
-    showMsg({ type: "error", duration: 2000, message: "失败xxxxxxxxxxx" });
-
-    uni.showTabBar({
-      animation: true,
-    });
-
-    showToast({ type: "error", message: "失败" });
-  }, 3000);
-}
+onPullDownRefresh(async () => {
+  const { data: authInfo } = await GetUserInfo({ tip: true, load: true });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
+  uni.stopPullDownRefresh();
+});
 </script>
 
 <template>

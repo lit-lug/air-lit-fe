@@ -12,6 +12,7 @@ httpConfig.custom = {
     // load: true,
     auth: true,
     load: true,
+    tip: true,
     // msgRef: ref<InstanceType<typeof tmMessage> | null>(null),
     encryption: false,
     isBindSec: true,
@@ -31,9 +32,22 @@ export const WeAppAuth = (req: LoginReq) => {
 
 
 // 获取用户信息
-export const GetUserInfo = () => {
+export const GetUserInfo = ({ load = false, tip = true }) => {
 
     return http.get<UserInfo>('/api/weapp/user', {
+        custom: {
+            ...httpConfig.custom,
+            load,
+            auth: true,
+            tip,
+            encryption: true,
+        }
+    });
+};
+
+// 绑定智慧门户
+export const BindSec = (req: BindSecReq) => {
+    return http.post<UserInfo>('/api/weapp/bindsec', req, {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -42,9 +56,9 @@ export const GetUserInfo = () => {
     });
 };
 
-// 绑定智慧门户
-export const BindSec = (req: BindSecReq) => {
-    return http.post<UserInfo>('/api/weapp/sec', req, {
+// 解绑智慧门户
+export const UnbindSec = () => {
+    return http.get<UserInfo>('/api/weapp/unbindsec', {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -65,5 +79,5 @@ export const GetStatus = () => {
 
 // 获取 Identicon
 export const GetIdenticonUrl = (key: string) => {
-    return http.config.baseURL + "/api/weapp/identicon?key=" + key + "&t=" + new Date().getTime();
+    return http.config.baseURL + "/api/weapp/identicon?key=" + key;
 }

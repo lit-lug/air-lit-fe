@@ -1,8 +1,9 @@
 <script setup lang="ts">
-const { isAuth, userInfo } = storeToRefs(useAppStore());
-const { showNotify, showToast, showMsg } = usePageStore();
+import { UnbindSec, BindSec, GetUserInfo } from "~/common/api";
 
-onLaunch(() => {});
+const appStore = useAppStore();
+const { isAuth, userInfo } = storeToRefs(appStore);
+const { showNotify, showToast, showMsg } = usePageStore();
 
 // 用户名输入相关
 const usernameInput = ref("");
@@ -34,7 +35,7 @@ const onPasswordInputBlur = () => {
 
 const isAgree = ref(false);
 
-const bindSec = () => {
+const bindSec = async () => {
   // 验证数据
   if (usernameInput.value.length === 0) {
     showToast({ message: "请输入学号/手机号" });
@@ -49,11 +50,53 @@ const bindSec = () => {
     return;
   }
 
-  // 发送请求
+  // 发起绑定请求
+  const { data: res } = await BindSec({
+    username: usernameInput.value,
+    password: passwordInput.value,
+  });
+
+  if (res) {
+    // 同步用户信息
+    appStore.setUserInfo(res);
+  }
 };
 
-onReady(() => {
-  console.log(userInfo.value);
+const unbindSec = async () => {
+  const { data: u } = await UnbindSec();
+
+  console.log(u);
+
+  if (u) {
+    appStore.setUserInfo(u);
+  }
+};
+
+// onReady(async () => {
+//   // 更新用户信息
+//   const { data: authInfo } = await GetUserInfo({ tip: false });
+//   if (authInfo) {
+//     // 同步用户信息
+//     appStore.setUserInfo(authInfo);
+//   }
+// });
+
+// onShow(async () => {
+//   // 更新用户信息
+//   const { data: authInfo } = await GetUserInfo({ tip: false });
+//   if (authInfo) {
+//     // 同步用户信息
+//     appStore.setUserInfo(authInfo);
+//   }
+// });
+
+onPullDownRefresh(async () => {
+  const { data: authInfo } = await GetUserInfo({ tip: true, load: true });
+  if (authInfo) {
+    // 同步用户信息
+    appStore.setUserInfo(authInfo);
+  }
+  uni.stopPullDownRefresh();
 });
 </script>
 
@@ -217,10 +260,10 @@ onReady(() => {
 
     <!-- 按钮 -->
 
-    <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-row justify-center items-center p-2">
       <div class="w-20" v-if="!userInfo.is_bind_sec">
         <button
-          class="rounded-lg text-white text-base flex justify-center items-center shadow-sm py-2 bg-blue-5"
+          class="rounded-lg text-white text-base flex justify-center items-center py-2 bg-blue-5"
           hover-class="grayscale-20"
           :hover-stay-time="150"
           @tap="bindSec"
@@ -230,10 +273,10 @@ onReady(() => {
       </div>
       <div class="w-20" v-else>
         <button
-          class="rounded-lg text-white text-base flex justify-center items-center shadow-sm py-2 bg-red-5"
+          class="rounded-lg text-white text-base flex justify-center items-center py-2 bg-red-5"
           hover-class="grayscale-20"
           :hover-stay-time="150"
-          @tap="bindSec"
+          @tap="unbindSec"
         >
           解绑
         </button>
