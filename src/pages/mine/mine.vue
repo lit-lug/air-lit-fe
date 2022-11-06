@@ -4,6 +4,8 @@ import { GetIdenticonUrl, GetUserInfo } from "~/common/api";
 import UCellGroup from "~/components/mine/UCellGroup/UCellGroup.vue";
 import UCellItem from "~/components/mine/UCellItem/UCellItem.vue";
 
+import version from "~/static/version";
+
 import { useAppStore } from "~/stores/app";
 const appStore = useAppStore();
 
@@ -159,7 +161,9 @@ const toAboutPage = () => {
         </div>
 
         <div class="flex flex-row justify-center items-center gap-2">
-          <div class="text-gray-5 dark:text-gray-3 text-sm px-1">V2.1</div>
+          <div class="text-gray-5 dark:text-gray-3 text-sm px-1">
+            {{ version }}
+          </div>
           <div class="i-carbon-chevron-right"></div>
         </div>
       </UCellItem>

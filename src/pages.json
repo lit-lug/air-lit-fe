@@ -61,7 +61,7 @@
     {
       "path": "pages/schedule/schedule",
       "style": {
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {

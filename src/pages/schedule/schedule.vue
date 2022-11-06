@@ -41,9 +41,12 @@ function handleCloseActionSheet() {
 
 const drawer = ref();
 const setDrawer = (isOpen: boolean) => {
-  console.log("setDrawer", isOpen);
   isOpen ? drawer.value?.openDrawer() : drawer.value?.closeDrawer();
 };
+
+// onLaunch((option: any) => {
+//   console.log("onLaunch", option);
+// });
 </script>
 
 <template>

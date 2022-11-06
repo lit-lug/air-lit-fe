@@ -72,24 +72,6 @@ const unbindSec = async () => {
   }
 };
 
-// onReady(async () => {
-//   // 更新用户信息
-//   const { data: authInfo } = await GetUserInfo({ tip: false });
-//   if (authInfo) {
-//     // 同步用户信息
-//     appStore.setUserInfo(authInfo);
-//   }
-// });
-
-// onShow(async () => {
-//   // 更新用户信息
-//   const { data: authInfo } = await GetUserInfo({ tip: false });
-//   if (authInfo) {
-//     // 同步用户信息
-//     appStore.setUserInfo(authInfo);
-//   }
-// });
-
 onPullDownRefresh(async () => {
   const { data: authInfo } = await GetUserInfo({ tip: true, load: true });
   if (authInfo) {
@@ -273,7 +255,7 @@ onPullDownRefresh(async () => {
       </div>
       <div class="w-20" v-else>
         <button
-          class="rounded-lg text-white text-base flex justify-center items-center py-2 bg-red-5"
+          class="rounded-lg text-white text-base flex justify-center items-center p-2 bg-red-5"
           hover-class="grayscale-20"
           :hover-stay-time="150"
           @tap="unbindSec"
@@ -282,13 +264,5 @@ onPullDownRefresh(async () => {
         </button>
       </div>
     </div>
-
-    <!-- 
-    <div
-      class="h-40 bg-blue-5 text-white flex flex-row justify-between p-2 m-3 rounded-lg items-center shadow-sm"
-    >
-      <div class="text-sm font-bold">11月1日 星期二</div>
-      <div class="text-sm font-bold">第 10 周</div>
-    </div> -->
   </UBasePage>
 </template>

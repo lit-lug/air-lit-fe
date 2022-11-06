@@ -46,6 +46,10 @@ const msgTypeMsg = {
   loading: "加载中",
 };
 
+onHide(() => {
+  show.value = false;
+});
+
 defineExpose({
   handleShowMsg,
 });
