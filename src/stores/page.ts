@@ -6,6 +6,13 @@ import type { UMsgOptions } from '~/components/UnoUI/UMsg/types'
 export const usePageStore = defineStore(
   'page',
   () => {
+
+    const deviceType = ref('')
+
+    const setDeviceType = (dt: string) => {
+      deviceType.value = dt
+    }
+
     const notifyRef = ref<{ handleShowNotify: (options: UNotifyOptions) => {} }>()
     const toastRef = ref<{ handleShowToast: (options: UToastOptions) => {} }>()
     const msgRef = ref<{ handleShowMsg: (options: UMsgOptions) => {} }>()
@@ -20,9 +27,11 @@ export const usePageStore = defineStore(
       notifyRef,
       toastRef,
       msgRef,
+      deviceType,
       showNotify,
       showToast,
       showMsg,
+      setDeviceType
     }
   })
 

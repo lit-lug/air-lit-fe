@@ -1,3 +1,13 @@
+### v2.0.2 2022-11-06
+
+- 添加 [校历页面](/pages/index/calendar/calendar)
+
+- 修复 `PC` 端 `Navbar` 无法显示的问题
+
+- [账户管理页面](/pages/mine/account/account) 解绑二次确认
+
+<br>
+
 ### v2.0.1 2022-11-05
 
 - [课表页面](/pages/schedule/schedule) 添加 `侧滑抽屉菜单`

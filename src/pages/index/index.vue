@@ -9,6 +9,10 @@ import { GetUserInfo } from "~/common/api";
 const appStore = useAppStore();
 const { showNotify, showToast, showMsg } = usePageStore();
 
+const pageStore = usePageStore();
+
+const { deviceType } = storeToRefs(pageStore);
+
 const swiperItems = ref<Array<USwiperItem>>([
   {
     title: "标题1",
@@ -30,40 +34,57 @@ type UGridItem = {
   title: string;
   icon: string;
   url: string;
+  isNeedBindSec: boolean;
 };
 
 const gridItems = ref<Array<UGridItem>>([
   {
     icon: "i-carbon-calendar",
     title: "校历",
-    url: "",
+    url: "/pages/index/calendar/calendar",
+    isNeedBindSec: false,
   },
   {
     icon: "i-carbon-chart-stepper",
     title: "考试成绩",
     url: "",
+    isNeedBindSec: true,
   },
   {
     icon: "i-carbon-navaid-civil",
     title: "环节",
     url: "",
+    isNeedBindSec: true,
   },
   {
     icon: "i-carbon-skill-level",
     title: "等级成绩",
     url: "",
+    isNeedBindSec: true,
   },
   {
     icon: "i-carbon-lightning",
     title: "宿舍用电",
     url: "",
+    isNeedBindSec: true,
   },
   {
     icon: "i-carbon-overflow-menu-horizontal",
     title: "更多",
     url: "",
+    isNeedBindSec: true,
   },
 ]);
+
+const onGridItemClick = (item: UGridItem) => {
+  if (item.url) {
+    uni.navigateTo({
+      url: item.url,
+    });
+  } else {
+    showNotify({ message: "暂未开放" });
+  }
+};
 
 onReady(async () => {
   // 更新用户信息
@@ -126,7 +147,7 @@ onPullDownRefresh(async () => {
         <div
           class="p-2 m-2 bg-gray-1 dark:bg-gray-6 rounded-lg text-sm text-gray-5 dark:text-gray-3"
         >
-          | 课程二
+          | 课程二 {{ deviceType }}
         </div>
       </div>
     </div>
@@ -144,7 +165,7 @@ onPullDownRefresh(async () => {
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
       <UGridGroup>
-        <UGridItem v-for="(v, i) in gridItems" :key="i">
+        <UGridItem @click="() => onGridItemClick(v)" v-for="(v, i) in gridItems" :key="i">
           <div class="rounded-50 bg-blue-5 bg-opacity-10 p-2 m-1">
             <div class="text-2xl font-bold text-blue-5" :class="v.icon"></div>
           </div>

@@ -4,7 +4,11 @@ import type { UToastOptions } from "../UToast/types";
 import type { UMsgOptions } from "../UMsg/types";
 import pages from "~/pages.json";
 
-withDefaults(
+const pageStore = usePageStore();
+
+const { deviceType } = storeToRefs(pageStore);
+
+const props = withDefaults(
   defineProps<{
     showNavBar?: boolean;
     pageTitle?: string;
@@ -39,7 +43,16 @@ const showBackAction = ref(false);
 
 const showHomeAction = ref(false);
 
+const showNavBar = computed(() => {
+  return props.showNavBar && deviceType.value !== "pc";
+});
+
 const initPage = () => {
+  // 修复 PC 导航栏
+  // if (deviceType.value === "pc") {
+  //  showNavBar = false;
+  // }
+
   NavBarColorReset();
 
   _notifyRef.value = notifyRef.value;
@@ -98,7 +111,7 @@ onShow(() => {
           class="z-100"
         >
           <div class="h-full text-center px-6 relative">
-            <div class="flex h-full text-xl left-2 absolute justify-center items-center">
+            <div class="flex h-full text-xl left-3 absolute justify-center items-center">
               <slot name="navAction">
                 <div
                   v-if="showHomeAction"

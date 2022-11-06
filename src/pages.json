@@ -13,12 +13,21 @@
     {
       "path": "pages/index/index",
       "style": {
+        "navigationBarTitleText": "时刻",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/index/calendar/calendar",
+      "style": {
+        "navigationBarTitleText": "校历",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/auth/auth",
       "style": {
+        "navigationBarTitleText": "授权中...",
         "enablePullDownRefresh": true
       }
     },
@@ -31,42 +40,49 @@
     {
       "path": "pages/mine/mine",
       "style": {
+        "navigationBarTitleText": "我的",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/mine/account/account",
       "style": {
+        "navigationBarTitleText": "账户管理",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/mine/setting/setting",
       "style": {
+        "navigationBarTitleText": "公众号配置",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/mine/changelog/changelog",
       "style": {
+        "navigationBarTitleText": "更新日志",
         "enablePullDownRefresh": false
       }
     },
     {
       "path": "pages/mine/about/about",
       "style": {
+        "navigationBarTitleText": "关于我们",
         "enablePullDownRefresh": false
       }
     },
     {
       "path": "pages/schedule/schedule",
       "style": {
+        "navigationBarTitleText": "课表",
         "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/schedule/detail/detail",
       "style": {
+        "navigationBarTitleText": "课程详情",
         "enablePullDownRefresh": true
       }
     }

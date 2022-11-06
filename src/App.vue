@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { darkMode, statusBarHeight, menuButtonBounding } = storeToRefs(useAppStore());
 const { setDarkMode } = useAppStore();
+const { setDeviceType } = usePageStore();
 
 onLaunch(() => {
   // #ifdef MP-WEIXIN || MP-QQ
@@ -12,6 +13,9 @@ onLaunch(() => {
   uni.onThemeChange((res: UniApp.OnThemeChangeCallbackResult) =>
     setDarkMode(res.theme === "dark")
   );
+
+  setDeviceType(systemInfo.deviceType);
+
   // #endif
 
   // #ifdef H5

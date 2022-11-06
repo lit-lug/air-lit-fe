@@ -10,6 +10,10 @@ const props = withDefaults(
   }
 );
 
+const emits = defineEmits<{
+  (event: "click", ...args: any[]): void;
+}>();
+
 const { _class, _style } = toRefs(props);
 
 const gridClass = computed(() => {
@@ -18,7 +22,13 @@ const gridClass = computed(() => {
 </script>
 
 <template>
-  <div :class="gridClass" :style="_style" hover-class="opacity-50" :hover-stay-time="150">
+  <div
+    @tap="emits('click')"
+    :class="gridClass"
+    :style="_style"
+    hover-class="opacity-50"
+    :hover-stay-time="150"
+  >
     <slot />
   </div>
 </template>

@@ -4,6 +4,9 @@ import type { UToastOptions } from "../UToast/types";
 import type { UMsgOptions } from "../UMsg/types";
 import pages from "~/pages.json";
 
+const pageStore = usePageStore();
+const { deviceType } = storeToRefs(pageStore);
+
 const props = withDefaults(
   defineProps<{
     showNavBar?: boolean;
@@ -42,6 +45,10 @@ const msgRef = ref<{ handleShowMsg: (options: UMsgOptions) => {} }>();
 const showBackAction = ref(false);
 
 const showHomeAction = ref(false);
+
+const showNavBar = computed(() => {
+  return props.showNavBar && deviceType.value !== "pc";
+});
 
 const initPage = () => {
   NavBarColorReset();
@@ -219,7 +226,7 @@ defineExpose({
         >
           <div class="h-full text-center px-6 relative color-base text-base">
             <div
-              class="flex h-full text-xl left-2 absolute justify-center items-center dark:text-white"
+              class="flex h-full text-xl left-3 absolute justify-center items-center dark:text-white"
             >
               <slot name="navAction">
                 <div
