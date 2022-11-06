@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import mpHtml from "mp-html/dist/uni-app/components/mp-html/mp-html.vue";
 
+import changelog from "~/static/changelog.md?raw";
+
 onLaunch(() => {});
 
-const html = ref("# test  \n ## test2 \n  ~324234~");
+const html = ref(changelog);
 </script>
 
 <template>
@@ -17,7 +19,8 @@ const html = ref("# test  \n ## test2 \n  ~324234~");
       <mpHtml
         :content="html"
         markdown
-        container-style="white-space:pre-wrap;padding:30rpx;display:inline;overflow:hidden;"
+        selectable
+        container-style="white-space:nowrap;padding-left:30rpx;padding-right:30rpx;padding-top:30rpx;overflow:hidden;"
         >加载中...</mpHtml
       >
     </div>

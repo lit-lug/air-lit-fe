@@ -39,14 +39,14 @@ onReady(async () => {
   }
 });
 
-onShow(async () => {
-  // 更新用户信息
-  const { data: authInfo } = await GetUserInfo({ tip: false });
-  if (authInfo) {
-    // 同步用户信息
-    appStore.setUserInfo(authInfo);
-  }
-});
+// onShow(async () => {
+//   // 更新用户信息
+//   const { data: authInfo } = await GetUserInfo({ tip: false });
+//   if (authInfo) {
+//     // 同步用户信息
+//     appStore.setUserInfo(authInfo);
+//   }
+// });
 
 onPullDownRefresh(async () => {
   const { data: authInfo } = await GetUserInfo({ tip: true, load: true });

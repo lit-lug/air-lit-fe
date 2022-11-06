@@ -1,8 +1,10 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+
 import Uni from '@dcloudio/vite-plugin-uni'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import mdLoader from 'vite-plugin-md-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +16,7 @@ export default defineConfig({
   },
   plugins: [
     Uni(),
+    mdLoader(),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
@@ -32,6 +35,6 @@ export default defineConfig({
         'src/stores',
       ],
       vueTemplate: true,
-    }),
+    })
   ],
 })
