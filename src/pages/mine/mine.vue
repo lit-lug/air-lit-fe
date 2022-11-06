@@ -9,7 +9,7 @@ import version from "~/static/version";
 import { useAppStore } from "~/stores/app";
 const appStore = useAppStore();
 
-const { isAuth, userInfo } = storeToRefs(appStore);
+const { isAuth, userInfo, token } = storeToRefs(appStore);
 
 const getIdenticonUrl = () => {
   if (userInfo.value.sec_info && userInfo.value.is_bind_sec) {
@@ -59,6 +59,26 @@ onPullDownRefresh(async () => {
   uni.stopPullDownRefresh();
 });
 
+const longPress = () => {
+  uni.showModal({
+    title: "提示",
+    content: "是否复制授权信息？",
+    success: (res) => {
+      if (res.confirm) {
+        uni.setClipboardData({
+          data: token.value,
+          success: () => {
+            uni.showToast({
+              title: "复制成功",
+              icon: "success",
+            });
+          },
+        });
+      }
+    },
+  });
+};
+
 // 待抽离
 
 const toAccountPage = () => {
@@ -99,6 +119,7 @@ const toAboutPage = () => {
       <div class="p-2 flex flex-row justify-between items-center gap-1">
         <!-- 头像 -->
         <image
+          @longpress="longPress"
           class="w-15 h-15 rounded-full bg-gray-1 dark:bg-gray-1 bg-opacity-30"
           mode="scaleToFill"
           :userInteractionEnabled="false"

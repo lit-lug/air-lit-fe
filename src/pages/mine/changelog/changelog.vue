@@ -16,6 +16,7 @@ onLaunch(() => {});
     >
       <mpHtml
         :content="changelog"
+        class="text-sm"
         markdown
         selectable
         container-style="white-space:wrap;padding:30rpx;overflow:hidden;"

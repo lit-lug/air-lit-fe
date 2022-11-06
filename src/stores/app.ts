@@ -102,6 +102,7 @@ export const useAppStore = defineStore(
       setDarkMode,
       setUserInfo,
       userInfo,
+      token,
       isAuth,
       setToken,
       darkMode,

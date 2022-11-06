@@ -32,9 +32,10 @@
       }
     },
     {
-      "path": "pages/pl/pl",
+      "path": "pages/webview/webview",
       "style": {
-        "enablePullDownRefresh": true
+        "navigationBarTitleText": "详情",
+        "enablePullDownRefresh": false
       }
     },
     {

@@ -15,7 +15,6 @@ onLaunch(() => {
   );
 
   setDeviceType(systemInfo.deviceType);
-
   // #endif
 
   // #ifdef H5
