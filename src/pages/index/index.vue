@@ -4,7 +4,11 @@ import USwiper from "~/components/index/USwiper/USwiper.vue";
 import UGridGroup from "~/components/index/UGridGroup/UGridGroup.vue";
 import UGridItem from "~/components/index/UGridItem/UGridItem.vue";
 
-import { GetUserInfo } from "~/common/api";
+import { GetUserInfo, AuthQrCode } from "~/common/api";
+
+const { darkMode } = storeToRefs(useAppStore());
+
+const { setDarkMode } = useAppStore();
 
 const appStore = useAppStore();
 const { showNotify, showToast, showMsg } = usePageStore();
@@ -86,6 +90,21 @@ const onGridItemClick = (item: UGridItem) => {
   }
 };
 
+const toggleDarkMode = () => {
+  setDarkMode(!darkMode.value);
+};
+
+const authQrCode = () => {
+  uni.scanCode({
+    onlyFromCamera: true,
+    scanType: ["qrCode"],
+    success: async (res) => {
+      console.log(res.result);
+      await AuthQrCode({ code_id: res.result });
+    },
+  });
+};
+
 onReady(async () => {
   // 更新用户信息
   const { data: authInfo } = await GetUserInfo({ tip: false });
@@ -118,6 +137,15 @@ onPullDownRefresh(async () => {
   <UBasePage>
     <!-- 标题栏 -->
     <template v-slot:navContent>时刻</template>
+
+    <template v-slot:navAction>
+      <div
+        class="i-carbon-center-square text-xl mr-2"
+        hover-class="opacity-50"
+        @click="authQrCode"
+      />
+      <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
+    </template>
 
     <!-- 主体内容 -->
 

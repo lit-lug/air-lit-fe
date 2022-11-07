@@ -47,7 +47,7 @@ export const GetUserInfo = ({ load = false, tip = true }) => {
 
 // 绑定智慧门户
 export const BindSec = (req: BindSecReq) => {
-    return http.post<UserInfo>('/api/weapp/bindsec', req, {
+    return http.post<UserInfo>('/api/weapp/bind_sec', req, {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -58,7 +58,7 @@ export const BindSec = (req: BindSecReq) => {
 
 // 解绑智慧门户
 export const UnbindSec = () => {
-    return http.get<UserInfo>('/api/weapp/unbindsec', {
+    return http.get<UserInfo>('/api/weapp/unbind_sec', {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -80,4 +80,49 @@ export const GetStatus = () => {
 // 获取 Identicon
 export const GetIdenticonUrl = (key: string) => {
     return http.config.baseURL + "/api/weapp/identicon?key=" + key;
+}
+
+
+// 认证二维码
+export const AuthQrCode = (data: QrCodeID) => {
+    return http.post<QrCodeID>('/api/weapp/qrcode', data, {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+        }
+    });
+}
+
+
+
+// 获取 QrCodeID
+export const GetQrCodeID = () => {
+    return http.get<QrCodeID>('/api/h5/qrcode_id', {
+        custom: {
+            ...httpConfig.custom,
+            auth: false,
+            load: true,
+            tip: false,
+            encryption: true,
+        }
+    });
+}
+
+// 获取 QrCode
+export const GetQrCodeUrl = (id: string) => {
+    return http.config.baseURL + "/api/h5/qrcode?code_id=" + id;
+}
+
+// 获取 QrCode Status
+export const GetQrCodeStatus = (id: string) => {
+    return http.get<QrCodeStatus>("/api/h5/qrcode_status?code_id=" + id, {
+        custom: {
+            ...httpConfig.custom,
+            auth: false,
+            load: false,
+            tip: false,
+            encryption: true,
+        }
+    });
 }

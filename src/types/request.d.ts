@@ -17,7 +17,15 @@ interface SecInfo {
     role: string;
 }
 
+interface QrCodeID {
+    code_id: string;
+}
 
+interface QrCodeStatus {
+    is_auth: boolean;
+    is_expired: boolean;
+    auth_info?: AuthInfo;
+}
 
 interface UserInfo {
     is_bind_sec: Boolean;

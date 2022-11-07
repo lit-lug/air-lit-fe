@@ -54,7 +54,7 @@ http.interceptors.response.use(
 
         if (!response.data.data) {
             showToast({ message: "网络错误" });
-            return Promise.resolve();
+            return Promise.resolve(response);
         }
 
         if (response.config.custom?.encryption) {
@@ -65,7 +65,7 @@ http.interceptors.response.use(
 
         if (!resp) {
             showToast({ message: "未知错误" });
-            return Promise.reject();
+            return Promise.reject(response);
         }
 
         if (resp.code != 200) {

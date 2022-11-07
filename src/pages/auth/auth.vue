@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { WeAppAuth } from "~/common/api";
+import { time } from "console";
+import { WeAppAuth, GetQrCodeID, GetQrCodeUrl, GetQrCodeStatus } from "~/common/api";
 import { useAppStore } from "~/stores/app";
 const appStore = useAppStore();
 
 const { isAuth, userInfo } = storeToRefs(appStore);
+
+const qrCodeID = ref("");
+
+const isLoading = ref(false);
 
 // #ifdef MP-WEIXIN
 
@@ -29,29 +34,90 @@ const weAppAuth = async () => {
 
 // #endif
 
-// onLaunch(async (data:  ) => {
+// #ifdef H5
+// const listenQrCodeStatus = async () => {
+const listenQrCodeStatusTimer = setInterval(async () => {
+  if (qrCodeID.value.length == 0) {
+    await refreshQrCode();
+  }
 
-// })
+  const { data: qrCodeStatus } = await GetQrCodeStatus(qrCodeID.value);
+
+  if (qrCodeStatus) {
+    if (qrCodeStatus.is_expired) {
+      await refreshQrCode();
+      return;
+    }
+
+    if (qrCodeStatus.is_auth && qrCodeStatus?.auth_info) {
+      appStore.setToken(qrCodeStatus?.auth_info.token);
+      appStore.setUserInfo(qrCodeStatus?.auth_info.user_info);
+      // setTimeout(() => {
+
+      getCurrentPages().length > 1
+        ? uni.navigateBack()
+        : uni.reLaunch({ url: "/pages/index/index" });
+    }
+
+    console.log(qrCodeStatus);
+  } else {
+    await refreshQrCode();
+  }
+}, 3000);
+// timer.
+// };
+
+const refreshQrCode = async () => {
+  const { data: qr } = await GetQrCodeID();
+  if (qr) {
+    qrCodeID.value = qr.code_id;
+  }
+  // listenQrCodeStatus();
+};
+
+// #endif
 
 onReady(async () => {
   // #ifdef MP-WEIXIN
+  isLoading.value = true;
   const authInfo = await weAppAuth();
   if (authInfo) {
     setTimeout(() => {
-      uni.navigateBack({
-        delta: 1,
-      });
+      getCurrentPages().length > 1
+        ? uni.navigateBack()
+        : uni.reLaunch({ url: "/pages/index/index" });
     }, 500);
   }
   // #endif
+
+  // #ifdef H5
+  await refreshQrCode();
+  // #endif
 });
 
-onReady(() => {});
+onUnload(() => {
+  // #ifdef H5
+  clearInterval(listenQrCodeStatusTimer);
+  // #endif
+});
 </script>
 
 <template>
   <UBasePage :showNavBar="false">
-    <div class="loader absolute top-72vh left-50vw rotate-165deg" />
+    <div
+      class="overflow-hidden flex flex-col py-4 px-2 m-3 dark:bg-dark bg-white justify-center items-center rounded-lg shadow-sm"
+    >
+      <!--  -->
+
+      <div class="flex flex-col m-2 p-2 justify-center items-center">
+        <div class="text-2xl font-bold">授权</div>
+        <div class="text-sm text-gray-500">使用微信扫描二维码后进行授权</div>
+      </div>
+
+      <img class="flex" :src="GetQrCodeUrl(qrCodeID)" alt="" />
+    </div>
+
+    <div v-if="isLoading" class="loader absolute top-72vh left-50vw rotate-165deg" />
   </UBasePage>
 </template>
 
