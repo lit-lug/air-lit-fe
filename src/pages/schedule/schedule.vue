@@ -4,6 +4,8 @@ import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
 import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
+import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";
+
 const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
 
 const { setDarkMode } = useAppStore();
@@ -11,7 +13,16 @@ const { setDarkMode } = useAppStore();
 // const { setPageConfig } = usePageStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
-onShow(() => {});
+
+onShow(async () => {
+  // 获取系统状态
+  const { data: status } = await GetStatus();
+
+  if (status) {
+    setStartDay(status.start_day);
+  }
+});
+
 setCourseList(courses as CourseModel[]);
 const showCourseAction = ref(false);
 // set the start date

@@ -100,15 +100,20 @@ onUnload(() => {
   clearInterval(listenQrCodeStatusTimer);
   // #endif
 });
+
+onHide(() => {
+  // #ifdef H5
+  clearInterval(listenQrCodeStatusTimer);
+  // #endif
+});
 </script>
 
 <template>
   <UBasePage :showNavBar="false">
+    <!-- #ifdef H5 -->
     <div
       class="overflow-hidden flex flex-col py-4 px-2 m-3 dark:bg-dark bg-white justify-center items-center rounded-lg shadow-sm"
     >
-      <!--  -->
-
       <div class="flex flex-col m-2 p-2 justify-center items-center">
         <div class="text-2xl font-bold">授权</div>
         <div class="text-sm text-gray-500">使用微信扫描二维码后进行授权</div>
@@ -116,6 +121,7 @@ onUnload(() => {
 
       <img class="flex" :src="GetQrCodeUrl(qrCodeID)" alt="" />
     </div>
+    <!-- #endif -->
 
     <div v-if="isLoading" class="loader absolute top-72vh left-50vw rotate-165deg" />
   </UBasePage>
