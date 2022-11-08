@@ -139,12 +139,17 @@ onPullDownRefresh(async () => {
     <template v-slot:navContent>时刻</template>
 
     <template v-slot:navAction>
+      <!-- #ifdef MP-WEIXIN -->
       <div
         class="i-carbon-center-square text-xl mr-2"
         hover-class="opacity-50"
         @click="authQrCode"
       />
-      <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
+      <!-- #endif -->
+      <div
+        :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+        @click="toggleDarkMode"
+      />
     </template>
 
     <!-- 主体内容 -->
@@ -153,7 +158,9 @@ onPullDownRefresh(async () => {
 
     <!-- 今日课程 -->
 
-    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
+    <div
+      class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm"
+    >
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">今日课程</div>
         <div class="text-sm text-gray dark:text-gray-2 text-24rpx">
@@ -182,7 +189,9 @@ onPullDownRefresh(async () => {
 
     <!-- grid -->
 
-    <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
+    <div
+      class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm"
+    >
       <div class="flex flex-row justify-between items-center">
         <div class="text-sm font-bold">功能列表</div>
         <div class="i-carbon-grid text-gray dark:text-gray-2"></div>
@@ -193,7 +202,11 @@ onPullDownRefresh(async () => {
       <div class="w-full h-0.2 bg-gray-200 dark:bg-dark-200 my-2"></div>
 
       <UGridGroup>
-        <UGridItem @click="() => onGridItemClick(v)" v-for="(v, i) in gridItems" :key="i">
+        <UGridItem
+          @click="() => onGridItemClick(v)"
+          v-for="(v, i) in gridItems"
+          :key="i"
+        >
           <div class="rounded-50 bg-blue-5 bg-opacity-10 p-2 m-1">
             <div class="text-2xl font-bold text-blue-5" :class="v.icon"></div>
           </div>
