@@ -60,7 +60,6 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3060820221027002_postcss@8.4.18+vue@3.2.41
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3060820221027002_postcss@8.4.18+vue@3.2.41
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3060820221027002_postcss@8.4.18+vue@3.2.41
-  '@types/crypto-js': 4.1.1
   crypto-js: 4.1.1
   less: 4.1.3
   lodash-es: 4.17.21
@@ -71,6 +70,7 @@ dependencies:
   vue-demi: 0.13.11_vue@3.2.41
   vue-i18n: 9.2.2_vue@3.2.41
   vuex: 4.1.0_vue@3.2.41
+  workbox-window: 6.5.4
 
 devDependencies:
   '@antfu/eslint-config': 0.27.0_rmayb2veg2btbq6mbmnyivgasy
@@ -82,6 +82,7 @@ devDependencies:
   '@iconify-icons/akar-icons': 1.2.11
   '@iconify-json/carbon': 1.1.9
   '@iconify-json/mdi': 1.1.34
+  '@types/crypto-js': 4.1.1
   '@types/lodash-es': 4.17.6
   '@types/node': 18.11.9
   eslint: 8.27.0
@@ -94,7 +95,6 @@ devDependencies:
   vite: 3.2.3_sjdpriiyqai3ghwmd5e3ldppum
   vite-plugin-md-loader: 0.0.1_vite@3.2.3
   vite-plugin-pwa: 0.13.3_omufuft2cnqnd3e2facbu4whwe
-  workbox-window: 6.5.4
 
 packages:
 
@@ -2176,7 +2176,7 @@ packages:
 
   /@types/crypto-js/4.1.1:
     resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
-    dev: false
+    dev: true
 
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
@@ -2229,7 +2229,6 @@ packages:
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
-    dev: true
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
@@ -6495,7 +6494,6 @@ packages:
 
   /workbox-core/6.5.4:
     resolution: {integrity: sha512-OXYb+m9wZm8GrORlV2vBbE5EC1FKu71GGp0H4rjmxmF4/HLbMCoTFws87M3dFwgpmg0v00K++PImpNQ6J5NQ6Q==}
-    dev: true
 
   /workbox-expiration/6.5.4:
     resolution: {integrity: sha512-jUP5qPOpH1nXtjGGh1fRBa1wJL2QlIb5mGpct3NzepjGG2uFFBn4iiEBiI9GUmfAFR2ApuRhDydjcRmYXddiEQ==}
@@ -6572,7 +6570,6 @@ packages:
     dependencies:
       '@types/trusted-types': 2.0.2
       workbox-core: 6.5.4
-    dev: true
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
