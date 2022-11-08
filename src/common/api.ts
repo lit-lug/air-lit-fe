@@ -72,6 +72,8 @@ export const GetStatus = () => {
     return http.get<StatusResp>('/api/weapp/status', {
         custom: {
             ...httpConfig.custom,
+            tip: false,
+            load: false,
             encryption: true,
         }
     });
@@ -93,8 +95,6 @@ export const AuthQrCode = (data: QrCodeID) => {
         }
     });
 }
-
-
 
 // 获取 QrCodeID
 export const GetQrCodeID = () => {

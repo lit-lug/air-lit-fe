@@ -49,7 +49,7 @@ declare interface AuthInfo {
 }
 
 interface StatusResp {
-    time: string;
+    start_day: string;
     sec: IsWork;
     jw: IsWork;
     zhyd: IsWork;

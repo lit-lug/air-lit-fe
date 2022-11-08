@@ -15,9 +15,9 @@ onShow(() => {});
 setCourseList(courses as CourseModel[]);
 const showCourseAction = ref(false);
 // set the start date
-const someDate = new Date();
-someDate.setDate(someDate.getDate() + -1 * 7);
-setStartDay(someDate);
+// const someDate = new Date();
+// someDate.setDate(someDate.getDate() + -1 * 7);
+// setStartDay(someDate);
 function handleCreateCourse() {
   uni.navigateTo({
     url: "./detail/detail",

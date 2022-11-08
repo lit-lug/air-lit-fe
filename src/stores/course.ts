@@ -37,7 +37,9 @@ export const useCourseStore = defineStore(
     'course',
     () => {
         const isStart = ref<boolean>(false)
-        const startDate = ref<Date | string>(new Date())
+
+        const startDate = ref<Date>(new Date(uni.getStorageSync('start_time')))
+
         const weekNum = ref<number>(20)
         const courseList = ref<CourseModel[]>([])
         const currentMonth = ref<number>(0)
@@ -50,8 +52,11 @@ export const useCourseStore = defineStore(
          * set start date
          * @param someDate the start date of the semester
          */
-        function setStartDay(someDate: string | Date) {
+        function setStartDay(someDate: string) {
             startDate.value = new Date(someDate)
+
+            uni.setStorageSync('start_time', someDate)
+
             const days = new Date().getTime() - startDate.value.getTime()
             isStart.value = days > 0
             const week = Math.floor(days / (1000 * 60 * 60 * 24 * 7))
