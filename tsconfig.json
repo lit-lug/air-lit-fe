@@ -15,6 +15,6 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "types": ["@dcloudio/types", "vite/client"]
+    "types": ["@dcloudio/types", "vite/client", "vite-plugin-pwa/client"]
   }
 }
