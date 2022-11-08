@@ -45,6 +45,7 @@ specifiers:
   vue-demi: ^0.13.11
   vue-i18n: ^9.2.2
   vuex: ^4.1.0
+  workbox-window: ^6.5.4
 
 dependencies:
   '@dcloudio/uni-app': 3.0.0-alpha-3060820221027002_postcss@8.4.18+vue@3.2.41
@@ -92,7 +93,8 @@ devDependencies:
   unplugin-auto-import: 0.11.4
   vite: 3.2.3_sjdpriiyqai3ghwmd5e3ldppum
   vite-plugin-md-loader: 0.0.1_vite@3.2.3
-  vite-plugin-pwa: 0.13.3_vite@3.2.3
+  vite-plugin-pwa: 0.13.3_omufuft2cnqnd3e2facbu4whwe
+  workbox-window: 6.5.4
 
 packages:
 
@@ -6255,10 +6257,11 @@ packages:
       vite: 3.2.3_sjdpriiyqai3ghwmd5e3ldppum
     dev: true
 
-  /vite-plugin-pwa/0.13.3_vite@3.2.3:
+  /vite-plugin-pwa/0.13.3_omufuft2cnqnd3e2facbu4whwe:
     resolution: {integrity: sha512-cjWXpZ7slAY14OKz7M8XdgTIi9wjf6OD6NkhiMAc+ogxnbUrecUwLdRtfGPCPsN2ftut5gaN1jTghb11p6IQAA==}
     peerDependencies:
       vite: ^3.1.0
+      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
       debug: 4.3.4
