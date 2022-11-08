@@ -91,9 +91,7 @@ onShow(() => {
 
 <template>
   <div :class="darkMode ? 'dark' : ''">
-    <div
-      class="bg-base color-base text-base relative transition-all duration-200 ease-in-out"
-    >
+    <div class="bg-base color-base text-base relative">
       <!-- custom navigation bar -->
       <div
         v-if="showNavBar"
