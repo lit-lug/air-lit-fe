@@ -25,6 +25,13 @@
       }
     },
     {
+      "path": "pages/index/elec/elec",
+      "style": {
+        "navigationBarTitleText": "宿舍用电",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
       "path": "pages/auth/auth",
       "style": {
         "navigationBarTitleText": "授权中...",

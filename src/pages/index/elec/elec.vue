@@ -40,23 +40,8 @@ onPullDownRefresh(async () => {
 <template>
   <UBasePage>
     <!-- 标题栏 -->
-    <template v-slot:navContent>校历</template>
+    <template v-slot:navContent>宿舍用电</template>
 
-    <div
-      class="flex flex-col p-2 m-3 pb-6 dark:bg-dark bg-white justify-center items-center rounded-lg shadow-sm"
-    >
-      <div class="py-2 font-bold">{{ year }}-{{ year + 1 }} 学年第 {{ term }} 学期</div>
-
-      <div class="py-2 text-sm">{{ subTitle }}</div>
-
-      <image
-        v-if="imgUrl"
-        @click="previewImg"
-        class="rounded-lg shadow py-2 transition-all duration-200 ease-in-out hover:shadow-lg"
-        :src="imgUrl"
-        alt="校历"
-        mode="widthFix"
-      />
-    </div>
+    <UResult></UResult>
   </UBasePage>
 </template>

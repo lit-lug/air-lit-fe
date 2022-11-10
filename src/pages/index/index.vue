@@ -73,7 +73,7 @@ const gridItems = ref<Array<UGridItem>>([
   {
     icon: "i-carbon-lightning",
     title: "宿舍用电",
-    url: "",
+    url: "/pages/index/elec/elec",
     isNeedBindSec: true,
   },
   {

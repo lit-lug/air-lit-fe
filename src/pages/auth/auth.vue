@@ -72,7 +72,6 @@ const refreshQrCode = async () => {
   if (qr) {
     qrCodeID.value = qr.code_id;
   }
-  // listenQrCodeStatus();
 };
 
 // #endif
