@@ -21,6 +21,8 @@ const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
 
+const { userInfo } = storeToRefs(appStore);
+
 const swiperItems = ref<Array<USwiperItem>>([
   {
     title: "标题1",
@@ -85,6 +87,11 @@ const gridItems = ref<Array<UGridItem>>([
 ]);
 
 const onGridItemClick = (item: UGridItem) => {
+  if (item.isNeedBindSec && !userInfo.value?.is_bind_sec) {
+    showNotify({ type: "primary", message: "请先绑定门户再进行操作!" });
+    return;
+  }
+
   if (item.url) {
     uni.navigateTo({
       url: item.url,
