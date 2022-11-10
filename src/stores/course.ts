@@ -54,14 +54,25 @@ export const useCourseStore = defineStore(
          */
         function setStartDay(someDate: string) {
             startDate.value = new Date(someDate)
-
             uni.setStorageSync('start_time', someDate)
-
             const days = new Date().getTime() - startDate.value.getTime()
             isStart.value = days > 0
             const week = Math.floor(days / (1000 * 60 * 60 * 24 * 7))
             originalWeekIndex.value = week < 0 ? 0 : week
             setCurrentWeekIndex(originalWeekIndex.value)
+        }
+
+        function getYearTerm(): { year: number, term: 1 | 0 } {
+            const date = new Date()
+            const month = date.getMonth()
+            let year = date.getFullYear()
+
+            if (month => 2 && month < 8) {
+                return { year: year, term: 1 }
+            } else {
+                year -= 1
+                return { year: year, term: 0 }
+            }
         }
 
         /**
@@ -236,6 +247,7 @@ export const useCourseStore = defineStore(
             originalWeekWeekIndex,
             currentWeekDayArray,
             colorArrayIndex,
+            getYearTerm,
             setStartDay,
             setCurrentWeekIndex,
             getConflictCourse,

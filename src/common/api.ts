@@ -126,3 +126,16 @@ export const GetQrCodeStatus = (id: string) => {
         }
     });
 }
+
+
+// 获取校历
+export const GetCalendar = () => {
+    return http.get<Calendar>('/api/weapp/calendar', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}

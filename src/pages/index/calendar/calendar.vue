@@ -1,13 +1,40 @@
 <script setup lang="ts">
-const imgUrl = ref(
-  "http://icepie-1258418320.cos.ap-shanghai.myqcloud.com/uPic/calendar-2021-1.png"
-);
+import { GetCalendar } from "~/common/api";
+
+const { getYearTerm } = useCourseStore();
+
+const imgUrl = ref("");
 
 const previewImg = () => {
   uni.previewImage({
     urls: [imgUrl.value],
   });
 };
+
+const yearTerm = getYearTerm();
+
+const year = ref(yearTerm.year);
+
+const term = ref(yearTerm.term);
+
+const subTitle = ref("");
+
+onReady(async () => {
+  const { data: calendar } = await GetCalendar();
+  if (calendar) {
+    subTitle.value = calendar.sub_title;
+    imgUrl.value = calendar.img_url;
+  }
+});
+
+onPullDownRefresh(async () => {
+  const { data: calendar } = await GetCalendar();
+  if (calendar) {
+    subTitle.value = calendar.sub_title;
+    imgUrl.value = calendar.img_url;
+  }
+  uni.stopPullDownRefresh();
+});
 </script>
 
 <template>
@@ -18,11 +45,12 @@ const previewImg = () => {
     <div
       class="flex flex-col p-2 m-3 pb-6 dark:bg-dark bg-white justify-center items-center rounded-lg shadow-sm"
     >
-      <div class="py-2 font-bold">2022-2023 学年第一学期</div>
+      <div class="py-2 font-bold">{{ year }}-{{ year + 1 }} 学年第 {{ term }} 学期</div>
 
-      <div class="py-2 text-sm">2022-08-29 ~ 2023-01-08</div>
+      <div class="py-2 text-sm">{{ subTitle }}</div>
 
       <image
+        v-if="imgUrl"
         @click="previewImg"
         class="rounded-lg shadow py-2"
         :src="imgUrl"
@@ -32,4 +60,3 @@ const previewImg = () => {
     </div>
   </UBasePage>
 </template>
-div UBasePage

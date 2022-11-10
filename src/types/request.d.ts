@@ -59,3 +59,8 @@ interface StatusResp {
 interface IsWork {
     is_work: boolean;
 }
+
+interface Calendar {
+    sub_title: string;
+    img_url: string;
+}

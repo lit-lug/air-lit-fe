@@ -32,7 +32,7 @@ http.interceptors.request.use((config) => {
         if (!token) {
             showMsg({ type: "hide" });
             uni.navigateTo({ url: '/pages/auth/auth' });
-            return Promise.reject()
+            return Promise.reject(config)
         }
 
         config.header = {
@@ -80,7 +80,9 @@ http.interceptors.response.use(
     },
     (error: any) => {
 
-        if (error.config.custom?.load) {
+        console.log(error)
+
+        if (error?.config.custom?.load) {
             showMsg({ type: "hide" });
         }
 
