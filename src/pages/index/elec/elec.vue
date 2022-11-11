@@ -5,11 +5,14 @@ import UTab from "~/components/UTab/UTab.vue";
 <template>
   <UBasePage>
     <!-- 标题栏 -->
-    <UTab></UTab>
 
-    <template v-slot:navContent :scroll="false" :tabs="['全部', '进行中', '已完成']"
-      >宿舍用电</template
-    >
+    <template v-slot:navContent>宿舍用电</template>
+
+    <template v-slot:navExtra>
+      <UTab></UTab>
+    </template>
+
+    <!-- 内容区 -->
 
     <UResult></UResult>
   </UBasePage>

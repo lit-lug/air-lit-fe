@@ -43,8 +43,14 @@ const showBackAction = ref(false);
 
 const showHomeAction = ref(false);
 
+const navExtraHeight = ref(0);
+
 const showNavBar = computed(() => {
   return props.showNavBar && deviceType.value !== "pc";
+});
+
+const barHeight = computed(() => {
+  return customBarHeight.value + navExtraHeight.value;
 });
 
 const initPage = () => {
@@ -52,6 +58,17 @@ const initPage = () => {
   // if (deviceType.value === "pc") {
   //  showNavBar = false;
   // }
+
+  const query = uni.createSelectorQuery().in(getCurrentInstance());
+  query
+    .select("#navExtra")
+    // 垃圾类型
+    .boundingClientRect((res: any) => {
+      if (res) {
+        navExtraHeight.value = res.height;
+      }
+    })
+    .exec();
 
   NavBarColorReset();
 
@@ -98,7 +115,7 @@ onShow(() => {
         class="w-full top-0 z-90 fixed font-bold bg-white dark:bg-dark"
         :class="showShadow ? 'shadow-sm ' : ''"
         :style="{
-          height: `${customBarHeight}px`,
+          height: `${customBarHeight + navExtraHeight}px`,
         }"
       >
         <div
@@ -127,12 +144,17 @@ onShow(() => {
                 ></div>
               </slot>
             </div>
+
             <div class="flex flex-row h-full text-lg justify-center items-center">
               <slot name="navContent">
                 <div class="text-center">
                   {{ pageTitle }}
                 </div>
               </slot>
+            </div>
+
+            <div class="flex justify-center items-center" id="navExtra">
+              <slot name="navExtra"> </slot>
             </div>
           </div>
         </div>
@@ -144,8 +166,8 @@ onShow(() => {
       <div
         class="overflow-auto dark:bg-black"
         :style="{
-          height: `calc(100vh - ${customBarHeight}px)`,
-          'padding-top': `${customBarHeight}px`,
+          height: `calc(100vh - ${customBarHeight + navExtraHeight}px)`,
+          'padding-top': `${customBarHeight + navExtraHeight}px`,
         }"
       >
         <slot />
