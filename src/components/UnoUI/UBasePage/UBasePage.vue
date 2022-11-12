@@ -49,26 +49,22 @@ const showNavBar = computed(() => {
   return props.showNavBar && deviceType.value !== "pc";
 });
 
-const barHeight = computed(() => {
-  return customBarHeight.value + navExtraHeight.value;
-});
-
 const initPage = () => {
   // 修复 PC 导航栏
   // if (deviceType.value === "pc") {
   //  showNavBar = false;
   // }
 
-  const query = uni.createSelectorQuery().in(getCurrentInstance());
-  query
-    .select("#navExtra")
-    // 垃圾类型
-    .boundingClientRect((res: any) => {
-      if (res) {
-        navExtraHeight.value = res.height;
-      }
-    })
-    .exec();
+  // const query = uni.createSelectorQuery().in(getCurrentInstance());
+  // query
+  //   .select("#navExtra")
+  //   // 垃圾类型
+  //   .boundingClientRect((res: any) => {
+  //     if (res) {
+  //       navExtraHeight.value = res.height;
+  //     }
+  //   })
+  //   .exec();
 
   NavBarColorReset();
 
@@ -102,6 +98,10 @@ onReady(() => {
 });
 
 onShow(() => {
+  initPage();
+});
+
+onLaunch(() => {
   initPage();
 });
 </script>

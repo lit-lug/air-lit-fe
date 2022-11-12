@@ -1,17 +1,21 @@
 <template>
-  <view class="wly-tabnav bg-white dark:bg-dark z-10">
+  <view
+    class="wly-tabnav bg-white dark:bg-dark z-10"
+    :class="showShadow ? 'shadow-sm' : ''"
+  >
     <!-- 导航 -->
     <view
       class="tabs"
-      data-ind="0"
       v-for="(item, indexNav) in tabnav"
       :key="item.name"
       :class="type === item.type ? 'tabss' : ''"
-      @click="typefun(indexNav, item.type)"
+      @click="typefun(indexNav)"
     >
-      <text class="text" :style="type === item.type ? optStyle : optStyleElse">{{
-        item.name
-      }}</text>
+      <text
+        class="text-28rpx transition-all"
+        :class="type === item.type ? '' : 'text-gray-5 dark:text-gray-3'"
+        >{{ item.name }}</text
+      >
     </view>
 
     <!-- 进度 -->
@@ -19,139 +23,102 @@
       class="speed"
       :style="
         'left:' +
-        dataInd * (tabWid / tabnav.length) +
+        index * (tabWidth / tabnav.length) +
         'px;width:' +
-        tabWid / tabnav.length +
+        tabWidth / tabnav.length +
         'px'
       "
     >
       <view
-        class="speed-box"
-        :style="'width:' + (lineW || (tabWid / tabnav.length) * 0.5) + 'px;' + lineStyle"
+        class="speed-box bg-blue-5"
+        :style="'width:' + (tabWidth / tabnav.length) * 0.5 + 'px;'"
       ></view>
     </view>
   </view>
 </template>
 
-<script>
-export default {
-  name: "UTab",
-  props: {
-    // 线条宽度 单位px
-    lineW: {
-      type: [Number, String],
-      default: 0,
-    },
-    // 选中的文字样式
-    optStyle: {
-      type: [String],
-      default: "color: #333333;",
-    }, // 其他未选中的文字样式
-    optStyleElse: {
-      type: [String],
-      default: "color: #999999;",
-    },
-    // 自定义样式
-    tabStyle: {
-      type: [String],
-      default: "",
-    },
-    // 自定义进度条样式
-    lineStyle: {
-      type: [String],
-      default: "",
-    },
-    // 是否固定
-    fixed: {
-      type: Boolean,
-      default: true,
-    },
-    // 默认选中值
-    defaultKey: {
-      type: [String, Number],
-      default: "",
-    },
-    // 菜单导航
-    tabnav: {
-      type: Array,
-      default: [
-        {
-          type: "", //状态值
-          name: "余额查询",
-          list: [], //数据
-        },
-        {
-          type: "0", //状态值
-          name: "用电详情",
-          list: [], //数据
-        },
-        {
-          type: "2", //状态值
-          name: "充值记录",
-          list: [], //数据
-        },
-      ],
-    },
-  },
-  data() {
-    return {
-      tabWid: 750, //tab组件宽度
-      btnbb: true,
-      userId: "",
-      pageSize: 10,
-      pageNum: 1,
-      type: "", //当前选择类型
-      dataInd: 0, //当前选择的索引
-      orderStatus: "",
-      deliveryId: "",
-      navigateLastPage: 0, //总页数
-      list: [],
-    };
-  },
-  created() {
-    let that = this;
-    setTimeout(() => {
-      if (that.defaultKey) {
-        that.type = that.defaultKey;
-        that.dataInd = that.tabnav.findIndex((item) => item.type == this.defaultKey);
-      } else {
-        that.type = that.tabnav[0].type;
-      }
-    }, 50);
+<script lang="ts" setup>
+import { NavItem } from "./types";
 
-    setTimeout(() => {
-      let info = uni.createSelectorQuery().in(that).select(".wly-tabnav");
-      info
-        .boundingClientRect(function (data) {
-          that.tabWid = data.width;
-        })
-        .exec(function (res) {
-          // 注意：exec方法必须执行，即便什么也不做，否则不会获取到任何数据
-        });
-    }, 50);
+const props = defineProps({
+  defaultIndex: {
+    type: Number,
+    default: 0,
   },
-  methods: {
-    typefun(ind) {
-      this.dataInd = ind;
-      this.type = this.tabnav[ind].type;
-      this.pageNum = 1;
-
-      // 判断当前有没有数据
-      if (this.tabnav[ind].list.length == 0) {
-      }
-
-      this.$emit("ontype_", this.tabnav[ind]);
-    },
+  tabWidth: {
+    type: Number,
+    default: 750,
   },
+  showShadow: {
+    type: Boolean,
+    default: true,
+  },
+  // 线条宽度 单位px
+  // lineW: {
+  //   type: [Number, String],
+  //   default: 20,
+  // },
+  // 默认选中值
+  defaultType: {
+    type: [String, Number],
+    default: "",
+  },
+  // 菜单导航
+  tabnav: {
+    type: Array<NavItem>,
+    default: [
+      {
+        type: "0", //状态值
+        name: "余额查询",
+      },
+      {
+        type: "1",
+        name: "历史消费",
+      },
+      {
+        type: "2",
+        name: "充值记录",
+      },
+    ],
+  },
+});
+
+const emits = defineEmits<{
+  (e: "change", val: any): void;
+}>();
+
+const type = ref(props.defaultType);
+
+const index = ref(props.defaultIndex);
+
+const tabWidth = ref(props.tabWidth);
+
+const typefun = (i: number) => {
+  index.value = i;
+  type.value = props.tabnav[i].type;
+  emits("change", { i });
 };
+
+const info = uni
+  .createSelectorQuery()
+  .in(getCurrentInstance())
+  .select(".wly-tabnav");
+
+info
+  .boundingClientRect((data: any) => {
+    console.log(data);
+    tabWidth.value = data.width;
+  })
+  .exec();
 </script>
 
 <style lang="scss">
 .wly-tabnav {
   height: 80rpx;
   line-height: 80rpx;
-  background: #fff;
-  position: relative;
+  // background: #fff;
+  position: -webkit-sticky;
+  position: sticky;
   width: 750rpx;
   left: 0px;
   top: 0px;
@@ -170,11 +137,11 @@ export default {
     transition: left 0.3s;
 
     align-items: center;
+    justify-content: center;
 
     .speed-box {
       margin: auto;
       height: 6rpx;
-      background: #fd383f;
       border-radius: 10px;
     }
   }
@@ -182,12 +149,6 @@ export default {
   .tabs {
     width: 150rpx;
     text-align: center;
-
-    .text {
-      text-align: center;
-      font-size: 28rpx;
-      transition: all 0.3s;
-    }
   }
 }
 </style>

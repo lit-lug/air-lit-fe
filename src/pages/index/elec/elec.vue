@@ -8,12 +8,14 @@ import UTab from "~/components/UTab/UTab.vue";
 
     <template v-slot:navContent>宿舍用电</template>
 
-    <template v-slot:navExtra>
-      <UTab></UTab>
-    </template>
+    <template v-slot:navExtra> </template>
+
+    <UTab></UTab>
+
+    <div class="pt-80rpx">
+      <UResult></UResult>
+    </div>
 
     <!-- 内容区 -->
-
-    <UResult></UResult>
   </UBasePage>
 </template>
