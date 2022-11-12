@@ -3,6 +3,11 @@ import TimetableAction from "./TimetableAction.vue";
 import TimetableHeader from "./TimetableHeader.vue";
 import type { CourseModel } from "~/stores/course";
 import { courseTimeList } from "~/stores/course";
+
+const pageStore = usePageStore();
+
+const { deviceType } = storeToRefs(pageStore);
+
 withDefaults(defineProps<{ showCourseAction: boolean }>(), {
   showCourseAction: false,
 });

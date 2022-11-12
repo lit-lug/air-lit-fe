@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import UTab from "~/components/UTab/UTab.vue";
+
+const pageStore = usePageStore();
+
+const { deviceType } = storeToRefs(pageStore);
 </script>
 
 <template>
@@ -8,11 +12,17 @@ import UTab from "~/components/UTab/UTab.vue";
 
     <template v-slot:navContent>宿舍用电</template>
 
-    <template v-slot:navExtra> </template>
+    <template v-if="deviceType !== 'pc'" v-slot:navExtra>
+      <UTab></UTab>
+    </template>
 
-    <UTab></UTab>
+    <UTab v-if="deviceType == 'pc'"></UTab>
 
-    <div class="pt-80rpx">
+    <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
+      <UResult></UResult>
+      <UResult></UResult>
+      <UResult></UResult>
+      <UResult></UResult>
       <UResult></UResult>
     </div>
 

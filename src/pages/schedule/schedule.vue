@@ -2,9 +2,16 @@
 import type { CourseModel } from "~/stores/course";
 import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
+import TimetableAction from "~/components/timetable/TimetableAction.vue";
 import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
 import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";
+
+// const { setCurrentWeekIndex } = useCourseStore();
+
+const pageStore = usePageStore();
+
+const { deviceType } = storeToRefs(pageStore);
 
 const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
 
@@ -55,6 +62,12 @@ const setDrawer = (isOpen: boolean) => {
   isOpen ? drawer.value?.openDrawer() : drawer.value?.closeDrawer();
 };
 
+watchEffect(() => {
+  uni.setNavigationBarTitle({
+    title: `第${currentWeekIndex.value + 1}周${!isStart.value ? "(未开学)" : ""}`,
+  });
+});
+
 // onLaunch((option: any) => {
 //   console.log("onLaunch", option);
 // });
@@ -101,12 +114,25 @@ const setDrawer = (isOpen: boolean) => {
         :show-course-action="showCourseAction"
         @course-item-click="handleShowActionSheet"
       />
+
       <!-- course card -->
       <CourseActionSheet
         :show-action-sheet="showActionSheet"
         :course-item="clickedCourseItem"
         @cancel="handleCloseActionSheet"
       />
+
+      <div
+        v-if="deviceType == 'pc'"
+        class="bg-blue-5/90 w-10 h-10 fixed bottom-5% right-5% z-80 rounded-full transition-all duration-300 shadow-sm"
+        text="white sm"
+        @click="setDrawer(true)"
+        hover-class="opacity-50"
+      >
+        <div class="flex justify-center items-center flex-row">
+          <div class="i-carbon-menu text-xl p-1 m-1" />
+        </div>
+      </div>
 
       <!-- #ifdef H5 -->
     </UBasePage>
