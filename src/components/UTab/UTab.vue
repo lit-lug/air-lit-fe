@@ -6,10 +6,10 @@
     <!-- 导航 -->
     <view
       class="tabs"
-      v-for="(item, indexNav) in tabnav"
+      v-for="(item, indexNav) in tabNav"
       :key="item.name"
       :class="type === item.type ? 'tabss' : ''"
-      @click="typefun(indexNav)"
+      @click="change(indexNav)"
     >
       <text
         class="text-28rpx transition-all"
@@ -23,15 +23,15 @@
       class="speed"
       :style="
         'left:' +
-        index * (tabWidth / tabnav.length) +
+        index * (tabWidth / tabNav.length) +
         'px;width:' +
-        tabWidth / tabnav.length +
+        tabWidth / tabNav.length +
         'px'
       "
     >
       <view
         class="speed-box bg-blue-5"
-        :style="'width:' + (tabWidth / tabnav.length) * 0.5 + 'px;'"
+        :style="'width:' + (tabWidth / tabNav.length) * 0.5 + 'px;'"
       ></view>
     </view>
   </view>
@@ -64,7 +64,7 @@ const props = defineProps({
     default: "",
   },
   // 菜单导航
-  tabnav: {
+  tabNav: {
     type: Array<NavItem>,
     default: [
       {
@@ -83,9 +83,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits<{
-  (e: "change", val: any): void;
-}>();
+const emits = defineEmits(["change"]);
 
 const type = ref(props.defaultType);
 
@@ -93,10 +91,10 @@ const index = ref(props.defaultIndex);
 
 const tabWidth = ref(props.tabWidth);
 
-const typefun = (i: number) => {
+const change = (i: number) => {
   index.value = i;
-  type.value = props.tabnav[i].type;
-  emits("change", { i });
+  type.value = props.tabNav[i].type;
+  emits("change", i);
 };
 
 const info = uni
@@ -106,7 +104,6 @@ const info = uni
 
 info
   .boundingClientRect((data: any) => {
-    console.log(data);
     tabWidth.value = data.width;
   })
   .exec();

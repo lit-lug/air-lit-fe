@@ -7,8 +7,6 @@ import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
 import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";
 
-// const { setCurrentWeekIndex } = useCourseStore();
-
 const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
@@ -16,8 +14,6 @@ const { deviceType } = storeToRefs(pageStore);
 const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
 
 const { setDarkMode } = useAppStore();
-
-// const { setPageConfig } = usePageStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
 
