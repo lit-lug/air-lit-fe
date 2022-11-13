@@ -50,22 +50,6 @@ const showNavBar = computed(() => {
 });
 
 const initPage = () => {
-  // 修复 PC 导航栏
-  // if (deviceType.value === "pc") {
-  //  showNavBar = false;
-  // }
-
-  // const query = uni.createSelectorQuery().in(getCurrentInstance());
-  // query
-  //   .select("#navExtra")
-  //   // 垃圾类型
-  //   .boundingClientRect((res: any) => {
-  //     if (res) {
-  //       navExtraHeight.value = res.height;
-  //     }
-  //   })
-  //   .exec();
-
   NavBarColorReset();
 
   _notifyRef.value = notifyRef.value;
@@ -153,8 +137,8 @@ onLaunch(() => {
               </slot>
             </div>
 
-            <div class="flex justify-center items-center" id="navExtra">
-              <slot name="navExtra"> </slot>
+            <div class="flex justify-center items-center">
+              <slot name="navExtra" />
             </div>
           </div>
         </div>

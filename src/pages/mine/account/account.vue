@@ -227,7 +227,7 @@ onPullDownRefresh(async () => {
       <div class="p-2 flex flex-row justify-between items-center">
         <div class="flex flex-row justify-between items-center text-blue-5">
           <div
-            class="pr-1 mr-1 text-32rpx"
+            class="pr-1 mr-1 text-36rpx"
             :class="!isAgree ? 'i-carbon-radio-button' : 'i-carbon-radio-button-checked'"
             @click="isAgree = !isAgree"
             hover-class="opacity-50"

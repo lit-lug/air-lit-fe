@@ -34,8 +34,8 @@ const tabNavItems: Array<NavItem> = [
 
     <template v-slot:navContent>宿舍用电</template>
 
-    <template v-if="deviceType !== 'pc'" v-slot:navExtra>
-      <UTab @change="tabChange" :tabNav="tabNavItems"></UTab>
+    <template v-slot:navExtra>
+      <UTab @change="tabChange" :tabNav="tabNavItems" v-if="deviceType !== 'pc'"></UTab>
     </template>
 
     <UTab :tabNav="tabNavItems" @change="tabChange" v-if="deviceType == 'pc'"></UTab>

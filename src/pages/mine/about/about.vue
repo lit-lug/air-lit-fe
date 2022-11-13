@@ -30,7 +30,7 @@ onLaunch(() => {});
       <div
         class="flex justify-center items-center text-24rpx text-gray-5 dark:text-warmGray"
       >
-        Copyright @ 2021 - 2022 AIR LIT (云小洛)
+        Copyright @ 2021 - {{ new Date().getFullYear() }} AIR LIT (云小洛)
       </div>
     </div>
   </UBasePage>
