@@ -139,3 +139,40 @@ export const GetCalendar = () => {
         }
     });
 }
+
+// 获取用电信息
+export const GetElecRemain = () => {
+    return http.get<ElecRemainResp>('/api/weapp/elec/remain', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
+// 获取用电详情
+export const GetElecDetails = () => {
+    return http.get<ElecDetailsResp>('/api/weapp/elec/details',  {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
+
+// 获取充值记录
+export const GetElecChargeRecords = () => {
+    return http.get<ElecChargeRecordResp>('/api/weapp/elec/charge_records',  {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}

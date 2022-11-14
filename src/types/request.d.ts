@@ -64,3 +64,49 @@ interface Calendar {
     sub_title: string;
     img_url: string;
 }
+
+interface ElecRemain {
+    balance: string;
+    balance_subsidy: string;
+    build_name: string;
+    electricity: string;
+    electricity_subsidy: string;
+    name: string;
+    room: string;
+  }
+
+interface ElecRemainResp extends Array<ElecRemain> {}
+
+
+interface ElecDetail {
+    name: string;
+    build_name: string;
+    room: string;
+    electricity: string;
+    details: {
+        time: string;
+        value: string;
+    }[];
+}
+
+interface ElecDetailsResp extends Array<ElecDetail> {}
+
+
+interface Mx {
+    accounttime: string;
+    inmoney: string;
+    paytype: string;
+}
+
+interface ElecChargeRecord {
+    XTBZ: string;
+    buildName: string;
+    device: string;
+    mdid: string;
+    mx: Mx[];
+    room: string;
+    roomId: string;
+    syl: string;
+}
+
+interface ElecChargeRecordResp extends Array<ElecChargeRecord> {}
