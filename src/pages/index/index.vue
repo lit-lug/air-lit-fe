@@ -184,7 +184,10 @@ onPullDownRefresh(async () => {
 
     <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
-        <div class="text-sm font-bold">今日课程</div>
+        <div class="text-sm font-bold flex flex-row gap-2 justify-center">
+          <div class="bg-blue-5/80 w-1 h-5 rounded-lg"></div>
+          <div>今日课程</div>
+        </div>
         <div class="text-sm text-gray dark:text-gray-2 text-24rpx">
           第 {{ currentWeekIndex + 1 }} 周 | 共 2 门
         </div>
@@ -213,7 +216,10 @@ onPullDownRefresh(async () => {
 
     <div class="flex flex-col p-2 m-3 bg-white dark:bg-dark rounded-lg shadow-sm">
       <div class="flex flex-row justify-between items-center">
-        <div class="text-sm font-bold">功能列表</div>
+        <div class="text-sm font-bold flex flex-row gap-2 justify-center">
+          <div class="bg-blue-5/80 w-1 h-5 rounded-lg"></div>
+          <div>功能列表</div>
+        </div>
         <div class="i-carbon-grid text-gray dark:text-gray-2"></div>
       </div>
 

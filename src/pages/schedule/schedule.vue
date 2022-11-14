@@ -2,7 +2,7 @@
 import type { CourseModel } from "~/stores/course";
 import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
-import TimetableAction from "~/components/timetable/TimetableAction.vue";
+
 import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
 import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";

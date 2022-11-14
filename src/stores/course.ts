@@ -64,10 +64,8 @@ export const useCourseStore = defineStore(
 
         function getYearTerm(): { year: number, term: 1 | 0 } {
             const date = new Date()
-            const month = date.getMonth()
             let year = date.getFullYear()
-
-            if (month => 2 && month < 8) {
+            if (date.getMonth() >= 2 && date.getMonth() < 8) {
                 return { year: year, term: 1 }
             } else {
                 year -= 1

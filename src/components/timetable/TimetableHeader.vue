@@ -10,8 +10,7 @@ const {
 } = storeToRefs(useCourseStore());
 const isCurrentWeek = (weekIndex: number) => {
   if (!isStart.value) return false;
-  if (!originalWeekIndex.value || !currentWeekIndex.value || !originalWeekWeekIndex.value)
-    return false;
+
   return (
     originalWeekIndex.value === currentWeekIndex.value &&
     originalWeekWeekIndex.value === weekIndex
