@@ -2,26 +2,25 @@
 const { customBarHeight } = storeToRefs(useAppStore());
 
 interface FilterDataItem {
-  name: string;
   key: string;
   select: number;
   submenu: {
     label: string;
-    value: any[];
+    value: any;
   }[];
 }
 
 const props = withDefaults(
   defineProps<{
     filterData: Array<FilterDataItem>;
-    maxHeight: number;
-    tabsHeight: number;
-    isSticky: boolean;
-    isFixed: boolean;
-    stickyTop: string;
+    maxHeight?: number;
+    tabsHeight?: number;
+    isSticky?: boolean;
+    isFixed?: boolean;
+    stickyTop?: string;
   }>(),
   {
-    maxHeight: 480,
+    maxHeight: 400,
     tabsHeight: 80,
     isSticky: false,
     isFixed: false,
@@ -57,10 +56,6 @@ const tabsHei = computed(() => {
   return `${props.tabsHeight}rpx`;
 });
 
-const maxHei = computed(() => {
-  return `${props.maxHeight}rpx`;
-});
-
 const mainsHeight = computed(() => {
   return `${props.maxHeight - props.tabsHeight}rpx`;
 });
@@ -69,6 +64,10 @@ const show = ref(false);
 const curren = ref(0);
 const child = ref<FilterDataItem>();
 
+const maxHei = computed(() => {
+  return `${props.maxHeight}rpx`;
+});
+
 const maskVisibility = ref(false);
 
 const handClose = () => {
@@ -76,9 +75,7 @@ const handClose = () => {
   maskVisibility.value = false;
 };
 let loading = false;
-const handEnum = (index) => {
-  console.log("show", show.value);
-
+const handEnum = (index: number) => {
   if (loading) return;
   loading = true;
   setTimeout(() => {
@@ -99,7 +96,13 @@ const handEnum = (index) => {
   });
 };
 
-const handSelect = (item, index) => {
+const handSelect = (
+  item: {
+    label: string;
+    value: any;
+  },
+  index: number
+) => {
   const arr = tableData.value;
   arr[curren.value].select = index;
   show.value = false;
@@ -125,6 +128,7 @@ const handSelect = (item, index) => {
   >
     <view class="dropdow">
       <div
+        @click="handClose"
         class="bg-dark-100 bg-opacity-50 transition-all right-0 bottom-0 left-0 z-1 fixed"
         :style="{ height: `calc(100vh - ${customBarHeight}px)`, top: customBarHeight }"
         :class="maskVisibility ? 'opacity-100 visible' : 'opacity-0 invisible'"

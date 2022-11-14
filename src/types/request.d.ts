@@ -91,7 +91,6 @@ interface ElecDetail {
 
 interface ElecDetailsResp extends Array<ElecDetail> {}
 
-
 interface Mx {
     accounttime: string;
     inmoney: string;
@@ -110,3 +109,42 @@ interface ElecChargeRecord {
 }
 
 interface ElecChargeRecordResp extends Array<ElecChargeRecord> {}
+
+
+interface ScoreInfo {
+    class_name: string;
+    set_credit: string;
+    code: string;
+    type: string;
+    assess_type: string;
+    score: string;
+    credit: string;
+    gpa: string;
+    credit_gpa: string;
+    info: string;
+}
+
+interface RawScoreInfo {
+    class_name: string;
+    set_credit: string;
+    type: string;
+    assess_type: string;
+    code: string;
+    raw_score: RawScore;
+    score: string;
+    info: string;
+}
+
+interface RawScore {
+    usual: string;
+    midterm: string;
+    finalExam: string;
+    skill: string;
+    general: string;
+}
+
+
+type ScoreResp = {
+    all: Map<string,  Map<string , ScoreInfo> >;
+    raw: Map<string,  Map<string , RawScoreInfo> >;
+}

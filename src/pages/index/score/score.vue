@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import { GetScore } from "~/common/api";
 import UDropdown from "~/components/UDropdown/UDropdown.vue";
 
 const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
 
+const score = ref<ScoreResp | null>(null);
+
 const filterData = ref([
   {
-    name: "首付金额",
     key: "first_amount",
     select: 0,
     submenu: [
@@ -19,43 +21,43 @@ const filterData = ref([
         label: "0首付",
         value: [0, 0],
       },
-      {
-        label: "0-5000元",
-        value: [0, 4999],
-      },
-      {
-        label: "5000-10000元",
-        value: [5000, 10000],
-      },
     ],
   },
   {
-    name: "车价",
-    key: "real_price",
+    key: "type",
     select: 0,
     submenu: [
       {
-        label: "车价",
+        label: "有效",
         value: [],
       },
       {
-        label: "10万以内",
-        value: [0, 99999],
-      },
-      {
-        label: "10-15万",
-        value: [100000, 149999],
-      },
-      {
-        label: "15万以上",
-        value: [150000, ""],
+        label: "原始",
+        value: "raw",
       },
     ],
   },
 ]);
+
 const handChange = (e) => {
   console.log(e);
 };
+
+const refreshData = async (force: boolean = false) => {
+  try {
+    if (score.value === null || force) {
+      const { data: res } = await GetScore();
+      score.value = res;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+onReady(async () => {
+  console.log("onReady");
+  await refreshData();
+});
 </script>
 
 <template>
@@ -80,16 +82,6 @@ const handChange = (e) => {
 
     <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
       <!-- 结果页 -->
-      <UResult></UResult>
-
-      <UResult></UResult>
-
-      <UResult></UResult>
-
-      <UResult></UResult>
-
-      <UResult></UResult>
-
       <UResult></UResult>
     </div>
 

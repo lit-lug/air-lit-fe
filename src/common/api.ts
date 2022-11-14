@@ -176,3 +176,16 @@ export const GetElecChargeRecords = () => {
         }
     });
 }
+
+
+// 获取成绩
+export const GetScore = () => {
+    return http.get<ScoreResp>('/api/weapp/score', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
