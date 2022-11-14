@@ -45,7 +45,9 @@ onPullDownRefresh(async () => {
     <div
       class="flex flex-col p-2 m-3 pb-6 dark:bg-dark bg-white justify-center items-center rounded-lg shadow-sm"
     >
-      <div class="py-2 font-bold">{{ year }}-{{ year + 1 }} 学年第 {{ term }} 学期</div>
+      <div class="py-2 font-bold">
+        {{ year }}-{{ year + 1 }} 学年第{{ term == 0 ? "一" : "二" }}学期
+      </div>
 
       <div class="py-2 text-sm">{{ subTitle }}</div>
 

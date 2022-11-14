@@ -57,7 +57,7 @@ const gridItems = ref<Array<UGridItem>>([
   {
     icon: "i-carbon-chart-stepper",
     title: "考试成绩",
-    url: "",
+    url: "/pages/index/score/score",
     isNeedBindSec: true,
   },
   {
@@ -173,7 +173,11 @@ onPullDownRefresh(async () => {
         @click="authQrCode"
       />
       <!-- #endif -->
-      <div :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'" @click="toggleDarkMode" />
+      <div
+        class="mr-2"
+        :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
+        @click="toggleDarkMode"
+      />
     </template>
 
     <!-- 主体内容 -->

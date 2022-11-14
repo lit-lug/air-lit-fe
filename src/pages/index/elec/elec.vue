@@ -78,7 +78,7 @@ onPullDownRefresh(async () => {
 </script>
 
 <template>
-  <UBasePage>
+  <UBasePage :showShadow="false">
     <!-- 标题栏 -->
 
     <template v-slot:navContent>宿舍用电</template>

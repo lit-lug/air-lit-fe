@@ -28,10 +28,7 @@ onShow(async () => {
 
 setCourseList(courses as CourseModel[]);
 const showCourseAction = ref(false);
-// set the start date
-// const someDate = new Date();
-// someDate.setDate(someDate.getDate() + -1 * 7);
-// setStartDay(someDate);
+
 function handleCreateCourse() {
   uni.navigateTo({
     url: "./detail/detail",
@@ -79,6 +76,7 @@ watchEffect(() => {
       <template v-slot:navAction>
         <div class="i-carbon-add text-2xl mr-2" @click="handleCreateCourse" />
         <div
+          class="mr-2"
           :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
           @click="toggleDarkMode"
         />
@@ -92,7 +90,7 @@ watchEffect(() => {
         >
           {{ `第 ${currentWeekIndex + 1} 周${!isStart ? "(未开学)" : ""}` }}
           <div
-            class="transition-transform duration-200 text-2xl i-carbon-chevron-up"
+            class="transition-transform duration-200 text-2xl i-carbon-chevron-down"
             :class="showCourseAction ? 'rotate-to-180' : 'rotate-to-0'"
           />
         </div>

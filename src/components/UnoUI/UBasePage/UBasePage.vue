@@ -136,11 +136,8 @@ onLaunch(() => {
                 </div>
               </slot>
             </div>
-
-            <div class="flex justify-center items-center">
-              <slot name="navExtra" />
-            </div>
           </div>
+          <slot name="navExtra" />
         </div>
       </div>
       <UNotify ref="notifyRef" />

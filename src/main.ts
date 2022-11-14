@@ -1,6 +1,7 @@
 import { createSSRApp } from 'vue'
 import App from './App.vue'
 
+
 import { setupPinia } from '~/modules/pinia'
 
 import 'uno.css'

@@ -32,6 +32,13 @@
       }
     },
     {
+      "path": "pages/index/score/score",
+      "style": {
+        "navigationBarTitleText": "考试成绩",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
       "path": "pages/auth/auth",
       "style": {
         "navigationBarTitleText": "授权中...",
@@ -87,6 +94,7 @@
         "enablePullDownRefresh": true
       }
     },
+
     {
       "path": "pages/schedule/detail/detail",
       "style": {
