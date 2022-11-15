@@ -1,15 +1,6 @@
 <script setup lang="ts">
 const { customBarHeight } = storeToRefs(useAppStore());
 
-interface FilterDataItem {
-  key: string;
-  select: number;
-  submenu: {
-    label: string;
-    value: any;
-  }[];
-}
-
 const props = withDefaults(
   defineProps<{
     filterData: Array<FilterDataItem>;
@@ -97,10 +88,10 @@ const handEnum = (index: number) => {
 };
 
 const handSelect = (
-  item: {
-    label: string;
-    value: any;
-  },
+  // item: {
+  //   label: string;
+  //   value: any;
+  // },
   index: number
 ) => {
   const arr = tableData.value;
@@ -116,7 +107,7 @@ const handSelect = (
       ...el.submenu[el.select],
     };
   });
-  emits("change", select);
+  emits("change", select as FilterChangeData[]);
 };
 </script>
 
@@ -163,7 +154,7 @@ const handSelect = (
                 class="yradio"
                 v-for="(item, index) in child?.submenu"
                 :key="index"
-                @click="handSelect(item, index)"
+                @click="handSelect(index)"
               >
                 <div
                   class="text-30rpx font-bold"

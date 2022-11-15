@@ -6,22 +6,22 @@ const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
 
-const score = ref<ScoreResp | null>(null);
+const scoreData = ref<ScoreResp | null>(null);
 
-const filterData = ref([
+const yearSubMenus = ref<FilterSubMenu[]>([]);
+
+const termSubMenus = ref<FilterSubMenu[]>([]);
+
+const filterData = ref<FilterDataItem[]>([
   {
-    key: "first_amount",
+    key: "year",
     select: 0,
-    submenu: [
-      {
-        label: "首付金额",
-        value: [],
-      },
-      {
-        label: "0首付",
-        value: [0, 0],
-      },
-    ],
+    submenu: yearSubMenus.value,
+  },
+  {
+    key: "term",
+    select: 0,
+    submenu: termSubMenus.value,
   },
   {
     key: "type",
@@ -29,7 +29,7 @@ const filterData = ref([
     submenu: [
       {
         label: "有效",
-        value: [],
+        value: "all",
       },
       {
         label: "原始",
@@ -39,15 +39,73 @@ const filterData = ref([
   },
 ]);
 
-const handChange = (e) => {
-  console.log(e);
+const selectType = computed(() => {
+  return filterData.value[2].submenu[filterData.value[2].select].value;
+});
+
+const selectYear = computed(() => {
+  return filterData.value[0].submenu[filterData.value[0].select].value;
+});
+
+const selectTerm = computed(() => {
+  return filterData.value[1].submenu[filterData.value[1].select].value;
+});
+
+const selectScore = computed(() => {
+  try {
+    const score = scoreData.value?.[selectType.value][selectYear.value][selectTerm.value];
+    return score;
+  } catch (error) {
+    return null;
+  }
+});
+
+const handChange = (e: FilterChangeData[]) => {
+  for (const item of e) {
+    if (item.label === "term") {
+      refreshTermSubMenus();
+    }
+  }
+};
+
+const refreshYearSubMenus = async () => {
+  if (scoreData.value) {
+    for (const year in scoreData.value[selectType.value]) {
+      yearSubMenus.value.push({
+        label: year,
+        value: year,
+      });
+    }
+  }
+};
+
+const refreshTermSubMenus = () => {
+  if (scoreData.value) {
+    // clear
+    // termSubMenus.value = []; 不能这样 回丢失响应
+    termSubMenus.value.length = 0;
+    for (const term in scoreData.value[selectType.value][selectYear.value]) {
+      termSubMenus.value.push({
+        label: term === "0" ? "第一学期" : "第二学期",
+        value: term,
+      });
+    }
+  }
+};
+
+const refreshSubMenus = () => {
+  refreshYearSubMenus();
+  refreshTermSubMenus();
 };
 
 const refreshData = async (force: boolean = false) => {
   try {
-    if (score.value === null || force) {
+    if (scoreData.value === null || force) {
       const { data: res } = await GetScore();
-      score.value = res;
+      if (res) {
+        scoreData.value = res;
+        refreshSubMenus();
+      }
     }
   } catch (error) {
     console.log(error);
@@ -66,7 +124,11 @@ onReady(async () => {
     <template v-slot:navContent>考试成绩</template>
 
     <template v-slot:navExtra>
-      <UDropdown :filterData="filterData" @change="handChange" v-if="deviceType !== 'pc'">
+      <UDropdown
+        :filterData="filterData"
+        @change="handChange"
+        v-if="deviceType !== 'pc' && scoreData"
+      >
       </UDropdown>
     </template>
 
@@ -74,7 +136,7 @@ onReady(async () => {
       isSticky
       :filterData="filterData"
       @change="handChange"
-      v-if="deviceType === 'pc'"
+      v-if="deviceType === 'pc' && scoreData"
     >
     </UDropdown>
 
@@ -82,6 +144,9 @@ onReady(async () => {
 
     <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
       <!-- 结果页 -->
+
+      <div>{{ selectScore }}</div>
+
       <UResult></UResult>
     </div>
 
