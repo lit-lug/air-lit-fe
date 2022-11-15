@@ -139,7 +139,7 @@ const handSelect = (
               {{ getTitleName(item) }}
             </div>
             <div
-              class="transition-transform duration-200 i-carbon-chevron-down text-xl"
+              class="transition-transform duration-200 i-carbon:caret-down text-xl"
               :class="[
                 show && curren === index ? 'rotate-to-180 text-blue-5' : 'rotate-to-0',
               ]"

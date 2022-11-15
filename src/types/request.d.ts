@@ -145,6 +145,6 @@ interface RawScore {
 
 
 type ScoreResp = {
-    all: Map<string,  Map<string , ScoreInfo> >;
-    raw: Map<string,  Map<string , RawScoreInfo> >;
+    all: Map<string,  Map<string , ScoreInfo[]> >;
+    raw: Map<string,  Map<string , RawScoreInfo[]> >;
 }

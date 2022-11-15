@@ -2,7 +2,7 @@
 import { GetScore } from "~/common/api";
 import UCollapse from "~/components/score/UCollapse/UCollapse.vue";
 
-const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
+// const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
 
 const pageStore = usePageStore();
 
@@ -53,7 +53,7 @@ const selectTerm = computed(() => {
   return filterData.value[1].submenu[filterData.value[1].select].value;
 });
 
-const selectScore = computed(() => {
+const selectScore = computed<ScoreInfo[] | RawScoreInfo[]>(() => {
   try {
     const score = scoreData.value?.[selectType.value][selectYear.value][selectTerm.value];
     return score;
@@ -153,9 +153,18 @@ onPullDownRefresh(async () => {
     <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
       <!-- 结果页 -->
 
-      <UCollapse></UCollapse>
+      <div v-for="(v, i) in selectScore" :key="i">
+        <UCollapse :title="v.class_name" :sub-title="v.score">
+          <div
+            class="flex flex-row justify-between items-center p-1 m-1 text-gray-5 dark:text-gray-3"
+          >
+            <div>xxx</div>
+            <div>xxx</div>
+          </div>
+        </UCollapse>
+      </div>
 
-      <div>{{ selectScore }}</div>
+      <!-- <div>{{ selectScore }}</div> -->
 
       <UResult v-if="!selectScore"></UResult>
     </div>
