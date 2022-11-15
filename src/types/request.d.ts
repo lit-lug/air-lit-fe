@@ -138,7 +138,7 @@ interface RawScoreInfo {
 interface RawScore {
     usual: string;
     midterm: string;
-    finalExam: string;
+    final_exam: string;
     skill: string;
     general: string;
 }
