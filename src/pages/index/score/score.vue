@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { GetScore } from "~/common/api";
-import UDropdown from "~/components/UDropdown/UDropdown.vue";
+import UCollapse from "~/components/score/UCollapse/UCollapse.vue";
+
+const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
 
 const pageStore = usePageStore();
 
@@ -72,7 +74,7 @@ const refreshYearSubMenus = async () => {
   if (scoreData.value) {
     for (const year in scoreData.value[selectType.value]) {
       yearSubMenus.value.push({
-        label: year,
+        label: year + " 学年",
         value: year,
       });
     }
@@ -101,9 +103,10 @@ const refreshSubMenus = () => {
 const refreshData = async (force: boolean = false) => {
   try {
     if (scoreData.value === null || force) {
-      const { data: res } = await GetScore();
+      let { data: res } = await GetScore();
       if (res) {
         scoreData.value = res;
+
         refreshSubMenus();
       }
     }
@@ -115,6 +118,11 @@ const refreshData = async (force: boolean = false) => {
 onReady(async () => {
   console.log("onReady");
   await refreshData();
+});
+
+onPullDownRefresh(async () => {
+  await refreshData(true);
+  uni.stopPullDownRefresh();
 });
 </script>
 
@@ -145,9 +153,11 @@ onReady(async () => {
     <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
       <!-- 结果页 -->
 
+      <UCollapse></UCollapse>
+
       <div>{{ selectScore }}</div>
 
-      <UResult></UResult>
+      <UResult v-if="!selectScore"></UResult>
     </div>
 
     <!-- 下拉菜单 -->
