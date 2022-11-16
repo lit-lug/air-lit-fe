@@ -16,6 +16,7 @@ httpConfig.custom = {
     // msgRef: ref<InstanceType<typeof tmMessage> | null>(null),
     encryption: false,
     isBindSec: true,
+    failTip: true,
 }
 
 // 微信用户认证
@@ -32,7 +33,7 @@ export const WeAppAuth = (req: LoginReq) => {
 
 
 // 获取用户信息
-export const GetUserInfo = ({ load = false, tip = true }) => {
+export const GetUserInfo = ({ load = false, tip = true , failTip = true }) => {
 
     return http.get<UserInfo>('/api/weapp/user', {
         custom: {

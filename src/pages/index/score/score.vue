@@ -2,8 +2,7 @@
 import { GetScore } from "~/common/api";
 import UCollapse from "~/components/score/UCollapse/UCollapse.vue";
 
-// const { hasConflictCourseByMap, setCurrentWeekIndex } = useCourseStore();
-
+const { getCourseColor } = useCourseStore();
 const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
@@ -72,13 +71,12 @@ const handChange = (e: FilterChangeData[]) => {
   }
 };
 
-const getCourseColor = (class_name: string): string => {
-  const colorArray = colorList[0];
-  // const { class_name } = courseItem;
-  if (!colorMap.has(class_name))
-    colorMap.set(class_name, colorArray[colorMap.size % colorArray.length]);
-  return colorMap.get(class_name) || "bg-white";
-};
+// const getCourseColor = (class_name: string): string => {
+//   const colorArray = colorList[0];
+//   if (!colorMap.has(class_name))
+//     colorMap.set(class_name, colorArray[colorMap.size % colorArray.length]);
+//   return colorMap.get(class_name) || "bg-white";
+// };
 
 const getScoreColor = (score: string): string => {
   const scoreNum = Number(score);

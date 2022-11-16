@@ -143,7 +143,11 @@ onShow(async () => {
   }
 
   // 更新用户信息
-  const { data: authInfo } = await GetUserInfo({ tip: false, load: false });
+  const { data: authInfo } = await GetUserInfo({
+    tip: false,
+    load: false,
+    failTip: false,
+  });
   if (authInfo) {
     // 同步用户信息
     appStore.setUserInfo(authInfo);

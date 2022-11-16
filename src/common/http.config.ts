@@ -80,7 +80,6 @@ http.interceptors.response.use(
     },
     (error: any) => {
 
-        console.log(error)
 
         if (error?.config.custom?.load) {
             showMsg({ type: "hide" });

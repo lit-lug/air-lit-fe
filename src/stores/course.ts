@@ -173,7 +173,7 @@ export const useCourseStore = defineStore(
             colorMap.clear()
             if (courseList.value) {
                 courseList.value.map(courseItem =>
-                    Object.assign(courseItem, { color: getCourseColor(courseItem) }),
+                    Object.assign(courseItem, { color: getCourseColor(courseItem.title) }),
                 )
             }
         }
@@ -183,12 +183,11 @@ export const useCourseStore = defineStore(
          * @param courseItem course item
          * @returns course color
          */
-        function getCourseColor(courseItem: CourseModel): string {
+        function getCourseColor(courseTitle: string): string {
             const colorArray = colorList[colorArrayIndex.value]
-            const { title } = courseItem
-            if (!colorMap.has(title))
-                colorMap.set(title, colorArray[colorMap.size % colorArray.length])
-            return colorMap.get(title) || 'bg-white'
+            if (!colorMap.has(courseTitle))
+                colorMap.set(courseTitle, colorArray[colorMap.size % colorArray.length])
+            return colorMap.get(courseTitle) || 'bg-white'
         }
 
         watch(
@@ -249,6 +248,7 @@ export const useCourseStore = defineStore(
             getYearTerm,
             setStartDay,
             setCurrentWeekIndex,
+            getCourseColor,
             getConflictCourse,
             hasConflictCourseByMap,
             setCourseItemTop,
