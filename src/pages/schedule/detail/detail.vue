@@ -13,11 +13,17 @@ const defaultCourse: CourseModel = {
   start: 1,
   duration: 2,
 };
+
 const courseStore = useCourseStore();
+
 const courseList = ref<CourseModel[]>([]);
+
 const originalCourseTitle = ref("");
+
 const courseTitle = ref("");
+
 const isUpdate = ref(false);
+
 onLoad((option: any) => {
   isUpdate.value = !!option?.course;
   if (isUpdate.value) {
@@ -31,10 +37,22 @@ onLoad((option: any) => {
     courseList.value = [defaultCourse];
   }
 });
+
 onShow(() => {
   pageTitle.value = isUpdate.value ? "编辑课程" : "添加课程";
 });
+
 function handleDeleteCourseItem(courseIndex: number) {
+  console.log(courseList.value);
+
+  if (courseList.value) {
+    uni.showToast({
+      title: "至少保留一个时间段",
+      icon: "none",
+    });
+    return;
+  }
+
   uni.showModal({
     title: "警告",
     content: "确定删除该时间段的课程吗？",
@@ -43,9 +61,11 @@ function handleDeleteCourseItem(courseIndex: number) {
     },
   });
 }
+
 function handleAddNewTime() {
   courseList.value.push(cloneDeep(courseList.value[courseList.value.length - 1]));
 }
+
 function handleSaveCourse() {
   if (!courseTitle.value) {
     uni.showToast({
@@ -65,8 +85,11 @@ function handleSaveCourse() {
   });
 }
 const showWeekActionSheet = ref(false);
+
 const clickedIndex = ref(-1);
+
 const clickedWeeks = ref<number[]>([]);
+
 function handleShowWeekActionSheet(clickIndex: number) {
   showWeekActionSheet.value = true;
   clickedIndex.value = clickIndex;
@@ -76,7 +99,7 @@ function handleShowWeekActionSheet(clickIndex: number) {
  * transform weeks to string eg: [1, 2, 3, 5, 6, 8] to '1-3,5-6,8'
  * @param weeks week list
  */
-function transformArray2String(weeks: number[]): string {
+function tArray2String(weeks: number[]): string {
   let weeksString = "";
   for (let i = 0; i < weeks.length; i++) {
     if (i === 0) {
@@ -141,6 +164,8 @@ const timeList = [
   ],
 ];
 function handleTimeChange(e: any) {
+  console.log(courseList.value);
+
   const value = e.detail.value;
   courseList.value[clickedIndex.value].week = value[0] ? value[0] : 1;
   courseList.value[clickedIndex.value].start = value[1] ? value[1] : 1;
@@ -154,11 +179,12 @@ function handleConfirmTimeActionSheet() {
 <template>
   <UBasePage :pageTitle="pageTitle">
     <div>
-      <div class="bg-white mb-4 py-1 justify-center items-start dark:bg-#121212">
-        <div class="px-4">
-          <div class="text-lg">通用信息</div>
-        </div>
-        <div class="flex px-4 justify-start items-center">
+      <div
+        class="bg-white m-2 p-1 justify-center rounded-lg gap-1 items-start dark:bg-#121212"
+      >
+        <div class="text-lg font-bold p-2">通用信息</div>
+
+        <div class="flex p-2 justify-start items-center">
           <div class="min-w-14">名称</div>
           <input
             v-model="courseTitle"
@@ -172,10 +198,10 @@ function handleConfirmTimeActionSheet() {
 
       <template v-for="(courseItem, courseIndex) of courseList" :key="courseIndex">
         <div
-          class="bg-white flex flex-col mb-4 py-1 gap-2 justify-center dark:bg-#121212"
+          class="bg-white flex flex-col m-2 p-1 rounded-lg gap-2 justify-center dark:bg-#121212"
         >
-          <div class="flex px-4 justify-between items-center">
-            <div class="text-lg">
+          <div class="flex px-2 justify-between items-center">
+            <div class="text-lg font-bold">
               {{ `时间段${courseIndex + 1}` }}
             </div>
             <div
@@ -183,7 +209,7 @@ function handleConfirmTimeActionSheet() {
               @click="handleDeleteCourseItem(courseIndex)"
             />
           </div>
-          <div class="flex px-4 justify-start items-center">
+          <div class="flex px-2 justify-start items-center">
             <div class="min-w-14">地点</div>
             <input
               v-model="courseItem.location"
@@ -192,13 +218,13 @@ function handleConfirmTimeActionSheet() {
               placeholder="输入上课地点（选填）"
             />
           </div>
-          <div class="flex px-4 justify-start items-center">
+          <div class="flex px-2 justify-start items-center">
             <div class="min-w-14">周数</div>
             <div class="w-full" @click="handleShowWeekActionSheet(courseIndex)">
-              {{ transformArray2String(courseItem.weeks) }}
+              {{ tArray2String(courseItem.weeks) }}
             </div>
           </div>
-          <div class="flex px-4 justify-start items-center">
+          <div class="flex px-2 justify-start items-center">
             <div class="min-w-14">时间</div>
             <div class="w-full" @click="handleShowTimeActionSheet(courseIndex)">
               {{
@@ -213,21 +239,26 @@ function handleConfirmTimeActionSheet() {
 
       <div class="flex flex-col pb-safe gap-1 justify-center">
         <div
-          class="flex bg-green-500 h-12 text-center justify-center items-center"
+          class="flex bg-green-500 h-12 mx-2 px-2 text-center justify-center items-center rounded-lg"
           hover-class="bg-green-600"
           :hover-stay-time="150"
           @click="handleAddNewTime"
         >
-          <div class="i-carbon-add" />
-          添加其他时间段
+          <div class="flex flex-row justify-center items-center text-white">
+            <div class="i-carbon-add" />
+            <div class="">添加其他时间段</div>
+          </div>
         </div>
         <div
-          class="flex bg-blue-500 h-12 text-center justify-center items-center"
+          class="flex bg-blue-500 h-12 mx-2 px-2 text-center justify-center items-center rounded-lg"
           hover-class="bg-blue-600"
           :hover-stay-time="150"
           @click="handleSaveCourse"
         >
-          保存
+          <div class="flex flex-row justify-center items-center text-white">
+            <!-- <div class="i-carbon-add" /> -->
+            <div class="">保存</div>
+          </div>
         </div>
       </div>
     </div>
@@ -242,7 +273,7 @@ function handleConfirmTimeActionSheet() {
           <div class="flex font-medium text-xl px-4 justify-between items-center">
             选择上课周
             <div
-              class="font-normal text-base text-green-500"
+              class="font-normal font-bold text-base text-green-500"
               @click="handleConfirmWeekActionSheet"
             >
               确定
@@ -283,7 +314,7 @@ function handleConfirmTimeActionSheet() {
         :class="showTimeActionSheet ? 'bottom-0' : '-bottom-full'"
       >
         <div class="flex flex-col py-6 gap-6">
-          <div class="flex font-medium text-xl px-4 justify-between items-center">
+          <div class="flex font-bold text-xl px-4 justify-between items-center">
             选择上课周
             <div
               class="font-normal text-base text-green-500"
