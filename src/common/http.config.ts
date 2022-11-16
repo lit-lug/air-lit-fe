@@ -9,7 +9,7 @@ const http = new Http({
     header: {},
 });
 
-http.config.timeout = 300000;
+http.config.timeout = 15000;
 
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
@@ -91,7 +91,9 @@ http.interceptors.response.use(
             return Promise.reject(error);
         }
 
-        showToast({ message: "网络错误" });
+        if (error?.config.custom?.failTip) {
+            showToast({ message: "网络错误" });
+        }
 
         error.data.data = null
 

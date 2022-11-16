@@ -128,10 +128,9 @@ export const GetQrCodeStatus = (id: string) => {
     });
 }
 
-
 // 获取校历
 export const GetCalendar = () => {
-    return http.get<Calendar>('/api/weapp/calendar', {
+    return http.get<CalendarResp>('/api/weapp/calendar', {
         custom: {
             ...httpConfig.custom,
             auth: true,
@@ -187,6 +186,20 @@ export const GetScore = () => {
             auth: true,
             encryption: true,
             tip: false,
+        }
+    });
+}
+
+// 获取轮播图
+export const GetSwiper = () => {
+    return http.get<SwiperResp>('/api/weapp/swiper', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            load: false,
+            encryption: true,
+            tip: false,
+            failTip: false,
         }
     });
 }

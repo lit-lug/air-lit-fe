@@ -50,17 +50,9 @@ declare interface AuthInfo {
 
 interface StatusResp {
     start_day: string;
-    sec: IsWork;
-    jw: IsWork;
-    zhyd: IsWork;
-    health: IsWork;
 }
 
-interface IsWork {
-    is_work: boolean;
-}
-
-interface Calendar {
+interface CalendarResp {
     sub_title: string;
     img_url: string;
 }
@@ -143,8 +135,18 @@ interface RawScore {
     general: string;
 }
 
-
 type ScoreResp = {
     all: Map<string,  Map<string , ScoreInfo[]> >;
     raw: Map<string,  Map<string , RawScoreInfo[]> >;
 }
+
+
+interface  SwiperItem {
+    img: string;
+    title: string;
+    subTitle: string;
+    url: string;
+}
+
+
+type SwiperResp = SwiperItem[]

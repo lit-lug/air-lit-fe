@@ -49,16 +49,16 @@ const showNavBar = computed(() => {
   return props.showNavBar && deviceType.value !== "pc";
 });
 
+const isTabPage = pages.tabBar.list.some(
+  (item) => item.pagePath === getCurrentPages().pop()?.route
+);
+
 const initPage = () => {
   NavBarColorReset();
 
   _notifyRef.value = notifyRef.value;
   _toastRef.value = toastRef.value;
   _msgRef.value = msgRef.value;
-
-  const isTabPage = pages.tabBar.list.some(
-    (item) => item.pagePath === getCurrentPages().pop()?.route
-  );
 
   if (isTabPage) {
     return;
@@ -123,6 +123,7 @@ onLaunch(() => {
                   @click="handleNavigateBack"
                 />
                 <div
+                  v-if="isTabPage"
                   :class="darkMode ? 'i-carbon-moon' : 'i-carbon-sun'"
                   @click="toggleDarkMode"
                 ></div>

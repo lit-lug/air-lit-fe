@@ -4,7 +4,7 @@ import USwiper from "~/components/index/USwiper/USwiper.vue";
 import UGridGroup from "~/components/index/UGridGroup/UGridGroup.vue";
 import UGridItem from "~/components/index/UGridItem/UGridItem.vue";
 
-import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";
+import { GetUserInfo, AuthQrCode, GetStatus, GetSwiper } from "~/common/api";
 
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 
@@ -116,7 +116,23 @@ const authQrCode = () => {
   });
 };
 
-onLaunch(async () => {});
+const swiperClick = (item: USwiperItem) => {
+  console.log(item);
+
+  if (item.url) {
+    uni.navigateTo({
+      url: "/pages/webview/webview?url=" + encodeURIComponent(item.url),
+    });
+  }
+};
+
+onLaunch(async () => {
+  // 更新轮播图
+  const { data: swiperData } = await GetSwiper();
+  if (swiperData) {
+    swiperItems.value = swiperData;
+  }
+});
 
 onReady(async () => {
   // 获取系统状态
@@ -152,6 +168,12 @@ onShow(async () => {
     // 同步用户信息
     appStore.setUserInfo(authInfo);
   }
+
+  // 更新轮播图
+  const { data: swiperData } = await GetSwiper();
+  if (swiperData) {
+    swiperItems.value = swiperData;
+  }
 });
 
 onPullDownRefresh(async () => {
@@ -159,6 +181,12 @@ onPullDownRefresh(async () => {
   if (authInfo) {
     // 同步用户信息
     appStore.setUserInfo(authInfo);
+  }
+
+  // 更新轮播图
+  const { data: swiperData } = await GetSwiper();
+  if (swiperData) {
+    swiperItems.value = swiperData;
   }
   uni.stopPullDownRefresh();
 });
@@ -186,7 +214,7 @@ onPullDownRefresh(async () => {
 
     <!-- 主体内容 -->
 
-    <USwiper :swiperItems="swiperItems"></USwiper>
+    <USwiper :swiperItems="swiperItems" @click="swiperClick"></USwiper>
 
     <!-- 今日课程 -->
 

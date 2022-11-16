@@ -198,7 +198,7 @@ onPullDownRefresh(async () => {
         <UCollapse :title="v.class_name" :title-bar-color="getCourseColor(v.class_name)">
           <template v-slot:right>
             <div
-              class="bg-green-5/20 px-1 text-green-5 rounded-lg`"
+              class="flex bg-green-5/20 justify-center items-center px-1 text-green-5 rounded-lg`"
               :class="getScoreColor(v.score)"
               :style="{
                 whiteSpace: 'nowrap',

@@ -25,6 +25,8 @@ withDefaults(
   }
 );
 
+const emits = defineEmits(["click"]);
+
 const enjoySwiper = ref(0);
 
 const swiperChange = (e: CustomEvent) => {
@@ -73,6 +75,8 @@ const swiperChange = (e: CustomEvent) => {
               {{ item.subTitle }}
             </text>
             <view
+              v-if="item.url"
+              @click="() => emits('click', item)"
               class="Text-initialization"
               :class="[index === enjoySwiper ? 'bt' : '']"
             >
