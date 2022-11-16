@@ -75,11 +75,11 @@
     "eslint": "^8.27.0",
     "postcss": "^8.4.19",
     "terser": "^5.15.1",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.3",
     "unocss": "^0.45.30",
     "unocss-applet": "^0.2.18",
     "unplugin-auto-import": "^0.11.4",
-    "vite": "^3.2.3",
+    "vite": "^3.2.4",
     "vite-plugin-md-loader": "^0.0.1",
     "vite-plugin-pwa": "^0.13.3"
   }
