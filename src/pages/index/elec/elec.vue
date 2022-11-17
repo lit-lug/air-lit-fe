@@ -161,12 +161,7 @@ onPullDownRefresh(async () => {
               <div class="font-bold">
                 {{ d.time.split(" ")[0] }}
               </div>
-              <!-- <div class="flex flex-col justify-center">
-                <div class="font-bold">{{ d.time.split(" ")[0] }}</div>
-                <div class="text-gray-5 dark:text-gray-3 text-xs">
-                  {{ d.time.split(" ")[1] }}
-                </div>
-              </div> -->
+
               <div class="bg-red-5/20 px-2 text-red-5 text-sm rounded-lg">
                 {{ d.value }} 度
               </div>

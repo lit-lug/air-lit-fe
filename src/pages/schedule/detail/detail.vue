@@ -43,15 +43,15 @@ onShow(() => {
 });
 
 function handleDeleteCourseItem(courseIndex: number) {
-  console.log(courseList.value);
+  // console.log(courseList.value);
 
-  if (courseList.value) {
-    uni.showToast({
-      title: "至少保留一个时间段",
-      icon: "none",
-    });
-    return;
-  }
+  // if (courseList.value) {
+  //   uni.showToast({
+  //     title: "至少保留一个时间段",
+  //     icon: "none",
+  //   });
+  //   return;
+  // }
 
   uni.showModal({
     title: "警告",
@@ -65,7 +65,6 @@ function handleDeleteCourseItem(courseIndex: number) {
 function handleAddNewTime() {
   courseList.value.push(cloneDeep(courseList.value[courseList.value.length - 1]));
 }
-
 function handleSaveCourse() {
   if (!courseTitle.value) {
     uni.showToast({
@@ -256,7 +255,6 @@ function handleConfirmTimeActionSheet() {
           @click="handleSaveCourse"
         >
           <div class="flex flex-row justify-center items-center text-white">
-            <!-- <div class="i-carbon-add" /> -->
             <div class="">保存</div>
           </div>
         </div>
