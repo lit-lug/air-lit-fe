@@ -6,7 +6,7 @@ export interface CourseModel {
     start: number
     duration: number
     // [1-7]
-    week: number
+    day: number
     // [[1-20]]
     weeks: number[]
     color?: string
@@ -94,7 +94,9 @@ export const useCourseStore = defineStore(
         function setCourseList(newCourseList: CourseModel[]) {
             conflictCourseMap.clear()
             // sort by week and start
-            courseList.value = newCourseList.sort((a, b) => a.week - b.week || a.start - b.start)
+            courseList.value = newCourseList.sort((a, b) => a.day - b.day || a.start - b.start)
+
+            console.log(courseList.value)
             resetCourseBgColor()
         }
 
@@ -116,9 +118,9 @@ export const useCourseStore = defineStore(
             if (courseList.value) {
                 // process course list
                 for (const courseItem of courseList.value) {
-                    const { start, duration, week, weeks } = courseItem
+                    const { start, duration, day, weeks } = courseItem
                     for (const w of weeks) {
-                        const dayCourseList = parsedCourseList[w - 1][week - 1]
+                        const dayCourseList = parsedCourseList[w - 1][day - 1]
                         dayCourseList[Math.floor(start / 2)]++
                         // some courses may last more than 2 times
                         if (duration > 2)
@@ -150,9 +152,9 @@ export const useCourseStore = defineStore(
         function getConflictCourse(courseItem: CourseModel): CourseModel[] {
             if (!courseItem)
                 return []
-            const { week, start } = courseItem
+            const { day, start } = courseItem
             return courseList.value.filter((item) => {
-                return item.weeks.includes(currentWeekIndex.value + 1) && item.week === week && item.start === start
+                return item.weeks.includes(currentWeekIndex.value + 1) && item.day === day && item.start === start
             })
         }
 
@@ -210,10 +212,10 @@ export const useCourseStore = defineStore(
          */
         function deleteCourseItem(courseItem: CourseModel) {
             conflictCourseMap.clear()
-            const { title, week, start } = courseItem
+            const { title, day, start } = courseItem
             for (let i = 0; i < courseList.value.length; i++) {
                 const item = courseList.value[i]
-                if (item.title === title && item.week === week && item.start === start)
+                if (item.title === title && item.day === day && item.start === start)
                     courseList.value.splice(i, 1)
             }
         }

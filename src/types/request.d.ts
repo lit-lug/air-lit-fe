@@ -28,6 +28,7 @@ interface QrCodeStatus {
 }
 
 interface UserInfo {
+    user_id: number;
     is_bind_sec: Boolean;
     is_sub_oa: Boolean;
     is_need_update: Boolean;

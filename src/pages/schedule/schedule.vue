@@ -5,7 +5,7 @@ import TimetableContent from "~/components/timetable/TimetableContent.vue";
 
 import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
-import { GetUserInfo, AuthQrCode, GetStatus } from "~/common/api";
+import { GetStatus, GetSchedule } from "~/common/api";
 
 const pageStore = usePageStore();
 
@@ -61,9 +61,24 @@ watchEffect(() => {
   });
 });
 
-// onLaunch((option: any) => {
-//   console.log("onLaunch", option);
-// });
+onReady(async () => {
+  // 获取用户信息
+  const { data: data } = await GetSchedule();
+  if (data) {
+    console.log(data);
+    setCourseList(data as CourseModel[]);
+  }
+});
+
+onPullDownRefresh(async () => {
+  // 获取用户信息
+  const { data: data } = await GetSchedule();
+  if (data) {
+    console.log(data);
+    setCourseList(data as CourseModel[]);
+  }
+  uni.stopPullDownRefresh();
+});
 </script>
 
 <template>

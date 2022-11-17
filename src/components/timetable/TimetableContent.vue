@@ -23,9 +23,9 @@ const deleteWeekCourse = computed(() => {
   const weekCourse = Array.from(weekCourseList.value);
   if (weekCourse.length <= 1) return weekCourse;
   for (let i = 1; i < weekCourse.length; i++) {
-    const { start, week } = weekCourse[i];
-    const { start: prevStart, week: prevWeek } = weekCourse[i - 1];
-    if (start === prevStart && week === prevWeek) {
+    const { start, day } = weekCourse[i];
+    const { start: prevStart, day: prevWeek } = weekCourse[i - 1];
+    if (start === prevStart && day === prevWeek) {
       weekCourse.splice(i, 1);
       i--;
     }
@@ -71,7 +71,7 @@ function handleTouchEnd() {
 function getCoursePosition(item: CourseModel) {
   return {
     "grid-row": `${item.start} / ${item.start + item.duration}`,
-    "grid-column": `${item.week + 1} / ${item.week + 1 + 1}`,
+    "grid-column": `${item.day + 1} / ${item.day + 1 + 1}`,
   };
 }
 </script>

@@ -9,7 +9,7 @@ const http = new Http({
     header: {},
 });
 
-http.config.timeout = 15000;
+http.config.timeout = 300000;
 
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {

@@ -190,6 +190,18 @@ export const GetScore = () => {
     });
 }
 
+// 获取课表
+export const GetSchedule = () => {
+    return http.get<any>('/api/weapp/schedule', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
 // 获取轮播图
 export const GetSwiper = () => {
     return http.get<SwiperResp>('/api/weapp/swiper', {

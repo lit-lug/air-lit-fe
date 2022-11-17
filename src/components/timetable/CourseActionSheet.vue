@@ -13,8 +13,8 @@ const courseStore = useCourseStore();
 const courseList = computed(() => courseStore.getConflictCourse(props.courseItem));
 const courseTime = computed(() => getCourseTime(courseList.value[0]));
 function getCourseTime(item: CourseModel) {
-  const { week, start, duration } = item;
-  return `星期${weekTitle[week - 1]} 第${start}-${start + duration - 1}节`;
+  const { day, start, duration } = item;
+  return `星期${weekTitle[day - 1]} 第${start}-${start + duration - 1}节`;
 }
 function navigateToDetail(courseItem: CourseModel) {
   closeActionSheet();

@@ -8,7 +8,7 @@ const pageTitle = ref("课程详情");
 const defaultCourse: CourseModel = {
   title: "",
   location: "课程地点",
-  week: 1,
+  day: 1,
   weeks: [1, 3, 5],
   start: 1,
   duration: 2,
@@ -133,8 +133,8 @@ const timeValue = ref([1, 1, 1]);
 function handleShowTimeActionSheet(clickIndex: number) {
   showTimeActionSheet.value = true;
   clickedIndex.value = clickIndex;
-  const { week, start, duration } = courseList.value[clickIndex];
-  timeValue.value = [week, start, duration];
+  const { day, start, duration } = courseList.value[clickIndex];
+  timeValue.value = [day, start, duration];
 }
 const timeList = [
   ["星期数", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
@@ -166,7 +166,7 @@ function handleTimeChange(e: any) {
   console.log(courseList.value);
 
   const value = e.detail.value;
-  courseList.value[clickedIndex.value].week = value[0] ? value[0] : 1;
+  courseList.value[clickedIndex.value].day = value[0] ? value[0] : 1;
   courseList.value[clickedIndex.value].start = value[1] ? value[1] : 1;
   courseList.value[clickedIndex.value].duration = value[2] ? value[2] : 1;
 }
@@ -227,7 +227,7 @@ function handleConfirmTimeActionSheet() {
             <div class="min-w-14">时间</div>
             <div class="w-full" @click="handleShowTimeActionSheet(courseIndex)">
               {{
-                `${timeList[0][courseItem.week]} 第${courseItem.start}-${
+                `${timeList[0][courseItem.day]} 第${courseItem.start}-${
                   courseItem.start + courseItem.duration - 1
                 }节`
               }}
