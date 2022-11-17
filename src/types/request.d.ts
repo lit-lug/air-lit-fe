@@ -151,3 +151,9 @@ interface  SwiperItem {
 
 
 type SwiperResp = SwiperItem[]
+
+
+type GetScheduleReq = {
+    source: 'class' | 'my' ;
+    class?: string;
+}

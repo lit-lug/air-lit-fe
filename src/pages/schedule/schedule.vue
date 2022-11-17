@@ -63,7 +63,10 @@ watchEffect(() => {
 
 onReady(async () => {
   // 获取用户信息
-  const { data: data } = await GetSchedule();
+  const { data: data } = await GetSchedule({
+    source: "class",
+    // class: "B220227",
+  });
   if (data) {
     console.log(data);
     setCourseList(data as CourseModel[]);
@@ -72,7 +75,10 @@ onReady(async () => {
 
 onPullDownRefresh(async () => {
   // 获取用户信息
-  const { data: data } = await GetSchedule();
+  const { data: data } = await GetSchedule({
+    source: "class",
+    // class: "B220227",
+  });
   if (data) {
     console.log(data);
     setCourseList(data as CourseModel[]);

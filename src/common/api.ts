@@ -42,6 +42,7 @@ export const GetUserInfo = ({ load = false, tip = true , failTip = true }) => {
             auth: true,
             tip,
             encryption: true,
+            failTip,
         }
     });
 };
@@ -191,8 +192,8 @@ export const GetScore = () => {
 }
 
 // 获取课表
-export const GetSchedule = () => {
-    return http.get<any>('/api/weapp/schedule', {
+export const GetSchedule = (req?: GetScheduleReq ) => {
+    return http.post<any>('/api/weapp/schedule', req, {
         custom: {
             ...httpConfig.custom,
             auth: true,
