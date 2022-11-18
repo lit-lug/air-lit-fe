@@ -16,18 +16,19 @@ const { setDarkMode } = useAppStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
 
-const scheduleSource = ref(0);
+const scheduleSourceIndex = ref(uni.getStorageSync("schedule_source_index") || 0);
 
 const changeScheduleSource = (source: number) => {
-  scheduleSource.value = source;
+  scheduleSourceIndex.value = source;
+  uni.setStorageSync("schedule_source_index", source);
 };
 
 const getScheduleReq = computed<GetScheduleReq>(() => {
-  if (scheduleSource.value === 1) {
+  if (scheduleSourceIndex.value === 1) {
     return {
       source: "my",
     };
-  } else if (scheduleSource.value === 2) {
+  } else if (scheduleSourceIndex.value === 2) {
     return {
       source: "class",
     };
@@ -148,21 +149,21 @@ onPullDownRefresh(async () => {
           <div
             @click="changeScheduleSource(0)"
             class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-1 flex justify-center items-center"
-            :class="scheduleSource == 0 ? 'bg-blue-6/80 text-gray-1' : ''"
+            :class="scheduleSourceIndex == 0 ? 'bg-blue-6/80 text-gray-1' : ''"
           >
             自动选择
           </div>
           <div
             @click="changeScheduleSource(1)"
             class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
-            :class="scheduleSource == 1 ? 'bg-blue-6/80 text-gray-1' : ''"
+            :class="scheduleSourceIndex == 1 ? 'bg-blue-6/80 text-gray-1' : ''"
           >
             个人课表
           </div>
           <div
             @click="changeScheduleSource(2)"
             class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
-            :class="scheduleSource == 2 ? 'bg-blue-6/80 text-gray-1' : ''"
+            :class="scheduleSourceIndex == 2 ? 'bg-blue-6/80 text-gray-1' : ''"
           >
             班级课表
           </div>

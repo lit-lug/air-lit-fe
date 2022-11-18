@@ -14,7 +14,13 @@ http.config.timeout = 300000;
 /** 添加请求拦截器 */
 http.interceptors.request.use((config) => {
     if (config.custom?.load) {
-        showMsg({ type: "loading", message: "加载中" });
+        // showMsg({ type: "loading", message: "加载中" });
+
+        uni.showLoading({
+            title: "加载中",
+            mask: true,
+        });
+
     }
 
     // 判断是否需要加密
@@ -30,7 +36,7 @@ http.interceptors.request.use((config) => {
 
         // 未认证 -> 跳转到登录页
         if (!token) {
-            showMsg({ type: "hide" });
+            uni.hideLoading();
             uni.navigateTo({ url: '/pages/auth/auth' });
             return Promise.reject(config)
         }
@@ -49,7 +55,7 @@ http.interceptors.response.use(
     (response) => {
 
         if (response.config.custom?.load) {
-            showMsg({ type: "hide" });
+            uni.hideLoading();
         }
 
         if (!response.data.data) {
@@ -107,10 +113,9 @@ http.interceptors.response.use(
         return resp
     },
     (error: any) => {
-
-
         if (error?.config.custom?.load) {
-            showMsg({ type: "hide" });
+            // showMsg({ type: "hide" });
+            uni.hideLoading();
         }
 
         if (error.statusCode == 401) {

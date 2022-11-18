@@ -44,10 +44,10 @@ export const useCourseStore = defineStore(
     () => {
         const isStart = ref<boolean>(false)
 
-        const startDate = ref<Date>(new Date(uni.getStorageSync('start_time')))
+        const startDate = ref<Date>(new Date(uni.getStorageSync('start_time')) )
 
         const weekNum = ref<number>(20)
-        const courseList = ref<CourseModel[]>([])
+        const courseList = ref<CourseModel[]>(uni.getStorageSync('schedule') as CourseModel[] || [])
         const currentMonth = ref<number>(0)
         const originalWeekIndex = ref<number>(0)
         const currentWeekIndex = ref<number>(0)
@@ -102,8 +102,10 @@ export const useCourseStore = defineStore(
             // sort by week and start
             courseList.value = newCourseList.sort((a, b) => a.day - b.day || a.start - b.start)
 
-            console.log(courseList.value)
             resetCourseBgColor()
+            uni.setStorageSync('schedule', courseList.value)
+            
+       
         }
 
         // current week course list
