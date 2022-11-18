@@ -16,6 +16,28 @@ const { setDarkMode } = useAppStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
 
+const scheduleSource = ref(0);
+
+const changeScheduleSource = (source: number) => {
+  scheduleSource.value = source;
+};
+
+const getScheduleReq = computed<GetScheduleReq>(() => {
+  if (scheduleSource.value === 1) {
+    return {
+      source: "my",
+    };
+  } else if (scheduleSource.value === 2) {
+    return {
+      source: "class",
+    };
+  } else {
+    return {
+      source: "auto",
+    };
+  }
+});
+
 onShow(async () => {});
 
 const showCourseAction = ref(false);
@@ -59,24 +81,26 @@ onReady(async () => {
   if (status) {
     setStartDay(status.start_day);
   }
-
-  // 获取用户信息
-  const { data: data } = await GetSchedule({
-    source: "class",
-    // class: "B220227",
-  });
-  if (data) {
-    console.log(data);
-    setCourseList(data as CourseModel[]);
-  }
 });
+
+const syncSchedule = async () => {
+  setDrawer(false);
+  const { data } = await GetSchedule(getScheduleReq.value);
+  if (data) {
+    setCourseList(data);
+  }
+};
+
+const shareSchedule = () => {
+  uni.showToast({
+    title: "还在开发中...",
+    icon: "none",
+  });
+};
 
 onPullDownRefresh(async () => {
   // 获取用户信息
-  const { data: data } = await GetSchedule({
-    source: "class",
-    class: "B220203",
-  });
+  const { data: data } = await GetSchedule(getScheduleReq.value);
   if (data) {
     console.log(data);
     setCourseList(data as CourseModel[]);
@@ -116,17 +140,61 @@ onPullDownRefresh(async () => {
       </template>
 
       <template v-slot:drawer>
-        <div class="base justify-center items-center h-64 mx-auto flex flex-col gap-3">
+        <div
+          class="base justify-center items-center h-42 pt-10 mx-auto flex flex-col gap-3"
+        >
           <div class="text-center text-xl px-auto">数据源</div>
-          <switch style="transform: scale(0.85, 0.85)" color="#3B82F6" />
+          <!-- <switch style="transform: scale(0.85, 0.85)" color="#3B82F6" /> -->
+          <div
+            @click="changeScheduleSource(0)"
+            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-1 flex justify-center items-center"
+            :class="scheduleSource == 0 ? 'bg-blue-6/80 text-gray-1' : ''"
+          >
+            自动选择
+          </div>
+          <div
+            @click="changeScheduleSource(1)"
+            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
+            :class="scheduleSource == 1 ? 'bg-blue-6/80 text-gray-1' : ''"
+          >
+            个人课表
+          </div>
+          <div
+            @click="changeScheduleSource(2)"
+            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
+            :class="scheduleSource == 2 ? 'bg-blue-6/80 text-gray-1' : ''"
+          >
+            班级课表
+          </div>
         </div>
 
-        <div @click="setDrawer(false)" class="text-center text-2xl px-auto">返回</div>
+        <div class="justify-center items-center h-auto mx-auto flex flex-col gap-3 py-20">
+          <div class="text-center text-xl px-auto">操作</div>
 
-        <!-- <div class="base justify-center items-center h-full mx-auto flex flex-col gap-3">
-          <div class="text-center text-2xl px-auto">Drawer</div>
-          <div @click="setDrawer(false)" class="text-center text-2xl px-auto">返回</div>
-        </div> -->
+          <div
+            class="rounded-full w-10 h-10 m-2 p-2 bg-blue-5/80 text-center text-white flex justify-center items-center"
+            hover-class="opacity-50"
+            @click="syncSchedule"
+          >
+            同步
+          </div>
+
+          <div
+            class="rounded-full w-10 h-10 m-2 p-2 bg-green-5/80 text-center text-white flex justify-center items-center"
+            hover-class="opacity-50"
+            @click="shareSchedule"
+          >
+            分享
+          </div>
+        </div>
+
+        <div
+          @click="setDrawer(false)"
+          class="text-center text-xl p-auto"
+          hover-class="opacity-50"
+        >
+          返回
+        </div>
       </template>
 
       <!-- timetable main content -->

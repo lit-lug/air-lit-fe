@@ -154,6 +154,6 @@ type SwiperResp = SwiperItem[]
 
 
 type GetScheduleReq = {
-    source: 'class' | 'my' ;
+    source: 'class' | 'my' | 'auto' ;
     class?: string;
 }
