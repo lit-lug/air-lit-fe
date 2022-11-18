@@ -77,7 +77,7 @@ onPullDownRefresh(async () => {
   // 获取用户信息
   const { data: data } = await GetSchedule({
     source: "class",
-    // class: "B220227",
+    class: "B220203",
   });
   if (data) {
     console.log(data);

@@ -198,7 +198,7 @@ export const GetSchedule = (req?: GetScheduleReq ) => {
             ...httpConfig.custom,
             auth: true,
             encryption: true,
-            tip: false,
+            tip: true,
         }
     });
 }
