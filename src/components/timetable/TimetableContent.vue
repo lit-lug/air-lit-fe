@@ -6,11 +6,12 @@ import { courseTimeList } from "~/stores/course";
 
 const pageStore = usePageStore();
 
-const { deviceType } = storeToRefs(pageStore);
+// const { deviceType } = storeToRefs(pageStore);
 
 withDefaults(defineProps<{ showCourseAction: boolean }>(), {
   showCourseAction: false,
 });
+
 const emit = defineEmits(["courseItemClick"]);
 const { customBarHeight, darkMode } = storeToRefs(useAppStore());
 const { weekNum, weekCourseList, currentWeekIndex, originalWeekIndex } = storeToRefs(
@@ -85,7 +86,6 @@ function getCoursePosition(item: CourseModel) {
       class="w-full top-0 z-10 fixed bg-white dark:bg-dark"
       :style="{
         'padding-top': `${customBarHeight}px`,
-        //   backdropFilter: `blur(5px)`,
       }"
     >
       <TimetableAction :show-course-action="showCourseAction" />
@@ -107,6 +107,11 @@ function getCoursePosition(item: CourseModel) {
           <div class="px-0.5 text-8px">{{ courseTime.s }}<br />{{ courseTime.e }}</div>
         </div>
       </template>
+
+      <div v-if="deleteWeekCourse.length == 0" class="w-full h-full fixed">
+        <UResult msg="本周无课" subMsg="tips: 点击菜单可以同步课程哦~"></UResult>
+      </div>
+
       <template
         v-for="(courseItem, _courseIndex) of deleteWeekCourse"
         :key="_courseIndex"
@@ -130,7 +135,7 @@ function getCoursePosition(item: CourseModel) {
             <div class="font-medium break-all">
               {{ hasConflictCourseByMap(courseItem)[0].title }}
             </div>
-            <div class="break-all">
+            <div v-if="hasConflictCourseByMap(courseItem)[0].location" class="break-all">
               <div class="text-8px i-carbon-location-current" />
               {{ hasConflictCourseByMap(courseItem)[0].location }}
             </div>

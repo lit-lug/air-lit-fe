@@ -3,7 +3,6 @@ import type { CourseModel } from "~/stores/course";
 import CourseActionSheet from "~/components/timetable/CourseActionSheet.vue";
 import TimetableContent from "~/components/timetable/TimetableContent.vue";
 
-import courses from "~/static/courses";
 import UDrawerPage from "~/components/UnoUI/UDrawerPage/UDrawerPage.vue";
 import { GetStatus, GetSchedule } from "~/common/api";
 
@@ -11,22 +10,14 @@ const pageStore = usePageStore();
 
 const { deviceType } = storeToRefs(pageStore);
 
-const { customBarHeight, statusBarHeight, darkMode } = storeToRefs(useAppStore());
+const { darkMode } = storeToRefs(useAppStore());
 
 const { setDarkMode } = useAppStore();
 const { currentWeekIndex, isStart } = storeToRefs(useCourseStore());
 const { setCourseList, setStartDay } = useCourseStore();
 
-onShow(async () => {
-  // 获取系统状态
-  const { data: status } = await GetStatus();
+onShow(async () => {});
 
-  if (status) {
-    setStartDay(status.start_day);
-  }
-});
-
-setCourseList(courses as CourseModel[]);
 const showCourseAction = ref(false);
 
 function handleCreateCourse() {
@@ -62,6 +53,13 @@ watchEffect(() => {
 });
 
 onReady(async () => {
+  // 获取系统状态
+  const { data: status } = await GetStatus();
+
+  if (status) {
+    setStartDay(status.start_day);
+  }
+
   // 获取用户信息
   const { data: data } = await GetSchedule({
     source: "class",
@@ -118,10 +116,17 @@ onPullDownRefresh(async () => {
       </template>
 
       <template v-slot:drawer>
-        <div class="base justify-center items-center h-full mx-auto flex flex-col">
+        <div class="base justify-center items-center h-64 mx-auto flex flex-col gap-3">
+          <div class="text-center text-xl px-auto">数据源</div>
+          <switch style="transform: scale(0.85, 0.85)" color="#3B82F6" />
+        </div>
+
+        <div @click="setDrawer(false)" class="text-center text-2xl px-auto">返回</div>
+
+        <!-- <div class="base justify-center items-center h-full mx-auto flex flex-col gap-3">
           <div class="text-center text-2xl px-auto">Drawer</div>
           <div @click="setDrawer(false)" class="text-center text-2xl px-auto">返回</div>
-        </div>
+        </div> -->
       </template>
 
       <!-- timetable main content -->

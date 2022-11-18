@@ -15,7 +15,7 @@ const { darkMode } = storeToRefs(useAppStore());
 const { setDarkMode } = useAppStore();
 
 const appStore = useAppStore();
-const { showNotify, showToast, showMsg } = usePageStore();
+const { showNotify } = usePageStore();
 
 const pageStore = usePageStore();
 
@@ -28,15 +28,6 @@ const swiperItems = ref<Array<USwiperItem>>([
     title: "标题1",
     subTitle: "副标题1",
     img: "https://img.yzcdn.cn/vant/apple-1.jpg",
-  },
-  {
-    title: "标题2",
-    img: "https://img.yzcdn.cn/vant/apple-2.jpg",
-  },
-  {
-    title: "标题3",
-    subTitle: "副标题3",
-    img: "https://img.yzcdn.cn/vant/apple-3.jpg",
   },
 ]);
 
@@ -151,13 +142,6 @@ onReady(async () => {
 });
 
 onShow(async () => {
-  // 获取系统状态
-  const { data: status } = await GetStatus();
-
-  if (status) {
-    setStartDay(status.start_day);
-  }
-
   // 更新用户信息
   const { data: authInfo } = await GetUserInfo({
     tip: false,

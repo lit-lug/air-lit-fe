@@ -53,7 +53,14 @@ http.interceptors.response.use(
         }
 
         if (!response.data.data) {
-            showToast({ message: "网络错误" });
+            // showToast({ message: "网络错误" });
+
+            uni.showToast({
+                title: "网络错误" ,
+                icon: 'none',
+                duration: 2000
+            });
+
             return Promise.resolve(response);
         }
 
@@ -64,17 +71,38 @@ http.interceptors.response.use(
         const resp = response.data
 
         if (!resp) {
-            showToast({ message: "未知错误" });
+            // showToast({ message: "未知错误" });
+
+            uni.showToast({
+                title: "未知错误" ,
+                icon: 'none',
+                duration: 2000
+            });
+
             return Promise.reject(response);
         }
 
         if (resp.code != 200) {
-            showToast({ message: resp.msg });
+            // showToast({ message: resp.msg });
+
+            uni.showToast({
+                title: resp.msg,
+                icon: 'none',
+                duration: 2000
+            });
+
             return
         }
 
         if (response.config.custom?.tip) {
-            showToast({ message: resp.msg })
+            // showToast({ message: resp.msg });
+
+            uni.showToast({
+                title: resp.msg,
+                icon: 'none',
+                duration: 2000
+            });
+
         }
         return resp
     },
@@ -86,13 +114,25 @@ http.interceptors.response.use(
         }
 
         if (error.statusCode == 401) {
-            showToast({ message: "授权失效" });
+            // showToast({ message: "授权失效" });
+
+
+            uni.showToast({
+                title:"授权失效",
+                icon: 'none',
+                duration: 2000
+            });
+
             uni.navigateTo({ url: '/pages/auth/auth' });
             return Promise.reject(error);
         }
 
         if (error?.config.custom?.failTip) {
-            showToast({ message: "网络错误" });
+            uni.showToast({
+                title:"网络错误",
+                icon: 'none',
+                duration: 2000
+            });
         }
 
         error.data.data = null

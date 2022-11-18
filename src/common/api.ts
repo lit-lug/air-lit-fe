@@ -160,7 +160,7 @@ export const GetElecDetails = () => {
             ...httpConfig.custom,
             auth: true,
             encryption: true,
-            tip: false,
+            // tip: false,
         }
     });
 }
@@ -173,7 +173,7 @@ export const GetElecChargeRecords = () => {
             ...httpConfig.custom,
             auth: true,
             encryption: true,
-            tip: false,
+            // tip: false,
         }
     });
 }
@@ -186,7 +186,7 @@ export const GetScore = () => {
             ...httpConfig.custom,
             auth: true,
             encryption: true,
-            tip: false,
+            // tip: false,
         }
     });
 }
@@ -198,7 +198,7 @@ export const GetSchedule = (req?: GetScheduleReq ) => {
             ...httpConfig.custom,
             auth: true,
             encryption: true,
-            tip: true,
+            // tip: true,
         }
     });
 }

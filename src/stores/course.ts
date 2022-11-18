@@ -2,9 +2,15 @@ import { pinia } from '~/modules/pinia'
 
 export interface CourseModel {
     title: string
-    location: string
+    teacher?: string
+    location?: string
     start: number
     duration: number
+    code?: string
+    sections?: number[]
+    credit?: string
+    type?: 'jw' | 'custom'
+    time?: string
     // [1-7]
     day: number
     // [[1-20]]
@@ -53,8 +59,8 @@ export const useCourseStore = defineStore(
          * @param someDate the start date of the semester
          */
         function setStartDay(someDate: string) {
-            startDate.value = new Date(someDate)
             uni.setStorageSync('start_time', someDate)
+            startDate.value = new Date(someDate)
             const days = new Date().getTime() - startDate.value.getTime()
             isStart.value = days > 0
             const week = Math.floor(days / (1000 * 60 * 60 * 24 * 7))
@@ -212,10 +218,10 @@ export const useCourseStore = defineStore(
          */
         function deleteCourseItem(courseItem: CourseModel) {
             conflictCourseMap.clear()
-            const { title, day, start } = courseItem
+            const { title, day, start, teacher } = courseItem
             for (let i = 0; i < courseList.value.length; i++) {
                 const item = courseList.value[i]
-                if (item.title === title && item.day === day && item.start === start)
+                if (item.title === title && item.day === day && item.start === start && item.teacher === teacher) 
                     courseList.value.splice(i, 1)
             }
         }

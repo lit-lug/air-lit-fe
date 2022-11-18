@@ -43,16 +43,6 @@ onShow(() => {
 });
 
 function handleDeleteCourseItem(courseIndex: number) {
-  // console.log(courseList.value);
-
-  // if (courseList.value) {
-  //   uni.showToast({
-  //     title: "至少保留一个时间段",
-  //     icon: "none",
-  //   });
-  //   return;
-  // }
-
   uni.showModal({
     title: "警告",
     content: "确定删除该时间段的课程吗？",
@@ -215,6 +205,17 @@ function handleConfirmTimeActionSheet() {
               class="w-full"
               type="text"
               placeholder="输入上课地点（选填）"
+              placeholder-class="text-gray-5 dark:text-gray-3"
+            />
+          </div>
+          <div class="flex px-2 justify-start items-center">
+            <div class="min-w-14">教师</div>
+            <input
+              v-model="courseItem.teacher"
+              class="w-full"
+              type="text"
+              placeholder="输入任课教师（选填）"
+              placeholder-class="text-gray-5 dark:text-gray-3"
             />
           </div>
           <div class="flex px-2 justify-start items-center">

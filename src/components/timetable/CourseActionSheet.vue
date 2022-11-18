@@ -27,6 +27,28 @@ function closeActionSheet() {
   emit("cancel");
 }
 
+/**
+ * transform weeks to string eg: [1, 2, 3, 5, 6, 8] to '1-3,5-6,8'
+ * @param weeks week list
+ */
+function tArray2String(weeks: number[]): string {
+  let weeksString = "";
+  for (let i = 0; i < weeks.length; i++) {
+    if (i === 0) {
+      weeksString += weeks[i];
+    } else {
+      if (weeks[i] !== weeks[i - 1] + 1) {
+        const last = weeksString.split(",")[weeksString.split(",").length - 1];
+        if (Number.parseInt(last) !== weeks[i - 1]) weeksString += `-${weeks[i - 1]}`;
+        weeksString += `,${weeks[i]}`;
+      } else {
+        if (i === weeks.length - 1) weeksString += `-${weeks[i]}`;
+      }
+    }
+  }
+  return weeksString;
+}
+
 const bottom = ref("0rpx");
 
 // #ifdef H5
@@ -54,7 +76,11 @@ bottom.value = "6%";
             {{ courseTime }}
           </div>
           <template v-for="(courseItem, index) of courseList" :key="index">
-            <div class="px-4" flex="~ col gap-2" @click="navigateToDetail(courseItem)">
+            <div
+              class="px-4 pb-8"
+              flex="~ col gap-2"
+              @click="navigateToDetail(courseItem)"
+            >
               <div class="flex mb-1 w-full gap-2 justify-start items-center relative">
                 <div
                   class="rounded-full h-5 w-1 inline-block"
@@ -70,12 +96,25 @@ bottom.value = "6%";
                 />
               </div>
               <div class="flex gap-1 justify-start items-center">
-                <div class="i-carbon-location" />
+                <div v-if="courseItem.location" class="i-carbon-location" />
                 {{ courseItem.location }}
+              </div>
+              <div
+                v-if="courseItem.teacher"
+                class="flex gap-1 justify-start items-center"
+              >
+                <div class="i-carbon-user" />
+                {{ courseItem.teacher }}
               </div>
               <div class="flex gap-1 justify-start items-center">
                 <div class="i-carbon-alarm" />
-                {{ getCourseTime(courseItem) }}
+                {{
+                  courseItem.time && courseItem.type == "jw"
+                    ? courseItem.time
+                    : `${getCourseTime(courseItem)} [${tArray2String(
+                        courseItem.weeks
+                      )}周]`
+                }}
               </div>
             </div>
           </template>
