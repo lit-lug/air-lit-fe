@@ -121,7 +121,6 @@ http.interceptors.response.use(
         if (error.statusCode == 401) {
             // showToast({ message: "授权失效" });
 
-
             uni.showToast({
                 title:"授权失效",
                 icon: 'none',
@@ -138,6 +137,7 @@ http.interceptors.response.use(
                 icon: 'none',
                 duration: 2000
             });
+
         }
 
         error.data.data = null
