@@ -53,14 +53,14 @@ const gridItems = ref<Array<UGridItem>>([
   },
   {
     icon: "i-carbon-navaid-civil",
-    title: "环节",
-    url: "",
+    title: "实践环节",
+    url: "/pages/index/ring/ring",
     isNeedBindSec: true,
   },
   {
     icon: "i-carbon-skill-level",
     title: "等级成绩",
-    url: "",
+    url: "/pages/index/level/level",
     isNeedBindSec: true,
   },
   {

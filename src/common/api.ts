@@ -216,3 +216,27 @@ export const GetSwiper = () => {
         }
     });
 }
+
+// 获取等级成绩
+export const GetLevelScore = () => {
+    return http.get<any>('/api/weapp/level_score', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
+// 获取环节
+export const GetRing = () => {
+    return http.get<any>('/api/weapp/ring', {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}

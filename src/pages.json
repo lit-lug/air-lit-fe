@@ -25,6 +25,20 @@
       }
     },
     {
+      "path": "pages/index/level/level",
+      "style": {
+        "navigationBarTitleText": "等级成绩",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/index/ring/ring",
+      "style": {
+        "navigationBarTitleText": "实践环节",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
       "path": "pages/index/elec/elec",
       "style": {
         "navigationBarTitleText": "宿舍用电",
@@ -94,7 +108,6 @@
         "enablePullDownRefresh": true
       }
     },
-
     {
       "path": "pages/schedule/detail/detail",
       "style": {

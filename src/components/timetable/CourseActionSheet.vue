@@ -23,7 +23,7 @@ function navigateToDetail(courseItem: CourseModel) {
   });
 }
 function closeActionSheet() {
-  console.log("closeActionSheet");
+  // console.log("closeActionSheet");
   emit("cancel");
 }
 
