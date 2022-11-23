@@ -145,7 +145,6 @@ onPullDownRefresh(async () => {
           class="base justify-center items-center h-42 pt-10 mx-auto flex flex-col gap-3"
         >
           <div class="text-center text-xl px-auto">数据源</div>
-          <!-- <switch style="transform: scale(0.85, 0.85)" color="#3B82F6" /> -->
           <div
             @click="changeScheduleSource(0)"
             class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-1 flex justify-center items-center"
