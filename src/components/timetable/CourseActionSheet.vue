@@ -106,6 +106,10 @@ bottom.value = "6%";
                 <div class="i-carbon-user" />
                 {{ courseItem.teacher }}
               </div>
+              <div v-if="courseItem.credit" class="flex gap-1 justify-start items-center">
+                <div class="i-carbon-star" />
+                {{ courseItem.credit }} 学分
+              </div>
               <div class="flex gap-1 justify-start items-center">
                 <div class="i-carbon-alarm" />
                 {{
