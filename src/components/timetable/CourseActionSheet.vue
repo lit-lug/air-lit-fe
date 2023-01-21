@@ -71,7 +71,7 @@ bottom.value = "6%";
         scroll-with-animation
         class="h-64 overflow-y-scroll"
       >
-        <div class="py-6" flex="~ col gap6">
+        <div class="py-8" flex="~ col gap6">
           <div v-if="courseList?.length" class="font-medium text-xl px-4">
             {{ courseTime }}
           </div>
