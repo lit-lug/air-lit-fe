@@ -123,7 +123,7 @@ function getCoursePosition(item: CourseModel) {
           ]"
           @click="emit('courseItemClick', courseItem)"
           class="rounded-lg p-0.5 relative dark:bg-op40"
-          b="solid 1 white !op-50 dark:op-100"
+          b="solid 2 white !op-50 dark:op-100"
         >
           <div
             class="h-full w-full"
