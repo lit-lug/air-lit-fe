@@ -5,7 +5,7 @@ const { showToast, showMsg } = usePageStore();
 
 /** 定义默认配置 */
 const http = new Http({
-    baseURL: 'https://a-lit.singzer.cn',
+    baseURL: 'https://air-lit.feidu.fit',
     header: {},
 });
 
