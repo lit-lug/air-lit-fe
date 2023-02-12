@@ -117,13 +117,13 @@ function getCoursePosition(item: CourseModel) {
         :key="_courseIndex"
       >
         <div
-          class="rounded-lg p-0.5 relative dark:bg-op40"
-          b="white 2 !op-50"
           :style="[
             getCoursePosition(courseItem),
             `background-color:${hasConflictCourseByMap(courseItem)[0].color}`,
           ]"
           @click="emit('courseItemClick', courseItem)"
+          class="rounded-lg p-0.5 relative dark:bg-op40"
+          b="white !op-50"
         >
           <div
             class="h-full w-full"
