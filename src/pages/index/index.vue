@@ -46,6 +46,12 @@ const gridItems = ref<Array<UGridItem>>([
     isNeedBindSec: false,
   },
   {
+    icon: "i-carbon-notification",
+    title: "公告通知",
+    url: "/pages/index/ggtz/ggtz",
+    isNeedBindSec: true,
+  },
+  {
     icon: "i-carbon-chart-stepper",
     title: "考试成绩",
     url: "/pages/index/score/score",
@@ -67,12 +73,6 @@ const gridItems = ref<Array<UGridItem>>([
     icon: "i-carbon-lightning",
     title: "宿舍用电",
     url: "/pages/index/elec/elec",
-    isNeedBindSec: true,
-  },
-  {
-    icon: "i-carbon-overflow-menu-horizontal",
-    title: "更多",
-    url: "",
     isNeedBindSec: true,
   },
 ]);

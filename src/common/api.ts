@@ -229,6 +229,31 @@ export const GetLevelScore = () => {
     });
 }
 
+// 获取公告通知列表
+export const GetGGTZList = (req: GetGGTZListReq) => {
+    return http.post<GetGGTZListResp>('/api/weapp/post/list', req, {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
+// 获取公告通知详情
+export const GetGGTZDetail = (req: GetGGTZDetailReq) => {
+    return http.post<any>('/api/weapp/post/detail' , req, {
+        custom: {
+            ...httpConfig.custom,
+            auth: true,
+            encryption: true,
+            tip: false,
+        }
+    });
+}
+
+
 // 获取环节
 export const GetRing = () => {
     return http.get<any>('/api/weapp/ring', {

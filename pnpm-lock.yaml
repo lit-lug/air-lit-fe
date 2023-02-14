@@ -69,7 +69,7 @@ dependencies:
   less: 4.1.3
   lodash-es: 4.17.21
   luch-request: 3.0.8
-  mp-html: github.com/icepie/mp-html/9a1768113ecce0e7d378087b9b970decd6c6a0f9
+  mp-html: github.com/icepie/mp-html/4cd65f72e3ec210376dba5b0afa95ab1114e8d17
   pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
   sass: 1.58.1
   vue: 3.2.47
@@ -2132,8 +2132,8 @@ packages:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
 
-  /@iconify/utils/2.1.1:
-    resolution: {integrity: sha512-H8xz74JDzDw8f0qLxwIaxFMnFkbXTZNWEufOk3WxaLFHV4h0A2FjIDgNk5LzC0am4jssnjdeJJdRs3UFu3582Q==}
+  /@iconify/utils/2.1.2:
+    resolution: {integrity: sha512-SM5vvo30FlLMI5zOQ+ZrTI/CerdQa8icocnDl8rKPgy3evqw4mgw0qAYT2bnbvtlh0+F5cPwG2scnOb1kWBc9w==}
     dependencies:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.2
@@ -3077,7 +3077,7 @@ packages:
   /@unocss/preset-icons/0.49.4:
     resolution: {integrity: sha512-W+0zD1PlNXGSss3vy+RMKEVCl0Mncsyf58fv48YXzuKAldbyG9VeQ9hhs18nEL+1h4dQkSFMvoRqwJ053wVaeA==}
     dependencies:
-      '@iconify/utils': 2.1.1
+      '@iconify/utils': 2.1.2
       '@unocss/core': 0.49.4
       ofetch: 0.4.21
     transitivePeerDependencies:
@@ -7478,8 +7478,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/icepie/mp-html/9a1768113ecce0e7d378087b9b970decd6c6a0f9:
-    resolution: {tarball: https://codeload.github.com/icepie/mp-html/tar.gz/9a1768113ecce0e7d378087b9b970decd6c6a0f9}
+  github.com/icepie/mp-html/4cd65f72e3ec210376dba5b0afa95ab1114e8d17:
+    resolution: {tarball: https://codeload.github.com/icepie/mp-html/tar.gz/4cd65f72e3ec210376dba5b0afa95ab1114e8d17}
     name: mp-html
     version: 2.4.0
     dev: false

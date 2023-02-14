@@ -1,3 +1,4 @@
+
 /* 请求配置/响应的补充说明 */
 
 interface ResponseData<T = any> {
@@ -156,4 +157,23 @@ type SwiperResp = SwiperItem[]
 type GetScheduleReq = {
     source: 'class' | 'my' | 'auto' ;
     class?: string;
+}
+
+type GetGGTZListReq = {
+    page_path: string
+}
+
+type Post = {
+    title: string;
+    url: string;
+    date: string;
+}
+
+type GetGGTZListResp = {
+    posts: Post[];
+    next: string;
+}
+
+type GetGGTZDetailReq = {
+    post_path: string
 }

@@ -81,6 +81,20 @@
       }
     },
     {
+      "path": "pages/index/ggtz/ggtz",
+      "style": {
+        "navigationBarTitleText": "公告通知",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/index/ggtz/detail/detail",
+      "style": {
+        "navigationBarTitleText": "通知详情",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
       "path": "pages/mine/setting/setting",
       "style": {
         "navigationBarTitleText": "公众号配置",

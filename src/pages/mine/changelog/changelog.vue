@@ -11,17 +11,17 @@ onLaunch(() => {});
     <!-- 标题栏 -->
     <template v-slot:navContent>更新日志</template>
 
-    <!-- <div
+    <div
       class="overflow-hidden flex flex-col pt-2 pb-4 px-2 m-3 dark:bg-dark bg-white justify-center items-start rounded-lg shadow-sm"
-    > -->
-    <mpHtml
-      :content="changelog"
-      class="text-sm"
-      markdown
-      selectable
-      container-style="white-space:wrap;padding:30rpx;overflow:hidden;"
-      >加载中...</mpHtml
     >
-    <!-- </div> -->
+      <mpHtml
+        :content="changelog"
+        class="text-sm"
+        markdown
+        selectable
+        container-style="white-space:wrap;padding:30rpx;overflow:hidden;"
+        >加载中...</mpHtml
+      >
+    </div>
   </UBasePage>
 </template>
