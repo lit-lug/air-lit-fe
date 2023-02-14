@@ -196,6 +196,19 @@ const toAboutPage = () => {
         </div>
       </UCellItem>
     </UCellGroup>
+
+    <ACellGroup inset arrow>
+      <ACell title="Slots">
+        <template #icon>
+          <div class="i-carbon:account text-xl mr-2"></div>
+        </template>
+        <template #value>
+          <div>Content slot</div>
+        </template>
+      </ACell>
+      <ACell title="Title" value="Content" />
+      <ACell title="Title" value="Content" />
+    </ACellGroup>
   </UBasePage>
 </template>
 
