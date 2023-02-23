@@ -53,7 +53,7 @@
     "lodash-es": "^4.17.21",
     "luch-request": "^3.0.8",
     "mp-html": "github:icepie/mp-html",
-    "pinia": "^2.0.30",
+    "pinia": "^2.0.32",
     "sass": "^1.58.3",
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11",
@@ -78,10 +78,10 @@
     "postcss": "^8.4.21",
     "terser": "^5.16.4",
     "typescript": "^4.9.5",
-    "unocss": "^0.49.7",
+    "unocss": "^0.50.0",
     "unocss-applet": "^0.2.22",
     "unplugin-auto-import": "^0.11.5",
-    "vite": "^4.1.2",
+    "vite": "^4.1.4",
     "vite-plugin-md-loader": "^0.0.1",
     "vite-plugin-pwa": "^0.13.3"
   }
