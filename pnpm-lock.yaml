@@ -60,7 +60,7 @@ dependencies:
     version: 3.0.8
   mp-html:
     specifier: github:icepie/mp-html
-    version: github.com/icepie/mp-html/ca66d5e31f3de96f8f7f8e70a8c0063be58be06f
+    version: github.com/icepie/mp-html/134cffe6b212e5f02b6dc20357fc9cd8832f08de
   pinia:
     specifier: ^2.0.34
     version: 2.0.34(typescript@4.9.5)(vue@3.2.47)
@@ -8678,8 +8678,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/icepie/mp-html/ca66d5e31f3de96f8f7f8e70a8c0063be58be06f:
-    resolution: {tarball: https://codeload.github.com/icepie/mp-html/tar.gz/ca66d5e31f3de96f8f7f8e70a8c0063be58be06f}
+  github.com/icepie/mp-html/134cffe6b212e5f02b6dc20357fc9cd8832f08de:
+    resolution: {tarball: https://codeload.github.com/icepie/mp-html/tar.gz/134cffe6b212e5f02b6dc20357fc9cd8832f08de}
     name: mp-html
     version: 2.4.1
     dev: false
