@@ -1,12 +1,13 @@
 import {
   defineConfig,
-  Preset,
   presetAttributify,
   presetIcons,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
+
+import { presetAno } from 'ano-ui'
 
 import {
   presetApplet,
@@ -42,7 +43,7 @@ export default defineConfig({
     presetApplet({ enable: !isH5 }),
     presetAttributify(),
     presetRemToRpx({ enable: !isH5 }),
-
+    presetAno(),
   ],
   transformers: [
     transformerDirectives(),
