@@ -6,6 +6,8 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import mdLoader from 'vite-plugin-md-loader';
 // import { VitePWA } from 'vite-plugin-pwa'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import { AnoResolver } from 'ano-ui'
 
 
 
@@ -20,7 +22,9 @@ export default defineConfig({
   plugins: [
     Uni(),
     mdLoader(),
-
+    Components({
+      resolvers: [AnoResolver()],
+    }),
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     UnoCSS(),

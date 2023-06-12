@@ -169,30 +169,19 @@ onPullDownRefresh(async () => {
 
 <template>
   <UBasePage :showShadow="false">
-    <!-- 标题栏 -->
     <template v-slot:navContent>考试成绩</template>
 
-    <template v-slot:navExtra>
+    <!-- <template v-slot:navExtra>
       <UDropdown
         :filterData="filterData"
         @change="handChange"
-        v-if="deviceType !== 'pc' && scoreData"
+        v-if="scoreData"
       >
       </UDropdown>
-    </template>
+    </template> -->
 
-    <UDropdown
-      isSticky
-      :filterData="filterData"
-      @change="handChange"
-      v-if="deviceType === 'pc' && scoreData"
-    >
-    </UDropdown>
 
-    <!-- 内容 -->
-
-    <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'">
-      <!-- 结果页 -->
+    <!-- <div :class="deviceType == 'pc' ? '' : 'pt-80rpx'"> -->
 
       <div v-for="(v, i) in selectScore" :key="i">
         <UCollapse :title="v.class_name" :title-bar-color="getCourseColor(v.class_name)">
@@ -325,8 +314,7 @@ onPullDownRefresh(async () => {
       </div>
 
       <UResult v-if="!selectScore"></UResult>
-    </div>
+    <!-- </div> -->
 
-    <!-- 下拉菜单 -->
   </UBasePage>
 </template>

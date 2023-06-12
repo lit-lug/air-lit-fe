@@ -108,6 +108,8 @@ onPullDownRefresh(async () => {
   }
   uni.stopPullDownRefresh();
 });
+
+
 </script>
 
 <template>
@@ -147,22 +149,22 @@ onPullDownRefresh(async () => {
           <div class="text-center text-xl px-auto">数据源</div>
           <div
             @click="changeScheduleSource(0)"
-            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-1 flex justify-center items-center"
-            :class="scheduleSourceIndex == 0 ? 'bg-blue-6/80 text-gray-1' : ''"
+            class="rounded-lg w-28 h-12 text-center flex justify-center items-center"
+            :class="scheduleSourceIndex == 0 ? 'bg-blue-6/80 text-gray-1' : 'bg-gray-5/80 text-gray-3'"
           >
             自动选择
           </div>
           <div
             @click="changeScheduleSource(1)"
-            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
-            :class="scheduleSourceIndex == 1 ? 'bg-blue-6/80 text-gray-1' : ''"
+            class="rounded-lg w-28 h-12 text-center flex justify-center items-center"
+            :class="scheduleSourceIndex == 1 ? 'bg-blue-6/80 text-gray-1' : 'bg-gray-5/80 text-gray-3'"
           >
             个人课表
           </div>
           <div
             @click="changeScheduleSource(2)"
-            class="rounded-lg w-28 h-12 bg-gray-5/80 text-center text-gray-3 flex justify-center items-center"
-            :class="scheduleSourceIndex == 2 ? 'bg-blue-6/80 text-gray-1' : ''"
+            class="rounded-lg w-28 h-12 text-center flex justify-center items-center"
+            :class="scheduleSourceIndex == 2 ? 'bg-blue-6/80 text-gray-1' : 'bg-gray-5/80 text-gray-3'"
           >
             班级课表
           </div>
